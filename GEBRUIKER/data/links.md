@@ -6,11 +6,11 @@ tags: [gstem, data, links]
 
 | Onderwerp | Link / pad | Notitie |
 | --- | --- | --- |
-| Projectcontext | `CODEXIMPORT/PROJECT_CONTEXT.md` | Oriëntatiedocument G-Stem/GSN |
-| Specificaties (concept) | `CODEXIMPORT/G-Stem_specificaties_concept.docx` | Hardware + software |
-| Blokschema | `CODEXIMPORT/Blokschema_AeroLink.drawio` | Keten meetmodule → laptop |
-| Webdemo | `GSTEMAPPPREVIEWWEB/index.html` | Mock-up laptopapp; Code-pagina in één kolom (officieel)
-| API-handleiding (demo) | `GSTEMAPPPREVIEWWEB/api-handleiding.html` -> `index.html#page-api` | Doorverwijspagina; de API-documentatie en -bediening zitten nu in de eigen sectie `#page-api` van de webdemo |
+| Projectcontext | `CODEXIMPORT/PROJECT_CONTEXT.md` (verwijderd `2026-10-05`) | Oriëntatiedocument G-Stem/GSN; nu in `docs/01` |
+| Specificaties (concept) | `CODEXIMPORT/G-Stem_specificaties_concept.docx` (verwijderd) | Hardware + software; samengevat in `docs/01` |
+| Blokschema | `CODEXIMPORT/Blokschema_AeroLink.drawio` (verwijderd) | Keten meetmodule → laptop; beschreven in `docs/04` |
+| Webdemo | `GSTEMAPPPREVIEWWEB/index.html` (verwijderd `2026-10-05`) | Mock-up laptopapp; werking beschreven in `docs/03`
+| API-handleiding (demo) | `GSTEMAPPPREVIEWWEB/api-handleiding.html` (verwijderd) -> `index.html#page-api` | Beschreven in `docs/03` |
 | Documentatie | `docs/` | Overzichten en inventaris |
 | Handleiding (bron) | `documenten/Handleiding-meettoestel.md` | Markdown-bron van de gebruikershandleiding |
 | Handleiding (Word) | `documenten/Handleiding-meettoestel.docx` | Gegenereerd Word-document |

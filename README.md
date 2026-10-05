@@ -1,19 +1,37 @@
-# GSTEM-Project — gearchiveerde AI-mappen en documentatie
+# GSTEM-Project — projectdocumentatie en gebruikershub
 
-Deze map bundelt twee AI-/ontwikkelmappen van het **G-Stem / GSN-project**:
+Deze map bundelt het **G-Stem / GSN-project**: *Positie- en beweging meetmodule met LoRa
+integratie* (de werktitel *AeroLink* vervalt). De map is tegelijk een **pi-project met een vaste
+werkwijze** en een **Obsidian-hub**.
 
-| Map in deze repo | Oorspronkelijke locatie | Inhoud |
-| --- | --- | --- |
-| [`CODEXIMPORT/`](CODEXIMPORT/) | `C:\Users\Nand Schoovaerts\Documents\ChatGPT\G-Stem Project` | Projectdocumenten (docx), blokschema (drawio), Python-generatorscript, oud visueel HTML-prototype, `PROJECT_CONTEXT.md` |
-| [`GSTEMAPPPREVIEWWEB/`](GSTEMAPPPREVIEWWEB/) | `C:\Users\Nand Schoovaerts\Downloads\GSTEMAPPPREVIEWWEB` | Werkende statische webdemo van de laptopapp: MapLibre 3D-kaart, live telemetrie, code-editor, setup-popup |
+## Inhoud van de map
 
-Beide mappen zijn **volledig gekopieerd** (inclusief `.git`, assets en scripts) en daarnaast gebundeld in een ziparchief (zie `docs/05-inventaris-en-archief.md`).
+| Pad | Inhoud |
+| --- | --- |
+| `docs/` | De documentatieset van het project (01 overzicht, 02 en 03 archiefbeschrijvingen, 04 blokschema, 05 inventaris). |
+| `GEBRUIKER/` | Communicatie- en archiefhub: live chatlog, onderwerpenregister, `data/`, sessiearchief en een Obsidian-kopie van `docs/` in `Projectdocumentatie/`. |
+| `documenten/` | De gebruikershandleiding en de ontwerptekst (markdown-bron, gegenereerde Word-versies, bouwscripts en screenshots). |
+| `.pi/` | Pi-skill, altijd-geladen projectinstructie en de live logger. |
+| `README.md` | Dit overzicht. |
 
-> Niet-gerelateerd materiaal (een los "Negau B-helm"-leestoets-subproject dat in dezelfde AI-map stond) is uit deze kopieën en archieven verwijderd.
+## Opgeruimd op 2026-10-05
+
+De ooit meegekopieerde AI-mappen zijn **verwijderd** om ruimte te winnen. Hun inhoud is blijvend
+vastgelegd in de documentatie:
+
+| Verwijderd | Vastgelegd in |
+| --- | --- |
+| `CODEXIMPORT/` (projectdocumenten, blokschema, generator, oud HTML-prototype) | `docs/01`, `docs/02`, `docs/04` |
+| `GSTEMAPPPREVIEWWEB/` (statische webdemo van de laptopapp) | `docs/03` |
+| Ziparchieven in `archief/` | `docs/05` (namen, groottes en hashes) |
+| Oude `.docx.bak-*` in `documenten/` | git |
+
+> [!info] Herstellen
+> Alles staat nog in de git-structuur onder commit `5acdfa0`. Haal één pad terug met
+> `git checkout 5acdfa0 -- CODEXIMPORT` (of `GSTEMAPPPREVIEWWEB`). Het opruimen zelf is in een
+> aparte commit vastgelegd. Zie `docs/05-inventaris-en-archief.md`.
 
 ## Pi-skill & gebruikershub
-
-Deze map is ook ingericht als **pi-project met een vaste werkwijze**:
 
 - **Skill** `.pi/skills/gstem-archief/` — de afspraken; wordt altijd toegepast (via `.pi/APPEND_SYSTEM.md`).
 - **Live logger** `.pi/extensions/gstem-logger.ts` — schrijft automatisch elk gebruikersbericht (verbatim) en elk AI-antwoord (volledig, zonder denkproces) naar `GEBRUIKER/chat.md`, en archiveert bij het afsluiten van pi én bij elke nieuwe sessie.
@@ -22,29 +40,21 @@ Deze map is ook ingericht als **pi-project met een vaste werkwijze**:
 Commando's: `/archiveer`, `/logboek`, `/onderwerp <naam>`.
 
 > [!note]
-> `.pi`-extensies en `APPEND_SYSTEM.md` laden pas nadat je pi **projectvertrouwen** geeft bij de eerste start in deze map.
+> `.pi`-extensies en `APPEND_SYSTEM.md` laden pas nadat je pi **projectvertrouwen** geeft bij de
+> eerste start in deze map.
 
 ## Documentatie
 
-De volledige documentatie staat in de map [`docs/`](docs/):
+De documentatieset staat zowel in [`docs/`](docs/) als in
+[`GEBRUIKER/Projectdocumentatie/`](GEBRUIKER/Projectdocumentatie/) (identiek, voor Obsidian):
 
 1. [`docs/01-projectoverzicht.md`](docs/01-projectoverzicht.md) — het G-Stem/GSN-project: doel, hardware, softwareketen, appflow, open vragen.
-2. [`docs/02-codeximport.md`](docs/02-codeximport.md) — volledige inventaris en uitleg van de map `CODEXIMPORT`.
-3. [`docs/03-gstemapppreviewweb.md`](docs/03-gstemapppreviewweb.md) — architectuur en werking van de webdemo `GSTEMAPPPREVIEWWEB`.
+2. [`docs/02-codeximport.md`](docs/02-codeximport.md) — archiefbeschrijving van de verwijderde map `CODEXIMPORT`.
+3. [`docs/03-gstemapppreviewweb.md`](docs/03-gstemapppreviewweb.md) — archiefbeschrijving van de verwijderde webdemo `GSTEMAPPPREVIEWWEB`.
 4. [`docs/04-blokschema-aerolink.md`](docs/04-blokschema-aerolink.md) — het blokschema van de meetmodule, node voor node.
-5. [`docs/05-inventaris-en-archief.md`](docs/05-inventaris-en-archief.md) — bestandsinventaris, herkomst en het ziparchief.
-
-## Snel starten met de webdemo
-
-```bash
-cd GSTEMAPPPREVIEWWEB
-python -m http.server 8080
-# open daarna http://localhost:8080 in de browser
-```
-
-> De demo heeft internet nodig (MapLibre GL via CDN + Esri/AWS tegels) en moet via `http://` geopend worden, niet via `file://`.
+5. [`docs/05-inventaris-en-archief.md`](docs/05-inventaris-en-archief.md) — bestandsinventaris, herkomst en wat opgeruimd is.
 
 ## Status
 
-- Hardware, firmware en laptopapp zijn **in ontwerp**; de projectnaam is **Positie- en beweging meetmodule met LoRa integratie** (de werktitel *AeroLink* vervalt).
-- De webdemo is een **mock-up**: geen echte USB-, LoRa- of sensorverbinding.
+- Hardware, firmware en laptopapp zijn **in ontwerp**; de projectnaam is **Positie- en beweging meetmodule met LoRa integratie**.
+- De webdemo was een **mock-up**: geen echte USB-, LoRa- of sensorverbinding. Hij is verwijderd nadat zijn werking in `docs/03` is vastgelegd.

@@ -110,3 +110,9 @@ Chronologisch, nieuwste onderaan. Eén subsectie per beslissing.
 - **Reden:** Het toestel moet ook veilig zijn als de laptop of de LoRa-verbinding wegvalt; de module is de enige laag die altijd aanwezig is.
 - **Gevolg:** Vastgelegd in `documenten/Ontwerp-meetmodule.md` (sectie Besturing en veiligheid). Blijft open: de omschakeltijd in seconden en de precieze veilige toestand per toesteltype.
 - **Link:** [[besturing-en-commandos]], [[meetmodule-voorbereiding]], [[open-vragen]]
+
+## 2026-10-05 — AI-mappen en tussenversies verwijderd na vastleggen in documentatie
+- **Beslissing:** `CODEXIMPORT/`, `GSTEMAPPPREVIEWWEB/`, de ziparchieven in `archief/` en de oude `.docx.bak-*`-bestanden in `documenten/` zijn verwijderd. Hun inhoud blijft beschreven in `docs/01`–`docs/04` en in `GEBRUIKER/Projectdocumentatie/`. `docs/` en de Obsidian-kopie `GEBRUIKER/Projectdocumentatie/` worden **identiek** gehouden.
+- **Reden:** Gebruikersvraag: de hele map herschikken en ruimte winnen; de documentenmap en de webdemo namen te veel opslag in en waren dubbel met de documentatie.
+- **Gevolg:** De map `archief/` is opgeheven. Alles blijft herstelbaar via git-commit `5acdfa0`. README en `docs/05` beschrijven de opgeruimde toestand.
+- **Link:** [[links]], [[afgevoerd]], [[specificaties]]

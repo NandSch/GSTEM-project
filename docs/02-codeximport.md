@@ -1,5 +1,10 @@
 # 02 · Map `CODEXIMPORT` — inventaris en uitleg
 
+> [!warning] Map verwijderd op 2026-10-05
+> De map `CODEXIMPORT/` is uit het project verwijderd om ruimte te winnen. Dit document is de
+> blijvende archiefbeschrijving van de inhoud. Herstellen kan via git:
+> `git checkout 5acdfa0 -- CODEXIMPORT`.
+
 Oorspronkelijke locatie: `C:\Users\Nand Schoovaerts\Documents\ChatGPT\G-Stem Project`.
 Gekopieerd naar: `CODEXIMPORT/` (zonder het niet-gerelateerde Negau B-helm-materiaal).
 

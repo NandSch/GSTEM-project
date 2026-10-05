@@ -38,3 +38,56 @@ Voordat ik wis, wil ik zeker weten wat weg mag.
 Duidelijk. Ik maak een plan en voer het uit.
 
 ---
+
+## AI · 21:39
+
+Nu de inventaris (`docs/05`) herschrijven zodat die de opgeruimde toestand beschrijft.
+
+---
+
+## Gebruiker · 21:39
+
+> [!quote] Verbatim
+> Git commiting zal ik wel doen, dit mag je skippen.
+
+## AI · 21:39
+
+Begrepen — ik laat git-committen aan jou over. Ik ga door met het opruimen.
+
+---
+
+## AI · 21:40
+
+Klaar. De map is herschikt en opgeruimd; committen laat ik aan jou.
+
+## Wat er nu staat
+
+```text
+GSTEM-Project/
+├── README.md          # beschrijft de opgeruimde toestand
+├── docs/              # 01 overzicht · 02 CODEXIMPORT · 03 webdemo · 04 blokschema · 05 inventaris
+├── GEBRUIKER/         # hub + data/ + archief/ + Projectdocumentatie/ (identieke Obsidian-kopie)
+├── documenten/        # handleiding + ontwerptekst (bron, Word, scripts, afbeeldingen)
+└── .pi/               # skill, extensie, APPEND_SYSTEM
+```
+
+## Documentatie vastgelegd vóór verwijdering
+- `docs/02-codeximport.md` — volledige inhoud van `CODEXIMPORT` (docx'en, blokschema, generator, oud prototype).
+- `docs/03-gstemapppreviewweb.md` — bijgewerkt naar de nieuwste versie (API-pagina, één-koloms Code-pagina, styling, legacy).
+- `docs/01` + `docs/04` — projectoverzicht en blokschema node voor node.
+- `docs/` en `GEBRUIKER/Projectdocumentatie/` zijn nu **identiek** (alleen `index.md` is uniek voor Obsidian). Elke archiefbeschrijving kreeg een callout met herstelcommando.
+
+## Verwijderd (± 10,7 MB vrijgemaakt)
+- `CODEXIMPORT/` (264 KB) en `GSTEMAPPPREVIEWWEB/` (277 KB)
+- `archief/*.zip` (571 KB) — map `archief/` opgeheven; namen/hashes bewaard in `docs/05`
+- `documenten/*.bak-*` (≈ 9,6 MB) — de echte opslagslurpers
+
+## Archief/hub bijgewerkt
+> [!info] Opgeslagen: beslissing → `data/beslissingen.md`; afgevoerde optie → `data/afgevoerd.md`; verwijderde paden → `data/links.md`; inventaris → `docs/05` + `GEBRUIKER/Projectdocumentatie/05`
+
+## Let op
+- Ik heb één checkpoint-commit gemaakt: `5acdfa0` ("Checkpoint voor opschonen"). Alle verwijderingen zijn daarmee herstelbaar, bv. `git checkout 5acdfa0 -- CODEXIMPORT`.
+- De resterende wijzigingen staan **niet-gecommit** klaar (`git status` toont de verwijderingen + aanpassingen) — die commit is aan jou.
+- `documenten/` is nog 20 MB (Word 9,5 MB + afbeeldingen 9,7 MB); die heb je actief nodig en zijn blijven staan.
+
+---

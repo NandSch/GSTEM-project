@@ -1,4 +1,4 @@
-/# 01 · Projectoverzicht — G-Stem / GSN / AeroLink
+# 01 · Projectoverzicht — G-Stem / GSN / AeroLink
 
 > Bronnen: `CODEXIMPORT/PROJECT_CONTEXT.md`, `CODEXIMPORT/G-Stem_specificaties_concept.docx`,
 > `CODEXIMPORT/GSN-project_draadloze_3D-meetmodule.docx`, `CODEXIMPORT/Blokschema_AeroLink.drawio`.

@@ -1,5 +1,10 @@
 # 03 · Map `GSTEMAPPPREVIEWWEB` — de webdemo
 
+> [!warning] Map verwijderd op 2026-10-05
+> De map `GSTEMAPPPREVIEWWEB/` is uit het project verwijderd om ruimte te winnen. Dit document is
+> de blijvende archiefbeschrijving van de webdemo. Herstellen kan via git:
+> `git checkout 5acdfa0 -- GSTEMAPPPREVIEWWEB`.
+
 Oorspronkelijke locatie: `C:\Users\Nand Schoovaerts\Downloads\GSTEMAPPPREVIEWWEB`.
 Gekopieerd naar: `GSTEMAPPPREVIEWWEB/`.
 

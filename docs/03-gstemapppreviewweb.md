@@ -1,5 +1,10 @@
 # 03 · Map `GSTEMAPPPREVIEWWEB` — de webdemo
 
+> [!warning] Map verwijderd op 2026-10-05
+> De map `GSTEMAPPPREVIEWWEB/` is uit het project verwijderd om ruimte te winnen. Dit document is
+> de blijvende archiefbeschrijving van de webdemo. Herstellen kan via git:
+> `git checkout 5acdfa0 -- GSTEMAPPPREVIEWWEB`.
+
 Oorspronkelijke locatie: `C:\Users\Nand Schoovaerts\Downloads\GSTEMAPPPREVIEWWEB`.
 Gekopieerd naar: `GSTEMAPPPREVIEWWEB/`.
 
@@ -20,8 +25,9 @@ Branch: `master`.
 
 ```text
 GSTEMAPPPREVIEWWEB/
-├── index.html          # HTML + alle inline scripts (kaart, telemetrie, editor, popup)
-├── style.css           # volledige stylesheet (design tokens, layout, HUD, markers)
+├── index.html          # HTML + alle inline scripts (kaart, telemetrie, editor, popup, API)
+├── style.css           # volledige stylesheet (design tokens, layout, HUD, markers, API-pagina)
+├── api-handleiding.html# doorverwijspagina naar index.html#page-api (oude losse API-doc)
 ├── assets/
 │   └── satellite.svg   # procedureel gegenereerde satelliettextuur (1800×1800) — legacy
 ├── scripts/
@@ -50,8 +56,9 @@ Vereisten en aandachtspunten (uit `.pi/agents/start-website.md`):
 
 ## Pagina's / routing
 
-De app werkt met **hash-routing**: `#page-kaart` (standaard) en `#page-code`. De navigatie
-(`.island-nav`) toont twee statusbolletjes (USB, Device) en knoppen **Kaart** en **Code**.
+De app werkt met **hash-routing**: `#page-kaart` (standaard), `#page-code` en `#page-api`. De
+navigatie (`.island-nav`) toont twee statusbolletjes (USB, Device) en knoppen **Kaart**, **Code**
+en **API**.
 
 ### `#page-kaart` — Live Tracking
 
@@ -86,21 +93,31 @@ De app werkt met **hash-routing**: `#page-kaart` (standaard) en `#page-code`. De
 
 ### `#page-code` — Code-editor
 
-**Links:** een code-venster met titelbalk (`missie.ino`, "Arduino C++") en een `textarea`
-(`#code-editor`) met startcode (`STARTER_CODE`). Daaronder een statusbalk met aantal regels en
-tekens.
+De Code-pagina is een **één-koloms** opzet (`.code-solo`, max. 1060 px breed), rustig en zonder
+rechterkolom.
 
-**Rechts: Variabelenpaneel.**
-- **Ingangen (alleen lezen)** — klik voegt de variabele in op de cursor:
-  `meting.hoogte`, `meting.snelheid`, `meting.horizontaleSnelheid`, `meting.verticaleSnelheid`,
-  `meting.breedtegraad`, `meting.lengtegraad`, `meting.richting`, `meting.verticaleHoek`.
-- **Uitgangen (jij stelt in)**: `servo` (int 0–180°), `motorSnelheid` (int 0–255), `motorAan` (bool),
-  `ledAan` (bool).
-- Upload-info (doel, verbinding, formaat), hint `Ctrl`+`Enter`, en een **Uploaden**-knop
-  (`uploadCode()` toont enkel een `alert`, er wordt niets echt geüpload).
+- Een code-venster met titelbalk (`missie.ino`, "Arduino C++"), daarin rechts de hint
+  `Ctrl` + `Enter` en de **Uploaden**-knop (`.code-upload`, rood).
+- Een `textarea` (`#code-editor`) met korte startcode (`STARTER_CODE`, 11 regels).
+- Daaronder een statusbalk met aantal regels en tekens.
+- Daaronder twee **uitklapbare hulpblokken** (`<details class="help-item">`, standaard dicht):
+  - **Wat kan ik gebruiken?** — compacte lijst van `meting.*` met eenheid, in twee kolommen.
+  - **Hoe stuur ik iets?** — één voorbeeld `Serial.println("15,-5,75,60");` met één zin uitleg.
 
-`insertAtCursor()` voegt de tekst in op de cursorpositie; `updateCodeStats()` werkt de tellers bij
-en schakelt de uploadknop in/uit.
+`updateCodeStats()` werkt de tellers bij en schakelt de uploadknop in/uit. `uploadCode()` toont enkel
+een `alert`; er wordt niets echt geüpload.
+
+### `#page-api` — API voor een extern programma
+
+**Links: documentatie** (scrollbaar, `.api-doc`): hoe de koppeling werkt, verbinding maken
+(endpoint `ws://localhost:9001`), uplink-JSON met de meetdata, downlink als **vrije CSV-regel**,
+randvoorwaarden (komma, `\n`, frequentie) en een snelstart.
+
+**Rechts: API-besturing** (`.api-side`): statusindicator, knoppen **API aanzetten/uitzetten**
+(`toggleApiMock()`) en **Verbinding testen** (`testApi()`), plus voorbeeld van de regel terug en de
+meting heen. De knoppen zijn een mock; er wordt geen echte socket geopend.
+
+`api-handleiding.html` is een **doorverwijspagina** naar `index.html#page-api`.
 
 ## Setup-popup
 
@@ -113,7 +130,7 @@ Bij het laden verschijnt een modal (`#popup`) "Setup":
 
 ## `style.css`
 
-±1146 regels, opgebouwd rond CSS-variabelen (design tokens) in `:root`:
+±1391 regels, opgebouwd rond CSS-variabelen (design tokens) in `:root`:
 
 | Token | Waarde |
 | --- | --- |
@@ -131,8 +148,9 @@ Bij het laden verschijnt een modal (`#popup`) "Setup":
 
 Secties in het bestand (op basis van de commentaarkoppen): basis & tokens, ambient backdrop,
 navigatie/island-nav + auto-checkbox-status, panelen (header, hero metric, data groups, footer
-legend), kaart (MapLibre canvas, toestelmarker, atmosfeer/HUD), code-editor + variabelenpalet +
-uploadpaneel, daarna popup/overlay en responsive/utility-regels. Er is ook een `--map-zoom` variabele.
+legend), kaart (MapLibre canvas, toestelmarker, atmosfeer/HUD), code-editor + uitklapbare hulp,
+API-pagina (documentatie + bediening), daarna popup/overlay en responsive/utility-regels. Er is ook
+een `--map-zoom` variabele.
 
 ## Legacy / niet meer gebruikt
 
@@ -142,12 +160,19 @@ uploadpaneel, daarna popup/overlay en responsive/utility-regels. Er is ook een `
   met een deterministische PRNG (mulberry32, seed 20240929) de SVG genereert; uitvoeren met
   `node scripts/gen-satellite.js`.
 
+## Herziene Code-pagina (voorheen versie B)
+
+De Code-pagina is in **één kolom** herzien: grote editor, **Uploaden** en `Ctrl`+`Enter` in de
+titelbalk, en twee korte **uitklapbare hulpblokken** (*Wat kan ik gebruiken?* en *Hoe stuur ik
+ iets?*). Deze opzet is nu de **officiële** versie in `index.html`. De A/B-testbestanden
+(`index-b.html`, `ab-vergelijken.html`) zijn verwijderd. Details in [[ab-test-code-pagina]].
+
 ## Verband met het oudere prototype
 
 | | `CODEXIMPORT/visual-prototype/` (oud) | `GSTEMAPPPREVIEWWEB/` (nieuw) |
 | --- | --- | --- |
 | Kaart | Getekende SVG rond Spa, België | Echte MapLibre 3D-satellietkaart (Amsterdam) |
 | Data | Statische fictieve waarden | Live-schommelende fictieve waarden |
-| Editor | Alleen-lezen voorbeeldcode | Bewerkbare `textarea` + variabelenpalet + uploadknop |
+| Editor | Alleen-lezen voorbeeldcode | Bewerkbare `textarea` + uitklapbare hulp + uploadknop |
 | Setup | Startscherm met "Open demonstratie" | Modal-popup met auto-checkboxen |
 | Navigatie | Tabs binnen één pagina | Hash-routing + island-nav |
