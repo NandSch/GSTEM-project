@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="light">
+    <meta name="theme-color" content="#0e2233">
+    <meta name="description" content="GSTEM · Live tracking van het meettoestel op een interactieve 3D-kaart.">
+    <title>GSTEM · Live Tracking</title>
+    <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@5.6.0/dist/maplibre-gl.css">
+    <script src="https://unpkg.com/maplibre-gl@5.6.0/dist/maplibre-gl.js"></script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230e2233'/%3E%3Cpath d='M16 5.5c-4 0-7.2 3.2-7.2 7.2 0 5.4 7.2 13.3 7.2 13.3s7.2-7.9 7.2-13.3c0-4-3.2-7.2-7.2-7.2zm0 9.8a2.6 2.6 0 1 1 0-5.2 2.6 2.6 0 0 1 0 5.2z' fill='%23ff2f2f'/%3E%3C/svg%3E">
+    <link rel="stylesheet" href="style.css?v=3">
+</head>
+<body>
+    <div class="app-bg" aria-hidden="true"></div>
+
+    <nav class="island-nav" aria-label="Hoofdnavigatie">
+        <div class="island-checks">
+            <label class="island-check" title="Status USB-ontvanger">
+                <input type="checkbox" id="nav-usb-checkbox" class="auto-checkbox" disabled>
+                <span class="island-check-text">USB</span>
+            </label>
+            <label class="island-check" title="Status meettoestel">
+                <input type="checkbox" id="nav-device-checkbox" class="auto-checkbox" disabled>
+                <span class="island-check-text">Device</span>
+            </label>
+        </div>
+        <div class="island-links">
+            <a href="#page-kaart" class="island-btn">Kaart</a>
+            <a href="#page-code" class="island-btn">Code</a>
+            <a href="#page-api" class="island-btn">API</a>
+        </div>
+    </nav>
+
+    <div id="popup" class="popup-overlay" role="dialog" aria-modal="true" aria-labelledby="popup-title">
+        <div class="popup-content">
+            <div class="popup-icon" aria-hidden="true">
+                <span class="popup-icon-ring"></span>
+                <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 2 3 7v6c0 5 3.8 8.4 9 9 5.2-.6 9-4 9-9V7l-9-5z"/>
+                    <path d="m9 12 2 2 4-4"/>
+                </svg>
+            </div>
+            <h2 id="popup-title">Setup</h2>
+            <p class="popup-sub" id="popup-status">Verbinding maken met de hardware&hellip;</p>
+
+            <div class="form-group">
+                <label for="usb-checkbox">USB-ontvanger</label>
+                <input type="checkbox" id="usb-checkbox" class="auto-checkbox" disabled>
+            </div>
+            <div class="form-group">
+                <label for="device-checkbox">Meettoestel</label>
+                <input type="checkbox" id="device-checkbox" class="auto-checkbox" disabled>
+            </div>
+
+            <button id="ok-btn" class="popup-btn" onclick="closePopup()" disabled>OK</button>
+        </div>
+    </div>
+
+    <main>
+        <section id="page-kaart" class="page-content active">
+            <div class="split-layout">
+                <div class="left-section map-panel">
+                    <div class="map-placeholder" id="mapPlaceholder">
+                        <div class="map-canvas" id="map"></div>
+
+                        <div class="map-haze"></div>
+
+                        <div class="map-hud">
+                            <div class="hud-compass" title="Noord">
+                                <span class="hud-compass-needle"></span>
+                                <span class="hud-compass-label">N</span>
+                            </div>
+                            <div class="hud-zoom">
+                                <button type="button" id="zoomIn" aria-label="Inzoomen">+</button>
+                                <button type="button" id="zoomOut" aria-label="Uitzoomen">&minus;</button>
+                            </div>
+                            <div class="hud-scale">
+                                <span class="hud-scale-bar"></span>
+                                <span class="hud-scale-label" id="hudScaleLabel">200 m</span>
+                            </div>
+                            <div class="hud-live"><span class="hud-live-dot"></span>LIVE VOLGING</div>
+                        </div>
+                    </div>
+                </div>
+
+                <aside class="right-section" aria-label="Live meetgegevens">
+                    <div class="panel-head">
+                        <div>
+                            <h2>Live Data</h2>
+                            <p class="panel-sub">Realtime meting &middot; update <span id="last-update">nu</span></p>
+                        </div>
+                        <span class="panel-live"><span class="panel-live-dot"></span>LIVE</span>
+                    </div>
+
+                    <div class="hero-metric">
+                        <span class="hero-metric-label">Hoogte</span>
+                        <div class="hero-metric-value">
+                            <span data-live="altitude">125.50</span><em>m</em>
+                        </div>
+                        <svg class="hero-spark" viewBox="0 0 100 30" preserveAspectRatio="none" aria-hidden="true">
+                            <defs>
+                                <linearGradient id="sparkGrad" x1="0" y1="0" x2="0" y2="1">
+                                    <stop offset="0%" stop-color="rgba(255,47,47,0.34)"/>
+                                    <stop offset="100%" stop-color="rgba(255,47,47,0)"/>
+                                </linearGradient>
+                            </defs>
+                            <polygon id="altSparkFill" points=""></polygon>
+                            <polyline id="altSpark" points=""></polyline>
+                        </svg>
+                    </div>
+
+                    <div class="data-scroll">
+                        <div class="data-group">
+                            <h3>Beweging</h3>
+                            <div class="data-item">
+                                <span class="data-label">Snelheid</span>
+                                <span class="data-value"><b data-live="speed">145.3</b><i>km/h</i></span>
+                            </div>
+                            <div class="data-item">
+                                <span class="data-label">Horizontale Snelheid</span>
+                                <span class="data-value"><b data-live="hspeed">120.0</b><i>m/s</i></span>
+                            </div>
+                            <div class="data-item">
+                                <span class="data-label">Verticale Snelheid</span>
+                                <span class="data-value"><b data-live="vspeed">+0.5</b><i>m/s</i></span>
+                            </div>
+                        </div>
+
+                        <div class="data-group">
+                            <h3>Richting</h3>
+                            <div class="data-item">
+                                <span class="data-label">Horizontale Richting</span>
+                                <span class="data-value"><b data-live="hdir">Zuid-Oost</b></span>
+                            </div>
+                            <div class="data-item">
+                                <span class="data-label">Verticale Richting</span>
+                                <span class="data-value"><b data-live="vdir">15&deg; omhoog</b></span>
+                            </div>
+                        </div>
+
+                        <div class="data-group">
+                            <h3>Positie</h3>
+                            <div class="data-item">
+                                <span class="data-label">Co&ouml;rdinaten</span>
+                                <span class="data-value mono">
+                                    <span class="coord"><b data-live="lat">52.370012</b>&deg; N</span>
+                                    <span class="coord"><b data-live="lon">4.895431</b>&deg; E</span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel-foot">
+                        <span class="legend"><span class="legend-line"></span>Gemeten traject</span>
+                        <span class="legend"><span class="legend-dot"></span>Huidige positie</span>
+                    </div>
+                </aside>
+            </div>
+        </section>
+
+        <section id="page-code" class="page-content">
+            <div class="code-solo">
+                <div class="code-window">
+                    <div class="code-titlebar">
+                        <span class="code-dots" aria-hidden="true">
+                            <span class="code-dot red"></span>
+                            <span class="code-dot amber"></span>
+                            <span class="code-dot green"></span>
+                        </span>
+                        <span class="code-filename">missie.ino</span>
+                        <span class="code-lang">Arduino C++</span>
+                        <span class="code-titlebar-actions">
+                            <span class="code-hint"><kbd>Ctrl</kbd> + <kbd>Enter</kbd></span>
+                            <button id="upload-btn" class="code-upload" onclick="uploadCode()" disabled>Uploaden</button>
+                        </span>
+                    </div>
+                    <textarea id="code-editor" class="code-editor" spellcheck="false" autocomplete="off" placeholder="Typ hier uw Arduino-code..."></textarea>
+                    <div class="code-statusbar">
+                        <span id="code-lines">0 regels</span>
+                        <span id="code-chars">0 tekens</span>
+                    </div>
+                </div>
+
+                <div class="help-stack">
+                    <details class="help-item">
+                        <summary>Wat kan ik gebruiken?</summary>
+                        <div class="help-body">
+                            <p class="help-lead">Deze waarden komen live binnen en lees je gewoon uit in je code.</p>
+                            <ul class="help-list">
+                                <li><code>meting.hoogte</code><span>m</span></li>
+                                <li><code>meting.snelheid</code><span>km/u</span></li>
+                                <li><code>meting.horizontaleSnelheid</code><span>m/s</span></li>
+                                <li><code>meting.verticaleSnelheid</code><span>m/s (+ omhoog)</span></li>
+                                <li><code>meting.richting</code><span>graden</span></li>
+                                <li><code>meting.verticaleHoek</code><span>graden</span></li>
+                                <li><code>meting.breedtegraad</code><span>graden</span></li>
+                                <li><code>meting.lengtegraad</code><span>graden</span></li>
+                            </ul>
+                        </div>
+                    </details>
+                    <details class="help-item">
+                        <summary>Hoe stuur ik iets?</summary>
+                        <div class="help-body">
+                            <p class="help-lead">Print zelf een regel met kommagescheiden waarden. Jij kiest wat elk cijfer betekent.</p>
+                            <pre class="help-code"><code>Serial.println("15,-5,75,60");</code></pre>
+                            <p class="help-note">Eén regel per keer, altijd afsluiten met een newline.</p>
+                        </div>
+                    </details>
+                </div>
+            </div>
+        </section>
+
+        <section id="page-api" class="page-content">
+            <div class="split-layout">
+                <div class="left-section api-doc-panel">
+                    <div class="api-doc">
+                        <header class="api-hero">
+                            <span class="doc-badge">API</span>
+                            <h1>Eigen programma aansluiten</h1>
+                            <p>
+                                De app stuurt live meetdata naar een programma op dezelfde computer.
+                                Dat programma berekent zelf wat er moet gebeuren en stuurt de CSV-regel
+                                terug die naar het toestel gaat. Zo bouw je eigen logica, AI of
+                                visualisatie buiten de app om.
+                            </p>
+                        </header>
+
+                        <section class="doc-section">
+                            <h2>Hoe de koppeling werkt</h2>
+                            <p>
+                                De app is de spil. Ze ontvangt de sensordata van de meetmodule en
+                                stuurt die als JSON naar jouw programma. Dat programma bepaalt de
+                                actie en stuurt een CSV-regel terug. De app geeft die regel
+                                ongewijzigd door aan de module.
+                            </p>
+                            <div class="doc-code">
+                                <span class="doc-code-title">Datastroom</span>
+                                <pre><code>Meetmodule --(LoRa)--> Laptopapp --(JSON)--> Eigen programma
+                          ^                              |
+                          |--------- CSV-regel terug -----|</code></pre>
+                            </div>
+                            <div class="doc-callout">
+                                <strong>Geen vaste velden:</strong> net als in de code-modus bepaalt
+                                het externe programma zelf de inhoud en volgorde van de CSV-waarden.
+                            </div>
+                        </section>
+
+                        <section class="doc-section">
+                            <h2>Verbinding maken</h2>
+                            <p>
+                                De app opent een lokale verbinding waarop jouw programma zich
+                                aansluit. In deze demo is dat een WebSocket op
+                                <code>ws://localhost:9001</code>. De uiteindelijke techniek staat nog
+                                open; WebSocket is bidirectioneel en snel, HTTP is makkelijker te
+                                debuggen.
+                            </p>
+                            <table class="doc-table">
+                                <thead>
+                                    <tr><th>Eigenschap</th><th>Waarde</th></tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td>Techniek (demo)</td><td><code>WebSocket</code></td></tr>
+                                    <tr><td>Adres</td><td><code>ws://localhost:9001</code></td></tr>
+                                    <tr><td>Formaat</td><td><code>JSON</code> heen, CSV-regel terug</td></tr>
+                                    <tr><td>Richting</td><td>Bidirectioneel</td></tr>
+                                    <tr><td>Interval meetdata</td><td>ca. 10 keer per seconde</td></tr>
+                                </tbody>
+                            </table>
+                            <div class="doc-callout">
+                                <strong>Let op:</strong> de koppeling is lokaal. Er komt geen data op
+                                het internet terecht en er is geen account of sleutel nodig.
+                            </div>
+                        </section>
+
+                        <section class="doc-section">
+                            <h2>Uplink &middot; meetdata naar je programma</h2>
+                            <p>De app stuurt telkens een JSON-object met de nieuwste meting.</p>
+                            <div class="doc-code">
+                                <span class="doc-code-title">JSON &middot; app &rarr; programma</span>
+                                <pre><code>{
+  "timestamp": 1234567890,
+  "hoogte": 125.5,
+  "snelheid": 145.3,
+  "horizontaleSnelheid": 120.0,
+  "verticaleSnelheid": 0.5,
+  "breedtegraad": 52.370012,
+  "lengtegraad": 4.895431,
+  "richting": 135,
+  "verticaleHoek": 15
+}</code></pre>
+                            </div>
+                        </section>
+
+                        <section class="doc-section">
+                            <h2>Downlink &middot; CSV terug naar het toestel</h2>
+                            <p>
+                                Jouw programma antwoordt met de CSV-regel die naar de
+                                voertuigcontroller moet. De app voegt er niets aan toe en laat de
+                                velden zoals ze zijn.
+                            </p>
+                            <div class="doc-code">
+                                <span class="doc-code-title">Tekst &middot; programma &rarr; app</span>
+                                <pre><code>15,-5,75,60
+0,0,50,50</code></pre>
+                            </div>
+                            <h3>Aandachtspunten</h3>
+                            <table class="doc-table">
+                                <thead>
+                                    <tr><th>Punt</th><th>Afspraak</th></tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td>Velden</td><td>Volledig vrij: jij kiest wat elk cijfer betekent</td></tr>
+                                    <tr><td>Scheidingsteken</td><td>Komma</td></tr>
+                                    <tr><td>Einde regel</td><td><code>\n</code>, anders wacht de controller</td></tr>
+                                    <tr><td>Frequentie</td><td>Zelfde ritme als je meting, ca. 10 keer per seconde</td></tr>
+                                </tbody>
+                            </table>
+                            <div class="doc-callout">
+                                <strong>Veiligheid:</strong> blijft een geldige regel te lang weg, dan
+                                gaat de module naar zijn eigen veilige toestand. De module heeft
+                                daarnaast altijd zijn eigen failsafe.
+                            </div>
+                        </section>
+
+                        <section class="doc-section">
+                            <h2>Snelstart</h2>
+                            <ol class="doc-steps">
+                                <li>Start je programma en laat het luisteren op <code>ws://localhost:9001</code>.</li>
+                                <li>Open in de app deze API-pagina en zet de API aan.</li>
+                                <li>De statusindicator wordt groen zodra de verbinding actief is.</li>
+                                <li>Ontvang meetdata als JSON en bepaal je actie.</li>
+                                <li>Stuur een CSV-regel terug; de app geeft die door aan de module.</li>
+                                <li>Gebruik <strong>Verbinding testen</strong> om de status te controleren.</li>
+                            </ol>
+                            <div class="doc-callout">
+                                <strong>Demo:</strong> in deze webdemo wordt geen echte verbinding
+                                gemaakt. De knoppen simuleren de status alleen, zodat het ontwerp
+                                zichtbaar wordt.
+                            </div>
+                        </section>
+                    </div>
+                </div>
+
+                <aside class="right-section api-side" aria-label="API-besturing">
+                    <div class="panel-head">
+                        <div>
+                            <h2>API-besturing</h2>
+                            <p class="panel-sub">Aanzetten en verbinding testen</p>
+                        </div>
+                        <span class="panel-live"><span class="panel-live-dot"></span>lokaal</span>
+                    </div>
+
+                    <div class="api-status">
+                        <span id="api-status-dot" class="api-dot"></span>
+                        <span id="api-status-text">API staat uit</span>
+                    </div>
+
+                    <div class="api-actions">
+                        <button id="api-toggle-btn" type="button" class="api-btn primary" onclick="toggleApiMock()">API aanzetten</button>
+                        <button id="api-test-btn" type="button" class="api-btn" onclick="testApi()">Verbinding testen</button>
+                    </div>
+
+                    <div class="api-endpoint">
+                        <span class="api-endpoint-label">Endpoint</span>
+                        <code>ws://localhost:9001</code>
+                    </div>
+
+                    <div class="api-side-block">
+                        <h3>Regel terug</h3>
+                        <pre class="api-side-code"><code>15,-5,75,60\n</code></pre>
+                        <p class="api-side-note">Vrij te kiezen velden, kommagescheiden.</p>
+                    </div>
+
+                    <div class="api-side-block">
+                        <h3>Meting heen</h3>
+                        <pre class="api-side-code"><code>{ "hoogte": 125.5,
+  "snelheid": 145.3 }</code></pre>
+                    </div>
+                </aside>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        /* ------------------------------------------------------------------ *
+         * Google Earth-achtige 3D-kaart (MapLibre GL)
+         * Satellietbeeld + terrein, met dezelfde toestel-trail en richting.
+         * ------------------------------------------------------------------ */
+
+        const MAP_START = { lat: 52.370012, lon: 4.895431 }; // huidige toestelpositie
+        const TRAIL = [
+            [250, 1470], [360, 1390], [430, 1290], [560, 1260],
+            [660, 1160], [700, 1050], [820, 990], [880, 880],
+            [1000, 830], [1050, 720], [1180, 700], [1290, 820],
+        ];
+
+        const PX_TO_M = 1.5;                 // 1800 px kaart ~ 2.7 km
+        const M_PER_DEG_LAT = 111320;
+        const M_PER_DEG_LON = M_PER_DEG_LAT * Math.cos((MAP_START.lat * Math.PI) / 180);
+        const headPx = TRAIL[TRAIL.length - 1];
+        const prevPx = TRAIL[TRAIL.length - 2];
+
+        // Lokale kaart-pixels -> echte geo-coordinaten, met het toestel (trail-head) in het midden.
+        const toGeo = ([x, y]) => [
+            MAP_START.lon + ((x - headPx[0]) * PX_TO_M) / M_PER_DEG_LON,
+            MAP_START.lat + ((headPx[1] - y) * PX_TO_M) / M_PER_DEG_LAT,
+        ];
+        const trailGeo = TRAIL.map(toGeo);
+        const headingDeg = (Math.atan2(headPx[0] - prevPx[0], -(headPx[1] - prevPx[1])) * 180) / Math.PI;
+
+        const scaleLabelEl = document.getElementById('hudScaleLabel');
+        const scaleBarEl = document.querySelector('.hud-scale-bar');
+
+        if (typeof maplibregl === 'undefined') {
+            document.getElementById('map').innerHTML =
+                '<div class="map-fallback">Kaart kon niet geladen worden. Controleer de internetverbinding.</div>';
+        } else {
+            const map = new maplibregl.Map({
+                container: 'map',
+                attributionControl: { compact: true },
+                style: {
+                    version: 8,
+                    sources: {
+                        satellite: {
+                            type: 'raster',
+                            tiles: ['https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'],
+                            tileSize: 256,
+                            maxzoom: 19,
+                            attribution: 'Beeld &copy; Esri, Maxar, Earthstar Geographics',
+                        },
+                        labels: {
+                            type: 'raster',
+                            tiles: ['https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}'],
+                            tileSize: 256,
+                            maxzoom: 19,
+                        },
+                        terrain: {
+                            type: 'raster-dem',
+                            tiles: ['https://s3.amazonaws.com/elevation-tiles-prod/terrarium/{z}/{x}/{y}.png'],
+                            encoding: 'terrarium',
+                            tileSize: 256,
+                            maxzoom: 15,
+                        },
+                    },
+                    layers: [
+                        { id: 'bg', type: 'background', paint: { 'background-color': '#0e2233' } },
+                        { id: 'satellite', type: 'raster', source: 'satellite' },
+                        { id: 'labels', type: 'raster', source: 'labels', paint: { 'raster-opacity': 0.85 } },
+                    ],
+                },
+                center: trailGeo[trailGeo.length - 1],
+                zoom: 14.2,
+                pitch: 60,
+                bearing: -22,
+                maxPitch: 85,
+                antialias: true,
+            });
+
+            /* ---- toestelmarker (zelfde pijl + puls als voorheen) ---------- */
+            const deviceEl = document.createElement('div');
+            deviceEl.className = 'device-marker';
+            deviceEl.innerHTML = [
+                '<svg viewBox="-60 -60 120 120" width="120" height="120" aria-hidden="true">',
+                '  <defs><radialGradient id="pulseGrad">',
+                '    <stop offset="0%" stop-color="rgba(255,45,45,0.55)"/>',
+                '    <stop offset="100%" stop-color="rgba(255,45,45,0)"/>',
+                '  </radialGradient></defs>',
+                '  <circle r="46" class="head-pulse"></circle>',
+                '  <circle r="19" class="head-halo"></circle>',
+                '  <circle r="13" class="head-dot"></circle>',
+                '  <polygon class="head-arrow" points="0,-40 22,16 0,4 -22,16"></polygon>',
+                '</svg>',
+            ].join('');
+
+            const startEl = document.createElement('div');
+            startEl.className = 'start-marker';
+            startEl.innerHTML = [
+                '<svg viewBox="-17 -17 34 34" width="34" height="34" aria-hidden="true">',
+                '  <circle r="11" class="start-dot"></circle>',
+                '</svg>',
+            ].join('');
+
+            const deviceMarker = new maplibregl.Marker({
+                element: deviceEl,
+                anchor: 'center',
+                rotation: headingDeg,
+                rotationAlignment: 'map',
+            });
+
+            new maplibregl.Marker({ element: startEl, anchor: 'center' })
+                .setLngLat(trailGeo[0])
+                .addTo(map);
+
+            /* ---- trail + marker toevoegen zodra de stijl klaar is -------- */
+            map.on('load', () => {
+                try { map.setTerrain({ source: 'terrain', exaggeration: 1.35 }); } catch (e) { /* geen terrein */ }
+
+                map.addSource('trail', {
+                    type: 'geojson',
+                    data: { type: 'Feature', properties: {}, geometry: { type: 'LineString', coordinates: trailGeo } },
+                });
+
+                const lineLayout = { 'line-cap': 'round', 'line-join': 'round' };
+
+                map.addLayer({
+                    id: 'trail-shadow', type: 'line', source: 'trail', layout: lineLayout,
+                    paint: { 'line-color': 'rgba(10,12,16,0.4)', 'line-width': 13, 'line-blur': 8, 'line-translate': [4, 6] },
+                });
+                map.addLayer({
+                    id: 'trail-path', type: 'line', source: 'trail', layout: lineLayout,
+                    paint: { 'line-color': '#ff2f2f', 'line-width': 6.5, 'line-blur': 1.4 },
+                });
+                map.addLayer({
+                    id: 'trail-dash', type: 'line', source: 'trail', layout: lineLayout,
+                    paint: { 'line-color': 'rgba(255,255,255,0.9)', 'line-width': 2, 'line-dasharray': [0, 4, 3] },
+                });
+
+                deviceMarker.setLngLat(trailGeo[trailGeo.length - 1]).addTo(map);
+
+                const bounds = trailGeo.reduce(
+                    (b, c) => b.extend(c),
+                    new maplibregl.LngLatBounds(trailGeo[0], trailGeo[0])
+                );
+                map.fitBounds(bounds, { padding: 90, pitch: 60, bearing: -22, maxZoom: 15, duration: 0 });
+
+                // "marching ants" op de trail
+                const dashSeq = [
+                    [0, 4, 3], [0.5, 4, 2.5], [1, 4, 2], [1.5, 4, 1.5],
+                    [2, 4, 1], [2.5, 4, 0.5], [3, 4, 0],
+                    [0, 0.5, 3, 3.5], [0, 1, 3, 3], [0, 1.5, 3, 2.5],
+                    [0, 2, 3, 2], [0, 2.5, 3, 1.5], [0, 3, 3, 1], [0, 3.5, 3, 0.5],
+                ];
+                let dashStep = 0;
+                setInterval(() => {
+                    dashStep = (dashStep + 1) % dashSeq.length;
+                    if (map.getLayer('trail-dash')) {
+                        map.setPaintProperty('trail-dash', 'line-dasharray', dashSeq[dashStep]);
+                    }
+                }, 70);
+            });
+
+            /* ---- HUD: zoom + schaalbalk ---------------------------------- */
+            document.getElementById('zoomIn').addEventListener('click', () => map.zoomIn({ duration: 350 }));
+            document.getElementById('zoomOut').addEventListener('click', () => map.zoomOut({ duration: 350 }));
+
+            const niceDistance = (m) => {
+                const pow = Math.pow(10, Math.floor(Math.log10(m)));
+                const n = m / pow;
+                return (n < 2 ? 2 : n < 5 ? 5 : 10) * pow;
+            };
+
+            function updateScale() {
+                const mpp = (156543.03392 * Math.cos((map.getCenter().lat * Math.PI) / 180)) / Math.pow(2, map.getZoom());
+                const meters = niceDistance(mpp * 92);
+                scaleBarEl.style.width = Math.round(meters / mpp) + 'px';
+                scaleLabelEl.textContent = meters >= 1000 ? (meters / 1000) + ' km' : meters + ' m';
+            }
+            map.on('move', updateScale);
+            map.on('load', updateScale);
+            updateScale();
+        }
+
+        /* ---- live telemetry --------------------------------------------- */
+        const LIVE = {
+            altitude: 125.5,
+            speed: 145.3,
+            hspeed: 120.0,
+            vspeed: 0.5,
+            lat: 52.370012,
+            lon: 4.895431,
+            heading: 135,
+            vAngle: 15,
+        };
+        const HEADS = ['Noord', 'Noord-Oost', 'Oost', 'Zuid-Oost', 'Zuid', 'Zuid-West', 'West', 'Noord-West'];
+        const liveRefs = {};
+        ['altitude', 'speed', 'hspeed', 'vspeed', 'lat', 'lon', 'hdir', 'vdir'].forEach((k) => {
+            liveRefs[k] = document.querySelector(`[data-live="${k}"]`);
+        });
+
+        const jitter = (v, amt, min, max) =>
+            Math.min(max, Math.max(min, v + (Math.random() * 2 - 1) * amt));
+
+        const sparkEl = document.getElementById('altSpark');
+        const sparkFillEl = document.getElementById('altSparkFill');
+        const sparkBuf = Array.from({ length: 34 }, () => LIVE.altitude);
+
+        function renderSpark() {
+            if (!sparkEl) return;
+            const min = Math.min(...sparkBuf);
+            const max = Math.max(...sparkBuf);
+            const span = Math.max(0.001, max - min);
+            const w = 100, h = 30, pad = 3.5;
+            const pts = sparkBuf.map((v, i) => {
+                const x = (i / (sparkBuf.length - 1)) * w;
+                const y = pad + (1 - (v - min) / span) * (h - pad * 2);
+                return `${x.toFixed(1)},${y.toFixed(1)}`;
+            });
+            sparkEl.setAttribute('points', pts.join(' '));
+            sparkFillEl?.setAttribute('points', `0,${h} ${pts.join(' ')} ${w},${h}`);
+        }
+
+        function tick() {
+            LIVE.altitude = jitter(LIVE.altitude, 0.85, 118, 134);
+            LIVE.speed = jitter(LIVE.speed, 1.8, 131, 161);
+            LIVE.hspeed = jitter(LIVE.hspeed, 1.3, 108, 132);
+            LIVE.vspeed = jitter(LIVE.vspeed, 0.22, -1.2, 2.1);
+            LIVE.vAngle = jitter(LIVE.vAngle, 1.4, 6, 26);
+            LIVE.lat += (Math.random() * 2 - 1) * 0.000004;
+            LIVE.lon += (Math.random() * 2 - 1) * 0.000004;
+            LIVE.heading = (LIVE.heading + (Math.random() * 2 - 1) * 3 + 360) % 360;
+
+            liveRefs.altitude.textContent = LIVE.altitude.toFixed(2);
+            liveRefs.speed.textContent = LIVE.speed.toFixed(1);
+            liveRefs.hspeed.textContent = LIVE.hspeed.toFixed(1);
+            liveRefs.vspeed.textContent = (LIVE.vspeed >= 0 ? '+' : '\u2212') + Math.abs(LIVE.vspeed).toFixed(1);
+            liveRefs.lat.textContent = LIVE.lat.toFixed(6);
+            liveRefs.lon.textContent = LIVE.lon.toFixed(6);
+            liveRefs.hdir.textContent = HEADS[Math.round(LIVE.heading / 45) % 8];
+            liveRefs.vdir.textContent =
+                `${Math.round(LIVE.vAngle)}\u00B0 ${LIVE.vspeed >= 0 ? 'omhoog' : 'omlaag'}`;
+
+            sparkBuf.push(LIVE.altitude);
+            sparkBuf.shift();
+            renderSpark();
+        }
+        renderSpark();
+        setInterval(tick, 700);
+
+        /* ---- code editor ------------------------------------------------- */
+        const editorEl = document.getElementById('code-editor');
+        const linesEl = document.getElementById('code-lines');
+        const charsEl = document.getElementById('code-chars');
+        const uploadBtn = document.getElementById('upload-btn');
+
+        const STARTER_CODE = [
+            '// Lees meting.* en print zelf je CSV-regel.',
+            '',
+            'void loop() {',
+            '  if (meting.hoogte > 125.0) {',
+            '    Serial.println("15,-5,75,60");',
+            '  } else {',
+            '    Serial.println("0,0,50,50");',
+            '  }',
+            '',
+            '  delay(100);',
+            '}',
+        ].join('\n');
+        editorEl.value = STARTER_CODE;
+
+        function updateCodeStats() {
+            const v = editorEl.value;
+            const lines = v ? v.split('\n').length : 0;
+            linesEl.textContent = `${lines} ${lines === 1 ? 'regel' : 'regels'}`;
+            charsEl.textContent = `${v.length} tekens`;
+            uploadBtn.disabled = !v.trim();
+        }
+
+        editorEl.addEventListener('input', updateCodeStats);
+        editorEl.addEventListener('keydown', (e) => {
+            if ((e.ctrlKey || e.metaKey) && e.key === 'Enter' && !uploadBtn.disabled) {
+                e.preventDefault();
+                uploadCode();
+            }
+        });
+        updateCodeStats();
+
+        /* ---- page routing / setup popup ---------------------------------- */
+        function setActive() {
+            const hash = window.location.hash || '#page-kaart';
+
+            document.querySelectorAll('.page-content').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.island-btn').forEach(btn => btn.classList.remove('active'));
+
+            document.querySelector(hash)?.classList.add('active');
+            document.querySelector(`.island-btn[href="${hash}"]`)?.classList.add('active');
+        }
+
+        function closePopup() {
+            const popup = document.getElementById('popup');
+            popup.classList.add('closing');
+            setTimeout(() => { popup.style.display = 'none'; }, 220);
+        }
+
+        function uploadCode() {
+            const code = editorEl.value;
+            if (!code.trim()) {
+                alert('Voer eerst code in.');
+                return;
+            }
+            // De code print zelf de CSV-regels; de module stuurt die door.
+            alert('Code geupload.\n\nJouw code print de CSV-regels zelf met Serial.println(). ' +
+                'De module stuurt elke regel ongewijzigd door naar de voertuigcontroller.');
+        }
+
+        /* API-paneel: aan/uit + verbinding testen (mock, geen echte socket) */
+        let apiMockActive = false;
+        function setApiState(on) {
+            apiMockActive = on;
+            const dot = document.getElementById('api-status-dot');
+            const txt = document.getElementById('api-status-text');
+            const btn = document.getElementById('api-toggle-btn');
+            if (on) {
+                dot.style.background = 'var(--ok)';
+                dot.style.boxShadow = '0 0 0 3px rgba(53,224,107,0.2)';
+                txt.textContent = 'API actief op localhost:9001';
+                txt.style.color = '#12833c';
+                btn.textContent = 'API uitzetten';
+                btn.classList.add('is-on');
+            } else {
+                dot.style.background = '#cbd5e1';
+                dot.style.boxShadow = 'none';
+                txt.textContent = 'API staat uit';
+                txt.style.color = 'var(--muted)';
+                btn.textContent = 'API aanzetten';
+                btn.classList.remove('is-on');
+            }
+        }
+        function toggleApiMock() { setApiState(!apiMockActive); }
+        function testApi() {
+            const dot = document.getElementById('api-status-dot');
+            const txt = document.getElementById('api-status-text');
+            txt.textContent = 'Verbinding testen\u2026';
+            dot.style.background = '#febc2e';
+            dot.style.boxShadow = '0 0 0 3px rgba(254,188,46,0.25)';
+            setTimeout(() => setApiState(apiMockActive), 900);
+        }
+
+        function checkAllChecked() {
+            const usb = document.getElementById('usb-checkbox').checked;
+            const device = document.getElementById('device-checkbox').checked;
+            document.getElementById('ok-btn').disabled = !(usb && device);
+            syncNavCheckboxes();
+
+            const status = document.getElementById('popup-status');
+            if (usb && device) status.textContent = 'Alle toestellen verbonden.';
+            else if (usb) status.textContent = 'USB-ontvanger verbonden \u00B7 meettoestel zoeken\u2026';
+            else status.textContent = 'Verbinding maken met de hardware\u2026';
+        }
+
+        // Sync navigation checkboxes with popup checkboxes
+        const navUsb = document.getElementById('nav-usb-checkbox');
+        const navDevice = document.getElementById('nav-device-checkbox');
+
+        function syncNavCheckboxes() {
+            navUsb.checked = document.getElementById('usb-checkbox').checked;
+            navDevice.checked = document.getElementById('device-checkbox').checked;
+        }
+
+        setTimeout(() => {
+            document.getElementById('usb-checkbox').checked = true;
+            checkAllChecked();
+            syncNavCheckboxes();
+        }, 2000);
+
+        setTimeout(() => {
+            document.getElementById('device-checkbox').checked = true;
+            checkAllChecked();
+            syncNavCheckboxes();
+        }, 4000);
+
+        window.addEventListener('hashchange', setActive);
+        setActive();
+    </script>
+</body>
+</html>

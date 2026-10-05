@@ -1,0 +1,230 @@
+{
+  "main": {
+    "id": "3d728a51d018b095",
+    "type": "split",
+    "children": [
+      {
+        "id": "bad84e68daa1ea40",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "3d037e88b5b70966",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "chat.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "chat"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "a7e6c38a7a7ec958",
+    "type": "split",
+    "children": [
+      {
+        "id": "eaa60d1bf5ab8e47",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "c45adac1c2d01c74",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "1d3aa54a6cd13cb5",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "41eedf023628bae9",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "11eee03afa3b2530",
+    "type": "split",
+    "children": [
+      {
+        "id": "c847f5d68656b67f",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "ef5ff5e918da4fa4",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "archief/README.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks"
+            }
+          },
+          {
+            "id": "98b154ed9dca5933",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "archief/README.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links"
+            }
+          },
+          {
+            "id": "2adce2741a30f40b",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "2073594d877e3a69",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "All properties"
+            }
+          },
+          {
+            "id": "de4825a20c41a375",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "archief/README.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "bases:Create new base": false
+    }
+  },
+  "active": "3d037e88b5b70966",
+  "lastOpenFiles": [
+    "data/code-pagina.md",
+    "archief/2026-10-04_1215_for-the-mockup-website-adjust-the-code-page-api-/onderwerpen.md",
+    "archief/2026-10-04_1215_for-the-mockup-website-adjust-the-code-page-api-/meta.md",
+    "archief/2026-10-04_1215_for-the-mockup-website-adjust-the-code-page-api-/chat.md",
+    "archief/2026-10-04_1215_for-the-mockup-website-adjust-the-code-page-api-",
+    "data/ab-test-code-pagina.md",
+    "archief/2026-10-01_2124_per-website-in-de-pagina-code-pas-het-rechterkan/onderwerpen.md",
+    "archief/2026-10-01_2124_per-website-in-de-pagina-code-pas-het-rechterkan/meta.md",
+    "archief/2026-10-01_2124_per-website-in-de-pagina-code-pas-het-rechterkan/chat.md",
+    "archief/2026-10-01_2124_per-website-in-de-pagina-code-pas-het-rechterkan",
+    "archief/2026-10-01_2054_pas-c-users-nand-schoovaerts-documents-gstem-pro/onderwerpen.md",
+    "archief/2026-10-01_2054_pas-c-users-nand-schoovaerts-documents-gstem-pro/meta.md",
+    "archief/2026-10-01_2054_pas-c-users-nand-schoovaerts-documents-gstem-pro/chat.md",
+    "archief/2026-10-01_2054_pas-c-users-nand-schoovaerts-documents-gstem-pro",
+    "Projectdocumentatie/01-projectoverzicht.md",
+    "archief/2026-10-01_2045_start-de-website-op-voor-mij/onderwerpen.md",
+    "archief/2026-10-01_2045_start-de-website-op-voor-mij/meta.md",
+    "archief/2026-10-01_2045_start-de-website-op-voor-mij/chat.md",
+    "archief/2026-10-01_2045_start-de-website-op-voor-mij",
+    "Handleiding-meettoestel.md",
+    "Projectdocumentatie/02-codeximport.md",
+    "Projectdocumentatie/index.md",
+    "Projectdocumentatie/05-inventaris-en-archief.md",
+    "Projectdocumentatie/04-blokschema-aerolink.md",
+    "Projectdocumentatie/03-gstemapppreviewweb.md",
+    "chat.md",
+    "Formules Afgeleide & co.pdf",
+    "Projectdocumentatie",
+    "archief/2026-10-01_2027_ik-wil-een-worddocument-maken-waarin-ik-een-soor/onderwerpen.md",
+    "archief/2026-10-01_2027_ik-wil-een-worddocument-maken-waarin-ik-een-soor/meta.md",
+    "archief/2026-10-01_2027_ik-wil-een-worddocument-maken-waarin-ik-een-soor/chat.md",
+    "archief/2026-10-01_2027_ik-wil-een-worddocument-maken-waarin-ik-een-soor",
+    "data/handleiding.md",
+    "archief/2026-09-29_2140_alle-bestanden-in-documents-gstem-project-zijn-o",
+    "archief/2026-09-29_2136_leg-kort-uit-wat-we-al-hebben-en-wat-je-begrip-i",
+    "archief/2026-09-29_2132_slaag-deze-data-van-mijn-project-op-dit-was-om-m"
+  ]
+}
