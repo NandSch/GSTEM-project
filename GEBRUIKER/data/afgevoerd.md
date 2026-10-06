@@ -26,3 +26,8 @@ tags: [gstem, data, afgevoerd]
 - **Wat:** De Code-pagina met links de editor en rechts een rechterkolom vol variabelenkaarten, CSV-groep en uploadvoettekst.
 - **Reden afvoer:** Gebruikersvraag: versie B (één kolom met uitklapbare hulp) is rustiger en duidelijker en werd de officiële versie.
 - **Later opnieuw bekijken?** nee — de één-kolomsopzet is definitief.
+
+## 2026-10-06 — PWM, I2C, CAN of analoge spanning als koppeling met de voertuigcontroller
+- **Wat:** De uitbreidingsconnector als PWM-, I2C-, CAN- of analoog signaal naar de bestaande voertuigcontroller.
+- **Reden afvoer:** De afgewerkte specificaties kiezen **UART via TX/RX**: de Arduino van het vliegtuigje neemt CSV-waarden aan op zijn TX/RX-punten.
+- **Later opnieuw bekijken?** nee voor de mock-up; alleen als een latere, andere controller een ander signaal vereist.

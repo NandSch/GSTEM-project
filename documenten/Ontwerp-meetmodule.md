@@ -1,4 +1,4 @@
-# Ontwerp voor ***Positie- en beweging meetmodule met LoRa integratie***
+# Ontwerp voor ***Positie- en beweging meettoestel met LoRa integratie***
 
 *Versie: concept, aangevuld met de technische uitwerking.*
 
@@ -35,6 +35,8 @@ De breakout modules worden op **socket-headers** geplaatst in plaats van rechtst
 
 - **Voeding:** vaste rails voor de accuspanning, 5 V en 3,3 V, telkens met een eigen ground.
 - **Datacommunicatie:** I2C voor de IMU en de barometer, UART voor de RTK-GNSS-module en voor de verbinding met het besturingssysteem van het toestel, en de nodige pinnen voor de LoRa-radio.
+
+De print krijgt een **power-LED** met serieweerstand op de geregelde voedingsrail, zodat zichtbaar is dat de module onder spanning staat. Verder krijgt de print **decoupling** (100 nF per module, bulk per rail), de nodige **I2C-pull-ups** en de **beveiliging van de voeding** (zekering, beveiliging tegen omgekeerde polariteit).
 
 De print krijgt **vier bevestigingsgaten in de hoeken** (bijvoorbeeld M3) met afstandsbussen, zodat de print vrij van de behuizing blijft. De LoRa-radio zendt met een antenne dicht bij de gevoelige sensoren; daarom krijgt de print een ground plane en worden de antenne en de sensoren zo ver mogelijk uit elkaar geplaatst om storing op de IMU en de barometer te beperken.
 

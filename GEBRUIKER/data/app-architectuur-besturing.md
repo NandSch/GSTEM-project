@@ -62,7 +62,7 @@ Laptopapp (code of extern programma)
     → commando's genereren
     → USB-adapter → LoRa
     → Meetmodule ESP32-S3
-    → SPI/I2C → Arduino (voertuigcontroller)
+    → UART (TX/RX) → Arduino (voertuigcontroller)
     → motoren / servo's
 ```
 
@@ -111,6 +111,8 @@ Laptopapp (code of extern programma)
 > [!info] Het aantal servo's is **niet vastgelegd** en is afhankelijk van het uiteindelijke voertuig. De eerste twee velden zijn gereserveerd als servo-placeholders. Bij een vliegtuigmock-up kunnen dit roll en pitch zijn; bij een RC-auto zijn dit misschien andere functies of ongebruikt (waarde `0`).
 
 > [!info] **Geen checksum.** De terminator `\n` is voldoende op een korte seriele kabel binnen hetzelfde voertuig.
+
+> [!info] Update `2026-10-06`: de afgewerkte specificaties bevestigen de **UART TX/RX**-koppeling en noemen **drie** besturingsvlakken (rolroeren, hoogteroer, richtingsroer). Zie [[gstem-specificaties]] en [[beslissingen]].
 
 > [!warning] Voertuigbesturing is een **secundaire demonstratie**. Het hoofddoel is de meetmodule zelf en de USB-ontvanger.
 
@@ -163,10 +165,11 @@ Ongeacht de bron van de commando's (interne code of extern programma), de module
 | `01-projectoverzicht.md` | Specificeert "berekende stuurcommando's" en "programmeermodus", maar niet de splitsing tussen interne en externe verwerking |
 | `04-blokschema-aerolink.md` | Schema toont alleen "testcorrecties" naar servo; niet de gelaagde architectuur |
 | `GSTEMAPPPREVIEWWEB` | Huidige demo simuleert alleen uplink; downlink en externe API ontbreken |
+| `GStem-Specificaties.md` (afgewerkt `2026-10-06`) | Gebruikersgerichte bevestiging: startscherm met OK, 3D-kaart Google-satelliet + tabel, Code-editor met CSV terug, API aan/uit en adres, Arduino via TX/RX, rolroeren/hoogteroer/richtingsroer; zie [[gstem-specificaties]] |
 
 ## Gerelateerd
 
 - [[open-vragen|Open vragen]] — specifiek de items over API-techniek, Arduino-protocol en commandoformaat
 - [[specificaties|Specificaties]] — wanneer deze architectuur wordt vastgelegd
 - [[besturing-en-commandos|Besturing en commando's terug naar het toestel]] — het bredere denkdocument
-- [[meetmodule-voorbereiding|Positie- en beweging meetmodule — voorbereiding]] — hardwarecontext
+- [[meetmodule-voorbereiding|Positie- en beweging meettoestel — voorbereiding]] — hardwarecontext

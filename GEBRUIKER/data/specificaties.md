@@ -23,7 +23,7 @@ Technische en functionele afspraken. Eén subsectie per specificatie.
 - **Gevolg:** Variabelen zijn niet langer invoegknoppen. De API-handleiding is een nieuwe losse pagina.
 
 ## 2026-10-01 — Titel en screenshots van de handleiding
-- **Specificatie:** De titelregel van de handleiding staat in de body (Calibri 13) als `Handleiding voor ***Positie- en beweging meetmodule met LoRa integratie***`, met de projectnaam **vet-cursief** — gelijk aan de titelregel van `GStem-Specificaties (1).docx`. Schermafbeeldingen van de webdemo worden met `documenten/maak-screenshots.py` gegenereerd in `documenten/afbeeldingen/` en in de markdown ingevoegd met `![onderschrift](afbeeldingen/bestand.png)`; de build zet ze gecentreerd met een cursief onderschrift.
+- **Specificatie:** De titelregel van de handleiding staat in de body (Calibri 13) als `Handleiding voor ***Positie- en beweging meettoestel met LoRa integratie***`, met de projectnaam **vet-cursief** — gelijk aan de titelregel van `GStem-Specificaties (1).docx`. Schermafbeeldingen van de webdemo worden met `documenten/maak-screenshots.py` gegenereerd in `documenten/afbeeldingen/` en in de markdown ingevoegd met `![onderschrift](afbeeldingen/bestand.png)`; de build zet ze gecentreerd met een cursief onderschrift.
 - **Status:** doorgevoerd
 - **Bron:** `documenten/build-handleiding.py`, `documenten/Handleiding-meettoestel.md`, `documenten/maak-screenshots.py`
 - **Gevolg:** Zelfgemaakte beelden voor de setup, het kaartscherm, de meetwaarden, het codescherm, de variabelen, de API en de uploadknop. Hardwarefoto's blijven open `SCREENSHOT`-blokken.
@@ -47,7 +47,7 @@ Technische en functionele afspraken. Eén subsectie per specificatie.
 - **Gevolg:** Word-versie via `python documenten/build-handleiding.py`.
 
 ## 2026-09-29 — Meetmodule: voorbereiding vastgelegd als denkrichting
-- **Specificatie:** Nog geen harde specificaties. Een uitgebreide voorbereiding is vastgelegd in [[meetmodule-voorbereiding|Positie- en beweging meetmodule met LoRa — voorbereiding]].
+- **Specificatie:** Nog geen harde specificaties. Een uitgebreide voorbereiding is vastgelegd in [[meetmodule-voorbereiding|Positie- en beweging meettoestel met LoRa — voorbereiding]].
 - **Status:** voorbereiding / denkwijze
 - **Bron:** gebruikersinput projectvoorbereiding
 - **Samenvatting:** Hardware (ESP32-S3, LoRa, IMU, barometer, RTK-GNSS, eigen PCB, 3D-geprinte behuizing), software (sensorfusie, laptopapp met kaart en programmeermodus, veiligheidsstop, git-versiebeheer) en optionele mock-up-uitbreiding.
@@ -73,7 +73,7 @@ Technische en functionele afspraken. Eén subsectie per specificatie.
 - **Aanvulling `2026-10-04`:** De **Uploaden**-knop in versie B krijgt expliciet `appearance: none` (geen native browseropmaak) en de stylesheet wordt met `style.css?v=3` geladen om cacheproblemen te vermijden. Hetzelfde geldt voor `.popup-btn` en `.api-btn`.
 
 ## 2026-10-05 — Ontwerptekst meetmodule vastgelegd als formele ontwerpbeschrijving
-- **Specificatie:** Het Google Doc *Ontwerp voor Positie- en beweging meetmodule met LoRa integratie* is de formele, in lopende tekst geschreven ontwerpbeschrijving van het systeem, met de delen **Hardware Specificaties** (meetmodule: eigen PCB met vervangbare breakout-modules en bevestigingspunten in de hoeken; ESP32-S3 met LoRa en antenne plus heatsink; 9-DoF IMU; barometer; RTK-GNSS met antenne; voeding via externe batterij zoals 7,4 V of barrel-connector met spanningsregelaar; extra pinnen en grounds voor het besturingssysteem van een mockup-vliegtuigje; zelf ontworpen 3D-geprinte dempende behuizing; LoRa-adapter als tweede ESP aan de laptop via USB) en **Software Specificaties** (continu uitlezen van IMU, barometer en RTK-GNSS; samenvoegen tot datapakketten; sensorfusie met een Kalman-filter; verzending via LoRa en USB-doorgifte naar de laptop; errorhandling bij wegvallende GPS of uitvallende sensoren; grenzen die waarschuwen buiten een bepaald gebied).
+- **Specificatie:** Het Google Doc *Ontwerp voor Positie- en beweging meettoestel met LoRa integratie* is de formele, in lopende tekst geschreven ontwerpbeschrijving van het systeem, met de delen **Hardware Specificaties** (meetmodule: eigen PCB met vervangbare breakout-modules en bevestigingspunten in de hoeken; ESP32-S3 met LoRa en antenne plus heatsink; 9-DoF IMU; barometer; RTK-GNSS met antenne; voeding via externe batterij zoals 7,4 V of barrel-connector met spanningsregelaar; extra pinnen en grounds voor het besturingssysteem van een mockup-vliegtuigje; zelf ontworpen 3D-geprinte dempende behuizing; LoRa-adapter als tweede ESP aan de laptop via USB) en **Software Specificaties** (continu uitlezen van IMU, barometer en RTK-GNSS; samenvoegen tot datapakketten; sensorfusie met een Kalman-filter; verzending via LoRa en USB-doorgifte naar de laptop; errorhandling bij wegvallende GPS of uitvallende sensoren; grenzen die waarschuwen buiten een bepaald gebied).
 - **Status:** concept — ontwerptekst, geen harde specificaties. Waarden zoals accuspanning, pakketformaat en exacte onderdelen blijven open.
 - **Bron:** Google Doc (openbaar gedeeld `2026-10-05`) — zie [[links]]. Inhoudelijke toelichting en verhouding tot de voorbereiding in [[meetmodule-voorbereiding]].
 - **Gevolg:** De eerdere denkrichting wordt bevestigd; het Doc mist de app-schermopbouw, programmeermodus, live export, data-opslag, git-versiebeheer en testaanpak die wel in [[meetmodule-voorbereiding]] staan.
@@ -88,3 +88,51 @@ Technische en functionele afspraken. Eén subsectie per specificatie.
 - **Status:** concept — uitgewerkte ontwerptekst; alle waarden die nog niet gekozen zijn, staan in een blok *Nog te bepalen* en in de slottabel *Overzicht van de nog te bepalen punten*.
 - **Bron:** gebruikersvraag `2026-10-05` ("vul het Google Doc aan"); `documenten/Ontwerp-meetmodule.md`.
 - **Gevolg:** De ontbrekende onderdelen zijn nu vastgelegd in een versioneerbaar bestand. Het Google Doc loopt achter tot de tekst wordt overgezet. Nieuwe open vragen: RTK-correctiebron en spanningsniveau van de uitbreidingsconnector ([[open-vragen]]).
+
+## 2026-10-06 — Afgewerkte gebruikersspecificaties vastgelegd
+- **Specificatie:** De door de gebruiker afgewerkte specificaties (`documenten/GStem-Specificaties.md`, aangeleverd `2026-10-06`) leggen het product gebruikersgericht vast. Kern:
+  1. **Doel:** klein meettoestel op een bewegend voertuig of apparaat (vliegtuig, bootje, autootje).
+  2. **Meetprestaties:** vier grootheden — **richting** (graden, horizontaal en verticaal vlak), **snelheid** (km/u), **hoogte** (nauwkeurig tot **1,5 m**), **locatie** (nauwkeurig tot **0,5 m**).
+  3. **Ontvanger en bereik:** een kleine draadloze ontvanger in de vorm van een **USB-stick**; **bereik max. 4 km**.
+  4. **Aanzetten:** het meettoestel start **automatisch** mee met het voertuig (LED toont actief); de laptopapplicatie **start vanzelf** zodra de USB-ontvanger wordt ingestoken.
+  5. **App-schermen:** scherm 1 verbindingscontrole met **OK**; scherm 2 **3D-kaart met Google-satellietfoto's** (afgelegde weg + kijkrichting) plus **tabel** met losse meetwaarden; scherm **Code** (editor + rechtervensters met uitleg en variabelen, CSV terug naar de controller, uploadknop); scherm **API** (aan/uit, verbinding testen, adres, uitleg links). Op **elk** scherm staat de status van USB-ontvanger en meettoestel.
+  6. **CSV:** alle waarden naar de controller reizen als **comma separated values**; de gebruiker bepaalt zelf de betekenis van elke waarde en kan variabelen benoemen.
+  7. **API:** geeft alle metingen door aan een **extern programma**, dat waarden op zijn eigen manier gebruikt en **instructies terugstuurt** (zelfde weg als het codeerscherm).
+  8. **RC-vliegtuig-mock-up:** een **Arduino** neemt CSV-waarden aan en is via **TX/RX** met het meettoestel verbonden; het meettoestel moet met zijn **voorkant gelijk** aan die van het vliegtuigje worden gericht; de **besturingsvlakken rolroeren, hoogteroer en richtingsroer** reageren op de metingen; de Arduino stelt de **servo's** in (real-time). Dit is een **zittend voorbeeld**, geen volledig functioneel vliegtuig.
+  9. **Testen:** **kalibratie** (kantelen en 3D-visualisatie/live data vergelijken) en **feedbacklus** (testcode stuurt stuursignaal terug, controleer de Arduino-actie).
+- **Status:** afgewerkt — gebruikersspecificatie; technische keuzes (IMU, barometer, frequentie, exacte veldvolgorde) blijven in [[open-vragen]].
+- **Bron:** gebruikersaanlevering `2026-10-06`; `documenten/GStem-Specificaties.md`. Samenvatting in [[gstem-specificaties]].
+- **Gevolg:** de mock-up heeft nu **drie** besturingsvlakken (rolroer, hoogteroer, richtingsroer) en de verbinding meettoestel ↔ Arduino is **UART via TX/RX** (was open). Zie [[beslissingen]].
+
+## 2026-10-06 — Draagprint-aanpak: breakout-modules op socket-headers
+- **Specificatie:** De zelfontworpen PCB is een **draagprint (carrier)**. Alle functionele componenten worden als **kant-en-klare breakout-modules aangekocht** (ESP32-S3, LoRa, 9-DoF IMU, barometer, RTK-GNSS) en op **socket-headers (vrouwelijke 2,54 mm)** geplaatst. De draagprint levert de **verbindingen, voeding en status**; de modules leveren de functie.
+- **Elektrisch:** voedingsingang via accu (7,4 V) of barrel-connector, met zekering en beveiliging tegen omgekeerde polariteit; **buck-converter naar 5 V** en **LDO naar 3,3 V**; **power-LED met serieweerstand** op de geregelde rail; decoupling (100 nF per module + bulk per rail). Datapaden: **I2C** naar IMU en barometer (met pull-ups), **UART** naar GNSS en uitbreidingsconnector, **level shifter** naar een eventuele 5 V-controller. Optioneel reset-/bootknop voor de ESP.
+- **Layout:** 2-laags met ground plane op de onderlaag; aparte rails `VBAT`/`5V`/`3V3`/`GND`; I2C kort en weg van de antenne; antenne-keep-out voor LoRa en GNSS; buck-spoel weg van IMU en barometer; 4 bevestigingsgaten (M3) in de hoeken.
+- **Status:** aanpak bevestigd; exacte modulekeuzes, pinouts, regelaars en het ontwerpgereedschap blijven open ([[open-vragen]]).
+- **Bron:** gebruikersvraag `2026-10-06`; sluit aan op `documenten/Ontwerp-meetmodule.md` (secties De Meetmodule, Elektronische Componenten, Voeding en Interface).
+- **Gevolg:** de **power-LED op de print** is nu expliciet als ontwerpelement vastgelegd (naast het "LED-lampje toont actief" uit de afgewerkte specificaties).
+
+## 2026-10-06 — Heroverweging socket-headers: alternatieven verkend
+- **Specificatie:** De aanpak met **strip-socket-headers** (zie draagprint-aanpak) wordt heroverwogen omdat die amateuristisch oogt. Verkende alternatieven:
+  1. **Precisie-/gefreesde sockets (machined turned-pin):** zelfde modulariteit, laag profiel, ronde gouden contacten, ziet professioneel uit. Goedkoopste upgrade.
+  2. **Direct vastsolderen** van de breakout op mannelijke pinheaders: steviger, geen losraken; vervangen = desolderen.
+  3. **Castellated modules** (kale SMD-modules zoals ESP32-S3-WROOM-1, RFM95W, u-blox ZED-F9P, BME280) vlak op de PCB: laagste profiel, beste RF, meest afgewerkt; verliest verwisselbaarheid.
+  4. **Board-to-board / mezzanine-connectoren** (DF40, Samtec, Hirose DF): solide en professioneel; vereist een matching connector op module of eigen dragerprint.
+  5. **Sub-bordjes met JST-GH/Molex-kabels:** modulair en professioneel; meer onderdelen en bekabeling.
+  6. **Pogo pins:** enkel voor testfixtures, niet permanent.
+- **Afweging:** precisie-sockets = snel professioneel + vervangbaar; direct solderen = beste bij trillingen (vliegtuigje); castellated = meest afgewerkt eindproduct.
+- **Status:** in heroverweging — nog niet beslist.
+- **Bron:** gebruikersvraag `2026-10-06`.
+- **Gevolg:** de keuze staat open in [[open-vragen]]; de [[pcb-schets]] toont nog de strip-sockets en wordt aangepast zodra de keuze valt.
+
+## 2026-10-06 — PCB-ontwerp: gereedschap en gatmaten vastgelegd als werkwijze
+- **Specificatie:** De draagprint wordt ontworpen met **KiCad 8/9** (gratis, open source); **EasyEDA** is het alternatief als er toch bij JLCPCB/LCSC besteld wordt. Bestelling bij **JLCPCB/PCBWay** (2-laags, 5 stuks, Gerbers + drill files). Elke breakout-module wordt als **connector op 2,54 mm-raster** (`Connector_PinSocket_2.54mm`) ingevoerd, met silkscreen-omtrek per module en `MountingHole`-footprints voor de bevestiging. Gatmaten: pinheader 2,54 mm = 1,0 mm gat / 1,7-1,8 mm pad; JST-GH = 0,8 mm; M3 = 3,2 mm; M3 heat-set = 4,0-4,5 mm; M2,5 = 2,7 mm; M2 = 2,2 mm. Afmetingen komen uit de datasheet/mechanische tekening van de module, uit deze standaardmaten, en anders uit eigen nameting met een schuifmaat. **Controle:** layout 1:1 op papier printen en de echte modules erop leggen.
+- **Status:** werkwijze aanbevolen; app- en fabrikantkeuze nog te bevestigen.
+- **Bron:** gebruikersvraag `2026-10-06`; uitgewerkt in [[pcb-ontwerp]].
+- **Gevolg:** de open vraag over het ontwerpgereedschap heeft nu een concreet advies; de fabrikant en de exacte module-footprints blijven te bevestigen.
+
+## 2026-10-06 — Componentenkeuze en gevolgen voor de print
+- **Specificatie:** Als **rekenkern + LoRa** is de **XIAO ESP32S3 + Wio-SX1262 kit** gekozen (B2B-connector, SPI, IPEX-antenne, USB-C, LiPo-lader, ± 14 I/O). Als **9-DoF IMU** de **Adafruit BNO055-breakout** (I2C 0x28/0x29, 20x27x4 mm, montagegaten 20x12 mm). De gebruiker koopt alles zelf; enkel de print wordt gemaakt (met LED + sockets).
+- **Status:** gekozen; gevolgen deels open.
+- **Bron:** gebruikersaanwijzing `2026-10-06`; volledige werklijst in [[componenten]].
+- **Gevolg:** ESP32 + LoRa = één footprint; de **LiPo-laadoptie** kan de 7,4 V-voedingsketen overbodig maken; **pin-budget** en **voedingsroute** te controleren. Barometer en RTK-GNSS blijven te kiezen; ontbrekende onderdelen (antennes, aan/uit-schakelaar, standoffs, USB-C-kabel, servo-voeding) staan in [[componenten]].

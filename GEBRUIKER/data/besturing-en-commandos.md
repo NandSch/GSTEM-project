@@ -9,6 +9,8 @@ status: denkwijze / voorbereiding
 > [!info] Denk- en voorbereidingsdocument
 > Dit document verkent hoe de laptopapp commando's, stuurdata of programmeerbare logiek terugstuurt naar de meetmodule en van daaruit naar het aangesloten toestel (vliegtuigmock-up, RC-auto of bestaande voertuigcontroller).
 
+> [!info] Status `2026-10-06`: de afgewerkte specificaties leggen de koppeling (UART TX/RX), het mock-upvliegtuig en de drie besturingsvlakken vast. De overige dimensies hieronder blijven denkrichting. Zie [[gstem-specificaties]].
+
 ## Situatie
 
 De keten is bidirectioneel:
@@ -98,19 +100,23 @@ De specificaties noemen een "Modus Programmering" waarin de gebruiker eigen verw
 
 ### 6. Elektrische koppeling — uitbreidingsconnector
 
-De meetmodule moet fysiek commando's doorgeven naar de bestaande controller. De vorm is nog onbekend:
+De meetmodule moet fysiek commando's doorgeven naar de bestaande controller.
 
-| Signaaltype | Voorbeeld | Benodigd op PCB |
-|-------------|-----------|-----------------|
-| PWM (servo) | 50 Hz, 1–2 ms puls | Direct vanuit ESP32 of via servo-driver |
-| UART / serieel | Text of binair protocol naar flightcontroller | TX/RX-pinnen |
-| I2C / CAN | Digitale bus naar controller | SDA/SCL of CAN-transceiver |
-| Analoge spanning | 0–3.3 V of 0–5 V | DAC of PWM+RC-filter |
+> [!success] Vastgelegd `2026-10-06`: **UART via TX/RX**. De Arduino van het vliegtuigje neemt CSV-waarden aan en is op zijn TX/RX-punten met het meettoestel verbonden. De eerder verkende opties (PWM, I2C, CAN, analoog) vervallen voor de mock-up. Zie [[gstem-specificaties]] en [[beslissingen]].
 
-> [!warning] Dit is een harde afhankelijkheid: het commandoformaat in de firmware is volledig bepaald door wat de bestaande controller verwacht.
+| Signaaltype | Status |
+|-------------|--------|
+| **UART / serieel (TX/RX)** | **Gekozen** — CSV-tekst naar de Arduino van de mock-up |
+| PWM (servo) | Vervallen voor de mock-up |
+| I2C / CAN | Vervallen voor de mock-up |
+| Analoge spanning | Vervallen voor de mock-up |
+
+**Vliegtuig-mock-up: drie besturingsvlakken** — rolroeren, hoogteroer en richtingsroer reageren op de metingen; de Arduino stelt de servo's in (real-time). Zie [[gstem-specificaties]].
+
+> [!warning] Het **exacte CSV-veldformaat** en de **spanningsniveaus** van de koppeling blijven open ([[open-vragen]]).
 
 ## Gerelateerd
 
 - [[open-vragen|Open vragen]] — specifiek de items over besturing, veiligheidsstop, LoRa-protocol, geofencing en uitbreidingsconnector
 - [[specificaties|Specificaties]] — wanneer deze voorbereiding wordt vastgelegd
-- [[meetmodule-voorbereiding|Positie- en beweging meetmodule — voorbereiding]] — hardwarecontext
+- [[meetmodule-voorbereiding|Positie- en beweging meettoestel — voorbereiding]] — hardwarecontext

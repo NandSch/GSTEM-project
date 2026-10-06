@@ -62,10 +62,10 @@ Chronologisch, nieuwste onderaan. Eén subsectie per beslissing.
 - **Gevolg:** Schermafbeeldingen 4 t/m 7 en de beelden bij hoofdstuk 5 zijn echte beelden; de foto's van hardware (toestel, USB-ontvanger, controller, testopstelling) blijven `SCREENSHOT`-blokken.
 - **Link:** [[handleiding]], [[links]]
 
-## 2026-10-01 — Projectnaam vastgelegd: Positie- en beweging meetmodule met LoRa integratie
-- **Beslissing:** De definitieve projectnaam is **Positie- en beweging meetmodule met LoRa integratie**. De werktitel **AeroLink** vervalt.
+## 2026-10-01 — Projectnaam vastgelegd: Positie- en beweging meettoestel met LoRa integratie
+- **Beslissing:** De definitieve projectnaam is **Positie- en beweging meettoestel met LoRa integratie**. De werktitel **AeroLink** vervalt.
 - **Reden:** Gebruikersvraag: het project noemen naar de naam die eerder al gebruikt werd.
-- **Gevolg:** Handleiding en README gebruiken de nieuwe naam; de titelregel van de handleiding volgt de referentie-opmaak (`Handleiding voor ***Positie- en beweging meetmodule met LoRa integratie***`, naam vet-cursief). De mappen `docs/` en `CODEXIMPORT/` zijn voorlopig ongewijzigd gelaten.
+- **Gevolg:** Handleiding en README gebruiken de nieuwe naam; de titelregel van de handleiding volgt de referentie-opmaak (`Handleiding voor ***Positie- en beweging meettoestel met LoRa integratie***`, naam vet-cursief). De mappen `docs/` en `CODEXIMPORT/` zijn voorlopig ongewijzigd gelaten.
 - **Link:** [[handleiding]], [[open-vragen]]
 
 ## 2026-09-29 — Geen emoji's in chat.md (en het archief)
@@ -100,7 +100,7 @@ Chronologisch, nieuwste onderaan. Eén subsectie per beslissing.
 - **Link:** [[specificaties]], [[ab-test-code-pagina]], [[afgevoerd]]
 
 ## 2026-10-05 — Ontwerp volledig uitgewerkt in `documenten/`; niet rechtstreeks in Google Docs
-- **Beslissing:** De ontwerptekst *Positie- en beweging meetmodule met LoRa integratie* wordt volledig uitgewerkt in het project zelf — `documenten/Ontwerp-meetmodule.md` als bron, `documenten/Ontwerp-meetmodule.docx` als Word-versie via `documenten/build-ontwerp.py`. De inhoud van het Google Doc wordt **niet** rechtstreeks door de AI gewijzigd; de gebruiker plakt of uploadt de tekst zelf in het Doc.
+- **Beslissing:** De ontwerptekst *Positie- en beweging meettoestel met LoRa integratie* wordt volledig uitgewerkt in het project zelf — `documenten/Ontwerp-meetmodule.md` als bron, `documenten/Ontwerp-meetmodule.docx` als Word-versie via `documenten/build-ontwerp.py`. De inhoud van het Google Doc wordt **niet** rechtstreeks door de AI gewijzigd; de gebruiker plakt of uploadt de tekst zelf in het Doc.
 - **Reden:** Er is geen schrijftoegang tot Google Docs (alleen lezen via de publieke link). Bestanden in het project zijn bovendien versioneerbaar en herbouwbaar.
 - **Gevolg:** De bron blijft de markdown in `documenten/`. Word opnieuw genereren met `python documenten/build-ontwerp.py`. Het Google Doc loopt achter op de bron tot de tekst wordt overgezet.
 - **Link:** [[meetmodule-voorbereiding]], [[links]], [[specificaties]]
@@ -116,3 +116,93 @@ Chronologisch, nieuwste onderaan. Eén subsectie per beslissing.
 - **Reden:** Gebruikersvraag: de hele map herschikken en ruimte winnen; de documentenmap en de webdemo namen te veel opslag in en waren dubbel met de documentatie.
 - **Gevolg:** De map `archief/` is opgeheven. Alles blijft herstelbaar via git-commit `5acdfa0`. README en `docs/05` beschrijven de opgeruimde toestand.
 - **Link:** [[links]], [[afgevoerd]], [[specificaties]]
+
+## 2026-10-06 — Projectnaam gewijzigd: van "meetmodule" naar "meettoestel"
+- **Beslissing:** De definitieve projectnaam is voortaan **Positie- en beweging meettoestel met LoRa integratie**. Het woord *meetmodule* in de naam is vervangen door *meettoestel*.
+- **Reden:** Gebruikersvraag; *toestel* dekt het volledige product beter dan *module*, dat alleen naar het elektronische insteekdeel verwijst.
+- **Gevolg:** Naam bijgewerkt in `README.md`, `documenten/Ontwerp-meetmodule.md`, `data/beslissingen.md`, `data/specificaties.md`, `data/links.md`, `data/open-vragen.md`, `data/meetmodule-voorbereiding.md`, `onderwerpen.md` en de topiclinks. Bestandsnamen (`Ontwerp-meetmodule.md`, `meetmodule-voorbereiding.md`) en [[meetmodule-voorbereiding]] verwijzen nog naar de oude slug; de technische term *meetmodule* voor het insteekdeel blijft in de tekst staan. De Word-versie (`Ontwerp-meetmodule.docx`) moet opnieuw gebouwd worden met `python documenten/build-ontwerp.py`.
+- **Link:** [[beslissingen]], [[open-vragen]], [[meetmodule-voorbereiding]]
+
+## 2026-10-06 — Meetprestaties en bereik vastgelegd
+- **Beslissing:** Het meettoestel meet vier grootheden: **richting** (graden, horizontaal en verticaal vlak), **snelheid** (km/u), **hoogte** (nauwkeurig tot **1,5 m**) en **locatie** (nauwkeurig tot **0,5 m**). Het draadloze **bereik** tussen toestel en USB-ontvanger is **maximaal 4 km**.
+- **Reden:** Vastgelegd in de door de gebruiker afgewerkte specificaties; dit zijn de beoogde productprestaties.
+- **Gevolg:** Vastgelegd in `documenten/GStem-Specificaties.md` en [[specificaties]]. De haalbaarheid per grootheid hangt af van de nog te kiezen sensoren ([[open-vragen]]).
+- **Link:** [[specificaties]], [[gstem-specificaties]], [[meetmodule-voorbereiding]]
+
+## 2026-10-06 — Ontvanger in USB-stickvorm; toestel en app starten automatisch
+- **Beslissing:** De draadloze ontvanger heeft de vorm van een **USB-stick** en steekt in de laptop. Het meettoestel **start automatisch** mee met het voertuig waarop het gemonteerd is (LED toont dat het actief is). De laptopapplicatie **start vanzelf** zodra de USB-ontvanger wordt ingestoken.
+- **Reden:** Gebruiksgemak; de gebruiker hoeft niets handmatig aan te zetten.
+- **Gevolg:** Vastgelegd in [[specificaties]] en [[gstem-specificaties]].
+- **Link:** [[specificaties]], [[app-architectuur-besturing]]
+
+## 2026-10-06 — App-schermopbouw: verbinding, kaart, Code en API
+- **Beslissing:** De laptopapp controleert eerst de verbindingen en gaat pas verder na **OK**. Daarna volgt het kaartscherm met **3D-kaart met Google-satellietfoto's** (afgelegde weg en kijkrichting) én een **tabel** met de losse meetwaarden. De knop **Code** opent de editor met rechtervensters voor uitleg en variabelen; code stuurt CSV-instructies terug naar de controller en wordt met een knop **geüpload**. De knop **API** opent de pagina om de API **aan/uit** te zetten, de verbinding te **testen** en het **adres** te tonen. Op elk scherm staat de status van USB-ontvanger en meettoestel.
+- **Reden:** Vastgelegd in de afgewerkte specificaties; bevestigt en concretiseert de bestaande app-architectuur.
+- **Gevolg:** Vastgelegd in [[specificaties]] en [[gstem-specificaties]]; sluit aan op [[app-architectuur-besturing]], [[code-pagina]] en [[handleiding]].
+- **Link:** [[specificaties]], [[app-architectuur-besturing]], [[code-pagina]]
+
+## 2026-10-06 — RC-vliegtuig-mock-up: Arduino via UART TX/RX, drie besturingsvlakken
+- **Beslissing:** Het mock-up vliegtuigje wordt bestuurd door een **Arduino** die **CSV-waarden** aanneemt en via zijn **TX/RX-punten** met het meettoestel is verbonden (UART). Het meettoestel wordt met zijn **voorkant gelijk** aan die van het vliegtuigje gericht. De **rolroeren, het hoogteroer en het richtingsroer** reageren op de metingen; de Arduino stelt de **servo's** in, real-time. Dit is een **zittend voorbeeld**, geen volledig functioneel vliegtuig.
+- **Reden:** Vastgelegd in de afgewerkte specificaties; hiermee is de elektrische koppeling (UART TX/RX) en het aantal besturingsvlakken (drie) definitief.
+- **Gevolg:** De open vraag over de uitbreidingsconnector (PWM/UART/I2C/CAN/analoog) is daarmee beantwoord: **UART**. Het exacte CSV-veldformaat en de spanningsniveaus blijven open. Vastgelegd in [[specificaties]], [[besturing-en-commandos]] en [[open-vragen]].
+- **Link:** [[specificaties]], [[besturing-en-commandos]], [[app-architectuur-besturing]], [[open-vragen]]
+
+## 2026-10-06 — Afgewerkte gebruikersspecificaties als bron opgenomen
+- **Beslissing:** Het bestand `documenten/GStem-Specificaties.md` (aangeleverd door de gebruiker) is de **afgewerkte gebruikersspecificatie** en wordt als bron in het project bewaard naast de technische [[meetmodule-voorbereiding]] en [[specificaties]].
+- **Reden:** De gebruiker leverde een volledig uitgewerkte, gebruikersgerichte specificatietekst aan.
+- **Gevolg:** Samengevat in [[gstem-specificaties]] en vastgelegd in [[specificaties]]; opgenomen in [[links]]. De tekst wordt nog niet als Word-document gegenereerd.
+- **Link:** [[specificaties]], [[links]], [[gstem-specificaties]]
+
+## 2026-10-06 — Aanpak bevestigd: losse componenten als breakout-modules op een eigen draagprint
+- **Beslissing:** Alle componenten (sensoren en ESP's) worden als **breakout-modules** aangekocht en op **socket-headers** van een zelfontworpen **draagprint** geplaatst. De print bevat de weerstanden, voedingspaden, connectiepunten en een **power-LED**; de modules blijven vervangbaar.
+- **Reden:** Gebruikerskeuze: modulair, vervangbaar en eenvoudiger te solderen dan losse IC's; de foutenlast bij montage daalt.
+- **Gevolg:** Vastgelegd in [[specificaties]]. De exacte modulekeuzes, pinouts, regelaars en het PCB-ontwerpgereedschap moeten nog worden bepaald ([[open-vragen]]).
+- **Link:** [[specificaties]], [[meetmodule-voorbereiding]], [[open-vragen]]
+
+## 2026-10-06 — Planning toegespitst op het project
+- **Beslissing:** De aangeleverde planning is toegespitst op het project. Niet-projectgebonden school- en sociale momenten zijn verwijderd: **Bezinningen Krakau** (14-15-16 okt), **Belevingsdag Thomas More** (28 jan), **Chrysostomos** (Vr 19 febr) en **Sportdag** (4 mei). De presentatie van 5 min/ll is **verzet naar Di 13 okt** en heet nu **Voorlopige presentatie SVL 5 min/ll**.
+- **Reden:** Gebruikersvraag: de planning moet enkel het project volgen; losse schoolactiviteiten horen er niet in.
+- **Gevolg:** `documenten/Planning-GSTEM.xlsx` en [[planning]] zijn bijgewerkt. De vakantieperiodes blijven staan omdat ze het werk aan het project onderbreken.
+- **Link:** [[planning]], [[links]]
+
+## 2026-10-06 — Actieplan toegevoegd als tweede blad in het Excel-bestand
+- **Beslissing:** Naast de schoolplanning komt er een **actieplan** met alle nog te ondernemen projectstappen (voorbereiding, hardware, firmware, app, beheer, testen, documentatie, presentatie). Het staat als **tweede blad "Actieplan"** in `documenten/Planning-GSTEM.xlsx`, in een **oranje kleur** die afwijkt van de blauwe schoolplanning.
+- **Reden:** Gebruikersvraag: een eigen planning van de resterende stappen, visueel onderscheiden van de schoolplanning.
+- **Gevolg:** Vastgelegd in [[actieplan]]; bijgewerkt in [[planning]], [[links]] en `onderwerpen.md`. De stappen zijn afgeleid uit [[open-vragen]], [[specificaties]] en [[meetmodule-voorbereiding]].
+- **Link:** [[actieplan]], [[planning]], [[open-vragen]]
+
+## 2026-10-06 — Excel met brede rijen en exacte datums
+- **Beslissing:** `documenten/Planning-GSTEM.xlsx` is herwerkt met **bredere kolommen en hogere rijen** (betere leesbaarheid) en met **exacte datums** in `dd/mm/jjjj`-notatie. De schoolplanning kreeg exacte datums voor schooljaar **2026-2027**; het actieplan kreeg per stap een **voorstel-streefdatum**. De kolomtitels zijn verduidelijkt: "Datum-Periode (exact)" en "Streefdatum (exact)".
+- **Reden:** Gebruikersvraag: alles breder en met exacte datums.
+- **Gevolg:** Vastgelegd in [[planning]] en [[actieplan]]. De weekdagen in de bron (di/vr/za/ma) kloppen met de afgeleide jaartallen; dit staat als aanname in [[planning]].
+- **Link:** [[planning]], [[actieplan]]
+
+## 2026-10-06 — "GT" in de planning betekent examens
+- **Beslissing:** In de planning staat **GT voor examens**. De periode **03/12/2026 - 14/12/2026** is dus een examenperiode, naast "Start examens" op 11/06/2027.
+- **Reden:** Verduidelijking door de gebruiker.
+- **Gevolg:** Rij in `documenten/Planning-GSTEM.xlsx` heet nu "GT (examens)"; [[planning]] bijgewerkt en de open vraag over GT geschrapt.
+- **Link:** [[planning]]
+
+## 2026-10-06 — Aankoop: alle componenten zelf, enkel de print wordt gemaakt
+- **Beslissing:** De gebruiker **koopt alle componenten zelf aan**: alle breakout-modules (ESP32-S3, LoRa, IMU, barometer, RTK-GNSS), de voeding en alle losse onderdelen. Het **PCB-bordje zelf is het enige stuk dat niet als kant-en-klare module wordt gekocht**; daarop staan de **LED en de sockets** (en eventueel de overige printonderdelen).
+- **Reden:** Gebruikersaanwijzing `2026-10-06`.
+- **Gevolg:** De draagprint is in de praktijk een **drager**; de stuklijst (BOM) wordt gesplitst in "zelf aankopen" en "op de print". De print bevat minstens LED + sockets. Of de voedingsonderdelen (buck, LDO, zekering, weerstanden, condensatoren) ook op de print komen, is nog te bevestigen — zie [[open-vragen]].
+- **Link:** [[pcb-ontwerp]], [[specificaties]], [[pcb-methodes-kosten]], [[open-vragen]]
+
+## 2026-10-06 — Gekozen componenten: XIAO ESP32S3 + Wio-SX1262 kit en Adafruit BNO055
+- **Beslissing:** Als **rekenkern + LoRa** wordt de **XIAO ESP32S3 + Wio-SX1262 kit** gebruikt (ESP32-S3 en SX1262 via B2B-connector, SPI, IPEX-antenne, USB-C, ingebouwde LiPo-lader). Als **9-DoF IMU** wordt de **Adafruit BNO055-breakout** gebruikt (sensorfusie aan boord, I2C 0x28/0x29). Beide bij antratek.be aangekocht.
+- **Reden:** Gebruikersaanwijzing `2026-10-06`.
+- **Gevolg:** ESP32 en LoRa zijn nu **één module** op de draagprint. De XIAO heeft een **ingebouwde LiPo-lader**, waardoor de geplande 7,4 V -> buck -> LDO-keten mogelijk vervalt (3,7 V LiPo volstaat). Het **pin-budget** van de XIAO (± 14 I/O) moet gecontroleerd worden tegen IMU + barometer + GNSS + UART. Centrale lijst in [[componenten]]; open punten (barometer, RTK-GNSS, voeding) in [[open-vragen]].
+- **Link:** [[componenten]], [[specificaties]], [[open-vragen]], [[links]]
+
+## 2026-10-06 — Voedingsroute: 7,4 V-accu met buck naar 5 V
+- **Beslissing:** De hoofdvoeding blijft de **7,4 V-accu** met **zekering/ompoolbeveiliging -> buck-converter naar 5 V** en een **LDO naar 3,3 V** voor de 3,3 V-modules. De XIAO wordt op zijn **5 V-pin** gevoed; de **ingebouwde LiPo-lader van de XIAO wordt niet gebruikt**. Het 3,7 V LiPo-alternatief vervalt.
+- **Reden:** Gebruikerskeuze `2026-10-06`.
+- **Gevolg:** De batterij- en regelaaronderdelen (accu, zekering, ompoolbeveiliging, buck 5 V, LDO 3,3 V) blijven in de stuklijst. Zie [[componenten]].
+- **Link:** [[componenten]], [[specificaties]], [[open-vragen]]
+
+## 2026-10-06 — Pin-budget XIAO als AI-taak voor later
+- **Beslissing:** Het controleren van het **pin-budget** van de XIAO (± 14 I/O) tegen IMU + barometer + GNSS + UART, en het opstellen van de **pinout-tabel**, wordt een **taak die de AI later uitvoert** (geen gebruikersactie).
+- **Reden:** Gebruikersaanwijzing `2026-10-06`.
+- **Gevolg:** Vastgelegd als AI-taak in [[open-vragen]] en [[actieplan]]. De uitkomst bepaalt of alle modules op de XIAO passen of dat een I2C-multiplexer/expander nodig is.
+- **Link:** [[open-vragen]], [[actieplan]], [[componenten]]

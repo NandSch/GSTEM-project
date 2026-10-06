@@ -11,6 +11,12 @@ status: concept
 > gebruiker het opstart, de live data leest, eigen code toevoegt en het toestel aan een
 > voertuigcontroller koppelt.
 
+> [!info] Bron `2026-10-06`
+> De door de gebruiker **afgewerkte specificaties** (`documenten/GStem-Specificaties.md`, zie
+> [[gstem-specificaties]]) zijn de inhoudelijke basis voor de handleiding: de meetgrootheden en
+> nauwkeurigheden, het automatisch aanzetten, de app-schermen (verbinding, kaart, Code, API) en de
+> RC-vliegtuig-mock-up met Arduino via TX/RX en de drie besturingsvlakken.
+
 ## Bestanden
 
 | Rol | Pad |

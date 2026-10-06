@@ -1,6 +1,6 @@
 # GSTEM-Project — projectdocumentatie en gebruikershub
 
-Deze map bundelt het **G-Stem / GSN-project**: *Positie- en beweging meetmodule met LoRa
+Deze map bundelt het **G-Stem / GSN-project**: *Positie- en beweging meettoestel met LoRa
 integratie* (de werktitel *AeroLink* vervalt). De map is tegelijk een **pi-project met een vaste
 werkwijze** en een **Obsidian-hub**.
 
@@ -10,7 +10,7 @@ werkwijze** en een **Obsidian-hub**.
 | --- | --- |
 | `docs/` | De documentatieset van het project (01 overzicht, 02 en 03 archiefbeschrijvingen, 04 blokschema, 05 inventaris). |
 | `GEBRUIKER/` | Communicatie- en archiefhub: live chatlog, onderwerpenregister, `data/`, sessiearchief en een Obsidian-kopie van `docs/` in `Projectdocumentatie/`. |
-| `documenten/` | De gebruikershandleiding en de ontwerptekst (markdown-bron, gegenereerde Word-versies, bouwscripts en screenshots). |
+| `documenten/` | De afgewerkte gebruikersspecificaties, de gebruikershandleiding en de ontwerptekst (markdown-bron, gegenereerde Word-versies, bouwscripts en screenshots). |
 | `.pi/` | Pi-skill, altijd-geladen projectinstructie en de live logger. |
 | `README.md` | Dit overzicht. |
 
@@ -56,5 +56,6 @@ De documentatieset staat zowel in [`docs/`](docs/) als in
 
 ## Status
 
-- Hardware, firmware en laptopapp zijn **in ontwerp**; de projectnaam is **Positie- en beweging meetmodule met LoRa integratie**.
+- Hardware, firmware en laptopapp zijn **in ontwerp**; de projectnaam is **Positie- en beweging meettoestel met LoRa integratie**.
+- De door de gebruiker **afgewerkte gebruikersspecificaties** staan in `documenten/GStem-Specificaties.md` (aangeleverd `2026-10-06`); samengevat in `GEBRUIKER/data/gstem-specificaties.md` en verwerkt in `docs/01`.
 - De webdemo was een **mock-up**: geen echte USB-, LoRa- of sensorverbinding. Hij is verwijderd nadat zijn werking in `docs/03` is vastgelegd.

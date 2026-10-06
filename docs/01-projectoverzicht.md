@@ -5,10 +5,12 @@
 
 ## Doel en status
 
-Schoolproject rond een **compacte, draadloze module die 3D-positie en beweging meet**. De werktitel
-is **AeroLink**, maar de definitieve productnaam ligt niet vast. Hardware, firmware en laptopapp
-zijn in ontwerp. Het document `G-Stem_specificaties_concept.docx` is een aanvullende conceptbron;
-de details daarin zijn nog geen definitieve technische specificatie.
+Schoolproject rond een **compact, draadloos meettoestel dat positie en beweging meet**. De
+definitieve productnaam is **Positie- en beweging meettoestel met LoRa integratie** (de werktitel
+*AeroLink* vervalt, `2026-10-01`). Hardware, firmware en laptopapp zijn in ontwerp. Het document
+`G-Stem_specificaties_concept.docx` is een aanvullende conceptbron; de details daarin zijn nog geen
+definitieve technische specificatie. De door de gebruiker **afgewerkte gebruikersspecificaties**
+(`2026-10-06`, zie hieronder) vormen de actuele productbeschrijving.
 
 De map `CODEXIMPORT/visual-prototype/` bevat een **visuele mock-up** van de geplande laptopapp. Die
 toont de beoogde indeling en gegevensstroom met fictieve waarden. De demo maakt geen echte USB- of
@@ -107,6 +109,30 @@ en twee servo's genoemd. Een vliegend toestel is **geen** vereiste.
 - Veilige stop bij verbindingsverlies of ongeldige commando's.
 - Meetgegevens en route bewaren voor latere analyse/weergave.
 - Optioneel: apart programma/proces berekent acties voor een RC-auto of vliegtuigmock-up.
+
+## Afgewerkte gebruikersspecificaties (2026-10-06)
+
+De gebruiker leverde de afgewerkte, gebruikersgerichte specificaties aan
+(`documenten/GStem-Specificaties.md`; samengevat in `GEBRUIKER/data/gstem-specificaties.md`). Kern:
+
+- **Meetprestaties:** vier grootheden — **richting** (graden, horizontaal en verticaal vlak),
+  **snelheid** (km/u), **hoogte** (nauwkeurig tot **1,5 m**) en **locatie** (nauwkeurig tot **0,5 m**).
+- **Ontvanger en bereik:** draadloze ontvanger in **USB-stickvorm** in de laptop; bereik
+  **max. 4 km**.
+- **Aanzetten:** het meettoestel start **automatisch** mee met het voertuig (LED toont actief); de
+  laptopapplicatie **start vanzelf** zodra de USB-ontvanger wordt ingestoken.
+- **App-schermen:** eerst verbindingscontrole met **OK**; dan **3D-kaart met Google-satellietfoto's**
+  (afgelegde weg en kijkrichting) plus **tabel** met losse meetwaarden; het scherm **Code** (editor,
+  rechtervensters met uitleg en variabelen, CSV naar de controller, uploadknop); het scherm **API**
+  (aan/uit, verbinding testen, adres). Op elk scherm staat de status van USB-ontvanger en
+  meettoestel.
+- **CSV en API:** waarden naar de controller reizen als **CSV**; de gebruiker bepaalt de betekenis
+  per waarde. De **API** geeft alle metingen door aan een **extern programma**, dat instructies kan
+  terugsturen.
+- **RC-vliegtuig-mock-up:** een **Arduino** neemt CSV-waarden aan en is via **TX/RX** met het
+  meettoestel verbonden; de **rolroeren, het hoogteroer en het richtingsroer** reageren op de
+  metingen en de Arduino stelt de **servo's** in. Dit is een **zittend voorbeeld**, geen volledig
+  functioneel vliegtuig. **Testen:** kalibratie en feedbacklus.
 
 ## Nog te beslissen of te onderzoeken
 
