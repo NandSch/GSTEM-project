@@ -21,7 +21,6 @@ Register van besproken onderwerpen met links naar de bijbehorende data.
 - [[pcb-methodes-kosten|PCB-methodes: kosten en moeilijkheid]]
 - [[pcb-ontwerp|PCB ontwerpen: gereedschap, footprints en gatmaten]]
 - [[componenten|Componentenlijst (BOM) meettoestel]]
-- [[bestellijst|Bestellijst meettoestel (aan te kopen)]]
 - [[meetmodule-voorbereiding|Positie- en beweging meettoestel met LoRa — voorbereiding]]
 - [[besturing-en-commandos|Besturing en commando's terug naar het toestel — voorbereiding]]
 - [[app-architectuur-besturing|App-architectuur: meetdata, extern programma en besturing]]

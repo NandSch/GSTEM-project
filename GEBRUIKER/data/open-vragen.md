@@ -54,6 +54,13 @@ tags: [gstem, data, open-vragen]
 - [x] **Socket-headers of een alternatief (precisie-sockets, direct solderen, castellated, board-to-board)?** — `2026-10-06`: **dual-wipe** voor de XIAO, **precisie/gefreesd** voor de overige modules. (`2026-10-06`)
 - [x] **Wat komt er precies op de print zelf?** — `2026-10-06`: **LED + sockets** plus ontkoppeling, bulk-elco, schroefklem, level shifter (TXB0104), LDO (AP2112K-3.3) en voedingsbescherming (PTC/P-MOSFET/TVS). De **buck, accu, barrel-connector en sensormodules** blijven losse modules. Zie [[componenten]]. (`2026-10-06`)
 
+## Nog te beslissen: bestellijst (`2026-10-06`)
+
+- [ ] **BMP390 en LC29H(DA) niet op antratek** — kiezen of elders bestellen of een antratek-alternatief nemen (LG290P of ZED-F9P).
+- [ ] **Level shifter** — gekozen TXB0104 staat niet op antratek; het gevonden bidirectionele Logic Level Converter (BSS138) als alternatief aanvaarden?
+- [ ] **GNSS-antenne** — dure L1/L5-antenne (EUR 120,94) of goedkopere magneetantenne (EUR 19,30)?
+- [ ] **Barrel-connector** — PCB-montage of de adapter met schroefklem gebruiken?
+
 ## AI-taken (voert de AI later uit)
 
 - [ ] **Pinout-tabel XIAO opstellen** en controleren of ± 14 I/O volstaat voor IMU + barometer + GNSS + UART; anders I2C-multiplexer/expander voorzien. (`2026-10-06`, zie [[componenten]] en [[beslissingen]])

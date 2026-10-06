@@ -279,6 +279,30 @@ Chronologisch, nieuwste onderaan. Eén subsectie per beslissing.
 - **Gevolg:** Beide antennes komen op de bestellijst. De LoRa-kitantenne blijft behouden. Vastgelegd in [[componenten]].
 - **Link:** [[componenten]], [[links]], [[pcb-ontwerp]]
 
+## 2026-10-06 — Bestellijst: alles eerst op antratek.be zoeken
+- **Beslissing:** Er komt een **bestellijst** met alle componenten. Elk onderdeel wordt **eerst op www.antratek.be** gezocht; **niet gevonden = niet elders zoeken**. Per onderdeel staan link, kost en aantal; de gebruiker tagt zelf de onderdelen die hij al heeft. De lijst wordt ook als **Excel** bewaard.
+- **Reden:** Gebruikersaanwijzing `2026-10-06`.
+- **Gevolg:** `GEBRUIKER/data/bestellijst.md` en `documenten/Bestellijst-GSTEM.xlsx` (via `documenten/build-bestellijst.py`). Niet op antratek: BMP390, LC29H(DA), 2S LiPo, voedingsbescherming, AP2112K, 4-pins schroefklem, sockets, passieven en M3-montage.
+- **Link:** [[bestellijst]], [[componenten]], [[links]]
+
+## 2026-10-06 — Accu, barrel-adapter en USB-A-kabel al in bezit
+- **Beslissing:** De gebruiker heeft al: een **2S LiPo-accu met connector en kabel**, de **DC Barrel Jack Adapter - Female** en een **USB-A naar USB-C kabel** voor de XIAO. Deze staan op `al in bezit` en vallen uit het te-bestellen-totaal.
+- **Reden:** Gebruikersaanwijzing `2026-10-06`.
+- **Gevolg:** Standaard te-bestellen-totaal bij antratek zakt naar **EUR 114,12** (met magneetantenne) of **EUR 215,76** (met L1/L5-antenne). Bijgewerkt in [[bestellijst]], [[componenten]] en `documenten/Bestellijst-GSTEM.xlsx`.
+- **Link:** [[bestellijst]], [[componenten]]
+
+## 2026-10-06 — Goedkoopste passende onderdelen kiezen (totaal beperken)
+- **Beslissing:** Waar een goedkoper passend alternatief op antratek bestaat, wordt dat gebruikt, zodat het totaal niet absurd wordt. Concreet: **BME280** (EUR 19,97) i.p.v. de niet-verkrijgbare BMP390, en de **GPS/GNSS magneetantenne SMA 3m** (EUR 19,30, L1) i.p.v. de dual-band L1/L5-antenne (EUR 120,94). De nauwkeurigere L1/L5-antenne blijft als **optionele upgrade** vermeld.
+- **Reden:** Gebruikersaanwijzing `2026-10-06`: gebruik goedkopere onderdelen waar mogelijk.
+- **Gevolg:** Te-bestellen-totaal bij antratek: **EUR 118,90** (standaard), **EUR 220,54** met L1/L5-antenne, **EUR 98,93** zonder barometer. Let op: de goedkope magneetantenne is **enkelbandig (L1)**, dus mindere RTK-robuustheid dan dual-band. Bijgewerkt in [[bestellijst]], `documenten/Bestellijst-GSTEM.xlsx` en [[links]].
+- **Link:** [[bestellijst]], [[links]], [[componenten]]
+
+## 2026-10-06 — Arduino Uno al in bezit
+- **Beslissing:** De **Arduino Uno** voor de mock-up heeft de gebruiker **thuis**; die staat in de bestellijst op `al in bezit` en valt uit het te-bestellen-totaal.
+- **Reden:** Gebruikersaanwijzing `2026-10-06`.
+- **Gevolg:** Te-bestellen-totaal bij antratek zakt naar **EUR 200,57** (met L1/L5-antenne) of **EUR 98,93** (magneetantenne). Bijgewerkt in [[bestellijst]], [[componenten]] en `documenten/Bestellijst-GSTEM.xlsx`.
+- **Link:** [[bestellijst]], [[componenten]]
+
 ## 2026-10-06 — NTRIP gratis (gebruiker zoekt); socket-merken later
 - **Beslissing:** De NTRIP-correctiedienst wordt een **gratis** provider; de **gebruiker zoekt die zelf**. De exacte **merken** voor precisie- en dual-wipe-sockets worden later bepaald en hoeven **niet per se op de bestellijst**.
 - **Reden:** Gebruikersaanwijzing `2026-10-06`.

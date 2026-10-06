@@ -43,3 +43,17 @@ tags: [gstem, data, links]
 | Schroefklem 3,5 mm (KF128/KF301) | https://www.cuidevices.com/product/interconnect/terminal-blocks | 4-pins uitbreidingsconnector voor de UART (`2026-10-06`). |
 | GNSS-antenne (dual-band L1/L5) | https://www.waveshare.com/wiki/LC29H(XX)_GPS/RTK_HAT | Gekozen actieve GNSS-antenne met SMA, LNA + ground plane; bron verwijst naar de Waveshare-antenne bij de LC29H-HAT (`2026-10-06`). |
 | IPEX/U.FL -> SMA pigtail | https://www.antratek.be (zoek: U.FL naar SMA bulkhead) | Kort antennekabeltje om de LoRa-antenne buiten het vliegtuigje te monteren (`2026-10-06`). |
+| Bestellijst (markdown) | [[bestellijst]] | Alle onderdelen met status/tag, link, kost en aantal; bron voor de Excel (`2026-10-06`). |
+| Bestellijst (Excel) | `documenten/Bestellijst-GSTEM.xlsx` | Gegenereerd met `documenten/build-bestellijst.py`. |
+| XIAO ESP32S3 + Wio-SX1262 kit (prijs) | https://www.antratek.be/xiao-esp32s3-for-meshtastic-lora | EUR 15,13 incl. btw op antratek (`2026-10-06`). |
+| BNO055 (prijs) | https://www.antratek.be/9-dof-absolute-orientation-imu-fusion-breakout-bno055 | EUR 36,24 incl. btw op antratek (`2026-10-06`). |
+| GNSS-antenne L1/L5 (antratek) | https://www.antratek.be/gnss-l1-l5-multi-band-high-precision-antenna-5m-sma | Actieve multi-band L1/L5 met SMA, u-blox/SparkFun GPS-23814, EUR 120,94 incl. btw (`2026-10-06`). |
+| Goedkopere GNSS-antenne (antratek) | https://www.antratek.be/gps-gnss-magnetic-mount-antenna-sma-3m | GPS/GNSS magneetantenne SMA 3m, EUR 19,30 incl. btw; geen L1/L5 (`2026-10-06`). |
+| Interface Cable SMA to U.FL (antratek) | https://www.antratek.be/u-fl-sma-150mm-cable | 150 mm U.FL/IPEX naar SMA, SparkFun WRL-18568, EUR 3,57 incl. btw (`2026-10-06`). |
+| DC Barrel Jack Adapter - Female (antratek) | https://www.antratek.be/dc-barrel-jack-adapter-female | Adapter met schroefklem, SparkFun PRT-10288, EUR 4,78 incl. btw; geen PCB-montage (`2026-10-06`). |
+| Logic Level Converter (antratek) | https://www.antratek.be/logic-level-converter-bi-directional-bob-12009 | Bidirectioneel 4-kanaals (BSS138), SparkFun BOB-12009, EUR 4,78 incl. btw; alternatief voor TXB0104 (`2026-10-06`). |
+| Arduino Uno Rev3 (antratek) | https://www.antratek.be/arduino-uno-rev3-a000066 | EUR 41,75 incl. btw (`2026-10-06`). |
+| RTK-alternatieven op antratek | https://www.antratek.be/quadband-gnss-rtk-breakout-lg290p-qwiic | LG290P RTK EUR 217,74; ZED-F9P EUR 302,44. Gekozen LC29H(DA) staat niet op antratek (`2026-10-06`). |
+| Barometer BME280 (antratek) | https://www.antratek.be/atmospheric-sensor-breakout-bme280 | Goedkoopst/leverbaar alternatief voor de niet-verkrijgbare BMP390, EUR 19,97 incl. btw; minder nauwkeurig (`2026-10-06`). |
+| GPS/GNSS magneetantenne (antratek) | https://www.antratek.be/gps-gnss-magnetic-mount-antenna-sma-3m | Goedkoopste passende actieve SMA-antenne, SparkFun GPS-14986, EUR 19,30 incl. btw (L1). Gebruikt als standaard in de bestellijst (`2026-10-06`). |
+| Molex flexibele GNSS-antenne (antratek) | https://www.antratek.be/molex-flexible-gnss-antenna-u-fl-adhesive | Nog goedkoper (EUR 8,41), maar klein U.FL-printantennetje; niet gekozen (`2026-10-06`). |

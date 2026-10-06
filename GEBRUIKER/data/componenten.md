@@ -25,7 +25,7 @@ status: werklijst
 | Voeding | **7,4 V-accu -> buck 5 V** (buck heeft de gebruiker), **barrel-connector** | XIAO op 5 V-pin; interne LiPo-lader niet gebruikt | - |
 | Aan/uit | **Geen schakelaar** | Het toestel springt aan zodra het aan de voeding hangt | - |
 | LoRa-ontvanger laptop | **Tweede XIAO ESP32S3 + Wio-SX1262 kit** | Zelfde hardware als het toestel | - |
-| Arduino (mock-up) | **Arduino Uno** | Neemt CSV aan op TX/RX | - |
+| Arduino (mock-up) | **Arduino Uno** | Neemt CSV aan op TX/RX; heeft de gebruiker thuis (`2026-10-06`) | - |
 | Servo's (mock-up) | **Bestaande servo's van de gebruiker (> 3)** | Type maakt niet uit; op de bestellijst zetten bij het opmaken | - |
 | Servo-voeding (mock-up) | **Aparte buck-converter** | Heeft de gebruiker al | - |
 | Behuizing/romp mock-up | **Eigen 3D-print** | Door de gebruiker zelf gemaakt | - |
@@ -58,8 +58,8 @@ status: werklijst
 ## Nog te noteren (ontbrak in de lijst)
 
 **Voeding**
-- 7,4 V-accu met connector en kabel (bescherming hieronder gekozen).
-- Barrel-connector (gekozen als voedingsaansluiting).
+- 7,4 V-accu met connector en kabel: **heeft de gebruiker** (`2026-10-06`, 2S LiPo).
+- Barrel-connector (gekozen als voedingsaansluiting): **DC Barrel Jack Adapter - Female heeft de gebruiker** (`2026-10-06`).
 - Buck-converter 5 V (heeft de gebruiker).
 - Bescherming: 2 A PTC-zekering, P-MOSFET ompoolbeveiliging (DMG2301L), TVS SMBJ10A.
 
@@ -67,7 +67,7 @@ status: werklijst
 - USB-C datakabel: **in bezit** (eigen kabel voor flashen/programmeren `2026-10-06`) — niet op de bestellijst.
 - UART-draden meettoestel <-> Arduino met **schroefklem-connectoren**; **gemeenschappelijke ground** en **level shifter** horen erbij.
 - Dupont-/siliconendraad: **in bezit** (gebruiker heeft dit zelf `2026-10-06`) — niet op de bestellijst.
-- USB A-kabel voor de LoRa-ontvanger.
+- USB A-kabel voor de LoRa-ontvanger: **heeft de gebruiker** (USB-A naar USB-C, `2026-10-06`) — niet op de bestellijst.
 
 **RF**
 - GNSS-antenne: gekozen (zie "Gekozen").
@@ -154,6 +154,7 @@ De gebruiker koos **LED + sockets** en vraagt wat verder essentieel is. Voorstel
 
 ## Gerelateerd
 
+- [[bestellijst]] - aan te kopen onderdelen met link, kost en aantal (Excel: `documenten/Bestellijst-GSTEM.xlsx`). Let op: de bestellijst gebruikt **goedkopere, op antratek leverbare** varianten (BME280 i.p.v. BMP390; magneetantenne i.p.v. L1/L5) om het totaal te beperken.
 - [[specificaties]] - draagprint-aanpak en gebruikersspecificaties
 - [[pcb-ontwerp]] - footprints en gatmaten
 - [[pcb-schets]] - bovenaanzicht en verbindingsschema
