@@ -8,7 +8,7 @@ bijgewerkt: 2026-10-06
 
 > [!info] Wat is dit?
 > De nog te ondernemen stappen voor het project, afgeleid uit [[open-vragen]],
-> [[specificaties]] en [[meetmodule-voorbereiding]]. In `documenten/Planning-GSTEM.xlsx` staat dit
+> [[specificaties]] en [[meetmodule-voorbereiding]]. In `documenten/beheer/Planning-GSTEM.xlsx` staat dit
 > als **tweede blad "Actieplan"** in een afwijkende (oranje) kleur. De **streefdatums zijn een
 > voorstel** en kunnen verschoven worden.
 

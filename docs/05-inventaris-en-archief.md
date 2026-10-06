@@ -30,8 +30,18 @@ GSTEM-Project/
 │   ├── data/                         # beslissingen, specificaties, open-vragen, links, afgevoerd
 │   ├── Projectdocumentatie/          # Obsidian-kopie van docs/ (identiek)
 │   └── archief/                      # elke afgeronde sessie (chat.md + meta.md)
-└── documenten/                       # handleiding en ontwerptekst (Word + markdown + scripts)
+└── documenten/                       # afgewerkte stukken van het project
+    ├── README.md                     # index van documenten/
+    ├── specificaties/                # GStem-Specificaties.md, Ontwerp-meetmodule.md/.docx
+    ├── pcb/                          # PCB-schets, draagprint-SVG/PNG, PCB-eindbeeld, drawio, controleblad
+    ├── beheer/                       # Bestellijst-GSTEM.xlsx, Planning-GSTEM.xlsx
+    └── scripts/                      # build-*.py (padonafhankelijk via __file__)
 ```
+
+> [!info] Herschikt op 2026-10-06
+> `documenten/` is in submappen herschikt (`specificaties/`, `pcb/`, `beheer/`, `scripts/`) en
+> heeft een eigen `README.md` als index. Zie [[beslissingen]]. De map `documenten/blender/`
+> (Blender-mock-up) en de verbindingsschema-bestanden zijn verwijderd.
 
 `docs/` en `GEBRUIKER/Projectdocumentatie/` worden **identiek** gehouden: `docs/` is de
 repo-canonieke set, `GEBRUIKER/Projectdocumentatie/` is de Obsidian-kopie met wikilinks.

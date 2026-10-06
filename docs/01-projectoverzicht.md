@@ -113,7 +113,7 @@ en twee servo's genoemd. Een vliegend toestel is **geen** vereiste.
 ## Afgewerkte gebruikersspecificaties (2026-10-06)
 
 De gebruiker leverde de afgewerkte, gebruikersgerichte specificaties aan
-(`documenten/GStem-Specificaties.md`; samengevat in `GEBRUIKER/data/gstem-specificaties.md`). Kern:
+(`documenten/specificaties/GStem-Specificaties.md`; samengevat in `GEBRUIKER/data/gstem-specificaties.md`). Kern:
 
 - **Meetprestaties:** vier grootheden — **richting** (graden, horizontaal en verticaal vlak),
   **snelheid** (km/u), **hoogte** (nauwkeurig tot **1,5 m**) en **locatie** (nauwkeurig tot **0,5 m**).

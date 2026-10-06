@@ -3,7 +3,7 @@
 > [!info] Wat dit is
 > Een **visuele schets** van hoe de zelfgemaakte draagprint eruitziet en hoe alles
 > aangesloten is. Schematisch, niet op schaal. Bron: [[specificaties]] (`2026-10-06`),
-> `documenten/Ontwerp-meetmodule.md`.
+> `documenten/specificaties/Ontwerp-meetmodule.md`.
 
 ## 1. Bovenaanzicht van de draagprint
 
@@ -16,7 +16,7 @@
 > ![Eindbeeld eind-PCB met Arduino](PCB-eindbeeld.png)
 
 > [!tip] Bestanden
-> `documenten/PCB-schets-draagprint.svg` (vector, scherp te vergroten), `documenten/PCB-schets-draagprint.png` (afbeelding) en dit markdown-bestand.
+> `documenten/pcb/PCB-schets-draagprint.svg` (vector, scherp te vergroten), `documenten/pcb/PCB-schets-draagprint.png` (afbeelding) en dit markdown-bestand.
 
 > [!note] Leeswijzer kleuren
 > - **rood** = VBAT (ruwe accuspanning)

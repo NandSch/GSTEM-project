@@ -14,27 +14,15 @@ status: schets
 
 | Rol | Pad |
 | --- | --- |
-| Schets (markdown + Mermaid) | `documenten/PCB-schets.md` |
-| Bovenaanzicht (SVG, vector) | `documenten/PCB-schets-draagprint.svg` |
-| Bovenaanzicht (PNG, afbeelding) | `documenten/PCB-schets-draagprint.png` |
-| Eindbeeld eind-PCB (PNG) | `documenten/PCB-eindbeeld.png` |
-| Eindbeeld (bouwsript) | `documenten/build-pcb-eindbeeld.py` |
-| Verbindingsschema (draw.io) | `documenten/Verbindingsschema-GSTEM.drawio` |
-| Verbindingsschema (PNG) | `documenten/Verbindingsschema-GSTEM.png` |
-| Verbindingsschema (bouwsript) | `documenten/build-verbindingsschema.py` |
-
+| Schets (markdown + Mermaid) | `documenten/pcb/PCB-schets.md` |
+| Bovenaanzicht (SVG, vector) | `documenten/pcb/PCB-schets-draagprint.svg` |
+| Bovenaanzicht (PNG, afbeelding) | `documenten/pcb/PCB-schets-draagprint.png` |
+| Eindbeeld eind-PCB (PNG) | `documenten/pcb/PCB-eindbeeld.png` |
+| Eindbeeld (bouwsript) | `documenten/scripts/build-pcb-eindbeeld.py` |
 Het SVG opent in elke browser; het markdown-bestand toont de verbindingsschema's en de
 voedingsboom. Het PNG is een gerenderde versie van het SVG.
 
-> [!tip] Nieuw: volledig verbindingsschema (`2026-10-06`)
-> Naast de schets is er nu een **compleet verbindingsschema** (draw.io + PNG) met de hele keten:
-> accu/barrel -> PTC + TVS -> buck 5 V -> bulk-elco + power-LED -> LDO 3,3 V, de **XIAO ESP32S3 +
-> Wio-SX1262**, de sensoren (BNO085 I2C, BMP581 I2C, LC29H(DA) UART), de **TXB0104** level shifter,
-> de **4-pins uitbreidingsconnector**, de **Arduino Uno + 3 servo's + servo-buck** en de
-> **LoRa-adapter + laptopapplicatie**. Zie [[verbindingsschema]] en
-> `documenten/Verbindingsschema-GSTEM.{drawio,png}`; bouwen via `documenten/build-verbindingsschema.py`.
-
-## Eindbeeld met Arduino (`2026-10-06`, `documenten/PCB-eindbeeld.png`)
+## Eindbeeld met Arduino (`2026-10-06`, `documenten/pcb/PCB-eindbeeld.png`)
 
 > [!info] Wat het toont
 > Detailbeeld van de **eindtoestand**: de draagprint met de **definitief gekozen** breakouts
@@ -52,8 +40,8 @@ voedingsboom. Het PNG is een gerenderde versie van het SVG.
 
 ## Bestanden van het eindbeeld
 
-- `documenten/PCB-eindbeeld.png` — het eindbeeld.
-- `documenten/build-pcb-eindbeeld.py` — bouwsript (PIL).
+- `documenten/pcb/PCB-eindbeeld.png` — het eindbeeld.
+- `documenten/scripts/build-pcb-eindbeeld.py` — bouwsript (PIL).
 
 ## In één oogopslag
 

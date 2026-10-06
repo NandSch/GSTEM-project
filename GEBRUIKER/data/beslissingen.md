@@ -100,7 +100,7 @@ Chronologisch, nieuwste onderaan. Eén subsectie per beslissing.
 - **Link:** [[specificaties]], [[ab-test-code-pagina]], [[afgevoerd]]
 
 ## 2026-10-05 — Ontwerp volledig uitgewerkt in `documenten/`; niet rechtstreeks in Google Docs
-- **Beslissing:** De ontwerptekst *Positie- en beweging meettoestel met LoRa integratie* wordt volledig uitgewerkt in het project zelf — `documenten/Ontwerp-meetmodule.md` als bron, `documenten/Ontwerp-meetmodule.docx` als Word-versie via `documenten/build-ontwerp.py`. De inhoud van het Google Doc wordt **niet** rechtstreeks door de AI gewijzigd; de gebruiker plakt of uploadt de tekst zelf in het Doc.
+- **Beslissing:** De ontwerptekst *Positie- en beweging meettoestel met LoRa integratie* wordt volledig uitgewerkt in het project zelf — `documenten/specificaties/Ontwerp-meetmodule.md` als bron, `documenten/specificaties/Ontwerp-meetmodule.docx` als Word-versie via `documenten/build-ontwerp.py`. De inhoud van het Google Doc wordt **niet** rechtstreeks door de AI gewijzigd; de gebruiker plakt of uploadt de tekst zelf in het Doc.
 - **Reden:** Er is geen schrijftoegang tot Google Docs (alleen lezen via de publieke link). Bestanden in het project zijn bovendien versioneerbaar en herbouwbaar.
 - **Gevolg:** De bron blijft de markdown in `documenten/`. Word opnieuw genereren met `python documenten/build-ontwerp.py`. Het Google Doc loopt achter op de bron tot de tekst wordt overgezet.
 - **Link:** [[meetmodule-voorbereiding]], [[links]], [[specificaties]]
@@ -108,7 +108,7 @@ Chronologisch, nieuwste onderaan. Eén subsectie per beslissing.
 ## 2026-10-05 — Veiligheidsstop in de firmware van de meetmodule
 - **Beslissing:** De veiligheidsstop zit in de **firmware van de meetmodule** en niet alleen in de laptopapplicatie: geen geldig commando binnen de ingestelde tijd -> motoren naar nul en servo's naar neutraal; ongeldige regels negeren en tellen; verbroken verbinding -> de meetmodule gaat zelf naar de veilige toestand; geofencing-schending -> veilige toestand.
 - **Reden:** Het toestel moet ook veilig zijn als de laptop of de LoRa-verbinding wegvalt; de module is de enige laag die altijd aanwezig is.
-- **Gevolg:** Vastgelegd in `documenten/Ontwerp-meetmodule.md` (sectie Besturing en veiligheid). Blijft open: de omschakeltijd in seconden en de precieze veilige toestand per toesteltype.
+- **Gevolg:** Vastgelegd in `documenten/specificaties/Ontwerp-meetmodule.md` (sectie Besturing en veiligheid). Blijft open: de omschakeltijd in seconden en de precieze veilige toestand per toesteltype.
 - **Link:** [[besturing-en-commandos]], [[meetmodule-voorbereiding]], [[open-vragen]]
 
 ## 2026-10-05 — AI-mappen en tussenversies verwijderd na vastleggen in documentatie
@@ -120,13 +120,13 @@ Chronologisch, nieuwste onderaan. Eén subsectie per beslissing.
 ## 2026-10-06 — Projectnaam gewijzigd: van "meetmodule" naar "meettoestel"
 - **Beslissing:** De definitieve projectnaam is voortaan **Positie- en beweging meettoestel met LoRa integratie**. Het woord *meetmodule* in de naam is vervangen door *meettoestel*.
 - **Reden:** Gebruikersvraag; *toestel* dekt het volledige product beter dan *module*, dat alleen naar het elektronische insteekdeel verwijst.
-- **Gevolg:** Naam bijgewerkt in `README.md`, `documenten/Ontwerp-meetmodule.md`, `data/beslissingen.md`, `data/specificaties.md`, `data/links.md`, `data/open-vragen.md`, `data/meetmodule-voorbereiding.md`, `onderwerpen.md` en de topiclinks. Bestandsnamen (`Ontwerp-meetmodule.md`, `meetmodule-voorbereiding.md`) en [[meetmodule-voorbereiding]] verwijzen nog naar de oude slug; de technische term *meetmodule* voor het insteekdeel blijft in de tekst staan. De Word-versie (`Ontwerp-meetmodule.docx`) moet opnieuw gebouwd worden met `python documenten/build-ontwerp.py`.
+- **Gevolg:** Naam bijgewerkt in `README.md`, `documenten/specificaties/Ontwerp-meetmodule.md`, `data/beslissingen.md`, `data/specificaties.md`, `data/links.md`, `data/open-vragen.md`, `data/meetmodule-voorbereiding.md`, `onderwerpen.md` en de topiclinks. Bestandsnamen (`Ontwerp-meetmodule.md`, `meetmodule-voorbereiding.md`) en [[meetmodule-voorbereiding]] verwijzen nog naar de oude slug; de technische term *meetmodule* voor het insteekdeel blijft in de tekst staan. De Word-versie (`Ontwerp-meetmodule.docx`) moet opnieuw gebouwd worden met `python documenten/build-ontwerp.py`.
 - **Link:** [[beslissingen]], [[open-vragen]], [[meetmodule-voorbereiding]]
 
 ## 2026-10-06 — Meetprestaties en bereik vastgelegd
 - **Beslissing:** Het meettoestel meet vier grootheden: **richting** (graden, horizontaal en verticaal vlak), **snelheid** (km/u), **hoogte** (nauwkeurig tot **1,5 m**) en **locatie** (nauwkeurig tot **0,5 m**). Het draadloze **bereik** tussen toestel en USB-ontvanger is **maximaal 4 km**.
 - **Reden:** Vastgelegd in de door de gebruiker afgewerkte specificaties; dit zijn de beoogde productprestaties.
-- **Gevolg:** Vastgelegd in `documenten/GStem-Specificaties.md` en [[specificaties]]. De haalbaarheid per grootheid hangt af van de nog te kiezen sensoren ([[open-vragen]]).
+- **Gevolg:** Vastgelegd in `documenten/specificaties/GStem-Specificaties.md` en [[specificaties]]. De haalbaarheid per grootheid hangt af van de nog te kiezen sensoren ([[open-vragen]]).
 - **Link:** [[specificaties]], [[gstem-specificaties]], [[meetmodule-voorbereiding]]
 
 ## 2026-10-06 — Ontvanger in USB-stickvorm; toestel en app starten automatisch
@@ -148,7 +148,7 @@ Chronologisch, nieuwste onderaan. Eén subsectie per beslissing.
 - **Link:** [[specificaties]], [[besturing-en-commandos]], [[app-architectuur-besturing]], [[open-vragen]]
 
 ## 2026-10-06 — Afgewerkte gebruikersspecificaties als bron opgenomen
-- **Beslissing:** Het bestand `documenten/GStem-Specificaties.md` (aangeleverd door de gebruiker) is de **afgewerkte gebruikersspecificatie** en wordt als bron in het project bewaard naast de technische [[meetmodule-voorbereiding]] en [[specificaties]].
+- **Beslissing:** Het bestand `documenten/specificaties/GStem-Specificaties.md` (aangeleverd door de gebruiker) is de **afgewerkte gebruikersspecificatie** en wordt als bron in het project bewaard naast de technische [[meetmodule-voorbereiding]] en [[specificaties]].
 - **Reden:** De gebruiker leverde een volledig uitgewerkte, gebruikersgerichte specificatietekst aan.
 - **Gevolg:** Samengevat in [[gstem-specificaties]] en vastgelegd in [[specificaties]]; opgenomen in [[links]]. De tekst wordt nog niet als Word-document gegenereerd.
 - **Link:** [[specificaties]], [[links]], [[gstem-specificaties]]
@@ -162,17 +162,17 @@ Chronologisch, nieuwste onderaan. Eén subsectie per beslissing.
 ## 2026-10-06 — Planning toegespitst op het project
 - **Beslissing:** De aangeleverde planning is toegespitst op het project. Niet-projectgebonden school- en sociale momenten zijn verwijderd: **Bezinningen Krakau** (14-15-16 okt), **Belevingsdag Thomas More** (28 jan), **Chrysostomos** (Vr 19 febr) en **Sportdag** (4 mei). De presentatie van 5 min/ll is **verzet naar Di 13 okt** en heet nu **Voorlopige presentatie SVL 5 min/ll**.
 - **Reden:** Gebruikersvraag: de planning moet enkel het project volgen; losse schoolactiviteiten horen er niet in.
-- **Gevolg:** `documenten/Planning-GSTEM.xlsx` en [[planning]] zijn bijgewerkt. De vakantieperiodes blijven staan omdat ze het werk aan het project onderbreken.
+- **Gevolg:** `documenten/beheer/Planning-GSTEM.xlsx` en [[planning]] zijn bijgewerkt. De vakantieperiodes blijven staan omdat ze het werk aan het project onderbreken.
 - **Link:** [[planning]], [[links]]
 
 ## 2026-10-06 — Actieplan toegevoegd als tweede blad in het Excel-bestand
-- **Beslissing:** Naast de schoolplanning komt er een **actieplan** met alle nog te ondernemen projectstappen (voorbereiding, hardware, firmware, app, beheer, testen, documentatie, presentatie). Het staat als **tweede blad "Actieplan"** in `documenten/Planning-GSTEM.xlsx`, in een **oranje kleur** die afwijkt van de blauwe schoolplanning.
+- **Beslissing:** Naast de schoolplanning komt er een **actieplan** met alle nog te ondernemen projectstappen (voorbereiding, hardware, firmware, app, beheer, testen, documentatie, presentatie). Het staat als **tweede blad "Actieplan"** in `documenten/beheer/Planning-GSTEM.xlsx`, in een **oranje kleur** die afwijkt van de blauwe schoolplanning.
 - **Reden:** Gebruikersvraag: een eigen planning van de resterende stappen, visueel onderscheiden van de schoolplanning.
 - **Gevolg:** Vastgelegd in [[actieplan]]; bijgewerkt in [[planning]], [[links]] en `onderwerpen.md`. De stappen zijn afgeleid uit [[open-vragen]], [[specificaties]] en [[meetmodule-voorbereiding]].
 - **Link:** [[actieplan]], [[planning]], [[open-vragen]]
 
 ## 2026-10-06 — Excel met brede rijen en exacte datums
-- **Beslissing:** `documenten/Planning-GSTEM.xlsx` is herwerkt met **bredere kolommen en hogere rijen** (betere leesbaarheid) en met **exacte datums** in `dd/mm/jjjj`-notatie. De schoolplanning kreeg exacte datums voor schooljaar **2026-2027**; het actieplan kreeg per stap een **voorstel-streefdatum**. De kolomtitels zijn verduidelijkt: "Datum-Periode (exact)" en "Streefdatum (exact)".
+- **Beslissing:** `documenten/beheer/Planning-GSTEM.xlsx` is herwerkt met **bredere kolommen en hogere rijen** (betere leesbaarheid) en met **exacte datums** in `dd/mm/jjjj`-notatie. De schoolplanning kreeg exacte datums voor schooljaar **2026-2027**; het actieplan kreeg per stap een **voorstel-streefdatum**. De kolomtitels zijn verduidelijkt: "Datum-Periode (exact)" en "Streefdatum (exact)".
 - **Reden:** Gebruikersvraag: alles breder en met exacte datums.
 - **Gevolg:** Vastgelegd in [[planning]] en [[actieplan]]. De weekdagen in de bron (di/vr/za/ma) kloppen met de afgeleide jaartallen; dit staat als aanname in [[planning]].
 - **Link:** [[planning]], [[actieplan]]
@@ -180,7 +180,7 @@ Chronologisch, nieuwste onderaan. Eén subsectie per beslissing.
 ## 2026-10-06 — "GT" in de planning betekent examens
 - **Beslissing:** In de planning staat **GT voor examens**. De periode **03/12/2026 - 14/12/2026** is dus een examenperiode, naast "Start examens" op 11/06/2027.
 - **Reden:** Verduidelijking door de gebruiker.
-- **Gevolg:** Rij in `documenten/Planning-GSTEM.xlsx` heet nu "GT (examens)"; [[planning]] bijgewerkt en de open vraag over GT geschrapt.
+- **Gevolg:** Rij in `documenten/beheer/Planning-GSTEM.xlsx` heet nu "GT (examens)"; [[planning]] bijgewerkt en de open vraag over GT geschrapt.
 - **Link:** [[planning]]
 
 ## 2026-10-06 — Aankoop: alle componenten zelf, enkel de print wordt gemaakt
@@ -282,7 +282,7 @@ Chronologisch, nieuwste onderaan. Eén subsectie per beslissing.
 ## 2026-10-06 — Bestellijst: alles eerst op antratek.be zoeken
 - **Beslissing:** Er komt een **bestellijst** met alle componenten. Elk onderdeel wordt **eerst op www.antratek.be** gezocht; **niet gevonden = niet elders zoeken**. Per onderdeel staan link, kost en aantal; de gebruiker tagt zelf de onderdelen die hij al heeft. De lijst wordt ook als **Excel** bewaard.
 - **Reden:** Gebruikersaanwijzing `2026-10-06`.
-- **Gevolg:** `GEBRUIKER/data/bestellijst.md` en `documenten/Bestellijst-GSTEM.xlsx` (via `documenten/build-bestellijst.py`). Niet op antratek: BMP390, LC29H(DA), 2S LiPo, voedingsbescherming, AP2112K, 4-pins schroefklem, sockets, passieven en M3-montage.
+- **Gevolg:** `GEBRUIKER/data/bestellijst.md` en `documenten/beheer/Bestellijst-GSTEM.xlsx` (via `documenten/scripts/build-bestellijst.py`). Niet op antratek: BMP390, LC29H(DA), 2S LiPo, voedingsbescherming, AP2112K, 4-pins schroefklem, sockets, passieven en M3-montage.
 - **Link:** [[bestellijst]], [[componenten]], [[links]]
 
 ## 2026-10-06 — Zo veel mogelijk bij Kiwi Electronics
@@ -300,19 +300,19 @@ Chronologisch, nieuwste onderaan. Eén subsectie per beslissing.
 ## 2026-10-06 — Accu, barrel-adapter en USB-A-kabel al in bezit
 - **Beslissing:** De gebruiker heeft al: een **2S LiPo-accu met connector en kabel**, de **DC Barrel Jack Adapter - Female** en een **USB-A naar USB-C kabel** voor de XIAO. Deze staan op `al in bezit` en vallen uit het te-bestellen-totaal.
 - **Reden:** Gebruikersaanwijzing `2026-10-06`.
-- **Gevolg:** Standaard te-bestellen-totaal bij antratek zakt naar **EUR 114,12** (met magneetantenne) of **EUR 215,76** (met L1/L5-antenne). Bijgewerkt in [[bestellijst]], [[componenten]] en `documenten/Bestellijst-GSTEM.xlsx`.
+- **Gevolg:** Standaard te-bestellen-totaal bij antratek zakt naar **EUR 114,12** (met magneetantenne) of **EUR 215,76** (met L1/L5-antenne). Bijgewerkt in [[bestellijst]], [[componenten]] en `documenten/beheer/Bestellijst-GSTEM.xlsx`.
 - **Link:** [[bestellijst]], [[componenten]]
 
 ## 2026-10-06 — Goedkoopste passende onderdelen kiezen (totaal beperken)
 - **Beslissing:** Waar een goedkoper passend alternatief op antratek bestaat, wordt dat gebruikt, zodat het totaal niet absurd wordt. Concreet: **BME280** (EUR 19,97) i.p.v. de niet-verkrijgbare BMP390, en de **GPS/GNSS magneetantenne SMA 3m** (EUR 19,30, L1) i.p.v. de dual-band L1/L5-antenne (EUR 120,94). De nauwkeurigere L1/L5-antenne blijft als **optionele upgrade** vermeld.
 - **Reden:** Gebruikersaanwijzing `2026-10-06`: gebruik goedkopere onderdelen waar mogelijk.
-- **Gevolg:** Te-bestellen-totaal bij antratek: **EUR 118,90** (standaard), **EUR 220,54** met L1/L5-antenne, **EUR 98,93** zonder barometer. Let op: de goedkope magneetantenne is **enkelbandig (L1)**, dus mindere RTK-robuustheid dan dual-band. Bijgewerkt in [[bestellijst]], `documenten/Bestellijst-GSTEM.xlsx` en [[links]].
+- **Gevolg:** Te-bestellen-totaal bij antratek: **EUR 118,90** (standaard), **EUR 220,54** met L1/L5-antenne, **EUR 98,93** zonder barometer. Let op: de goedkope magneetantenne is **enkelbandig (L1)**, dus mindere RTK-robuustheid dan dual-band. Bijgewerkt in [[bestellijst]], `documenten/beheer/Bestellijst-GSTEM.xlsx` en [[links]].
 - **Link:** [[bestellijst]], [[links]], [[componenten]]
 
 ## 2026-10-06 — Arduino Uno al in bezit
 - **Beslissing:** De **Arduino Uno** voor de mock-up heeft de gebruiker **thuis**; die staat in de bestellijst op `al in bezit` en valt uit het te-bestellen-totaal.
 - **Reden:** Gebruikersaanwijzing `2026-10-06`.
-- **Gevolg:** Te-bestellen-totaal bij antratek zakt naar **EUR 200,57** (met L1/L5-antenne) of **EUR 98,93** (magneetantenne). Bijgewerkt in [[bestellijst]], [[componenten]] en `documenten/Bestellijst-GSTEM.xlsx`.
+- **Gevolg:** Te-bestellen-totaal bij antratek zakt naar **EUR 200,57** (met L1/L5-antenne) of **EUR 98,93** (magneetantenne). Bijgewerkt in [[bestellijst]], [[componenten]] en `documenten/beheer/Bestellijst-GSTEM.xlsx`.
 - **Link:** [[bestellijst]], [[componenten]]
 
 ## 2026-10-06 — NTRIP gratis (gebruiker zoekt); socket-merken later
@@ -328,7 +328,7 @@ Chronologisch, nieuwste onderaan. Eén subsectie per beslissing.
 - **Link:** [[pcb-fabrikanten]], [[bestelschema-pcb]], [[bestellijst]], [[beslissingen]]
 
 ## 2026-10-06 — Eindbeeld van de eind-PCB als PNG genereren
-- **Beslissing:** Er wordt een **PNG-eindbeeld** gemaakt van de eind-PCB met de **definitief gekozen** breakouts (XIAO ESP32S3 + Wio-SX1262, BNO085, BMP581, LC29H(DA)), de losse printcomponenten en de **Arduino Uno** met al zijn verbindingen. Bestand: `documenten/PCB-eindbeeld.png`, gebouwd met `documenten/build-pcb-eindbeeld.py` (PIL, geen extra software nodig).
+- **Beslissing:** Er wordt een **PNG-eindbeeld** gemaakt van de eind-PCB met de **definitief gekozen** breakouts (XIAO ESP32S3 + Wio-SX1262, BNO085, BMP581, LC29H(DA)), de losse printcomponenten en de **Arduino Uno** met al zijn verbindingen. Bestand: `documenten/pcb/PCB-eindbeeld.png`, gebouwd met `documenten/scripts/build-pcb-eindbeeld.py` (PIL, geen extra software nodig).
 - **Reden:** Gebruikersvraag `2026-10-06`: een beeld van de **eindtoestand** met alle breakouts, exacte componenten, de Arduino en de verbindingen. De bestaande schets gebruikte nog de oudere BNO055/BMP390-varianten.
 - **Gevolg:** Het eindbeeld toont de voedingsbussen (5 V / 3,3 V / GND), I2C, GNSS-UART, de Arduino-UART via de **TXB0104**, de LoRa-RF en de 4-aderige kabel naar de Arduino. De **pinout blijft een voorstel** (open AI-taak); schematisch en niet op schaal. Vastgelegd in [[pcb-schets]] en [[links]].
 - **Link:** [[pcb-schets]], [[links]], [[componenten]]
@@ -336,29 +336,47 @@ Chronologisch, nieuwste onderaan. Eén subsectie per beslissing.
 ## 2026-10-06 — LC29H(DA) als breakout + overige artikelen bij EU-winkels
 - **Beslissing:** De RTK-GNSS-module wordt een **breakout board**: de **Waveshare LC29H(DA) GPS/RTK HAT (SKU 25279)**, gekocht bij **Botland (Polen, EU)** voor **€ 70,50 incl. btw**. De module wordt **niet** als losse SMD-module gekocht. De overige `geen-link`-onderdelen komen bij **EU-winkels**: LDO AP2112K-3.3TRG1 + TVS SMBJ10A bij **TME (PL)**, P-MOSFET DMG2301L-7 + PTC Littelfuse 1812L200/16 bij **Mouser.be/DigiKey (EU-magazijn)**, 4-pins 3,5 mm schroefklem DEGSON DG250-3.5-04P bij **HESTORE (HU)**/TME, precisie/dual-wipe sockets bij **TME**/RS, en de M3-montageset bij **TinyTronics (NL)**.
 - **Reden:** Gebruikersaanwijzing `2026-10-06`: zoek de resterende artikelen bij **andere websites**, liefst **EU** (China enkel als het echt moet), en de **LC29H(DA) moet een breakout board** zijn. Botland/Kamami/HESTORE zijn EU (geen invoer), de HAT is kant-en-klaar en levert de antenne mee.
-- **Gevolg:** Alle `geen-link`-onderdelen zijn nu vindbaar; de **aparte GNSS-antenne (€ 16,93) vervalt** omdat de HAT een **dual-band actieve L1/L5-antenne** meelevert. Te-bestellen-totaal ± **€ 184,48** incl. btw (Kiwi + antratek + Botland + TME/Mouser + TinyTronics). Let op: de HAT is **65 × 30,5 mm met 40-pins header** — footprint op de draagprint nog afwegen. Bijgewerkt in [[bestellijst]], [[bestelschema-pcb]], [[links]] en [[open-vragen]]; de Excel `documenten/Bestellijst-GSTEM.xlsx` is **herbouwd** via `documenten/build-bestellijst.py` (per-winkel-subtotalen, EUR 184,16 onderdelen / EUR 216,92 incl. AISLER-print).
+- **Gevolg:** Alle `geen-link`-onderdelen zijn nu vindbaar; de **aparte GNSS-antenne (€ 16,93) vervalt** omdat de HAT een **dual-band actieve L1/L5-antenne** meelevert. Te-bestellen-totaal ± **€ 184,48** incl. btw (Kiwi + antratek + Botland + TME/Mouser + TinyTronics). Let op: de HAT is **65 × 30,5 mm met 40-pins header** — footprint op de draagprint nog afwegen. Bijgewerkt in [[bestellijst]], [[bestelschema-pcb]], [[links]] en [[open-vragen]]; de Excel `documenten/beheer/Bestellijst-GSTEM.xlsx` is **herbouwd** via `documenten/scripts/build-bestellijst.py` (per-winkel-subtotalen, EUR 184,16 onderdelen / EUR 216,92 incl. AISLER-print).
 - **Link:** [[bestellijst]], [[links]], [[bestelschema-pcb]], [[open-vragen]], [[componenten]]
 
 ## 2026-10-06 — GPS/RTK-module gekocht bij Eckstein (DE), niet Botland
 - **Beslissing:** De **Waveshare LC29H(DA) GPS/RTK HAT (art. WS25279, EAN 4060137304156)** wordt besteld bij **Eckstein (Duitsland, EU)** voor **€ 71,39 incl. btw**, i.p.v. de eerdere keuze **Botland** (€ 70,50 incl.).
 - **Reden:** Gebruikersaanwijzing `2026-10-06` ("pak de gps maar van Eckstein"). Eckstein is een Duitse EU-winkel met prijs in EUR en snelle levering; het bord blijft dezelfde **breakout** (geen losse SMD-module).
-- **Gevolg:** Te-bestellen-onderdelen stijgen van **€ 184,16** naar **€ 185,05** incl. btw (+ € 0,89); incl. AISLER-print **€ 217,81**. Alternatieven blijven Kamami (PL, ± € 63) en Botland (PL/DE, € 70,50); HESTORE (HU, ± € 110 incl.) is te duur. Bijgewerkt in [[bestellijst]], [[gps-rtk-prijzen]], [[bestelbaarheid]], [[links]] en [[open-vragen]]; de Excel `documenten/Bestellijst-GSTEM.xlsx` is **herbouwd** via `documenten/build-bestellijst.py` (nieuwe status `eckstein`).
+- **Gevolg:** Te-bestellen-onderdelen stijgen van **€ 184,16** naar **€ 185,05** incl. btw (+ € 0,89); incl. AISLER-print **€ 217,81**. Alternatieven blijven Kamami (PL, ± € 63) en Botland (PL/DE, € 70,50); HESTORE (HU, ± € 110 incl.) is te duur. Bijgewerkt in [[bestellijst]], [[gps-rtk-prijzen]], [[bestelbaarheid]], [[links]] en [[open-vragen]]; de Excel `documenten/beheer/Bestellijst-GSTEM.xlsx` is **herbouwd** via `documenten/scripts/build-bestellijst.py` (nieuwe status `eckstein`).
 - **Link:** [[bestellijst]], [[gps-rtk-prijzen]], [[links]], [[open-vragen]]
 
 ## 2026-10-06 — Geen P-MOSFET-ompoolbeveiliging
 - **Beslissing:** De **P-MOSFET-ompoolbeveiliging vervalt**. Noch de **DMG2301L** noch het alternatief **AO3401A** komt op de print of op de bestellijst. De **2 A PTC-zekering** en de **TVS SMBJ10A** blijven behouden.
 - **Reden:** Gebruikersaanwijzing `2026-10-06` ("Zet P-MOSFET-keuze: dat we dat niet doen"). Bijkomend: de DMG2301L was met Vgs(max) ±8 V te krap voor een 2S-accu van max 8,4 V, en TME had de `-13` niet op voorraad (MOQ 10 000).
-- **Gevolg:** Omgekeerd aansluiten wordt **fysiek** voorkomen met een **gepolariseerde connector** (XT60/JST-XH) i.p.v. elektronisch. Te-bestellen-onderdelen dalen van **€ 185,05** naar **€ 184,75** incl. btw (− € 0,30); incl. AISLER-print **€ 217,51**. Bijgewerkt in [[bestellijst]], [[componenten]], [[specificaties]], [[bestelschema-pcb]], [[open-vragen]] en [[afgevoerd]]; de Excel `documenten/Bestellijst-GSTEM.xlsx` is **herbouwd** (nieuwe `niet nodig`-regel).
+- **Gevolg:** Omgekeerd aansluiten wordt **fysiek** voorkomen met een **gepolariseerde connector** (XT60/JST-XH) i.p.v. elektronisch. Te-bestellen-onderdelen dalen van **€ 185,05** naar **€ 184,75** incl. btw (− € 0,30); incl. AISLER-print **€ 217,51**. Bijgewerkt in [[bestellijst]], [[componenten]], [[specificaties]], [[bestelschema-pcb]], [[open-vragen]] en [[afgevoerd]]; de Excel `documenten/beheer/Bestellijst-GSTEM.xlsx` is **herbouwd** (nieuwe `niet nodig`-regel).
 - **Link:** [[bestellijst]], [[componenten]], [[specificaties]], [[bestelschema-pcb]], [[open-vragen]], [[afgevoerd]]
 
 ## 2026-10-06 — Power-LED + 330 Ω-weerstand al in bezit
 - **Beslissing:** De **3 mm rode LED (10-pack)** en de **330 Ω-weerstand (10-pack)** staan op `al in bezit`: de gebruiker heeft ze **thuis**. Ze worden **niet** bij Kiwi besteld.
 - **Reden:** Gebruikersaanwijzing `2026-10-06`.
-- **Gevolg:** Kiwi Electronics zakt van **€ 64,65** naar **€ 62,49**; te-bestellen-onderdelen van **€ 184,75** naar **€ 182,59** incl. btw (incl. AISLER-print **€ 215,35**). In [[bestelschema-pcb]] zakt subtotaal 3b van **€ 10,01** naar **€ 9,79** en het printtotaal van **€ 57,65** naar **€ 57,43**; **werkelijk nieuw te bestellen blijft € 47,64**. Bijgewerkt in [[bestellijst]], [[bestelschema-pcb]] en [[bestelbaarheid]]; de Excel `documenten/Bestellijst-GSTEM.xlsx` is **herbouwd** via `documenten/build-bestellijst.py` (status `al in bezit`).
+- **Gevolg:** Kiwi Electronics zakt van **€ 64,65** naar **€ 62,49**; te-bestellen-onderdelen van **€ 184,75** naar **€ 182,59** incl. btw (incl. AISLER-print **€ 215,35**). In [[bestelschema-pcb]] zakt subtotaal 3b van **€ 10,01** naar **€ 9,79** en het printtotaal van **€ 57,65** naar **€ 57,43**; **werkelijk nieuw te bestellen blijft € 47,64**. Bijgewerkt in [[bestellijst]], [[bestelschema-pcb]] en [[bestelbaarheid]]; de Excel `documenten/beheer/Bestellijst-GSTEM.xlsx` is **herbouwd** via `documenten/scripts/build-bestellijst.py` (status `al in bezit`).
 - **Link:** [[bestellijst]], [[bestelschema-pcb]], [[bestelbaarheid]]
 
 ## 2026-10-06 — Blender-mock-up: volledige opstelling in 3D
 - **Beslissing:** Er komt een **Blender-mock-up** van het volledige toestel: de draagprint met de breakouts op sockets, de losse printonderdelen, de antennes/bekabeling, de **Arduino Uno met servo's**, de **tweede XIAO-kit** als LoRa-ontvanger en de laptopzijde. Gebouwd met het herhaalbare sript `documenten/blender/build_gstem_mockup.py`, opgeslagen als `documenten/blender/gstem-mockup.blend`, met **drie studio-renders** in `documenten/blender/renders/`.
 - **Reden:** Gebruikersvraag `2026-10-06`: een semi-accurate model plus een paar renders van de print met alle breakouts en toebehoren verbonden (medium detail, maar accuraat).
-- **Gevolg:** Modulevarianten **BNO085 + BMP581** (zoals [[bestellijst]] en `documenten/PCB-eindbeeld.png`; [[componenten]] noemt nog BNO055/BMP390). Bordafmeting **100 x 75 mm** uit [[bestelschema-pcb]], modulematen uit de **datasheets** ([[gstem-hardware-afmetingen]]). Belangrijkste vondst: de **LC29H(DA) is een 65 x 30,5 mm Pi-HAT**, geen klein breakout. De **layout op de print is een voorstel** — de KiCad-layout bestaat nog niet. Zie [[blender-mockup]].
+- **Gevolg:** Modulevarianten **BNO085 + BMP581** (zoals [[bestellijst]] en `documenten/pcb/PCB-eindbeeld.png`; [[componenten]] noemt nog BNO055/BMP390). Bordafmeting **100 x 75 mm** uit [[bestelschema-pcb]], modulematen uit de **datasheets** ([[gstem-hardware-afmetingen]]). Belangrijkste vondst: de **LC29H(DA) is een 65 x 30,5 mm Pi-HAT**, geen klein breakout. De **layout op de print is een voorstel** — de KiCad-layout bestaat nog niet. Zie [[blender-mockup]].
 - **Link:** [[blender-mockup]], [[gstem-hardware-afmetingen]], [[pcb-schets]], [[componenten]]
+
+## 2026-10-06 — Draw.io-schema's verwijderd
+- **Beslissing:** De **Communicatieschema-GSTEM.drawio/.png** en **Verbindingsschema-GSTEM.drawio/.png** met hun bouwscripts (`build-communicatieschema.py`, `build-verbindingsschema.py`) zijn **verwijderd** uit `documenten/`; de bijhorende notitiepagina's [[verbindingsschema]] en [[communicatieschema]] zijn verwijderd en alle verwijzingen zijn uit de andere documentatie gehaald.
+- **Reden:** Gebruikersaanwijzing `2026-10-06` ("Verwijder dit uit de documenten map samen met verbindingsschema. Haal dit ook uit de doc's.").
+- **Gevolg:** Overzicht van verbindingen en communicatie blijft beschikbaar via `documenten/pcb/PCB-schets.md` (Mermaid-schema's), `documenten/pcb/PCB-eindbeeld.png` en [[app-architectuur-besturing]].
+- **Link:** [[pcb-schets]], [[app-architectuur-besturing]], [[componenten]]
+
+## 2026-10-06 — `documenten/` herschikt in submappen
+- **Beslissing:** `documenten/` is herschikt in vier submappen: **`specificaties/`** (`GStem-Specificaties.md`, `Ontwerp-meetmodule.md` + `.docx`), **`pcb/`** (`PCB-schets.md` + draagprint-SVG/PNG, `PCB-eindbeeld.png`, `Communicatie-overzicht-GSTEM.drawio`, `review-mockup-controleblad.png`), **`beheer/`** (`Bestellijst-GSTEM.xlsx`, `Planning-GSTEM.xlsx`) en **`scripts/`** (`build-*.py`). De losse resten `documenten/.pi/` en `documenten/__pycache__/` zijn verwijderd. De bouwscripts bepalen hun uitvoerpad nu via `__file__` in plaats van hardgecodeerde paden.
+- **Reden:** Gebruikersaanwijzing `2026-10-06` ("Reorganize everything in documenten"), met de keuze voor indeling per soort.
+- **Gevolg:** Alle actieve padverwijzingen in `docs/`, `GEBRUIKER/data/`, `GEBRUIKER/Projectdocumentatie/`, `README.md` en `GEBRUIKER/onderwerpen.md` zijn bijgewerkt; `documenten/README.md` is de nieuwe index. De archief-chatlogs zijn **niet** aangepast, zodat historische paden daar blijven staan. De verbindingsschema-bestanden (`Verbindingsschema-GSTEM.*`, `build-verbindingsschema.py`) blijven verwijderd.
+- **Link:** [[links]], [[onderwerpen]]
+
+## 2026-10-06 — Blender-mock-up verwijderd
+- **Beslissing:** De map `documenten/blender/` (model, scripts, drie renders en de review-set) is **verwijderd**; de eerdere mock-up-beslissing komt te vervallen. Het geannoteerde `documenten/pcb/review-mockup-controleblad.png` en het script `documenten/scripts/build-controleblad.py` blijven bewaard als naslag, maar dat script kan pas opnieuw draaien als de review-renders uit git teruggehaald zijn.
+- **Reden:** Gebruikerskeuze `2026-10-06` ("verwijderd laten"): de 3D-mock-up wordt niet verder gebruikt.
+- **Gevolg:** Alles blijft herstelbaar uit git (commit `28e4fae`). [[blender-mockup]] is op status **verwijderd** gezet; de mock-up-gerelateerde open vragen (HAT-montage, onderdelenposities) blijven gelden voor de nog te maken KiCad-layout. Zie [[afgevoerd]].
+- **Link:** [[blender-mockup]], [[afgevoerd]], [[open-vragen]]

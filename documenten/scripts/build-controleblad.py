@@ -7,16 +7,21 @@ een geannoteerd blad: bovenaanzicht met maatlijnen en een 10 mm-raster,
 voor- en zijaanzicht, een overzicht, en een tabel met gemeten versus
 datasheet-maten.
 
-Uitvoeren:  python documenten/build-controleblad.py
+> Let op: de map `documenten/blender/` (met de review-renders) is op 2026-10-06
+> verwijderd. Dit script is bewaard als naslag maar kan pas opnieuw draaien als
+> die renders teruggehaald zijn uit git (commit 28e4fae).
+
+Uitvoeren:  python documenten/scripts/build-controleblad.py
 """
 
 import json
 import os
 from PIL import Image, ImageDraw, ImageFont
 
-ROOT = r"C:/Users/Nand Schoovaerts/Documents/GSTEM-Project"
-REV = os.path.join(ROOT, "documenten", "blender", "review")
-OUT = os.path.join(ROOT, "documenten", "review-mockup-controleblad.png")
+# Script staat in documenten/scripts/.
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+REV = os.path.join(ROOT, "blender", "review")  # bron verwijderd; zie docstring
+OUT = os.path.join(ROOT, "pcb", "review-mockup-controleblad.png")
 
 DATE = "2026-10-06"
 SHEET = (2400, 1700)

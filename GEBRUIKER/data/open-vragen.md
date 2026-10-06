@@ -79,3 +79,11 @@ tags: [gstem, data, open-vragen]
 - [ ] **Welke sensormodellen zijn definitief: BNO085/BMP581 of BNO055/BMP390?** — De **mock-up en de bestellijst** gebruiken **BNO085 (25,6 x 22,7 mm) en BMP581 (25,4 x 17,8 mm)**; [[componenten]] noemt nog de oudere **BNO055/BMP390**. De nieuwere zijn groter, wat de layout beinvloedt. Kiezen zodra de KiCad-layout start.
 - [ ] **Onderdelenposities op de print vastleggen** — De Blender-mock-up is een **plausibel voorstel**; de echte posities komen pas met de KiCad-layout. Daarna de mock-up bijwerken. (`2026-10-06`)
 - [ ] **Gatposities nameten** — Arduino-gaten, servo-flens, paneelgat barrel jack en de exacte BMP581-maat zijn nog niet met de schuifmaat gecontroleerd. Zie [[gstem-hardware-afmetingen]].
+- [ ] **Arduino Uno-voeding controleren** — wordt de Uno gevoed via de +5 V-pin van de uitbreidingsconnector of apart? Controleer stroomlimiet, gemeenschappelijke GND en voorkom terugvoeding via USB.
+- [ ] **RTCM-correcties naar de rover uitwerken** — valideren hoe NTRIP-correcties vanaf de laptop via USB-adapter en LoRa bij de UART-ingang van de LC29H(DA) komen, inclusief formaat en updatesnelheid.
+- [ ] **Aparte servobuck aansluiten** — voedingsbron, uitgangsspanning en stroomcapaciteit afstemmen op de gebruikte servo's.
+
+## Nog te beslissen: documentatie in `documenten/` (`2026-10-06`)
+
+- [ ] **De gebruikershandleiding staat niet (meer) in `documenten/`** — [[handleiding]], [[links]] en [[specificaties]] verwijzen nog naar `documenten/Handleiding-meettoestel.md/.docx`, `documenten/build-handleiding.py` en `documenten/afbeeldingen/`, maar die bestanden zijn bij commit `b16c501` (`2026-10-01`) verwijderd. Opnieuw genereren (bron + script uit git terughalen) of de verwijzingen opruimen? (`2026-10-06`)
+- [ ] **`build-ontwerp.py` bestaat niet meer** — `documenten/specificaties/Ontwerp-meetmodule.docx` is ooit met dat script gegenereerd, maar het script staat niet meer in de repo. Wordt Word voortaan handmatig bijgewerkt of halen we het bouwscript terug? (`2026-10-06`)

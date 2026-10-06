@@ -79,18 +79,18 @@ Technische en functionele afspraken. Eén subsectie per specificatie.
 - **Gevolg:** De eerdere denkrichting wordt bevestigd; het Doc mist de app-schermopbouw, programmeermodus, live export, data-opslag, git-versiebeheer en testaanpak die wel in [[meetmodule-voorbereiding]] staan.
 
 ## 2026-10-05 — Ontwerptekst volledig uitgewerkt (hardware, firmware, communicatie, applicatie)
-- **Specificatie:** De ontwerptekst is volledig uitgewerkt in `documenten/Ontwerp-meetmodule.md` en `documenten/Ontwerp-meetmodule.docx` (bron respectievelijk build via `documenten/build-ontwerp.py`). Toegevoegd ten opzichte van het Google Doc:
+- **Specificatie:** De ontwerptekst is volledig uitgewerkt in `documenten/specificaties/Ontwerp-meetmodule.md` en `documenten/specificaties/Ontwerp-meetmodule.docx` (bron respectievelijk build via `documenten/build-ontwerp.py`). Toegevoegd ten opzichte van het Google Doc:
   1. **Hardware:** socket-headers voor vervangbare breakout-modules; voedingsrails (accu, 5 V, 3,3 V) en ground per rail; ground plane en antenne-plaatsing tegen storing op IMU en barometer; tabel met componenten en hun status; warmte van de ESP weg van de barometer; accu -> buck naar 5 V -> 3,3 V; uitbreidingsconnector met voeding, gemeenschappelijke ground en vrije UART-pinnen; CSV over UART als vastgelegd protocol naar de voertuigcontroller (geen checksum, regeleinde als terminator); 3D-print in PETG/PLA op rubberen dempingsbussen; adapter als zuiver doorgeefluik met USB-naar-serieel-omzetter.
   2. **Firmware en data:** uitleesfrequentie per sensor en tijdstempel per pakket; veldenlijst van het datapakket (positie, hoogte, snelheid, richting en hoeken, plus status- en kwaliteitsgegevens); Kalman-filter voor oriëntatie en voor de combinatie barometer/GNSS.
   3. **Communicatie:** de uplink- en downlinkketen stap per stap; de laptopapplicatie met startscherm (USB en geldige pakketten apart gecontroleerd), hoofdscherm met kaart en meetwaarden, en de drie modi Kaart, Code en API; de API stuurt meetgegevens als JSON naar een eigen programma en ontvangt een vrije kommagescheiden regel terug.
   4. **Besturing en veiligheid:** failsafe-tabel met veilige toestand in de **firmware van de meetmodule** (zie [[beslissingen]]), geofencing-waarschuwing en het gebruik van de sensorfusie bij een wegvallende GNSS-verbinding.
   5. **Versiebeheer en testen:** git-project voor alle software; testplan in vijf stappen (sensoren apart, kalibratie, communicatie en bereik, veiligheid, veldtest).
 - **Status:** concept — uitgewerkte ontwerptekst; alle waarden die nog niet gekozen zijn, staan in een blok *Nog te bepalen* en in de slottabel *Overzicht van de nog te bepalen punten*.
-- **Bron:** gebruikersvraag `2026-10-05` ("vul het Google Doc aan"); `documenten/Ontwerp-meetmodule.md`.
+- **Bron:** gebruikersvraag `2026-10-05` ("vul het Google Doc aan"); `documenten/specificaties/Ontwerp-meetmodule.md`.
 - **Gevolg:** De ontbrekende onderdelen zijn nu vastgelegd in een versioneerbaar bestand. Het Google Doc loopt achter tot de tekst wordt overgezet. Nieuwe open vragen: RTK-correctiebron en spanningsniveau van de uitbreidingsconnector ([[open-vragen]]).
 
 ## 2026-10-06 — Afgewerkte gebruikersspecificaties vastgelegd
-- **Specificatie:** De door de gebruiker afgewerkte specificaties (`documenten/GStem-Specificaties.md`, aangeleverd `2026-10-06`) leggen het product gebruikersgericht vast. Kern:
+- **Specificatie:** De door de gebruiker afgewerkte specificaties (`documenten/specificaties/GStem-Specificaties.md`, aangeleverd `2026-10-06`) leggen het product gebruikersgericht vast. Kern:
   1. **Doel:** klein meettoestel op een bewegend voertuig of apparaat (vliegtuig, bootje, autootje).
   2. **Meetprestaties:** vier grootheden — **richting** (graden, horizontaal en verticaal vlak), **snelheid** (km/u), **hoogte** (nauwkeurig tot **1,5 m**), **locatie** (nauwkeurig tot **0,5 m**).
   3. **Ontvanger en bereik:** een kleine draadloze ontvanger in de vorm van een **USB-stick**; **bereik max. 4 km**.
@@ -101,7 +101,7 @@ Technische en functionele afspraken. Eén subsectie per specificatie.
   8. **RC-vliegtuig-mock-up:** een **Arduino** neemt CSV-waarden aan en is via **TX/RX** met het meettoestel verbonden; het meettoestel moet met zijn **voorkant gelijk** aan die van het vliegtuigje worden gericht; de **besturingsvlakken rolroeren, hoogteroer en richtingsroer** reageren op de metingen; de Arduino stelt de **servo's** in (real-time). Dit is een **zittend voorbeeld**, geen volledig functioneel vliegtuig.
   9. **Testen:** **kalibratie** (kantelen en 3D-visualisatie/live data vergelijken) en **feedbacklus** (testcode stuurt stuursignaal terug, controleer de Arduino-actie).
 - **Status:** afgewerkt — gebruikersspecificatie; technische keuzes (IMU, barometer, frequentie, exacte veldvolgorde) blijven in [[open-vragen]].
-- **Bron:** gebruikersaanlevering `2026-10-06`; `documenten/GStem-Specificaties.md`. Samenvatting in [[gstem-specificaties]].
+- **Bron:** gebruikersaanlevering `2026-10-06`; `documenten/specificaties/GStem-Specificaties.md`. Samenvatting in [[gstem-specificaties]].
 - **Gevolg:** de mock-up heeft nu **drie** besturingsvlakken (rolroer, hoogteroer, richtingsroer) en de verbinding meettoestel ↔ Arduino is **UART via TX/RX** (was open). Zie [[beslissingen]].
 
 ## 2026-10-06 — Draagprint-aanpak: breakout-modules op socket-headers
@@ -109,7 +109,7 @@ Technische en functionele afspraken. Eén subsectie per specificatie.
 - **Elektrisch:** voedingsingang via accu (7,4 V) of barrel-connector, met zekering en beveiliging tegen omgekeerde polariteit; **buck-converter naar 5 V** en **LDO naar 3,3 V**; **power-LED met serieweerstand** op de geregelde rail; decoupling (100 nF per module + bulk per rail). Datapaden: **I2C** naar IMU en barometer (met pull-ups), **UART** naar GNSS en uitbreidingsconnector, **level shifter** naar een eventuele 5 V-controller. Optioneel reset-/bootknop voor de ESP.
 - **Layout:** 2-laags met ground plane op de onderlaag; aparte rails `VBAT`/`5V`/`3V3`/`GND`; I2C kort en weg van de antenne; antenne-keep-out voor LoRa en GNSS; buck-spoel weg van IMU en barometer; 4 bevestigingsgaten (M3) in de hoeken.
 - **Status:** aanpak bevestigd; exacte modulekeuzes, pinouts, regelaars en het ontwerpgereedschap blijven open ([[open-vragen]]).
-- **Bron:** gebruikersvraag `2026-10-06`; sluit aan op `documenten/Ontwerp-meetmodule.md` (secties De Meetmodule, Elektronische Componenten, Voeding en Interface).
+- **Bron:** gebruikersvraag `2026-10-06`; sluit aan op `documenten/specificaties/Ontwerp-meetmodule.md` (secties De Meetmodule, Elektronische Componenten, Voeding en Interface).
 - **Gevolg:** de **power-LED op de print** is nu expliciet als ontwerpelement vastgelegd (naast het "LED-lampje toont actief" uit de afgewerkte specificaties).
 
 ## 2026-10-06 — Heroverweging socket-headers: alternatieven verkend
@@ -160,3 +160,9 @@ Technische en functionele afspraken. Eén subsectie per specificatie.
 - **Status:** model gebouwd; de **layout is een voorstel** zolang de KiCad-layout niet bestaat.
 - **Bron:** gebruikersaanwijzingen `2026-10-06`; maten uit [[gstem-hardware-afmetingen]].
 - **Gevolg:** De use-case `print + modules` en `plus antennes en bekabeling` zijn in het model opgenomen; de mock-up (Arduino, servo's, ontvanger, laptop) zit in de collectie `05_Mockup` en wordt bij het bovenaanzicht verborgen. Bestanden in [[blender-mockup]].
+
+## 2026-10-06 — Communicatie- en componentenschema gemaakt
+- **Specificatie:** Het bewerkbare draw.io-bestand `documenten/pcb/Communicatie-overzicht-GSTEM.drawio` bevat twee tabbladen: **Systeemcommunicatie** (laptopapp/API/NTRIP, USB-LoRa-ontvanger, meettoestel en Arduino Uno/servo-mock-up) en **Draagprint en UART-detail** (I²C-, GNSS-UART-, LoRa-, USB-, besturings- en voedingspaden).
+- **Status:** architectuuroverzicht; conceptueel, niet op schaal en niet bedoeld als productierijp elektrisch schema.
+- **Bron:** bestaande projectkeuzes in [[gstem-specificaties]], [[componenten]], [[bestellijst]], [[app-architectuur-besturing]] en [[besturing-en-commandos]].
+- **Gevolg:** De actuele bestellijstvarianten (BNO085, BMP581, TXB0108-module) zijn in het diagram gebruikt; afwijkende oudere notities zijn expliciet gemarkeerd. Voedingswijze van de Uno, definitieve modulevarianten, pinout, RTCM-doorvoer, LoRa-instellingen, API-transport en UART-CSV-details blijven aandachtspunten. Zie [[communicatie-overzicht]] en [[open-vragen]].

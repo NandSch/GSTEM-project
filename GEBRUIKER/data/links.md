@@ -12,15 +12,16 @@ tags: [gstem, data, links]
 | Webdemo | `GSTEMAPPPREVIEWWEB/index.html` (verwijderd `2026-10-05`) | Mock-up laptopapp; werking beschreven in `docs/03`
 | API-handleiding (demo) | `GSTEMAPPPREVIEWWEB/api-handleiding.html` (verwijderd) -> `index.html#page-api` | Beschreven in `docs/03` |
 | Documentatie | `docs/` | Overzichten en inventaris |
-| Handleiding (bron) | `documenten/Handleiding-meettoestel.md` | Markdown-bron van de gebruikershandleiding |
-| Handleiding (Word) | `documenten/Handleiding-meettoestel.docx` | Gegenereerd Word-document |
-| Handleiding (script) | `documenten/build-handleiding.py` | Bouwt de .docx uit de markdown-bron |
-| Screenshots (script) | `documenten/maak-screenshots.py` | Maakt schermafbeeldingen van de webdemo (Playwright + Chrome) |
-| Screenshots (map) | `documenten/afbeeldingen/` | Gegenereerde PNG's, gebruikt in de handleiding |
+| Documenten-index | `documenten/README.md` | Index van `documenten/`: submappen, scripts en wat verwijderd is (`2026-10-06`) |
+| Handleiding (bron) | `documenten/Handleiding-meettoestel.md` (verwijderd) | Markdown-bron van de gebruikershandleiding; niet meer aanwezig (zie [[open-vragen]]) |
+| Handleiding (Word) | `documenten/Handleiding-meettoestel.docx` (verwijderd) | Gegenereerd Word-document; niet meer aanwezig |
+| Handleiding (script) | `documenten/build-handleiding.py` (verwijderd) | Bouwde de .docx uit de markdown-bron |
+| Screenshots (script) | `documenten/maak-screenshots.py` (verwijderd) | Maakte schermafbeeldingen van de webdemo (Playwright + Chrome) |
+| Screenshots (map) | `documenten/afbeeldingen/` (verwijderd) | Gegenereerde PNG's, gebruikt in de handleiding |
 | Opmaakreferentie | `GStem-Specificaties (1).docx` (Downloads) | Bestaand specificatiedocument; basis voor de opmaakstijl van de handleiding |
-| Ontwerp (uitgewerkt) | `documenten/Ontwerp-meetmodule.md` | Volledige ontwerptekst: de inhoud van het Google Doc, technisch aangevuld (`2026-10-05`). Bewerk hier. |
-| Ontwerp (Word) | `documenten/Ontwerp-meetmodule.docx` | Gegenereerde Word-versie van de ontwerptekst, in de stijl van GStem-Specificaties |
-| Ontwerp (script) | `documenten/build-ontwerp.py` | Bouwt de .docx: `python documenten/build-ontwerp.py` |
+| Ontwerp (uitgewerkt) | `documenten/specificaties/Ontwerp-meetmodule.md` | Volledige ontwerptekst: de inhoud van het Google Doc, technisch aangevuld (`2026-10-05`). Bewerk hier. |
+| Ontwerp (Word) | `documenten/specificaties/Ontwerp-meetmodule.docx` | Gegenereerde Word-versie van de ontwerptekst, in de stijl van GStem-Specificaties |
+| Ontwerp (script) | `documenten/build-ontwerp.py` (verwijderd) | Bouwde de .docx; bouwscript niet meer aanwezig (zie [[open-vragen]]) |
 | PCB-methodes (kosten) | [[pcb-methodes-kosten]] | Vergelijking sockets/direct/castellated/board-to-board/JST (`2026-10-06`). |
 | PCB-ontwerp (werkwijze) | [[pcb-ontwerp]] | Gereedschap (KiCad), footprints en gatmaten (`2026-10-06`). |
 | KiCad | https://www.kicad.org | Gratis PCB-ontwerpgereedschap; aanbevolen app voor de draagprint. |
@@ -34,15 +35,12 @@ tags: [gstem, data, links]
 | Bestelschema PCB (AISLER) | [[bestelschema-pcb]] | Productiekost AISLER + onderdelen op de print (`2026-10-06`). |
 | XIAO ESP32S3 + Wio-SX1262 kit | https://www.antratek.be/xiao-esp32s3-for-meshtastic-lora | Gekozen rekenkern + LoRa (SX1262). Specificaties: https://wiki.seeedstudio.com/xiao_esp32s3_%26_wio_sx1262_kit_for_meshtastic/ |
 | BNO055 IMU-breakout | https://www.antratek.be/9-dof-absolute-orientation-imu-fusion-breakout-bno055 | Gekozen 9-DoF IMU. Datasheet/afmetingen: https://www.adafruit.com/product/2472 (20x27x4 mm, gaten 20x12 mm). |
-| PCB-schets (draagprint) | `documenten/PCB-schets.md` + `documenten/PCB-schets-draagprint.svg` (+ `.png`) | Bovenaanzicht en verbindingsschema van de draagprint met breakout-modules (`2026-10-06`). Zie ook [[pcb-schets]]. |
-| Eindbeeld eind-PCB (PNG) | `documenten/PCB-eindbeeld.png` | Gedetailleerde schets van de **eind-PCB** met alle gekozen breakouts (XIAO ESP32S3 + Wio-SX1262, BNO085, BMP581, LC29H(DA)), de losse componenten, de **Arduino Uno** en alle verbindingen (`2026-10-06`). Zie [[pcb-schets]]. |
-| Eindbeeld (bouwsript) | `documenten/build-pcb-eindbeeld.py` | Bouwt `PCB-eindbeeld.png` met PIL: `python documenten/build-pcb-eindbeeld.py`. |
-| Verbindingsschema (draw.io) | `documenten/Verbindingsschema-GSTEM.drawio` | Volledig schema **wie met wat en hoe verbonden is**: accu/barrel, PTC + TVS, buck 5 V, bulk-elco, power-LED, LDO 3,3 V, XIAO ESP32S3 + LoRa, BNO085/BMP581 (I2C), LC29H(DA) (UART), TXB0104, uitbreidingsconnector, Arduino + servo's + servo-buck, LoRa-adapter + laptop (`2026-10-06`). Te openen op https://app.diagrams.net. Zie [[verbindingsschema]]. |
-| Verbindingsschema (PNG) | `documenten/Verbindingsschema-GSTEM.png` | Afbeelding (3120x2300) van het verbindingsschema. |
-| Verbindingsschema (bouwsript) | `documenten/build-verbindingsschema.py` | Bouwt zowel de `.drawio` als de `.png` uit een enkele definitie: `python documenten/build-verbindingsschema.py`. |
-| Gebruikersspecificaties (afgewerkt) | `documenten/GStem-Specificaties.md` | Door de gebruiker afgewerkte specificaties, aangeleverd `2026-10-06` uit `~/Downloads/GStem-Specificaties.md`. Bevat de gebruikersgerichte beschrijving: meetprestaties, aanzetten, de app-schermen en de RC-vliegtuig-mock-up. |
-| Planning (Excel) | `documenten/Planning-GSTEM.xlsx` | Twee bladen: **Planning** (schoolplanning, blauw) en **Actieplan** (projectstappen, oranje). Zie [[planning]] en [[actieplan]]. |
-| Ontwerptekst (Google Doc) | https://docs.google.com/document/d/1wbb8LAjXiUpZQBpxv1NKQZ8YBhb32TtkiDcpUfl5o0M/edit | "Ontwerp voor Positie- en beweging meettoestel met LoRa integratie". Openbaar gedeeld op `2026-10-05`; gelezen via `export?format=txt`. **Let op:** dit Doc is nog niet aangevuld — de aanvulling staat in `documenten/Ontwerp-meetmodule.md` en wacht op het overzetten. |
+| PCB-schets (draagprint) | `documenten/pcb/PCB-schets.md` + `documenten/pcb/PCB-schets-draagprint.svg` (+ `.png`) | Bovenaanzicht en verbindingsschema van de draagprint met breakout-modules (`2026-10-06`). Zie ook [[pcb-schets]]. |
+| Eindbeeld eind-PCB (PNG) | `documenten/pcb/PCB-eindbeeld.png` | Gedetailleerde schets van de **eind-PCB** met alle gekozen breakouts (XIAO ESP32S3 + Wio-SX1262, BNO085, BMP581, LC29H(DA)), de losse componenten, de **Arduino Uno** en alle verbindingen (`2026-10-06`). Zie [[pcb-schets]]. |
+| Eindbeeld (bouwsript) | `documenten/scripts/build-pcb-eindbeeld.py` | Bouwt `PCB-eindbeeld.png` met PIL: `python documenten/scripts/build-pcb-eindbeeld.py`. |
+| Gebruikersspecificaties (afgewerkt) | `documenten/specificaties/GStem-Specificaties.md` | Door de gebruiker afgewerkte specificaties, aangeleverd `2026-10-06` uit `~/Downloads/GStem-Specificaties.md`. Bevat de gebruikersgerichte beschrijving: meetprestaties, aanzetten, de app-schermen en de RC-vliegtuig-mock-up. |
+| Planning (Excel) | `documenten/beheer/Planning-GSTEM.xlsx` | Twee bladen: **Planning** (schoolplanning, blauw) en **Actieplan** (projectstappen, oranje). Zie [[planning]] en [[actieplan]]. |
+| Ontwerptekst (Google Doc) | https://docs.google.com/document/d/1wbb8LAjXiUpZQBpxv1NKQZ8YBhb32TtkiDcpUfl5o0M/edit | "Ontwerp voor Positie- en beweging meettoestel met LoRa integratie". Openbaar gedeeld op `2026-10-05`; gelezen via `export?format=txt`. **Let op:** dit Doc is nog niet aangevuld — de aanvulling staat in `documenten/specificaties/Ontwerp-meetmodule.md` en wacht op het overzetten. |
 | Barometer BMP390 | https://www.adafruit.com/product/4816 | Gekozen barometer (`2026-10-06`): druk + temperatuur, I2C/SPI, meest accurate relatieve nauwkeurigheid (±3 Pa). |
 | Bosch BMP581 vs BMP390 (forum) | https://community.bosch-sensortec.com/mems-sensors-forum-jrmujtaw/post/barometric-pressure-sensor-for-altitude-estimation-3B0In1wt54B65CZ | Onderbouwing: BMP390 ±3 Pa / 0,02 Pa ruis; BMP581 ±6 Pa / 0,08 Pa ruis. |
 | RTK-GNSS LC29H(DA) | https://www.quectel.com/product/gnss-lc29h/ | Gekozen RTK-module (`2026-10-06`): dual-band L1+L5, multi-constellatie, RTK rover. Datasheet: https://www.quectel.com/content/uploads/2024/03/Quectel_LC29H_Series_GNSS_Module_Specification_V1.9.pdf |
@@ -56,7 +54,7 @@ tags: [gstem, data, links]
 | GNSS-antenne (dual-band L1/L5) | https://www.waveshare.com/wiki/LC29H(XX)_GPS/RTK_HAT | Gekozen actieve GNSS-antenne met SMA, LNA + ground plane; bron verwijst naar de Waveshare-antenne bij de LC29H-HAT (`2026-10-06`). |
 | IPEX/U.FL -> SMA pigtail | https://www.antratek.be (zoek: U.FL naar SMA bulkhead) | Kort antennekabeltje om de LoRa-antenne buiten het vliegtuigje te monteren (`2026-10-06`). |
 | Bestellijst (markdown) | [[bestellijst]] | Alle onderdelen met status/tag, link, kost en aantal; bron voor de Excel (`2026-10-06`). |
-| Bestellijst (Excel) | `documenten/Bestellijst-GSTEM.xlsx` | Gegenereerd met `documenten/build-bestellijst.py`. Drie bladen: **Bestellijst**, **Legende** en **Bestelschema PCB** (AISLER-productie + onderdelen op de print, `2026-10-06`). |
+| Bestellijst (Excel) | `documenten/beheer/Bestellijst-GSTEM.xlsx` | Gegenereerd met `documenten/scripts/build-bestellijst.py`. Drie bladen: **Bestellijst**, **Legende** en **Bestelschema PCB** (AISLER-productie + onderdelen op de print, `2026-10-06`). |
 | XIAO ESP32S3 + Wio-SX1262 kit (prijs) | https://www.antratek.be/xiao-esp32s3-for-meshtastic-lora | EUR 15,13 incl. btw op antratek (`2026-10-06`). |
 | BNO055 (prijs) | https://www.antratek.be/9-dof-absolute-orientation-imu-fusion-breakout-bno055 | EUR 36,24 incl. btw op antratek (`2026-10-06`). |
 | GNSS-antenne L1/L5 (antratek) | https://www.antratek.be/gnss-l1-l5-multi-band-high-precision-antenna-5m-sma | Actieve multi-band L1/L5 met SMA, u-blox/SparkFun GPS-23814, EUR 120,94 incl. btw (`2026-10-06`). |
@@ -150,3 +148,10 @@ Voor de 3D-mock-up zijn de echte bordmaten opgezocht (samengevat in [[gstem-hard
 | AP2112 (LDO) | https://www.mouser.com/datasheet/2/115/AP2112-271550.pdf |
 | TXB0104 | https://www.ti.com/lit/ds/symlink/txb0104.pdf |
 | DEGSON DG250-3.5 | https://www.degson.com/content/details_552_879687.html?lang=en |
+
+## Nieuw schema (`2026-10-06`)
+
+| Onderwerp | Link / pad | Notitie |
+| --- | --- | --- |
+| Communicatie- en componentenschema | `documenten/pcb/Communicatie-overzicht-GSTEM.drawio` | Draw.io met systeemcommunicatie, laptop, USB-LoRa-ontvanger, sensoren, voeding, Arduino Uno en servo-mock-up; bewerkbaar via diagrams.net. Zie [[communicatie-overzicht]]. |
+| Schema-generator | `documenten/scripts/build-communicatie-overzicht.py` | Bouwt het draw.io-bestand opnieuw: `python documenten/scripts/build-communicatie-overzicht.py`. |

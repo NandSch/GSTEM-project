@@ -4,8 +4,9 @@ Bouwt een PNG-schets van de eind-PCB (draagprint) van het G-Stem meettoestel,
 met alle breakout-modules, de losse componenten, de Arduino Uno en alle
 verbindingen. Schematisch, niet op schaal.
 
-Output: documenten/PCB-eindbeeld.png
+Output: documenten/pcb/PCB-eindbeeld.png
 """
+import os
 from PIL import Image, ImageDraw, ImageFont
 
 W, H = 2560, 1800
@@ -360,5 +361,7 @@ text(60, ly + 88, "Kruising zonder stip = geen verbinding.  Bron: GEBRUIKER/data
      13, "#64748b")
 
 img = img.resize((W, H), Image.LANCZOS)
-img.save("C:/Users/NandSchoovaerts/Documents/GSTEM-project/documenten/PCB-eindbeeld.png")
+OUT = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+                   "pcb", "PCB-eindbeeld.png")
+img.save(OUT)
 print("OK", img.size)

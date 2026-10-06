@@ -2,7 +2,7 @@
 tags: [gstem, data, blender, 3d, mockup, hardware]
 aangemaakt: 2026-10-06
 bijgewerkt: 2026-10-06
-status: model gebouwd, layout = voorstel
+status: verwijderd (2026-10-06); layout was een voorstel
 ---
 
 # Blender-mock-up van de draagprint en opstelling
@@ -13,23 +13,30 @@ status: model gebouwd, layout = voorstel
 > servo's en de **LoRa-ontvanger**. Plus drie studio-renders. Hoort bij [[pcb-schets]],
 > [[componenten]] en [[specificaties]].
 
+> [!warning] Verwijderd op 2026-10-06
+> De map `documenten/blender/` (model, scripts, renders en review-set) is verwijderd; de
+> mock-up wordt niet verder gebruikt. Alles blijft herstelbaar uit git (commit `28e4fae`).
+> Het geannoteerde overzichtsblad blijft staan als `documenten/pcb/review-mockup-controleblad.png`.
+> Zie [[beslissingen]] en [[afgevoerd]].
+
 > [!warning] De layout is een voorstel
 > De KiCad-layout is nog niet gemaakt. De plaatsing van de modules op de print in dit model is
 > dus een **plausibel voorstel**, geen productietekening. De bordrand en de gatmaten kloppen;
 > de posities van de onderdelen zijn nog vrij te kiezen.
 
-## Bestanden
+## Bestanden (verwijderd `2026-10-06`)
 
 | Rol | Pad |
 | --- | --- |
-| Bouwsript (herhaalbaar) | `documenten/blender/build_gstem_mockup.py` |
-| Blender-bestand | `documenten/blender/gstem-mockup.blend` |
-| Render 1 — bovenaanzicht (orthografisch) | `documenten/blender/renders/01_bovenaanzicht.png` |
-| Render 2 — 3/4-perspectief (volledige opstelling) | `documenten/blender/renders/02_drie_kwart.png` |
-| Render 3 — detail voeding + XIAO-socket | `documenten/blender/renders/03_detail_voeding.png` |
+| Bouwsript (herhaalbaar) | `documenten/blender/build_gstem_mockup.py` *(verwijderd)* |
+| Blender-bestand | `documenten/blender/gstem-mockup.blend` *(verwijderd)* |
+| Render 1 — bovenaanzicht (orthografisch) | `documenten/blender/renders/01_bovenaanzicht.png` *(verwijderd)* |
+| Render 2 — 3/4-perspectief (volledige opstelling) | `documenten/blender/renders/02_drie_kwart.png` *(verwijderd)* |
+| Render 3 — detail voeding + XIAO-socket | `documenten/blender/renders/03_detail_voeding.png` *(verwijderd)* |
+| Geannoteerd overzicht | `documenten/pcb/review-mockup-controleblad.png` *(bewaard)* |
 
-Herbouwen: voer in een live Blender-sessie
-`exec(open(r".../documenten/blender/build_gstem_mockup.py").read())` uit. Het sript wist zijn
+Herbouwen (indien nodig): `git checkout 28e4fae -- documenten/blender` en voer in een live
+Blender-sessie `exec(open(r".../documenten/blender/build_gstem_mockup.py").read())` uit. Het script wist zijn
 eigen collecties en bouwt alles opnieuw; met `GSTEM_RENDER=1` rendert het ook de drie beelden.
 
 ## Opbouw van het model

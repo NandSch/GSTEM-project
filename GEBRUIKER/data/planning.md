@@ -8,7 +8,7 @@ bijgewerkt: 2026-10-06
 
 > [!info] Bron
 > Aangeleverd door de gebruiker op `2026-10-06`, daarna toegespitst op het project en voorzien
-> van exacte datums (schooljaar 2026-2027). Excel: `documenten/Planning-GSTEM.xlsx`, blad **Planning**.
+> van exacte datums (schooljaar 2026-2027). Excel: `documenten/beheer/Planning-GSTEM.xlsx`, blad **Planning**.
 
 ## Overzicht
 

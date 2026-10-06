@@ -12,20 +12,24 @@ status: concept
 > voertuigcontroller koppelt.
 
 > [!info] Bron `2026-10-06`
-> De door de gebruiker **afgewerkte specificaties** (`documenten/GStem-Specificaties.md`, zie
+> De door de gebruiker **afgewerkte specificaties** (`documenten/specificaties/GStem-Specificaties.md`, zie
 > [[gstem-specificaties]]) zijn de inhoudelijke basis voor de handleiding: de meetgrootheden en
 > nauwkeurigheden, het automatisch aanzetten, de app-schermen (verbinding, kaart, Code, API) en de
 > RC-vliegtuig-mock-up met Arduino via TX/RX en de drie besturingsvlakken.
 
 ## Bestanden
 
+> [!warning] Niet meer aanwezig
+> De onderstaande bestanden zijn bij commit `b16c501` (`2026-10-01`) uit `documenten/` verwijderd.
+> Opnieuw genereren betekent: bron + script uit git terughalen. Zie [[open-vragen]].
+
 | Rol | Pad |
 | --- | --- |
-| Markdown-bron (bewerk hier) | `documenten/Handleiding-meettoestel.md` |
-| Word-document | `documenten/Handleiding-meettoestel.docx` |
-| Bouwscript | `documenten/build-handleiding.py` |
+| Markdown-bron (bewerk hier) | `documenten/Handleiding-meettoestel.md` *(verwijderd)* |
+| Word-document | `documenten/Handleiding-meettoestel.docx` *(verwijderd)* |
+| Bouwscript | `documenten/build-handleiding.py` *(verwijderd)* |
 
-Opnieuw genereren: `python documenten/build-handleiding.py` (bron aanpassen en opnieuw draaien).
+Opnieuw genereren: bron en script uit git terughalen en daarna `python documenten/build-handleiding.py`.
 
 ## Opbouw van het document
 

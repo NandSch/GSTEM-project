@@ -14,7 +14,7 @@ status: werklijst
 > **binnen de EU** (TME, Eckstein, HESTORE, TinyTronics, Bits & Parts, Mouser/DigiKey met EU-magazijn),
 > China (AliExpress/LCSC) enkel als het echt niet anders kan.
 > Prijzen zijn **incl. btw** en onder voorbehoud (`2026-10-06`). De Excel-versie staat in
-> `documenten/Bestellijst-GSTEM.xlsx` (bron: `documenten/build-bestellijst.py`).
+> `documenten/beheer/Bestellijst-GSTEM.xlsx` (bron: `documenten/scripts/build-bestellijst.py`).
 
 ## Legende (tags)
 
@@ -229,7 +229,7 @@ status: werklijst
 > het totaal. Nu zijn ze **allemaal gevonden** bij EU-winkels. De **aparte GNSS-antenne (€ 16,93)** is
 > geschrapt omdat de LC29H(DA)-HAT er al één (dual-band) meelevert.
 >
-> Dezelfde cijfers staan in `documenten/Bestellijst-GSTEM.xlsx` (bron: `documenten/build-bestellijst.py`,
+> Dezelfde cijfers staan in `documenten/beheer/Bestellijst-GSTEM.xlsx` (bron: `documenten/scripts/build-bestellijst.py`,
 > per-winkel-subtotalen via `SUMIF`).
 
 > [!info] Buiten deze bedragen

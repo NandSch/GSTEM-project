@@ -168,7 +168,7 @@ De gebruiker koos **LED + sockets** en vraagt wat verder essentieel is. Voorstel
 
 ## Gerelateerd
 
-- [[bestellijst]] - aan te kopen onderdelen met link, kost en aantal (Excel: `documenten/Bestellijst-GSTEM.xlsx`). Let op: de bestellijst gebruikt **goedkopere, op antratek leverbare** varianten (BME280 i.p.v. BMP390; magneetantenne i.p.v. L1/L5) om het totaal te beperken.
+- [[bestellijst]] - aan te kopen onderdelen met link, kost en aantal (Excel: `documenten/beheer/Bestellijst-GSTEM.xlsx`). Let op: de bestellijst gebruikt **goedkopere, op antratek leverbare** varianten (BME280 i.p.v. BMP390; magneetantenne i.p.v. L1/L5) om het totaal te beperken.
 - [[specificaties]] - draagprint-aanpak en gebruikersspecificaties
 - [[pcb-ontwerp]] - footprints en gatmaten
 - [[pcb-schets]] - bovenaanzicht en verbindingsschema

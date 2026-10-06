@@ -46,3 +46,8 @@ tags: [gstem, data, afgevoerd]
 - **Wat:** Een **P-MOSFET** in de +-lijn als ompoolbeveiliging: eerst de **DMG2301L** (SOT-23, Vds 20 V, Vgs(max) ±8 V), daarna als alternatief de **AO3401A** (Vds -30 V, Vgs ±12 V, Rds(on) ~60 mΩ, op voorraad bij TME).
 - **Reden afvoer:** Gebruikersbeslissing `2026-10-06`: er komt **geen P-MOSFET** (en dus geen ompoolbeveiliging). Bijkomend argument: de DMG2301L was te krap (Vgs(max) ±8 V bij een 2S-accu van max 8,4 V). In plaats daarvan wordt omgekeerd aansluiten **fysiek voorkomen met een gepolariseerde connector** (XT60/JST-XH).
 - **Later opnieuw bekijken?** nee voorlopig — alleen als de voedingsconnector toch ongepolariseerd blijft (barrel-jack).
+
+## 2026-10-06 — Blender-mock-up als 3D-model
+- **Wat:** De semi-accurate Blender-mock-up van draagprint en opstelling (model, scripts, drie studio-renders en de review-set in `documenten/blender/`).
+- **Reden afvoer:** Gebruikerskeuze `2026-10-06`: de mock-up wordt niet verder gebruikt en de map is verwijderd. De layout was een voorstel; de echte onderdelenposities komen pas met de KiCad-layout.
+- **Later opnieuw bekijken?** nee — alles blijft herstelbaar uit git (commit `28e4fae`) als er toch een 3D-beeld nodig is. Het geannoteerde controleblad blijft staan in `documenten/pcb/review-mockup-controleblad.png`.

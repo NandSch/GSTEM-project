@@ -8,7 +8,7 @@ status: afgewerkt
 
 > [!info] Bron
 > Door de gebruiker aangeleverde, **afgewerkte** specificaties.
-> Bestand: `documenten/GStem-Specificaties.md` (aangeleverd `2026-10-06`, herkomst `~/Downloads/GStem-Specificaties.md`).
+> Bestand: `documenten/specificaties/GStem-Specificaties.md` (aangeleverd `2026-10-06`, herkomst `~/Downloads/GStem-Specificaties.md`).
 > Dit is de formele, gebruikersgerichte specificatie van het product; [[meetmodule-voorbereiding]] en
 > [[specificaties]] bevatten de technische achtergrond en denkwijze.
 

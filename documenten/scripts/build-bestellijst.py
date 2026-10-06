@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-"""Bouwt documenten/Bestellijst-GSTEM.xlsx uit de BOM/bestellijst van G-Stem.
+"""Bouwt documenten/beheer/Bestellijst-GSTEM.xlsx uit de BOM/bestellijst van G-Stem.
 
-Uitvoeren:  python documenten/build-bestellijst.py
+Uitvoeren:  python documenten/scripts/build-bestellijst.py
 Bron/afspraken: GEBRUIKER/data/bestellijst.md en GEBRUIKER/data/componenten.md
 Strategie: zo veel mogelijk bij Kiwi Electronics (NL) om verzendkosten te beperken; wat daar
 goedkoper is of als reserve dient, bij antratek.be. De rest komt bij EU-winkels (TME, Eckstein,
@@ -441,7 +441,8 @@ def bouw():
             cel.alignment = Alignment(vertical="top", wrap_text=True)
     ws4.freeze_panes = "A3"
 
-    doel = os.path.join(os.path.dirname(os.path.abspath(__file__)), "Bestellijst-GSTEM.xlsx")
+    doel = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+                        "beheer", "Bestellijst-GSTEM.xlsx")
     wb.save(doel)
     print("Opgeslagen:", doel)
 

@@ -34,7 +34,7 @@ Register van besproken onderwerpen met links naar de bijbehorende data.
 - [[ab-test-code-pagina|A/B-test: Code-pagina herzien]]
 - [[code-pagina|Handleiding: de Code-pagina van de webdemo]]
 - [[Projectdocumentatie/index|Projectdocumentatie (docs-kopie in Obsidian)]]
-- [[planning|Planning G-STEM-P (Excel: documenten/beheer/Planning-GSTEM.xlsx)]]
+- [[planning|Planning G-STEM-P (Excel: documenten/Planning-GSTEM.xlsx)]]
 - [[actieplan|Actieplan: nog te ondernemen stappen]]
 - [[blender-mockup|Blender-mock-up: draagprint, modules en opstelling in 3D]]
 - [[gstem-hardware-afmetingen|Mechanische afmetingen van de onderdelen (datasheets)]]
