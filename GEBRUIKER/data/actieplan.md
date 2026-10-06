@@ -23,7 +23,7 @@ bijgewerkt: 2026-10-06
 - [ ] 12/10/2026 — **AI-taak:** pinout-tabel XIAO opstellen en pin-budget controleren (IMU + barometer + GNSS + UART)
 - [ ] 12/10/2026 — Level shifter en I2C-pull-ups uitzoeken (3,3 V vs 5 V)
 - [x] 13/10/2026 — Socket-header of alternatief kiezen — **gedaan `2026-10-06`:** dual-wipe voor de XIAO, precisie/gefreesd voor de rest ([[pcb-methodes-kosten]])
-- [x] 20/10/2026 — Uitbreidingsconnector, level shifter en bescherming van de voeding kiezen — **gedaan `2026-10-06`:** schroefklem 3,5 mm, TXB0104, PTC + P-MOSFET + TVS SMBJ10A, LDO AP2112K-3.3 ([[componenten]])
+- [x] 20/10/2026 — Uitbreidingsconnector, level shifter en bescherming van de voeding kiezen — **gedaan `2026-10-06`:** schroefklem 3,5 mm, TXB0104, PTC + TVS SMBJ10A, LDO AP2112K-3.3 ([[componenten]]) — de **P-MOSFET vervalt** (`2026-10-06`, zie [[afgevoerd]])
 
 ## Hardware
 

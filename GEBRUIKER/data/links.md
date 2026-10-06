@@ -37,6 +37,9 @@ tags: [gstem, data, links]
 | PCB-schets (draagprint) | `documenten/PCB-schets.md` + `documenten/PCB-schets-draagprint.svg` (+ `.png`) | Bovenaanzicht en verbindingsschema van de draagprint met breakout-modules (`2026-10-06`). Zie ook [[pcb-schets]]. |
 | Eindbeeld eind-PCB (PNG) | `documenten/PCB-eindbeeld.png` | Gedetailleerde schets van de **eind-PCB** met alle gekozen breakouts (XIAO ESP32S3 + Wio-SX1262, BNO085, BMP581, LC29H(DA)), de losse componenten, de **Arduino Uno** en alle verbindingen (`2026-10-06`). Zie [[pcb-schets]]. |
 | Eindbeeld (bouwsript) | `documenten/build-pcb-eindbeeld.py` | Bouwt `PCB-eindbeeld.png` met PIL: `python documenten/build-pcb-eindbeeld.py`. |
+| Verbindingsschema (draw.io) | `documenten/Verbindingsschema-GSTEM.drawio` | Volledig schema **wie met wat en hoe verbonden is**: accu/barrel, PTC + TVS, buck 5 V, bulk-elco, power-LED, LDO 3,3 V, XIAO ESP32S3 + LoRa, BNO085/BMP581 (I2C), LC29H(DA) (UART), TXB0104, uitbreidingsconnector, Arduino + servo's + servo-buck, LoRa-adapter + laptop (`2026-10-06`). Te openen op https://app.diagrams.net. Zie [[verbindingsschema]]. |
+| Verbindingsschema (PNG) | `documenten/Verbindingsschema-GSTEM.png` | Afbeelding (3120x2300) van het verbindingsschema. |
+| Verbindingsschema (bouwsript) | `documenten/build-verbindingsschema.py` | Bouwt zowel de `.drawio` als de `.png` uit een enkele definitie: `python documenten/build-verbindingsschema.py`. |
 | Gebruikersspecificaties (afgewerkt) | `documenten/GStem-Specificaties.md` | Door de gebruiker afgewerkte specificaties, aangeleverd `2026-10-06` uit `~/Downloads/GStem-Specificaties.md`. Bevat de gebruikersgerichte beschrijving: meetprestaties, aanzetten, de app-schermen en de RC-vliegtuig-mock-up. |
 | Planning (Excel) | `documenten/Planning-GSTEM.xlsx` | Twee bladen: **Planning** (schoolplanning, blauw) en **Actieplan** (projectstappen, oranje). Zie [[planning]] en [[actieplan]]. |
 | Ontwerptekst (Google Doc) | https://docs.google.com/document/d/1wbb8LAjXiUpZQBpxv1NKQZ8YBhb32TtkiDcpUfl5o0M/edit | "Ontwerp voor Positie- en beweging meettoestel met LoRa integratie". Openbaar gedeeld op `2026-10-05`; gelezen via `export?format=txt`. **Let op:** dit Doc is nog niet aangevuld — de aanvulling staat in `documenten/Ontwerp-meetmodule.md` en wacht op het overzetten. |
@@ -48,7 +51,7 @@ tags: [gstem, data, links]
 | ESP32-S3 power & I2C theorie | https://electricalflux.com/learn-guides/esp32-s3-i2c-power-theory-pcb-board-projects | Achtergrond bij ontkoppelcondensatoren en I2C-pull-up-berekening voor de draagprint (`2026-10-06`). |
 | Level shifter TXB0104 | https://www.ti.com/product/TXB0104 | Gekozen 4-kanaals bidirectionele level shifter (3,3 V <-> 5 V) voor de UART naar de Arduino Uno (`2026-10-06`). |
 | LDO AP2112K-3.3 | https://www.diodes.com/part/view/AP2112K | Gekozen 3,3 V-LDO (600 mA, lage dropout) voor een eigen senserrail (`2026-10-06`). |
-| Voedingsbescherming | https://www.littelfuse.com/products/tvs-diodes / https://www.diodes.com/assets/Datasheets/DMG2301L.pdf | 2 A PTC-zekering, P-MOSFET DMG2301L (ompoolbeveiliging), TVS SMBJ10A (`2026-10-06`). |
+| Voedingsbescherming | https://www.littelfuse.com/products/tvs-diodes | 2 A PTC-zekering + TVS SMBJ10A (`2026-10-06`). De **P-MOSFET-ompoolbeveiliging vervalt** — zie [[afgevoerd]]. |
 | Schroefklem 3,5 mm (KF128/KF301) | https://www.cuidevices.com/product/interconnect/terminal-blocks | 4-pins uitbreidingsconnector voor de UART (`2026-10-06`). |
 | GNSS-antenne (dual-band L1/L5) | https://www.waveshare.com/wiki/LC29H(XX)_GPS/RTK_HAT | Gekozen actieve GNSS-antenne met SMA, LNA + ground plane; bron verwijst naar de Waveshare-antenne bij de LC29H-HAT (`2026-10-06`). |
 | IPEX/U.FL -> SMA pigtail | https://www.antratek.be (zoek: U.FL naar SMA bulkhead) | Kort antennekabeltje om de LoRa-antenne buiten het vliegtuigje te monteren (`2026-10-06`). |
@@ -88,3 +91,62 @@ Doel: **zo veel mogelijk onderdelen bij één winkel** (Kiwi Electronics, NL) be
 | 100uF 16V condensator (bulk-elco) | https://www.kiwi-electronics.com/nl/100uf-16v-condensator-440 | € 0,59 | op voorraad |
 
 **Niet bij Kiwi** (`2026-10-06`): RTK-GNSS-module (geen LC29H/ZED-F9P; enkel de niet-RTK **L76K** € 15,11), discrete voeding (2 A PTC-zekering, P-MOSFET DMG2301L, TVS SMBJ10A, AP2112K-3.3), een **4-pins** 3,5 mm schroefklem (alleen 3-weg), precisie/dual-wipe sockets en M3-schroeven/standoffs.
+
+## Andere winkels — de `geen-link`-onderdelen (`2026-10-06`)
+
+Zoektocht naar de onderdelen die **niet** bij Kiwi of antratek te vinden waren. Voorkeur: **EU**
+(geen invoerrechten/btw-gedoe). China (AliExpress/LCSC) enkel als terugval.
+
+| Winkel | Land | Rol in dit project | URL |
+| --- | --- | --- | --- |
+| **TME** (Transfer Multisort Elektronik) | Polen (EU) | Discrete elektronica: LDO, MOSFET, TVS, PTC, schroefklemmen, precisie-sockets | https://www.tme.eu |
+| **Eckstein** | Duitsland (EU) | **Gekozen winkel voor de Waveshare LC29H(DA)-HAT** (art. WS25279, `2026-10-06`) | https://eckstein-shop.de |
+| **Botland** | Polen (EU) | Alternatief voor de Waveshare LC29H(DA)-breakout/HAT, M3-montage, connectoren | https://botland.store |
+| **Kamami** | Polen (EU) | Alternatief voor de Waveshare LC29H(DA)-HAT | https://kamami.pl |
+| **HESTORE** | Hongarije (EU) | Schroefklem DEGSON, LC29H-HAT (duurder) | https://www.hestore.eu |
+| **TinyTronics** | Nederland (EU) | M3-afstandsbusjes/montagesets; levert uit Eindhoven | https://www.tinytronics.nl |
+| **Bits & Parts** | Nederland (EU) | 180-delige M3 spacer/standoff-set | https://www.bitsandparts.nl |
+| **Mouser.be / DigiKey** | VS, **EU-magazijn** | Exacte/EOL-onderdelen (1812L200/16), EU-btw, geen invoer | https://be.mouser.com · https://www.digikey.be |
+| **RS Components** | BE (EU) | Preci-Dip precisie-sockets | https://be.rs-online.com |
+
+### Gevonden onderdelen
+
+| Onderdeel | Bestelcode | Winkel | Link |
+| --- | --- | --- | --- |
+| RTK-GNSS **breakout** (LC29H(DA)) | Waveshare **LC29H(DA) GPS/RTK HAT**, art. **WS25279**, EAN 4060137304156 | **Eckstein (DE, EU) — gekozen** `2026-10-06` | https://eckstein-shop.de/lc29h-dual-band-gps-module-raspberry-pi_1 |
+| idem (alternatief) | Waveshare 25279 LC29H(DA) HAT | Botland (PL/DE, EU) | https://botland.store/raspberry-pi-hat-connection/23875-dual-band-gpsrtk-l1l5-module-with-lc29hda-gnss-chip-overlay-for-raspberry-pi-waveshare-25279.html |
+| idem (alternatief) | Waveshare 25279 LC29H(DA) HAT | Kamami (PL, EU) | https://kamami.pl/en/gps-modules/1187927-lc29h-series-dual-band-gps-module-for-raspberry-pi-dual-band-l1-l5-positioning-technology-optional-5906623465965.html |
+| RTK-breakout (alternatief) | MIKROE **GNSS RTK 3 Click** (LC29HDA, mikroBUS) | TME / mikroe.com | https://www.tme.eu/en/details/mikroe-5914/add-on-boards/mikroe/gnss-rtk-3-click-lc29hda/ |
+| LDO 3,3 V | **AP2112K-3.3TRG1** (Diodes, SOT-23-5) | TME | https://www.tme.eu/en/details/ap2112k-3.3trg1/ldo-fixed-voltage-regulators/diodes-incorporated/ |
+| ~~P-MOSFET (ompoolbeveiliging)~~ | DMG2301L-7 / AO3401A (SOT-23) | ~~Mouser / TME~~ | **vervalt** (`2026-10-06`) — zie [[afgevoerd]] |
+| TVS-diode | **SMBJ10A-TR** (ST) / **SMBJ10A/TR7** (Yageo) | TME | https://www.tme.eu/en/details/smbj10a-tr/unidirectional-tvs-smd-diodes/stmicroelectronics/ |
+| 2 A PTC-zekering (1812) | **Littelfuse 1812L200/16** | Mouser.be / DigiKey / TME | https://www.littelfuse.com/products/fuses-overcurrent-protection/polyswitch-resettable-pptc-devices/surface-mount-polyswitch-resettable-pptc-devices/1812l/1812l200 |
+| Schroefklem 4-pins 3,5 mm | DEGSON **DG250-3.5-04P-11-00A(H)** | HESTORE / TME | https://www.hestore.eu/en/prod_10044104.html |
+| Precisie/turned-pin socket | **Preci-Dip** 110-serie 2,54 mm (DIL, turned pin) | TME / RS | https://int.rsdelivers.com/product/preci-dip/110-87-304-41-001101/preci-dip-110-254-mm-pitch-vertical-4-way-through/7020644P |
+| M3-montageset | TinyTronics **M3 Afstandsbusje Kit** | TinyTronics (NL) | https://www.tinytronics.nl/nl/gereedschap-en-montage/installatie-en-montagemateriaal/afstandsbusjes/m3-afstandsbusje-kit |
+| M3-montageset (alternatief) | 180-delige spacer/standoff-set | Bits & Parts (NL) | https://www.bitsandparts.nl/Afstandsbus-Spacer-Standoff-M3-set-180-delig-zwart-p1885552 |
+
+> [!note] Breakout vs losse module
+> De **losse Quectel LC29H-DA SMD-module** (Maritex PL, Soyter PL, ± € 18–21) is **niet** gekozen:
+> de gebruiker wil een **breakout board**. De **7Semi LC29HDA RTK Board** (Qwiic/USB-C, ~$ 42) is een
+> mooie breakout, maar wordt uit **India** verzonden (niet EU).
+
+## Datasheets en mechanische maten (Blender-mock-up, `2026-10-06`)
+
+Voor de 3D-mock-up zijn de echte bordmaten opgezocht (samengevat in [[gstem-hardware-afmetingen]]):
+
+| Onderdeel | Link |
+| --- | --- |
+| XIAO ESP32S3 | https://wiki.seeedstudio.com/xiao_esp32s3_getting_started/ |
+| Wio-SX1262 (datasheet) | https://files.seeedstudio.com/products/SenseCAP/Wio_SX1262/Wio-SX1262_Module_Datasheet.pdf |
+| Adafruit BNO085 | https://www.adafruit.com/product/4754 |
+| Adafruit BMP581 (6407) | https://www.adafruit.com/product/6407 |
+| Waveshare LC29H(XX) HAT | https://www.waveshare.com/wiki/LC29H(XX)_GPS/RTK_HAT |
+| Arduino Uno R3 (datasheet) | https://docs.arduino.cc/resources/datasheets/A000066-datasheet.pdf |
+| SG90/MG90S servo | https://components101.com/sites/default/files/component_datasheet/MG90S-Datasheet.pdf |
+| Waveshare L1/L5 GNSS-antenne | https://www.waveshare.com/gps-external-antenna-d.htm |
+| Seeed LoRa-antenne 868/915 | https://www.seeedstudio.com/External-Antenna-868-915MHZ-2dBi-SMA-L195mm-Foldable-p-5863.html |
+| SMA-bulkhead (Wurth) | https://www.we-online.com/components/products/datasheet/60326421110220.pdf |
+| AP2112 (LDO) | https://www.mouser.com/datasheet/2/115/AP2112-271550.pdf |
+| TXB0104 | https://www.ti.com/lit/ds/symlink/txb0104.pdf |
+| DEGSON DG250-3.5 | https://www.degson.com/content/details_552_879687.html?lang=en |

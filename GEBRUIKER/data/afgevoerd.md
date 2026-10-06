@@ -41,3 +41,8 @@ tags: [gstem, data, afgevoerd]
 - **Wat:** De uitbreidingsconnector als PWM-, I2C-, CAN- of analoog signaal naar de bestaande voertuigcontroller.
 - **Reden afvoer:** De afgewerkte specificaties kiezen **UART via TX/RX**: de Arduino van het vliegtuigje neemt CSV-waarden aan op zijn TX/RX-punten.
 - **Later opnieuw bekijken?** nee voor de mock-up; alleen als een latere, andere controller een ander signaal vereist.
+
+## 2026-10-06 — P-MOSFET-ompoolbeveiliging (DMG2301L en AO3401A)
+- **Wat:** Een **P-MOSFET** in de +-lijn als ompoolbeveiliging: eerst de **DMG2301L** (SOT-23, Vds 20 V, Vgs(max) ±8 V), daarna als alternatief de **AO3401A** (Vds -30 V, Vgs ±12 V, Rds(on) ~60 mΩ, op voorraad bij TME).
+- **Reden afvoer:** Gebruikersbeslissing `2026-10-06`: er komt **geen P-MOSFET** (en dus geen ompoolbeveiliging). Bijkomend argument: de DMG2301L was te krap (Vgs(max) ±8 V bij een 2S-accu van max 8,4 V). In plaats daarvan wordt omgekeerd aansluiten **fysiek voorkomen met een gepolariseerde connector** (XT60/JST-XH).
+- **Later opnieuw bekijken?** nee voorlopig — alleen als de voedingsconnector toch ongepolariseerd blijft (barrel-jack).

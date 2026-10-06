@@ -1,0 +1,118 @@
+<mxfile host="app.diagrams.net" agent="G-STEM build-verbindingsschema.py" version="24.7.17" type="device">
+  <diagram id="gstem-verbindingsschema" name="Verbindingsschema">
+    <mxGraphModel dx="1400" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1560" pageHeight="1150" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" value="G-STEM meetmodule - verbindingsschema (voeding, ESP32-S3, sensoren, interface)" style="text;html=1;fontSize=16;fontStyle=1;align=left;verticalAlign=middle;" vertex="1" parent="1"><mxGeometry x="40" y="6" width="1200" height="24" as="geometry" /></mxCell>
+        <mxCell id="subtitle" value="schematisch, niet op schaal  |  bron: componenten.md, bestelschema-pcb.md, PCB-schets.md" style="text;html=1;fontSize=10;fontColor=#666666;align=left;verticalAlign=middle;" vertex="1" parent="1"><mxGeometry x="1060" y="12" width="460" height="20" as="geometry" /></mxCell>
+        <mxCell id="BAT" value="Accu 2S LiPo
+7,4 V (max 8,4 V)
+XT60 / JST-XH" style="rounded=1;whiteSpace=wrap;html=1;arcSize=6;fontSize=12;fontStyle=1;verticalAlign=middle;align=center;spacing=4;fillColor=#F8CECC;strokeColor=#B85450;fontColor=#5A1A16;" vertex="1" parent="1"><mxGeometry x="40" y="40" width="160" height="54" as="geometry" /></mxCell>
+        <mxCell id="J1" value="Barrel-connector
+(DC-jack adapter +
+schroefklem) - alternatief" style="rounded=1;whiteSpace=wrap;html=1;arcSize=6;fontSize=12;fontStyle=1;verticalAlign=middle;align=center;spacing=4;fillColor=#F8CECC;strokeColor=#B85450;fontColor=#5A1A16;" vertex="1" parent="1"><mxGeometry x="40" y="120" width="160" height="54" as="geometry" /></mxCell>
+        <mxCell id="F1" value="PTC-zekering 2 A
+Littelfuse 1812L200/16" style="rounded=1;whiteSpace=wrap;html=1;arcSize=6;fontSize=12;fontStyle=1;verticalAlign=middle;align=center;spacing=4;fillColor=#F8CECC;strokeColor=#B85450;fontColor=#5A1A16;" vertex="1" parent="1"><mxGeometry x="250" y="80" width="170" height="54" as="geometry" /></mxCell>
+        <mxCell id="TVS" value="TVS SMBJ10A
+(spikebeveiliging -&gt; GND)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=6;fontSize=12;fontStyle=1;verticalAlign=middle;align=center;spacing=4;fillColor=#F8CECC;strokeColor=#B85450;fontColor=#5A1A16;" vertex="1" parent="1"><mxGeometry x="250" y="180" width="170" height="54" as="geometry" /></mxCell>
+        <mxCell id="U2" value="Buck-converter
+7,4 V -&gt; 5 V
+(losse module)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=6;fontSize=12;fontStyle=1;verticalAlign=middle;align=center;spacing=4;fillColor=#FFE6CC;strokeColor=#D89600;fontColor=#7A4A00;" vertex="1" parent="1"><mxGeometry x="470" y="80" width="180" height="54" as="geometry" /></mxCell>
+        <mxCell id="C1" value="Bulk-elco 100 uF/16 V
+(op de 5 V-rail -&gt; GND)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=6;fontSize=12;fontStyle=1;verticalAlign=middle;align=center;spacing=4;fillColor=#FFE6CC;strokeColor=#D89600;fontColor=#7A4A00;" vertex="1" parent="1"><mxGeometry x="470" y="180" width="180" height="54" as="geometry" /></mxCell>
+        <mxCell id="N5V" value="5 V-rail" style="rounded=1;whiteSpace=wrap;html=1;arcSize=6;fontSize=12;fontStyle=1;verticalAlign=middle;align=center;spacing=4;fillColor=#FFE6CC;strokeColor=#D89600;fontColor=#7A4A00;" vertex="1" parent="1"><mxGeometry x="700" y="80" width="150" height="54" as="geometry" /></mxCell>
+        <mxCell id="LED" value="Power-LED rood
++ 330 Ohm -&gt; GND" style="rounded=1;whiteSpace=wrap;html=1;arcSize=6;fontSize=12;fontStyle=1;verticalAlign=middle;align=center;spacing=4;fillColor=#FFE6CC;strokeColor=#D89600;fontColor=#7A4A00;" vertex="1" parent="1"><mxGeometry x="700" y="180" width="150" height="54" as="geometry" /></mxCell>
+        <mxCell id="U3" value="LDO AP2112K-3.3
+5 V -&gt; 3,3 V" style="rounded=1;whiteSpace=wrap;html=1;arcSize=6;fontSize=12;fontStyle=1;verticalAlign=middle;align=center;spacing=4;fillColor=#FFF2CC;strokeColor=#C8A83C;fontColor=#785F00;" vertex="1" parent="1"><mxGeometry x="900" y="80" width="180" height="54" as="geometry" /></mxCell>
+        <mxCell id="N33" value="3,3 V-rail" style="rounded=1;whiteSpace=wrap;html=1;arcSize=6;fontSize=12;fontStyle=1;verticalAlign=middle;align=center;spacing=4;fillColor=#FFF2CC;strokeColor=#C8A83C;fontColor=#785F00;" vertex="1" parent="1"><mxGeometry x="1130" y="80" width="150" height="54" as="geometry" /></mxCell>
+        <mxCell id="U1" value="XIAO ESP32S3
++ Wio-SX1262 (LoRa 868 MHz)
+SPI intern - 5 V in - 3V3 uit
+USB-C - eigen LiPo-lader (niet gebruikt)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=6;fontSize=12;fontStyle=1;verticalAlign=middle;align=center;spacing=4;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontColor=#193769;" vertex="1" parent="1"><mxGeometry x="380" y="430" width="260" height="130" as="geometry" /></mxCell>
+        <mxCell id="ANTL" value="LoRa-antenne via IPEX/U.FL -&gt;
+SMA female bulkhead pigtail" style="rounded=1;whiteSpace=wrap;html=1;arcSize=6;fontSize=12;fontStyle=1;verticalAlign=middle;align=center;spacing=4;fillColor=#E1D5E7;strokeColor=#9673A6;fontColor=#46285A;" vertex="1" parent="1"><mxGeometry x="380" y="300" width="260" height="60" as="geometry" /></mxCell>
+        <mxCell id="U4" value="BNO085 - 9-DoF IMU
+I2C 0x28/0x29 - sensorfusie" style="rounded=1;whiteSpace=wrap;html=1;arcSize=6;fontSize=12;fontStyle=1;verticalAlign=middle;align=center;spacing=4;fillColor=#D5E8D4;strokeColor=#78AA5F;fontColor=#23501E;" vertex="1" parent="1"><mxGeometry x="820" y="290" width="230" height="64" as="geometry" /></mxCell>
+        <mxCell id="U5" value="BMP581 - barometer
+I2C - druk + temperatuur" style="rounded=1;whiteSpace=wrap;html=1;arcSize=6;fontSize=12;fontStyle=1;verticalAlign=middle;align=center;spacing=4;fillColor=#D5E8D4;strokeColor=#78AA5F;fontColor=#23501E;" vertex="1" parent="1"><mxGeometry x="820" y="380" width="230" height="64" as="geometry" /></mxCell>
+        <mxCell id="U6" value="LC29H(DA) - RTK-GNSS
+UART - RTK-rover
+(NTRIP-correctie via laptop)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=6;fontSize=12;fontStyle=1;verticalAlign=middle;align=center;spacing=4;fillColor=#D5E8D4;strokeColor=#78AA5F;fontColor=#23501E;" vertex="1" parent="1"><mxGeometry x="820" y="470" width="230" height="84" as="geometry" /></mxCell>
+        <mxCell id="ANTG" value="Actieve dual-band
+L1/L5 GNSS-antenne
+SMA - LNA + ground plane" style="rounded=1;whiteSpace=wrap;html=1;arcSize=6;fontSize=12;fontStyle=1;verticalAlign=middle;align=center;spacing=4;fillColor=#E1D5E7;strokeColor=#9673A6;fontColor=#46285A;" vertex="1" parent="1"><mxGeometry x="1120" y="470" width="190" height="84" as="geometry" /></mxCell>
+        <mxCell id="U7" value="TXB0104 level shifter
+VCCA 3,3 V &lt;-&gt; VCCB 5 V" style="rounded=1;whiteSpace=wrap;html=1;arcSize=6;fontSize=12;fontStyle=1;verticalAlign=middle;align=center;spacing=4;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontColor=#193769;" vertex="1" parent="1"><mxGeometry x="820" y="640" width="230" height="70" as="geometry" /></mxCell>
+        <mxCell id="J2" value="J2 uitbreidingsconnector
+4-pins 3,5 mm schroefklem
+GND / +5 V / TX / RX" style="rounded=1;whiteSpace=wrap;html=1;arcSize=6;fontSize=12;fontStyle=1;verticalAlign=middle;align=center;spacing=4;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontColor=#193769;" vertex="1" parent="1"><mxGeometry x="820" y="740" width="230" height="70" as="geometry" /></mxCell>
+        <mxCell id="A1" value="Arduino Uno
+(mock-up controller, 5 V logica)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=6;fontSize=12;fontStyle=1;verticalAlign=middle;align=center;spacing=4;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontColor=#193769;" vertex="1" parent="1"><mxGeometry x="820" y="860" width="230" height="70" as="geometry" /></mxCell>
+        <mxCell id="SRV" value="3x servo
+rolroer - hoogteroer - richtingsroer" style="rounded=1;whiteSpace=wrap;html=1;arcSize=6;fontSize=12;fontStyle=1;verticalAlign=middle;align=center;spacing=4;fillColor=#E1D5E7;strokeColor=#9673A6;fontColor=#46285A;" vertex="1" parent="1"><mxGeometry x="820" y="960" width="230" height="70" as="geometry" /></mxCell>
+        <mxCell id="UBK" value="Aparte buck-converter
+5 V servo-voeding (BEC)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=6;fontSize=12;fontStyle=1;verticalAlign=middle;align=center;spacing=4;fillColor=#FFE6CC;strokeColor=#D89600;fontColor=#7A4A00;" vertex="1" parent="1"><mxGeometry x="1080" y="960" width="190" height="70" as="geometry" /></mxCell>
+        <mxCell id="ADPT" value="LoRa-adapter
+2e XIAO ESP32S3 + Wio-SX1262
+(USB naar laptop)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=6;fontSize=12;fontStyle=1;verticalAlign=middle;align=center;spacing=4;fillColor=#E1D5E7;strokeColor=#9673A6;fontColor=#46285A;" vertex="1" parent="1"><mxGeometry x="380" y="800" width="260" height="70" as="geometry" /></mxCell>
+        <mxCell id="LAP" value="Laptopapplicatie
+kaart - code - API" style="rounded=1;whiteSpace=wrap;html=1;arcSize=6;fontSize=12;fontStyle=1;verticalAlign=middle;align=center;spacing=4;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontColor=#193769;" vertex="1" parent="1"><mxGeometry x="380" y="900" width="260" height="70" as="geometry" /></mxCell>
+        <mxCell id="N1" value="Ontkoppeling op de print:
+100 nF + 10 uF per module
++ 100 uF bulk op 5 V" style="rounded=1;whiteSpace=wrap;html=1;arcSize=6;fontSize=12;fontStyle=1;verticalAlign=middle;align=center;spacing=4;fillColor=#FFFACD;strokeColor=#C8B450;fontColor=#504614;dashed=1;" vertex="1" parent="1"><mxGeometry x="40" y="300" width="230" height="64" as="geometry" /></mxCell>
+        <mxCell id="N2" value="Sockets: dual-wipe (XIAO),
+precisie/turned-pin (vaste modules)
+-&gt; modules blijven vervangbaar" style="rounded=1;whiteSpace=wrap;html=1;arcSize=6;fontSize=12;fontStyle=1;verticalAlign=middle;align=center;spacing=4;fillColor=#FFFACD;strokeColor=#C8B450;fontColor=#504614;dashed=1;" vertex="1" parent="1"><mxGeometry x="40" y="390" width="230" height="64" as="geometry" /></mxCell>
+        <mxCell id="N3" value="I2C-pull-ups zitten al op de BNO085-
+en BMP581-breakouts; 2 reserve-
+footprints op de print" style="rounded=1;whiteSpace=wrap;html=1;arcSize=6;fontSize=12;fontStyle=1;verticalAlign=middle;align=center;spacing=4;fillColor=#FFFACD;strokeColor=#C8B450;fontColor=#504614;dashed=1;" vertex="1" parent="1"><mxGeometry x="40" y="480" width="230" height="64" as="geometry" /></mxCell>
+        <mxCell id="GNDB" value="GND - gemeenschappelijke ground (alle modules, connectoren, level shifter en servo-voeding)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=6;fontSize=12;fontStyle=1;verticalAlign=middle;align=center;spacing=4;fillColor=#F0F0F0;strokeColor=#646464;fontColor=#282828;" vertex="1" parent="1"><mxGeometry x="40" y="1080" width="1450" height="36" as="geometry" /></mxCell>
+        <mxCell id="LEG" value="LEGENDE
+
+rood - VBAT (ruwe accu)
+oranje - 5 V-rail
+geel - 3,3 V-rail
+blauw - I2C-bus
+groen - UART
+paars - LoRa / RF
+grijs streeplijn - GND
+
+Pijlen tonen de richting
+van voeding of data" style="rounded=1;whiteSpace=wrap;html=1;arcSize=6;fontSize=12;fontStyle=1;verticalAlign=middle;align=center;spacing=4;fillColor=#FFFACD;strokeColor=#C8B450;fontColor=#504614;dashed=1;" vertex="1" parent="1"><mxGeometry x="1320" y="620" width="210" height="330" as="geometry" /></mxCell>
+        <mxCell id="e1" value="7,4 V" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeWidth=2;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#FFFFFF;strokeColor=#C0392B;fontColor=#C0392B;" edge="1" parent="1" source="BAT" target="F1"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="120" y="107" /></Array></mxGeometry></mxCell>
+        <mxCell id="e2" value="of barrel" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeWidth=2;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#FFFFFF;strokeColor=#C0392B;fontColor=#C0392B;" edge="1" parent="1" source="J1" target="F1"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="225" y="147" /><mxPoint x="225" y="80" /></Array></mxGeometry></mxCell>
+        <mxCell id="e3" value="VBAT (ruw)" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeWidth=2;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#FFFFFF;strokeColor=#C0392B;fontColor=#C0392B;" edge="1" parent="1" source="F1" target="U2"><mxGeometry relative="1" as="geometry"><Array as="points"></Array></mxGeometry></mxCell>
+        <mxCell id="e4" value="na zekering" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeWidth=2;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#FFFFFF;strokeColor=#C0392B;fontColor=#C0392B;" edge="1" parent="1" source="F1" target="TVS"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="445" y="107" /><mxPoint x="445" y="207" /></Array></mxGeometry></mxCell>
+        <mxCell id="e5" value="GND" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeWidth=2;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#FFFFFF;strokeColor=#787878;fontColor=#787878;dashed=1;" edge="1" parent="1" source="TVS" target="GNDB"><mxGeometry relative="1" as="geometry"><Array as="points"></Array></mxGeometry></mxCell>
+        <mxCell id="e6" value="5 V" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeWidth=2;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#FFFFFF;strokeColor=#E67E22;fontColor=#E67E22;" edge="1" parent="1" source="U2" target="C1"><mxGeometry relative="1" as="geometry"><Array as="points"></Array></mxGeometry></mxCell>
+        <mxCell id="e7" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeWidth=2;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#FFFFFF;strokeColor=#E67E22;fontColor=#E67E22;" edge="1" parent="1" source="C1" target="N5V"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="675" y="207" /><mxPoint x="675" y="107" /></Array></mxGeometry></mxCell>
+        <mxCell id="e8" value="GND" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeWidth=2;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#FFFFFF;strokeColor=#787878;fontColor=#787878;dashed=1;" edge="1" parent="1" source="C1" target="GNDB"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="500" y="280" /><mxPoint x="310" y="280" /></Array></mxGeometry></mxCell>
+        <mxCell id="e9" value="5 V" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeWidth=2;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#FFFFFF;strokeColor=#E67E22;fontColor=#E67E22;" edge="1" parent="1" source="N5V" target="LED"><mxGeometry relative="1" as="geometry"><Array as="points"></Array></mxGeometry></mxCell>
+        <mxCell id="e10" value="5 V" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeWidth=2;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#FFFFFF;strokeColor=#E67E22;fontColor=#E67E22;" edge="1" parent="1" source="N5V" target="U3"><mxGeometry relative="1" as="geometry"><Array as="points"></Array></mxGeometry></mxCell>
+        <mxCell id="e11" value="GND" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeWidth=2;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#FFFFFF;strokeColor=#787878;fontColor=#787878;dashed=1;" edge="1" parent="1" source="LED" target="GNDB"><mxGeometry relative="1" as="geometry"><Array as="points"></Array></mxGeometry></mxCell>
+        <mxCell id="e12" value="3,3 V" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeWidth=2;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#FFFFFF;strokeColor=#C9A227;fontColor=#C9A227;" edge="1" parent="1" source="U3" target="N33"><mxGeometry relative="1" as="geometry"><Array as="points"></Array></mxGeometry></mxCell>
+        <mxCell id="e13" value="3,3 V-rail" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeWidth=2;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#FFFFFF;strokeColor=#C9A227;fontColor=#C9A227;" edge="1" parent="1" source="N33" target="U4"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="1205" y="270" /><mxPoint x="1060" y="270" /><mxPoint x="1060" y="322" /></Array></mxGeometry></mxCell>
+        <mxCell id="e14" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeWidth=2;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#FFFFFF;strokeColor=#C9A227;fontColor=#C9A227;" edge="1" parent="1" source="N33" target="U5"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="1205" y="270" /><mxPoint x="1060" y="270" /><mxPoint x="1060" y="412" /></Array></mxGeometry></mxCell>
+        <mxCell id="e15" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeWidth=2;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#FFFFFF;strokeColor=#C9A227;fontColor=#C9A227;" edge="1" parent="1" source="N33" target="U6"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="1205" y="270" /><mxPoint x="1060" y="270" /><mxPoint x="1060" y="512" /></Array></mxGeometry></mxCell>
+        <mxCell id="e16" value="VCCA" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeWidth=2;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#FFFFFF;strokeColor=#C9A227;fontColor=#C9A227;" edge="1" parent="1" source="N33" target="U7"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="1205" y="270" /><mxPoint x="1060" y="270" /><mxPoint x="1060" y="675" /></Array></mxGeometry></mxCell>
+        <mxCell id="e17" value="5 V" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeWidth=2;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#FFFFFF;strokeColor=#E67E22;fontColor=#E67E22;" edge="1" parent="1" source="N5V" target="U1"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="730" y="440" /></Array></mxGeometry></mxCell>
+        <mxCell id="e18" value="VCCB 5 V" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeWidth=2;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#FFFFFF;strokeColor=#E67E22;fontColor=#E67E22;" edge="1" parent="1" source="N5V" target="U7"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="815" y="675" /></Array></mxGeometry></mxCell>
+        <mxCell id="e19" value="TX/RX 5 V" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeWidth=2;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#FFFFFF;strokeColor=#2E8B57;fontColor=#2E8B57;" edge="1" parent="1" source="U7" target="J2"><mxGeometry relative="1" as="geometry"><Array as="points"></Array></mxGeometry></mxCell>
+        <mxCell id="e20" value="+5 V" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeWidth=2;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#FFFFFF;strokeColor=#E67E22;fontColor=#E67E22;" edge="1" parent="1" source="N5V" target="J2"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="815" y="760" /></Array></mxGeometry></mxCell>
+        <mxCell id="e21" value="I2C SDA/SCL 3,3 V" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeWidth=2;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#FFFFFF;strokeColor=#2E75B6;fontColor=#2E75B6;" edge="1" parent="1" source="U1" target="U4"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="760" y="470" /><mxPoint x="760" y="322" /></Array></mxGeometry></mxCell>
+        <mxCell id="e22" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeWidth=2;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#FFFFFF;strokeColor=#2E75B6;fontColor=#2E75B6;" edge="1" parent="1" source="U1" target="U5"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="780" y="505" /><mxPoint x="780" y="412" /></Array></mxGeometry></mxCell>
+        <mxCell id="e23" value="UART1 TX/RX 3,3 V" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeWidth=2;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#FFFFFF;strokeColor=#2E8B57;fontColor=#2E8B57;" edge="1" parent="1" source="U1" target="U6"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="800" y="540" /><mxPoint x="800" y="512" /></Array></mxGeometry></mxCell>
+        <mxCell id="e24" value="UART2 (3,3 V-zijde)" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeWidth=2;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#FFFFFF;strokeColor=#2E8B57;fontColor=#2E8B57;" edge="1" parent="1" source="U1" target="U7"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="585" y="685" /></Array></mxGeometry></mxCell>
+        <mxCell id="e25" value="IPEX -&gt; SMA" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeWidth=2;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#FFFFFF;strokeColor=#7030A0;fontColor=#7030A0;" edge="1" parent="1" source="U1" target="ANTL"><mxGeometry relative="1" as="geometry"><Array as="points"></Array></mxGeometry></mxCell>
+        <mxCell id="e26" value="SMA actieve L1/L5" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeWidth=2;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#FFFFFF;strokeColor=#7030A0;fontColor=#7030A0;" edge="1" parent="1" source="U6" target="ANTG"><mxGeometry relative="1" as="geometry"><Array as="points"></Array></mxGeometry></mxCell>
+        <mxCell id="e27" value="LoRa 868 MHz (draadloos)" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeWidth=2;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#FFFFFF;strokeColor=#7030A0;fontColor=#7030A0;dashed=1;" edge="1" parent="1" source="U1" target="ADPT"><mxGeometry relative="1" as="geometry"><Array as="points"></Array></mxGeometry></mxCell>
+        <mxCell id="e28" value="USB-A -&gt; USB-C (serieel)" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeWidth=2;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#FFFFFF;strokeColor=#3C3C3C;fontColor=#3C3C3C;" edge="1" parent="1" source="ADPT" target="LAP"><mxGeometry relative="1" as="geometry"><Array as="points"></Array></mxGeometry></mxCell>
+        <mxCell id="e29" value="GND / +5 V / TX / RX kabel" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeWidth=2;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#FFFFFF;strokeColor=#2E8B57;fontColor=#2E8B57;" edge="1" parent="1" source="J2" target="A1"><mxGeometry relative="1" as="geometry"><Array as="points"></Array></mxGeometry></mxCell>
+        <mxCell id="e30" value="PWM 3x servo" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeWidth=2;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#FFFFFF;strokeColor=#96462D;fontColor=#96462D;" edge="1" parent="1" source="A1" target="SRV"><mxGeometry relative="1" as="geometry"><Array as="points"></Array></mxGeometry></mxCell>
+        <mxCell id="e31" value="5 V servo-voeding" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeWidth=2;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#FFFFFF;strokeColor=#E67E22;fontColor=#E67E22;" edge="1" parent="1" source="UBK" target="SRV"><mxGeometry relative="1" as="geometry"><Array as="points"></Array></mxGeometry></mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

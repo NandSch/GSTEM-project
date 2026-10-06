@@ -11,14 +11,10 @@
             "id": "120497f5d8df2dff",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "chat.md",
-                "mode": "source",
-                "source": false
-              },
+              "type": "empty",
+              "state": {},
               "icon": "lucide-file",
-              "title": "chat"
+              "title": "New tab"
             }
           }
         ]
@@ -188,43 +184,43 @@
       "bases:Create new base": false
     }
   },
-  "active": "c45adac1c2d01c74",
+  "active": "120497f5d8df2dff",
   "lastOpenFiles": [
+    "chat.md",
+    "archief/2026-10-06_1814_je-verifieert-of-7-specifieke-artikelen-bij-de-n-2/onderwerpen.md",
+    "archief/2026-10-06_1814_je-verifieert-of-7-specifieke-artikelen-bij-de-n-2/meta.md",
+    "archief/2026-10-06_1814_je-verifieert-of-7-specifieke-artikelen-bij-de-n-2/chat.md",
+    "archief/2026-10-06_1814_je-verifieert-of-7-specifieke-artikelen-bij-de-n-2",
+    "data/gps-rtk-prijzen.md",
+    "data/bestelbaarheid.md",
+    "archief/2026-10-06_1814_je-verifieert-of-twee-artikelen-bij-de-belgische/onderwerpen.md",
+    "archief/2026-10-06_1814_je-verifieert-of-twee-artikelen-bij-de-belgische/meta.md",
+    "archief/2026-10-06_1814_je-verifieert-of-twee-artikelen-bij-de-belgische/chat.md",
+    "archief/2026-10-06_1814_je-verifieert-of-twee-artikelen-bij-de-belgische",
+    "archief/2026-10-06_1814_je-verifieert-of-enkele-mechanische-connector-on/onderwerpen.md",
+    "archief/2026-10-06_1814_je-verifieert-of-enkele-mechanische-connector-on/meta.md",
+    "archief/2026-10-06_1814_je-verifieert-of-enkele-mechanische-connector-on/chat.md",
+    "archief/2026-10-06_1814_je-verifieert-of-enkele-mechanische-connector-on",
+    "archief/2026-10-06_1814_je-verifieert-of-7-specifieke-artikelen-bij-de-n/onderwerpen.md",
+    "archief/2026-10-06_1814_je-verifieert-of-7-specifieke-artikelen-bij-de-n/meta.md",
+    "archief/2026-10-06_1814_je-verifieert-of-7-specifieke-artikelen-bij-de-n/chat.md",
+    "archief/2026-10-06_1814_je-verifieert-of-7-specifieke-artikelen-bij-de-n",
+    "archief/2026-10-06_1737_kijk-naar-de-bestellijst-en-zoek-de-overige-arti/onderwerpen.md",
+    "archief/2026-10-06_1737_kijk-naar-de-bestellijst-en-zoek-de-overige-arti/meta.md",
+    "archief/2026-10-06_1737_kijk-naar-de-bestellijst-en-zoek-de-overige-arti/chat.md",
+    "archief/2026-10-06_1737_kijk-naar-de-bestellijst-en-zoek-de-overige-arti",
     "archief/2026-10-06_1029_ga-1-per-1-af-welke-componenten-ik-nog-moeten-zo/onderwerpen.md",
     "archief/2026-10-06_1029_ga-1-per-1-af-welke-componenten-ik-nog-moeten-zo/meta.md",
     "archief/2026-10-06_1029_ga-1-per-1-af-welke-componenten-ik-nog-moeten-zo/chat.md",
     "archief/2026-10-06_1029_ga-1-per-1-af-welke-componenten-ik-nog-moeten-zo",
     "data/componenten.md",
-    "chat.md",
     "index.md",
     "data/code-pagina.md",
     "archief/2026-10-04_1215_for-the-mockup-website-adjust-the-code-page-api-/onderwerpen.md",
     "archief/2026-10-04_1215_for-the-mockup-website-adjust-the-code-page-api-/meta.md",
-    "archief/2026-10-04_1215_for-the-mockup-website-adjust-the-code-page-api-/chat.md",
     "archief/2026-10-04_1215_for-the-mockup-website-adjust-the-code-page-api-",
-    "data/ab-test-code-pagina.md",
-    "archief/2026-10-01_2124_per-website-in-de-pagina-code-pas-het-rechterkan/onderwerpen.md",
-    "archief/2026-10-01_2124_per-website-in-de-pagina-code-pas-het-rechterkan/meta.md",
-    "archief/2026-10-01_2124_per-website-in-de-pagina-code-pas-het-rechterkan/chat.md",
     "archief/2026-10-01_2124_per-website-in-de-pagina-code-pas-het-rechterkan",
-    "archief/2026-10-01_2054_pas-c-users-nand-schoovaerts-documents-gstem-pro/onderwerpen.md",
-    "archief/2026-10-01_2054_pas-c-users-nand-schoovaerts-documents-gstem-pro/meta.md",
-    "archief/2026-10-01_2054_pas-c-users-nand-schoovaerts-documents-gstem-pro/chat.md",
     "archief/2026-10-01_2054_pas-c-users-nand-schoovaerts-documents-gstem-pro",
-    "Projectdocumentatie/01-projectoverzicht.md",
-    "archief/2026-10-01_2045_start-de-website-op-voor-mij/onderwerpen.md",
-    "archief/2026-10-01_2045_start-de-website-op-voor-mij/meta.md",
-    "archief/2026-10-01_2045_start-de-website-op-voor-mij/chat.md",
-    "archief/2026-10-01_2045_start-de-website-op-voor-mij",
-    "Handleiding-meettoestel.md",
-    "Projectdocumentatie/02-codeximport.md",
-    "Projectdocumentatie/index.md",
-    "Projectdocumentatie/05-inventaris-en-archief.md",
-    "Projectdocumentatie/04-blokschema-aerolink.md",
-    "Formules Afgeleide & co.pdf",
-    "Projectdocumentatie",
-    "archief/2026-10-01_2027_ik-wil-een-worddocument-maken-waarin-ik-een-soor",
-    "archief/2026-09-29_2140_alle-bestanden-in-documents-gstem-project-zijn-o",
-    "archief/2026-09-29_2136_leg-kort-uit-wat-we-al-hebben-en-wat-je-begrip-i"
+    "archief/2026-10-01_2045_start-de-website-op-voor-mij"
   ]
 }

@@ -33,7 +33,7 @@ status: werklijst
 | Uitbreidingsconnector | **4-pins schroefklem, 3,5 mm (KF128/KF301)** | Pinout GND / +5 V / TX / RX; robuuste aansluiting voor de UART naar de Arduino | - |
 | Level shifter | **TXB0104** (4-kanaals bidirectioneel) op de print | Voor de UART naar de Arduino Uno (5 V); VCCA 3,3 V, VCCB 5 V. I2C blijft 3,3 V, dus geen shifter nodig op de I2C-bus | TI |
 | I2C-pull-ups op de print | **Geen extra** | BNO055- en BMP390-breakouts hebben al pull-ups; 2 reserve-footprints voor later | Adafruit |
-| Bescherming voeding | **2 A PTC-zekering + P-MOSFET ompoolbeveiliging (DMG2301L) + TVS SMBJ10A** | 7,4 V-accu, max 8,4 V; TVS-standoff 10 V; bulk-elco 100 uF/16 V | - |
+| Bescherming voeding | **2 A PTC-zekering + TVS SMBJ10A** (de P-MOSFET vervalt, `2026-10-06`) | 7,4 V-accu, max 8,4 V; TVS-standoff 10 V; bulk-elco 100 uF/16 V | - |
 | LDO 3,3 V | **AP2112K-3.3** (of AMS1117-3.3) | Eigen schone 3,3 V-rail voor de sensoren, op verzoek van de gebruiker; de XIAO levert ook 3,3 V | - |
 | GNSS-antenne | **Actieve dual-band L1/L5 GNSS-antenne met SMA, LNA + ground plane** | Past bij de LC29H(DA); compacte uitvoering (laag gewicht voor het vliegtuigje). Voorbeeld: de dual-band GNSS-antenne van Waveshare | Waveshare |
 | LoRa-antenne buiten | **IPEX/U.FL -> SMA female bulkhead pigtail** | Om de LoRa-antenne door/buiten de behuizing te monteren; de kitantenne blijft behouden | - |
@@ -46,7 +46,14 @@ status: werklijst
 > [!note] Waarvoor dient de voedingsbescherming en de LDO?
 > De energiestroom is: **7,4 V-accu (max 8,4 V) / barrel -> bescherming -> buck 5 V -> bulk-elco -> LDO 3,3 V -> sensoren**.
 > - **2 A PTC-zekering** = herstelbare zekering in serie: bij overstroom/kortsluiting wordt ze hoogohmig en begrenst de stroom; koelt af en reset zichzelf. Beschermt de LiPo en de bedrading (brandgevaar).
-> - **P-MOSFET DMG2301L** = **ompoolbeveiliging** in de +-lijn: bij juiste polariteit geleidt hij met zeer lage Rds(on) (~nauwelijks spanningsval), bij omgekeerde polariteit blokkeert hij. Beter dan een serie-diode (geen ~0,7 V verlies).
+> - ~~**P-MOSFET DMG2301L** = ompoolbeveiliging~~ — **vervalt** (`2026-10-06`). De gebruiker kiest
+>   **geen** ompoolbeveiliging; bescherm tegen omgekeerd aansluiten met een **gepolariseerde
+>   connector** (XT60/JST-XH). Zie [[afgevoerd]] en [[beslissingen]].
+>
+> [!warning] Waarom de P-MOSFET vervalt (`2026-10-06`)
+> De kandidaten **DMG2301L** (Vgs(max) ±8 V, te krap bij een 2S-accu van max 8,4 V zonder gate-clamp)
+> en **AO3401A** (Vds -30 V, Vgs ±12 V) komen **geen van beide** op de print: er is **geen
+> ompoolbeveiliging** voorzien. De PTC-zekering en de TVS blijven wel behouden.
 > - **TVS SMBJ10A** = **transiënt-/spikebeveiliging** van + naar GND: klemt snelle spanningspieken (motoren/ESC, hot-plug, ESD) op ~17 V. Standoff 10 V ligt boven de max. accu (8,4 V) en beschermt de buck/LDO/IC's.
 > - **AP2112K-3.3 (LDO)** = lineaire regelaar die van de schakelende 5 V een **schone, ruisarme 3,3 V-rail** maakt voor de sensoren (IMU, barometer, GNSS). De XIAO heeft zelf ook 3,3 V, maar die rail deelt de schakelruis van de buck.
 
@@ -68,7 +75,7 @@ status: werklijst
 - 7,4 V-accu met connector en kabel: **heeft de gebruiker** (`2026-10-06`, 2S LiPo).
 - Barrel-connector (gekozen als voedingsaansluiting): **DC Barrel Jack Adapter - Female heeft de gebruiker** (`2026-10-06`).
 - Buck-converter 5 V (heeft de gebruiker).
-- Bescherming: 2 A PTC-zekering, P-MOSFET ompoolbeveiliging (DMG2301L), TVS SMBJ10A.
+- Bescherming: 2 A PTC-zekering + TVS SMBJ10A (geen P-MOSFET; `2026-10-06`).
 
 **Verbindingen**
 - USB-C datakabel: **in bezit** (eigen kabel voor flashen/programmeren `2026-10-06`) — niet op de bestellijst.
@@ -104,7 +111,7 @@ De gebruiker koos **LED + sockets** en vraagt wat verder essentieel is. Voorstel
 | I2C-pull-ups 4,7 kOhm | **Enkel indien** de breakouts ze niet al hebben; BNO055 en BMP390-breakout hebben ze mee | 2 (reserve) |
 | Barrel-connector + schroefklemmen | Voeding en UART naar buiten | 1 + 1 |
 | Bevestigingsgaten M3 | Montage in de behuizing | 4 |
-| Zekering + ompoolbeveiliging + TVS | Bescherming van de voeding | 2 A PTC + P-MOSFET + SMBJ10A |
+| Zekering + TVS | Bescherming van de voeding | 2 A PTC + SMBJ10A (P-MOSFET vervalt `2026-10-06`) |
 | Level shifter | 3,3 V <-> 5 V naar de Arduino | TXB0104 (4-kanaals) |
 | Schroefklem 3,5 mm (4-pins) | UART-uitbreiding naar de Arduino | 1 |
 
@@ -129,7 +136,7 @@ De gebruiker koos **LED + sockets** en vraagt wat verder essentieel is. Voorstel
 
 **B. Voeding en RF**
 - [x] 8. 7,4 V-accu + beschermcircuit + connector -> accu + barrel + bescherming gekozen (`2026-10-06`)
-- [x] 9. Zekering, ompoolbeveiliging, TVS -> **2 A PTC + P-MOSFET + SMBJ10A** (`2026-10-06`)
+- [x] 9. Zekering, ompoolbeveiliging, TVS -> **2 A PTC + TVS SMBJ10A** (`2026-10-06`); **ompoolbeveiliging vervalt** (`2026-10-06`)
 - [x] 10. Buck-converter 5 V -> heeft de gebruiker (`2026-10-06`)
 - [x] 11. LDO 3,3 V -> **AP2112K-3.3** (eigen 3,3 V-rail) (`2026-10-06`)
 - [x] 12. Aan/uit-schakelaar -> **geen**; toestel start bij voeding (`2026-10-06`)
@@ -175,4 +182,4 @@ De gebruiker koos **LED + sockets** en vraagt wat verder essentieel is. Voorstel
 - [x] RTK-GNSS-module en GNSS-antenne zoeken -> **LC29H(DA)** + dual-band actieve antenne (`2026-10-06`)
 - [x] Bepalen wat essentieel is op de print naast LED + sockets -> advies hierboven (`2026-10-06`)
 - [x] Level shifter 3,3 V <-> 5 V uitzoeken -> **TXB0104** (`2026-10-06`)
-- [x] Bescherming van de voeding uitzoeken -> **PTC + P-MOSFET + TVS SMBJ10A** (`2026-10-06`)
+- [x] Bescherming van de voeding uitzoeken -> **PTC + TVS SMBJ10A**; geen P-MOSFET (`2026-10-06`)

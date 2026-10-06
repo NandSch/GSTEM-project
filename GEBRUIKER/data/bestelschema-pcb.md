@@ -56,26 +56,26 @@ Prijs (netto) = € 12,00 job fee + € 0,067 per cm² x oppervlak x aantal
 Wat rechtstreeks op de draagprint komt (niet de losse modules). Bron: [[componenten]],
 [[open-vragen]] `2026-10-06`.
 
-### 3a. Apart te bestellen (geen link bij Kiwi/antratek) — schatting
+### 3a. Apart te bestellen — nu gevonden bij EU-winkels (`2026-10-06`)
 
-| Onderdeel | Type | Aantal | Prijs/st | Regel | Bron |
+| Onderdeel | Type / bestelcode | Aantal | Prijs/st | Regel | Winkel |
 | --- | --- | --- | --- | --- | --- |
-| Sockets | Dual-wipe (XIAO) + precisie/gefreesd (rest) | set | € 5,00 | € 5,00 | schatting, zie [[pcb-methodes-kosten]] |
-| Voedingsbescherming | 2 A PTC + P-MOSFET DMG2301L + TVS SMBJ10A | 1 set | € 0,95 | € 0,95 | schatting (Mouser/LCSC) |
-| LDO 3,3 V | AP2112K-3.3 (SOT-23-5) | 1 | € 0,35 | € 0,35 | schatting |
-| Schroefklem | 4-pins 3,5 mm KF128/KF301 | 1 | € 0,55 | € 0,55 | schatting |
-| Montage | M3-schroeven, moeren, standoffs, nylon spacers | set | € 4,00 | € 4,00 | schatting |
-| **Subtotaal 3a** | | | | **€ 10,85** | |
+| Sockets | Dual-wipe (XIAO) + precisie/turned-pin Preci-Dip | set | ± € 5,00 | € 5,00 | TME / RS / Mouser |
+| Voedingsbescherming | 2 A PTC **Littelfuse 1812L200/16** + **SMBJ10A-TR** — **zonder P-MOSFET** (`2026-10-06`, zie [[afgevoerd]]) | 1 set | ± € 1,00 | € 1,00 | Mouser.be / TME |
+| LDO 3,3 V | **AP2112K-3.3TRG1** (SOT-23-5) | 1 | € 0,27 | € 0,27 | TME |
+| Schroefklem | 4-pins 3,5 mm **DEGSON DG250-3.5-04P** (of KF128) | 1 | € 0,61 | € 0,61 | HESTORE / TME |
+| Montage | M3-schroeven, moeren, standoffs, nylon spacers | set | € 8,00 | € 8,00 | TinyTronics (NL) |
+| **Subtotaal 3a** | | | | **± € 14,88** | |
 
 ### 3b. Al in de hoofd-[[bestellijst]] (Kiwi/antratek)
 
 | Onderdeel | Type | Prijs (aankoop) | Verbruik per bord | Bron |
 | --- | --- | --- | --- | --- |
 | Level shifter | TXB0108 (Kiwi) | € 8,70 | € 8,70 | [[bestellijst]] |
-| Power-LED + serieweerstand | 3 mm LED + 330 Ω (10-packs) | € 2,16 | ± € 0,22 | [[bestellijst]] |
+| Power-LED + serieweerstand | 3 mm LED + 330 Ω (10-packs) — **heeft de gebruiker thuis** (`2026-10-06`) | € 0,00 | € 0,00 | [[bestellijst]] |
 | Ontkoppelcondensatoren | Keramische kit (15 soorten) | € 10,27 | ± € 0,50 | [[bestellijst]] |
 | Bulk-elco | 100 µF / 16 V | € 0,59 | € 0,59 | [[bestellijst]] |
-| **Subtotaal 3b (per bord gebruikt)** | | | **± € 10,01** | |
+| **Subtotaal 3b (per bord gebruikt)** | | | **± € 9,79** | |
 
 > [!note] Level shifter: breakout of IC
 > De [[bestellijst]] koos de **TXB0108-breakout (€ 8,70)** voor het gemak. Soldeer je de
@@ -87,8 +87,8 @@ Wat rechtstreeks op de draagprint komt (niet de losse modules). Bron: [[componen
 
 | Variant | Bedrag |
 | --- | --- |
-| Met TXB0108-breakout | **± € 20,86** |
-| Met TXB0104-IC direct gesoldeerd | ± € 13,96 |
+| Met TXB0108-breakout | **± € 24,67** |
+| Met TXB0104-IC direct gesoldeerd | ± € 17,77 |
 | Optioneel: PCB-barreljack (i.p.v. adapter met schroefklem) | + € 1,00 |
 
 ## 4. Bestelvolgorde en timing
@@ -97,27 +97,28 @@ Wat rechtstreeks op de draagprint komt (niet de losse modules). Bron: [[componen
 - [ ] 2. **Bordafmeting definitief nameten** → prijs in AISLER-calculator controleren.
 - [ ] 3. **Print bestellen bij AISLER** — Gerber/ODB++ of native KiCad-bestand uploaden, rendering nakijken, 3 of 6 stuks, Budget-service.
 - [ ] 4. **Tegelijk: PCB-onderdelen bestellen** — de `geen-link`-set (sockets, voeding, LDO, klem, montage); levertijd is de bottleneck, dus vroeg bestellen.
-- [ ] 5. **Kiwi/antratek-bestelling** — level shifter, LED, condensatoren, elco zitten al in de hoofd-[[bestellijst]].
+- [ ] 5. **Kiwi/antratek-bestelling** — level shifter, condensatoren, elco zitten al in de hoofd-[[bestellijst]]; de **LED + 330 Ω heeft de gebruiker thuis** (`2026-10-06`).
 - [ ] 6. **Ontvangst en controle** — Gerber-rendering vergelijken met het echte bord (AISLER Rendering Guarantee), daarna solderen.
 
 > [!tip] Timing
 > AISLER Budget: bord in **± 2 werkdagen** gemaakt, daarna verzending (Europa ± 1-3 dagen).
-> De **losse onderdelen** uit China (o.a. discrete voeding) duren langer → die eerst bestellen.
+> De **losse onderdelen** komen nu bij **EU-winkels** (TME, Eckstein, TinyTronics, Mouser) → geen
+> lange levertijd of invoer uit China meer.
 
 ## 5. Totaaloverzicht (schatting, incl. btw, 3 borden)
 
 | Post | Bedrag |
 | --- | --- |
 | AISLER print, 3 st., 75 cm² Budget | € 32,76 |
-| Onderdelen op de print (met TXB0108) | € 20,86 |
-| **Totaal dit bestelschema** | **± € 53,62** |
-| _waarvan al in de hoofd-[[bestellijst]]_ | _± € 10,01_ |
-| **Werkelijk nieuw te bestellen** | **± € 43,61** |
+| Onderdelen op de print (met TXB0108) | € 24,67 |
+| **Totaal dit bestelschema** | **± € 57,43** |
+| _waarvan al in de hoofd-[[bestellijst]]_ | _± € 9,79_ |
+| **Werkelijk nieuw te bestellen** | **± € 47,64** |
 
 > [!warning] Niet inbegrepen
 > De **losse modules** (XIAO-kit, BNO085, BMP581, LC29H, GNSS-antenne, pigtail), accu, buck en
-> barrel-adapter. Die staan in de hoofd-[[bestellijst]] (€ 115,41 voor Kiwi + antratek, exclusief
-> de `geen-link`-module LC29H). Dit schema dekt **enkel de print + wat erop gesoldeerd wordt**.
+> barrel-adapter. Die staan in de hoofd-[[bestellijst]] (losse modules bij Kiwi, antratek en de
+> EU-winkels). Dit schema dekt **enkel de print + wat erop gesoldeerd wordt**.
 
 ## Gerelateerd
 

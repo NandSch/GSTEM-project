@@ -332,3 +332,33 @@ Chronologisch, nieuwste onderaan. Eén subsectie per beslissing.
 - **Reden:** Gebruikersvraag `2026-10-06`: een beeld van de **eindtoestand** met alle breakouts, exacte componenten, de Arduino en de verbindingen. De bestaande schets gebruikte nog de oudere BNO055/BMP390-varianten.
 - **Gevolg:** Het eindbeeld toont de voedingsbussen (5 V / 3,3 V / GND), I2C, GNSS-UART, de Arduino-UART via de **TXB0104**, de LoRa-RF en de 4-aderige kabel naar de Arduino. De **pinout blijft een voorstel** (open AI-taak); schematisch en niet op schaal. Vastgelegd in [[pcb-schets]] en [[links]].
 - **Link:** [[pcb-schets]], [[links]], [[componenten]]
+
+## 2026-10-06 — LC29H(DA) als breakout + overige artikelen bij EU-winkels
+- **Beslissing:** De RTK-GNSS-module wordt een **breakout board**: de **Waveshare LC29H(DA) GPS/RTK HAT (SKU 25279)**, gekocht bij **Botland (Polen, EU)** voor **€ 70,50 incl. btw**. De module wordt **niet** als losse SMD-module gekocht. De overige `geen-link`-onderdelen komen bij **EU-winkels**: LDO AP2112K-3.3TRG1 + TVS SMBJ10A bij **TME (PL)**, P-MOSFET DMG2301L-7 + PTC Littelfuse 1812L200/16 bij **Mouser.be/DigiKey (EU-magazijn)**, 4-pins 3,5 mm schroefklem DEGSON DG250-3.5-04P bij **HESTORE (HU)**/TME, precisie/dual-wipe sockets bij **TME**/RS, en de M3-montageset bij **TinyTronics (NL)**.
+- **Reden:** Gebruikersaanwijzing `2026-10-06`: zoek de resterende artikelen bij **andere websites**, liefst **EU** (China enkel als het echt moet), en de **LC29H(DA) moet een breakout board** zijn. Botland/Kamami/HESTORE zijn EU (geen invoer), de HAT is kant-en-klaar en levert de antenne mee.
+- **Gevolg:** Alle `geen-link`-onderdelen zijn nu vindbaar; de **aparte GNSS-antenne (€ 16,93) vervalt** omdat de HAT een **dual-band actieve L1/L5-antenne** meelevert. Te-bestellen-totaal ± **€ 184,48** incl. btw (Kiwi + antratek + Botland + TME/Mouser + TinyTronics). Let op: de HAT is **65 × 30,5 mm met 40-pins header** — footprint op de draagprint nog afwegen. Bijgewerkt in [[bestellijst]], [[bestelschema-pcb]], [[links]] en [[open-vragen]]; de Excel `documenten/Bestellijst-GSTEM.xlsx` is **herbouwd** via `documenten/build-bestellijst.py` (per-winkel-subtotalen, EUR 184,16 onderdelen / EUR 216,92 incl. AISLER-print).
+- **Link:** [[bestellijst]], [[links]], [[bestelschema-pcb]], [[open-vragen]], [[componenten]]
+
+## 2026-10-06 — GPS/RTK-module gekocht bij Eckstein (DE), niet Botland
+- **Beslissing:** De **Waveshare LC29H(DA) GPS/RTK HAT (art. WS25279, EAN 4060137304156)** wordt besteld bij **Eckstein (Duitsland, EU)** voor **€ 71,39 incl. btw**, i.p.v. de eerdere keuze **Botland** (€ 70,50 incl.).
+- **Reden:** Gebruikersaanwijzing `2026-10-06` ("pak de gps maar van Eckstein"). Eckstein is een Duitse EU-winkel met prijs in EUR en snelle levering; het bord blijft dezelfde **breakout** (geen losse SMD-module).
+- **Gevolg:** Te-bestellen-onderdelen stijgen van **€ 184,16** naar **€ 185,05** incl. btw (+ € 0,89); incl. AISLER-print **€ 217,81**. Alternatieven blijven Kamami (PL, ± € 63) en Botland (PL/DE, € 70,50); HESTORE (HU, ± € 110 incl.) is te duur. Bijgewerkt in [[bestellijst]], [[gps-rtk-prijzen]], [[bestelbaarheid]], [[links]] en [[open-vragen]]; de Excel `documenten/Bestellijst-GSTEM.xlsx` is **herbouwd** via `documenten/build-bestellijst.py` (nieuwe status `eckstein`).
+- **Link:** [[bestellijst]], [[gps-rtk-prijzen]], [[links]], [[open-vragen]]
+
+## 2026-10-06 — Geen P-MOSFET-ompoolbeveiliging
+- **Beslissing:** De **P-MOSFET-ompoolbeveiliging vervalt**. Noch de **DMG2301L** noch het alternatief **AO3401A** komt op de print of op de bestellijst. De **2 A PTC-zekering** en de **TVS SMBJ10A** blijven behouden.
+- **Reden:** Gebruikersaanwijzing `2026-10-06` ("Zet P-MOSFET-keuze: dat we dat niet doen"). Bijkomend: de DMG2301L was met Vgs(max) ±8 V te krap voor een 2S-accu van max 8,4 V, en TME had de `-13` niet op voorraad (MOQ 10 000).
+- **Gevolg:** Omgekeerd aansluiten wordt **fysiek** voorkomen met een **gepolariseerde connector** (XT60/JST-XH) i.p.v. elektronisch. Te-bestellen-onderdelen dalen van **€ 185,05** naar **€ 184,75** incl. btw (− € 0,30); incl. AISLER-print **€ 217,51**. Bijgewerkt in [[bestellijst]], [[componenten]], [[specificaties]], [[bestelschema-pcb]], [[open-vragen]] en [[afgevoerd]]; de Excel `documenten/Bestellijst-GSTEM.xlsx` is **herbouwd** (nieuwe `niet nodig`-regel).
+- **Link:** [[bestellijst]], [[componenten]], [[specificaties]], [[bestelschema-pcb]], [[open-vragen]], [[afgevoerd]]
+
+## 2026-10-06 — Power-LED + 330 Ω-weerstand al in bezit
+- **Beslissing:** De **3 mm rode LED (10-pack)** en de **330 Ω-weerstand (10-pack)** staan op `al in bezit`: de gebruiker heeft ze **thuis**. Ze worden **niet** bij Kiwi besteld.
+- **Reden:** Gebruikersaanwijzing `2026-10-06`.
+- **Gevolg:** Kiwi Electronics zakt van **€ 64,65** naar **€ 62,49**; te-bestellen-onderdelen van **€ 184,75** naar **€ 182,59** incl. btw (incl. AISLER-print **€ 215,35**). In [[bestelschema-pcb]] zakt subtotaal 3b van **€ 10,01** naar **€ 9,79** en het printtotaal van **€ 57,65** naar **€ 57,43**; **werkelijk nieuw te bestellen blijft € 47,64**. Bijgewerkt in [[bestellijst]], [[bestelschema-pcb]] en [[bestelbaarheid]]; de Excel `documenten/Bestellijst-GSTEM.xlsx` is **herbouwd** via `documenten/build-bestellijst.py` (status `al in bezit`).
+- **Link:** [[bestellijst]], [[bestelschema-pcb]], [[bestelbaarheid]]
+
+## 2026-10-06 — Blender-mock-up: volledige opstelling in 3D
+- **Beslissing:** Er komt een **Blender-mock-up** van het volledige toestel: de draagprint met de breakouts op sockets, de losse printonderdelen, de antennes/bekabeling, de **Arduino Uno met servo's**, de **tweede XIAO-kit** als LoRa-ontvanger en de laptopzijde. Gebouwd met het herhaalbare sript `documenten/blender/build_gstem_mockup.py`, opgeslagen als `documenten/blender/gstem-mockup.blend`, met **drie studio-renders** in `documenten/blender/renders/`.
+- **Reden:** Gebruikersvraag `2026-10-06`: een semi-accurate model plus een paar renders van de print met alle breakouts en toebehoren verbonden (medium detail, maar accuraat).
+- **Gevolg:** Modulevarianten **BNO085 + BMP581** (zoals [[bestellijst]] en `documenten/PCB-eindbeeld.png`; [[componenten]] noemt nog BNO055/BMP390). Bordafmeting **100 x 75 mm** uit [[bestelschema-pcb]], modulematen uit de **datasheets** ([[gstem-hardware-afmetingen]]). Belangrijkste vondst: de **LC29H(DA) is een 65 x 30,5 mm Pi-HAT**, geen klein breakout. De **layout op de print is een voorstel** — de KiCad-layout bestaat nog niet. Zie [[blender-mockup]].
+- **Link:** [[blender-mockup]], [[gstem-hardware-afmetingen]], [[pcb-schets]], [[componenten]]

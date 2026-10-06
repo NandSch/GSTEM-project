@@ -139,12 +139,12 @@ Technische en functionele afspraken. Eén subsectie per specificatie.
 
 ## 2026-10-06 — Componentenronde 1: barometer, RTK, sockets, voeding en mock-up
 - **Specificatie:** Barometer **Adafruit BMP390** (meest accurate, ±3 Pa, laagste ruis). RTK-GNSS **Quectel LC29H(DA)** (dual-band L1+L5, rover) met **NTRIP-correctie** via de laptop (geen eigen basisstation). Sockets: **dual-wipe** voor de XIAO, **precisie/gefreesd** voor de overige modules. Voeding: **7,4 V-accu + barrel-connector + buck 5 V** (buck heeft de gebruiker), **geen aan/uit-schakelaar** (toestel start bij voeding). **LoRa-ontvanger = tweede XIAO-kit** met USB A-kabel. Mock-up: **Arduino Uno**, eigen servo's (> 3), aparte buck als servo-voeding, eigen 3D-print. **Gereedschap is volledig aanwezig.**
-- **Status:** gekozen; bescherming van de voeding (zekering/ompoolbeveiliging/TVS), LDO 3,3 V, level shifter en LoRa IPEX-pigtail blijven open.
+- **Status:** gekozen; bescherming van de voeding (`2026-10-06`: **PTC + TVS**, geen P-MOSFET), LDO 3,3 V, level shifter en LoRa IPEX-pigtail blijven open.
 - **Bron:** gebruikersaanwijzingen `2026-10-06`; volledige werklijst in [[componenten]] en [[beslissingen]].
 - **Gevolg:** De meeste bordkritische keuzes zijn gemaakt; de resterende open punten staan in [[open-vragen]]. De LDO 3,3 V is mogelijk overbodig omdat de XIAO zelf 3,3 V levert.
 
 ## 2026-10-06 — Componentenronde 2: uitbreidingsconnector, level shifter en voeding
-- **Specificatie:** Uitbreidingsconnector = **4-pins schroefklem 3,5 mm (KF128/KF301)**, pinout GND/+5 V/TX/RX. Level shifter = **TXB0104** (4-kanaals bidirectioneel, VCCA 3,3 V, VCCB 5 V) op de draagprint. **I2C-pull-ups niet op de print** (BNO055 en BMP390 hebben ze al). Voedingsbescherming = **2 A PTC + P-MOSFET (DMG2301L) + TVS SMBJ10A** + bulk-elco 100 uF/16 V. Extra 3,3 V-rail = **AP2112K-3.3**.
+- **Specificatie:** Uitbreidingsconnector = **4-pins schroefklem 3,5 mm (KF128/KF301)**, pinout GND/+5 V/TX/RX. Level shifter = **TXB0104** (4-kanaals bidirectioneel, VCCA 3,3 V, VCCB 5 V) op de draagprint. **I2C-pull-ups niet op de print** (BNO055 en BMP390 hebben ze al). Voedingsbescherming = **2 A PTC + TVS SMBJ10A** (de P-MOSFET-ompoolbeveiliging **vervalt**, `2026-10-06`) + bulk-elco 100 uF/16 V. Extra 3,3 V-rail = **AP2112K-3.3**.
 - **Status:** gekozen; op te nemen in het schema en de stuklijst.
 - **Bron:** gebruikersaanwijzingen `2026-10-06`; zie [[componenten]] en [[beslissingen]].
 - **Gevolg:** De printstuklijst is daarmee bijna compleet. De LoRa-ontvanger (tweede XIAO) heeft **geen** losse LDO nodig: die krijgt 3,3 V via USB uit de XIAO zelf.
@@ -154,3 +154,9 @@ Technische en functionele afspraken. Eén subsectie per specificatie.
 - **Status:** gekozen; op de bestellijst.
 - **Bron:** gebruikersaanwijzing `2026-10-06`; zie [[componenten]] en [[beslissingen]].
 - **Gevolg:** Beide antennes staan op de bestellijst. De behuizing krijgt een **SMA-bulkhead**-doorvoer voor de LoRa-antenne. De NTRIP-provider wordt een **gratis** dienst die de gebruiker zelf zoekt.
+
+## 2026-10-06 — Specificatie van de Blender-mock-up
+- **Specificatie:** Model in **millimeters**, opgebouwd in collecties (`00_Studio` t/m `05_Mockup`). Draagprint 100 x 75 x 1,6 mm, afgeronde hoeken r 3 mm, 4x M3-gat (3,2 mm) op 4 mm van de rand. Modules op sockets; kabels als curve-geometrie. Studio-opstelling met donkere achtergrond en vier area-lights; gerenderd in **Cycles** (64 samples, denoising). Drie camera's: **orthografisch bovenaanzicht** (enkel de print), **3/4-perspectief** van de volledige opstelling, en een **detail** van de voeding plus de XIAO-socket.
+- **Status:** model gebouwd; de **layout is een voorstel** zolang de KiCad-layout niet bestaat.
+- **Bron:** gebruikersaanwijzingen `2026-10-06`; maten uit [[gstem-hardware-afmetingen]].
+- **Gevolg:** De use-case `print + modules` en `plus antennes en bekabeling` zijn in het model opgenomen; de mock-up (Arduino, servo's, ontvanger, laptop) zit in de collectie `05_Mockup` en wordt bij het bovenaanzicht verborgen. Bestanden in [[blender-mockup]].

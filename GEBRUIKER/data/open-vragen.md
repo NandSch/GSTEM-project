@@ -38,7 +38,7 @@ tags: [gstem, data, open-vragen]
 - [x] **Waar komen de RTK-correctiegegevens vandaan?** — `2026-10-06`: een **NTRIP-dienst** via de laptop (geen eigen basisstation). Enkel de **provider** (gratis/betaald) blijft nog te kiezen. (`2026-10-05`)
 - [ ] **Welke NTRIP-provider en abonnement?** — `2026-10-06`: wordt een **gratis** dienst; de **gebruiker zoekt die zelf**. Vraagt internet op de laptop tijdens het meten. (`2026-10-06`)
 - [x] **Welke level shifter voor de UART 3,3 V <-> 5 V?** — `2026-10-06`: **TXB0104** (4-kanaals bidirectioneel) op de draagprint; VCCA 3,3 V, VCCB 5 V. (`2026-10-06`)
-- [x] **Zekering, ompoolbeveiliging en TVS: welke onderdelen?** — `2026-10-06`: **2 A PTC-zekering + P-MOSFET ompoolbeveiliging (DMG2301L) + TVS SMBJ10A**. (`2026-10-06`)
+- [x] **Zekering, ompoolbeveiliging en TVS: welke onderdelen?** — `2026-10-06`: **2 A PTC-zekering + TVS SMBJ10A**; de **P-MOSFET-ompoolbeveiliging vervalt** (`2026-10-06`).
 - [x] **Is een losse LDO 3,3 V nodig?** — `2026-10-06`: ja, **AP2112K-3.3** voor een eigen 3,3 V-rail. Let op: de LoRa-ontvanger (tweede XIAO) krijgt 3,3 V via USB uit de XIAO zelf. (`2026-10-06`)
 - [x] **Exacte uitbreidingsconnector voor de UART?** — `2026-10-06`: **4-pins schroefklem 3,5 mm (KF128/KF301)**, pinout GND/+5 V/TX/RX. (`2026-10-06`)
 - [x] **LoRa IPEX -> SMA-pigtail en SMA-bulkhead?** — `2026-10-06`: **nodig**, de antenne wordt buiten het vliegtuigje geconnecteerd; gekozen: IPEX/U.FL -> SMA female bulkhead pigtail. (`2026-10-06`)
@@ -54,16 +54,28 @@ tags: [gstem, data, open-vragen]
 - [x] **Dubbele I2C-pull-ups en level shifter: welke breakouts hebben al pull-ups, en is 5 V-aansturing nodig?** — `2026-10-06`: de BNO055- en BMP390-breakouts hebben al pull-ups, dus **geen extra op de print**; de **TXB0104** verzorgt de 3,3 V <-> 5 V voor de UART. (`2026-10-06`)
 
 - [x] **Socket-headers of een alternatief (precisie-sockets, direct solderen, castellated, board-to-board)?** — `2026-10-06`: **dual-wipe** voor de XIAO, **precisie/gefreesd** voor de overige modules. (`2026-10-06`)
-- [x] **Wat komt er precies op de print zelf?** — `2026-10-06`: **LED + sockets** plus ontkoppeling, bulk-elco, schroefklem, level shifter (TXB0104), LDO (AP2112K-3.3) en voedingsbescherming (PTC/P-MOSFET/TVS). De **buck, accu, barrel-connector en sensormodules** blijven losse modules. Zie [[componenten]]. (`2026-10-06`)
+- [x] **Wat komt er precies op de print zelf?** — `2026-10-06`: **LED + sockets** plus ontkoppeling, bulk-elco, schroefklem, level shifter (TXB0104), LDO (AP2112K-3.3) en voedingsbescherming (PTC + TVS; geen P-MOSFET). De **buck, accu, barrel-connector en sensormodules** blijven losse modules. Zie [[componenten]]. (`2026-10-06`)
 
 ## Nog te beslissen: bestellijst (`2026-10-06`)
 
-- [ ] **BMP390 en LC29H(DA) niet op antratek** — kiezen of elders bestellen of een antratek-alternatief nemen (LG290P of ZED-F9P).
-- [ ] **Barometer: beter model dan de BME280** — `2026-10-06`: gebruiker kiest liever een **nauwkeuriger model** (BMP390 of beter) i.p.v. de BME280. antratek heeft geen BMP390/BMP388/BMP581; **zoeken op andere leveranciers is door de gebruiker uitgesteld** (nog niet doen). BME280 staat voorlopig als plaatsvervanger in [[bestellijst]].
-- [ ] **Level shifter** — gekozen TXB0104 staat niet op antratek; het gevonden bidirectionele Logic Level Converter (BSS138) als alternatief aanvaarden?
-- [ ] **GNSS-antenne** — dure L1/L5-antenne (EUR 120,94) of goedkopere magneetantenne (EUR 19,30)?
+- [x] **BMP390 en LC29H(DA) niet op antratek** — `2026-10-06`: BMP581 bij **Kiwi**; LC29H(DA) als **Waveshare LC29H(DA) GPS/RTK HAT** bij **Eckstein (DE, EU)**, € 71,39 incl. Zie [[bestellijst]] en [[links]].
+- [ ] **Barometer: beter model dan de BME280** — `2026-10-06`: gebruiker kiest liever een **nauwkeuriger model** (BMP390 of beter) i.p.v. de BME280. antratek heeft geen BMP390/BMP388/BMP581; **Kiwi heeft de BMP581 (€ 10,88) op voorraad** — daarmee opgelost, nog te bevestigen bij bestelling.
+- [ ] **Level shifter** — gekozen TXB0108-breakout bij Kiwi (€ 8,70); de open keuze blijft breakout vs. **TXB0104-IC** rechtstreeks (± € 1,80).
+- [x] **GNSS-antenne** — `2026-10-06`: **vervalt** als aparte aankoop; de LC29H(DA)-HAT levert een **dual-band actieve L1/L5-antenne** mee (beter én bespaart € 16,93).
 - [ ] **Barrel-connector** — PCB-montage of de adapter met schroefklem gebruiken?
+- [x] **Overige `geen-link`-onderdelen** — `2026-10-06`: gevonden bij EU-winkels: **TME** (LDO AP2112K-3.3TRG1, TVS SMBJ10A, schroefklem, sockets), **Mouser.be/DigiKey** (PTC 1812L200/16), **HESTORE** (schroefklem DEGSON DG250-3.5-04P), **TinyTronics (NL)** (M3-montage).
+- [x] **P-MOSFET ompoolbeveiliging: DMG2301L of AO3401A?** — **Beslissing `2026-10-06`: geen van beide — de P-MOSFET vervalt.** Er komt **geen ompoolbeveiliging**; voorkom omgekeerd aansluiten met een **gepolariseerde connector** (XT60/JST-XH). De PTC-zekering en de TVS blijven behouden. Zie [[beslissingen]], [[afgevoerd]] en [[componenten]].
+- [ ] **Sockets: Preci-Dip of standaard?** — `2026-10-06`: bij **TME** is de Preci-Dip socket enkel **business/MOQ 380** (`external stock`); bij Mouser/DigiKey/RS bestaat hij wel maar prijs/voorraad onbevestigd. Praktischer: **standaard 2,54 mm turned-pin (machined) sockets of dual-wipe headers** uit de hobbyhandel. Zie [[bestelbaarheid]].
+- [x] **GPS/RTK-winkel** — `2026-10-06`: **Eckstein (DE, EU) gekozen**, € 71,39 incl. (art. WS25279, EAN 4060137304156). Alternatieven blijven Kamami (± € 63) en Botland (€ 70,50); HESTORE (± € 110 incl.) is te duur. Zie [[gps-rtk-prijzen]].
+- [ ] **Footprint/montage LC29H(DA)-HAT (65 × 30,5 mm, 40-pins) op de draagprint** — Montage als **HAT** (2×20-header op de draagprint), als **los sub-bord aan de rand** (bekabeld, SMA naar buiten, M3-standoffs) of een **kleinere breakout** kiezen? Bepaalt de bordafmeting en dus de AISLER-prijs. Zie [[pcb-ontwerp]] en [[bestellijst]].
 
 ## AI-taken (voert de AI later uit)
 
 - [ ] **Pinout-tabel XIAO opstellen** en controleren of ± 14 I/O volstaat voor IMU + barometer + GNSS + UART; anders I2C-multiplexer/expander voorzien. (`2026-10-06`, zie [[componenten]] en [[beslissingen]])
+
+## Nog te beslissen: Blender-mock-up en HAT-montage (`2026-10-06`)
+
+- [ ] **Past de LC29H(DA)-HAT (65 x 30,5 mm) op een bord van 100 x 75 mm?** — In de mock-up staat hij als **verticale strook van 30,5 x 65 mm** rechts op de print; dan blijft net genoeg ruimte voor de rest. Alternatieven: een **kleiner breakout** kiezen, of de HAT **los naast de print** leggen en bekabelen. Bepaalt de bordafmeting en dus de AISLER-prijs. Zie [[blender-mockup]] en [[bestelschema-pcb]].
+- [ ] **Welke sensormodellen zijn definitief: BNO085/BMP581 of BNO055/BMP390?** — De **mock-up en de bestellijst** gebruiken **BNO085 (25,6 x 22,7 mm) en BMP581 (25,4 x 17,8 mm)**; [[componenten]] noemt nog de oudere **BNO055/BMP390**. De nieuwere zijn groter, wat de layout beinvloedt. Kiezen zodra de KiCad-layout start.
+- [ ] **Onderdelenposities op de print vastleggen** — De Blender-mock-up is een **plausibel voorstel**; de echte posities komen pas met de KiCad-layout. Daarna de mock-up bijwerken. (`2026-10-06`)
+- [ ] **Gatposities nameten** — Arduino-gaten, servo-flens, paneelgat barrel jack en de exacte BMP581-maat zijn nog niet met de schuifmaat gecontroleerd. Zie [[gstem-hardware-afmetingen]].

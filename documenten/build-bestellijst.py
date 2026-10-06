@@ -3,8 +3,9 @@
 
 Uitvoeren:  python documenten/build-bestellijst.py
 Bron/afspraken: GEBRUIKER/data/bestellijst.md en GEBRUIKER/data/componenten.md
-Strategie: zo veel mogelijk bij Kiwi Electronics (BE/NL) om verzendkosten te beperken;
-wat daar goedkoper is of als reserve dient, bij antratek.be.
+Strategie: zo veel mogelijk bij Kiwi Electronics (NL) om verzendkosten te beperken; wat daar
+goedkoper is of als reserve dient, bij antratek.be. De rest komt bij EU-winkels (TME, Eckstein,
+HESTORE, TinyTronics, Mouser.be/DigiKey met EU-magazijn); China enkel als terugval.
 """
 
 import os
@@ -30,15 +31,20 @@ RIJEN = [
      "kiwi", "Kiwi Electronics",
      "https://www.kiwi-electronics.com/nl/adafruit-bmp581-i2c-spi-druk-en-temperatuursensor-stemma-qt-20534",
      "Nauwkeuriger dan BME280; BMP390L is bij Kiwi uit voorraad en niet op antratek"),
-    ("Sensoren", "RTK-GNSS-module", "Quectel LC29H(DA)", 1, None, "geen link", "-",
-     "", "Niet bij Kiwi (alleen niet-RTK L76K) of antratek. Alternatief: LG290P RTK (EUR 217,74) "
-     "of ZED-F9P (EUR 302,44)"),
+    ("Sensoren", "RTK-GNSS-module (breakout)",
+     "Waveshare LC29H(DA) GPS/RTK HAT (SKU 25279), incl. actieve dual-band L1/L5-antenne "
+     "+ IPEX-naar-SMA-kabel + 40-pins header", 1, 71.39, "eckstein", "Eckstein (Duitsland, EU)",
+     "https://eckstein-shop.de/lc29h-dual-band-gps-module-raspberry-pi_1",
+     "GEKOZEN door gebruiker (2026-10-06): Eckstein, art. WS25279 / EAN 4060137304156, EUR 71,39 incl. "
+     "Kant-en-klare breakout/HAT (geen losse SMD-module), 65x30,5 mm. Alternatieven: Kamami (PL) ca. "
+     "EUR 63; Botland (PL/DE) EUR 70,50; HESTORE (HU) EUR 91,21 excl. (ca. EUR 110 incl.). "
+     "Niet-EU: 7Semi LC29HDA RTK Board (Qwiic/USB-C, ca. USD 42, India)"),
 
-    ("Antennes en RF", "GNSS-antenne (actief, SMA)",
-     "GPS Antenne - Externe Actieve Antenne - 3-5V 28dB 5 Meter SMA", 1, 16.93,
-     "kiwi", "Kiwi Electronics",
-     "https://www.kiwi-electronics.com/nl/gps-antenne-externe-actieve-antenne-3-5v-28db-5-meter-sma-620",
-     "Goedkoopste passende actieve SMA-antenne (L1). Upgrade voor dual-band RTK: L1/L5-antenne EUR 120,94"),
+    ("Antennes en RF", "GNSS-antenne (actief, L1/L5, SMA)",
+     "Inbegrepen bij de Waveshare LC29H(DA) HAT (dual-band actieve antenne)", 1, None,
+     "al in bezit", "-", "",
+     "Aparte antenne vervalt: de HAT levert een betere dual-band L1/L5-antenne mee "
+     "(bespaart EUR 16,93 t.o.v. de losse Kiwi L1-antenne)"),
     ("Antennes en RF", "LoRa IPEX/U.FL naar SMA pigtail", "Interface Cable SMA to U.FL (150 mm)",
      1, 3.57, "antratek", "antratek.be", "https://www.antratek.be/u-fl-sma-150mm-cable",
      "Goedkoper op antratek (EUR 3,57) dan Kiwi (EUR 4,22); bulkhead-bevestiging apart controleren"),
@@ -51,12 +57,19 @@ RIJEN = [
      1, None, "al in bezit", "-", "", "Adapter met schroefklem; geen PCB-montage"),
     ("Voeding", "Buck-converter 5 V", "Heeft de gebruiker", 1, None, "al in bezit", "-",
      "", "Referentie antratek: Buck Regulator Breakout 5V (EUR 12,04)"),
-    ("Voeding", "Bescherming voeding", "2 A PTC + P-MOSFET DMG2301L + TVS SMBJ10A", 1, 0.95,
-     "schatting", "componentenwinkel", "",
-     "Niet bij Kiwi of antratek; prijs is een schatting (Mouser/LCSC)"),
-    ("Voeding", "LDO 3,3 V", "AP2112K-3.3 (of AMS1117-3.3)", 1, 0.35, "schatting",
-     "componentenwinkel", "",
-     "Niet bij Kiwi of antratek; prijs is een schatting"),
+    ("Voeding", "Bescherming voeding",
+     "2 A PTC Littelfuse 1812L200/16 + TVS SMBJ10A-TR (zonder P-MOSFET)", 1, 1.00,
+     "mouser", "Mouser.be / DigiKey (EU-magazijn)",
+     "https://www.mouser.com/ProductDetail/Littelfuse/1812L200-16DR",
+     "PTC bij Mouser/DigiKey (EU); TVS SMBJ10A bij TME. P-MOSFET vervalt (beslissing 2026-10-06)."),
+    ("Voeding", "Ompoolbeveiliging (P-MOSFET)",
+     "P-MOSFET DMG2301L / AO3401A (SOT-23)", 1, None, "niet nodig", "-", "",
+     "BESLISSING 2026-10-06: NIET voorzien. Geen P-MOSFET-ompoolbeveiliging; voorkom omgekeerd "
+     "aansluiten met een gepolariseerde connector (XT60/JST-XH). Zie data/afgevoerd.md."),
+    ("Voeding", "LDO 3,3 V", "AP2112K-3.3TRG1 (Diodes Inc., SOT-23-5)", 1, 0.27, "tme",
+     "TME (Polen, EU)",
+     "https://www.tme.eu/en/details/ap2112k-3.3trg1/ldo-fixed-voltage-regulators/diodes-incorporated/",
+     "8000+ op voorraad bij TME"),
     ("Voeding", "Aan/uit-schakelaar", "Geen; toestel start bij voeding", None, None,
      "niet nodig", "-", "", ""),
 
@@ -72,16 +85,21 @@ RIJEN = [
      "Kiwi Electronics",
      "https://www.kiwi-electronics.com/nl/8-channel-bi-directional-logic-level-converter-txb0108-836",
      "Past bij de gekozen TXB-serie; antratek-alternatief BSS138-converter EUR 4,78"),
-    ("Print en verbindingen", "Schroefklem 4-pins 3,5 mm", "KF128/KF301", 1, 0.55, "schatting",
-     "componentenwinkel", "", "Niet bij Kiwi (alleen 3-weg) of antratek; prijs schatting"),
-    ("Print en verbindingen", "Sockets", "Dual-wipe (ESP32) + precisie voor de rest", 1, 5.00,
-     "schatting", "componentenwinkel", "",
-     "Niet bij Kiwi of antratek; prijs schatting (zie pcb-methodes-kosten)"),
+    ("Print en verbindingen", "Schroefklem 4-pins 3,5 mm",
+     "DEGSON DG250-3.5-04P-11-00A(H) (push-in) of KF128 (schroef)", 1, 0.61, "hestore",
+     "HESTORE (HU, EU) / TME",
+     "https://www.hestore.eu/en/prod_10044104.html",
+     "Kiwi heeft alleen 3-weg; de schroefvariant KF128 is in de EU minder courant"),
+    ("Print en verbindingen", "Sockets",
+     "Dual-wipe (XIAO) + precisie/turned-pin (Preci-Dip) voor de rest", 1, 5.00,
+     "tme", "TME / RS Components",
+     "https://int.rsdelivers.com/product/preci-dip/110-87-304-41-001101/preci-dip-110-254-mm-pitch-vertical-4-way-through/7020644P",
+     "Preci-Dip turned-pin sockets via TME of RS; dual-wipe headers via Mouser/TME"),
     ("Print en verbindingen", "Power-LED + serieweerstand",
-     "3 mm LED rood (10-pack) + weerstand 330 Ohm (10-pack)", 1, 2.16, "kiwi",
-     "Kiwi Electronics",
-     "https://www.kiwi-electronics.com/nl/3mm-led-diffuus-rood-10-pack-3085",
-     "10-packs: 1 LED + 1 weerstand nodig; weerstand EUR 0,96; rest overschot"),
+     "3 mm LED rood (10-pack) + weerstand 330 Ohm (10-pack) - heeft de gebruiker thuis",
+     1, None, "al in bezit", "-", "",
+     "HEEFT DE GEBRUIKER THUIS (2026-10-06): 10-pack rode 3 mm LED + 10-pack 330 Ohm; niet "
+     "aankopen. Referentie Kiwi: LED EUR 1,20 + weerstand EUR 0,96 = EUR 2,16"),
     ("Print en verbindingen", "Ontkoppelcondensatoren",
      "Keramische condensator kit (15 soorten, 450 st.) - dekt 100 nF + 10 uF", 1, 10.27,
      "kiwi", "Kiwi Electronics",
@@ -91,9 +109,11 @@ RIJEN = [
      "Kiwi Electronics", "https://www.kiwi-electronics.com/nl/100uf-16v-condensator-440", ""),
     ("Print en verbindingen", "I2C-pull-ups op de print",
      "Niet nodig; breakouts hebben ze al", 2, None, "niet nodig", "-", "", "2 reserve-footprints"),
-    ("Print en verbindingen", "Montage", "M3-schroeven, moeren, standoffs, nylon spacers", 1, 4.00,
-     "schatting", "componentenwinkel", "",
-     "Niet bij Kiwi of antratek; prijs schatting"),
+    ("Print en verbindingen", "Montage",
+     "M3-schroeven, moeren, afstandsbusjes, nylon spacers", 1, 8.00,
+     "tinytronics", "TinyTronics (NL, EU)",
+     "https://www.tinytronics.nl/nl/gereedschap-en-montage/installatie-en-montagemateriaal/afstandsbusjes/m3-afstandsbusje-kit",
+     "Alternatief: Bits & Parts (NL) 180-delige M3-set EUR 6,95"),
 
     ("Kabels en verbruik (in bezit)", "USB-C datakabel", "Eigen kabel", 1, None, "al in bezit",
      "-", "", ""),
@@ -122,6 +142,11 @@ BREEDTES = [24, 30, 46, 8, 14, 14, 12, 16, 52, 52]
 KLEUR_STATUS = {
     "kiwi": "DDEBF7",
     "antratek": "C6EFCE",
+    "eckstein": "FFF2CC",
+    "tme": "FCE4D6",
+    "mouser": "E2EFDA",
+    "hestore": "F8CBAD",
+    "tinytronics": "DDEBF7",
     "aisler": "E1D5E7",
     "schatting": "FCE4D6",
     "al in bezit": "D9D9D9",
@@ -143,7 +168,8 @@ def bouw():
     # Titel
     ws.merge_cells("A1:J1")
     ws["A1"] = ("Bestellijst G-Stem meettoestel - prijzen incl. btw "
-                "(Kiwi Electronics + antratek + AISLER, 2026-10-06)")
+                "(Kiwi + antratek + Eckstein + TME + Mouser + HESTORE + TinyTronics + AISLER, "
+                "2026-10-06)")
     ws["A1"].font = Font(bold=True, size=13, color="FFFFFF")
     ws["A1"].fill = PatternFill("solid", fgColor=KLEUR_KOP)
     ws["A1"].alignment = Alignment(vertical="center", horizontal="left")
@@ -216,21 +242,34 @@ def bouw():
               '=SUMIF(G3:G%d,"kiwi",F3:F%d)' % (laatste_data, laatste_data))
     totaalrij("Totaal te bestellen bij antratek",
               '=SUMIF(G3:G%d,"antratek",F3:F%d)' % (laatste_data, laatste_data))
-    totaalrij("Subtotaal onderdelen (Kiwi + antratek)",
-              "=F%d+F%d" % (r - 2, r - 1))
+    totaalrij("Totaal te bestellen bij Eckstein (DE, EU)",
+              '=SUMIF(G3:G%d,"eckstein",F3:F%d)' % (laatste_data, laatste_data))
+    totaalrij("Totaal te bestellen bij TME (EU)",
+              '=SUMIF(G3:G%d,"tme",F3:F%d)' % (laatste_data, laatste_data))
+    totaalrij("Totaal te bestellen bij Mouser/DigiKey (EU)",
+              '=SUMIF(G3:G%d,"mouser",F3:F%d)' % (laatste_data, laatste_data))
+    totaalrij("Totaal te bestellen bij HESTORE (EU)",
+              '=SUMIF(G3:G%d,"hestore",F3:F%d)' % (laatste_data, laatste_data))
+    totaalrij("Totaal te bestellen bij TinyTronics (NL)",
+              '=SUMIF(G3:G%d,"tinytronics",F3:F%d)' % (laatste_data, laatste_data))
+    totaalrij("TOTAAL onderdelen - alle winkels (excl. AISLER-print)",
+              "=F%d+F%d+F%d+F%d+F%d+F%d+F%d" % (r - 7, r - 6, r - 5, r - 4, r - 3, r - 2, r - 1))
     totaalrij("Totaal draagprint bij AISLER (3 stuks)",
               '=SUMIF(G3:G%d,"aisler",F3:F%d)' % (laatste_data, laatste_data))
-    totaalrij("Totaal PCB-onderdelen (schatting, apart bestellen)",
-              '=SUMIF(G3:G%d,"schatting",F3:F%d)' % (laatste_data, laatste_data))
-    totaalrij("Totaal alles (incl. print + PCB-onderdelen)",
-              "=F%d+F%d+F%d" % (r - 3, r - 2, r - 1))
+    totaalrij("Totaal alles (onderdelen + AISLER-print)",
+              "=F%d+F%d" % (r - 2, r - 1))
     r += 1
 
     ws.cell(row=r, column=1,
-            value="Let op: prijzen onder voorbehoud (Kiwi Electronics + antratek + AISLER, 2026-10-06). "
-                  "De PCB-onderdelen op status 'schatting' zijn benaderd (o.a. sockets, discrete voeding, "
-                  "LDO, schroefklem, M3-montage). Het 'geen link'-onderdeel (RTK-module LC29H) is niet in "
-                  "de totalen opgenomen. Details: GEBRUIKER/data/bestelschema-pcb.md."
+            value="Let op: prijzen onder voorbehoud (2026-10-06). Alle voorheen 'geen link'- en "
+                  "'schatting'-onderdelen zijn nu gevonden bij EU-winkels: TME (LDO, TVS, sockets), "
+                  "Mouser/DigiKey (PTC), HESTORE (schroefklem), TinyTronics (M3-montage) en "
+                  "Eckstein (LC29H(DA)-breakout, gekozen 2026-10-06). De aparte GNSS-antenne vervalt "
+                  "(meegeleverd met de HAT). "
+                  "Bestelbaarheid gecontroleerd op 2026-10-06: alles is bestelbaar; lage voorraad bij "
+                  "Kiwi (BMP581 4 st., condensatorkit 2 st.). De LED + 330 Ohm-weerstand (10-packs) "
+                  "heeft de gebruiker thuis en is dus niet meer te bestellen. Details: "
+                  "GEBRUIKER/data/bestelbaarheid.md en GEBRUIKER/data/bestelschema-pcb.md."
             ).font = Font(italic=True, size=9)
 
     ws.freeze_panes = "A3"
@@ -245,6 +284,12 @@ def bouw():
     for tag, bet in [
         ("kiwi", "Aankooplink gevonden op Kiwi Electronics (kiwi-electronics.com)"),
         ("antratek", "Aankooplink gevonden op antratek.be (goedkoper of als reserve)"),
+        ("eckstein", "Eckstein (Duitsland, EU): Waveshare LC29H(DA)-breakout (gekozen)"),
+        ("tme", "TME (Polen, EU): LDO, TVS, schroefklem, precisie-sockets"),
+        ("mouser", "Mouser.be / DigiKey met EU-magazijn: PTC, exacte onderdelen"),
+        ("niet nodig", "Bewust niet voorzien (bv. P-MOSFET-ompoolbeveiliging, beslissing 2026-10-06)"),
+        ("hestore", "HESTORE (Hongarije, EU): schroefklem DEGSON"),
+        ("tinytronics", "TinyTronics (Nederland, EU): M3-montagesets"),
         ("aisler", "Gefabriceerd bij AISLER (EU); print zelf, geen componenten"),
         ("schatting", "Prijs is een schatting; apart te bestellen bij een componentenwinkel"),
         ("al in bezit", "Heeft de gebruiker al; niet aankopen"),
@@ -304,32 +349,34 @@ def bouw():
     sheet_rij("100 cm2 (100x100)", 38.84, 63.16, geld=True)
     rr += 1
 
-    sheet_kop("Onderdelen op de print")
+    sheet_kop("Onderdelen op de print (gevonden bij EU-winkels, 2026-10-06)")
     sheet_rij("Onderdeel", "Prijs (EUR)", "Leverancier", vet=True)
-    sheet_rij("Sockets (dual-wipe + precisie)", 5.00, "componentenwinkel (schatting)", geld=True)
-    sheet_rij("Voedingsbescherming (2 A PTC + DMG2301L + SMBJ10A)", 0.95,
-              "componentenwinkel (schatting)", geld=True)
-    sheet_rij("LDO AP2112K-3.3", 0.35, "componentenwinkel (schatting)", geld=True)
-    sheet_rij("Schroefklem 4-pins 3,5 mm (KF128/KF301)", 0.55,
-              "componentenwinkel (schatting)", geld=True)
-    sheet_rij("M3-schroeven, moeren, standoffs, spacers", 4.00,
-              "componentenwinkel (schatting)", geld=True)
-    sheet_rij("Subtotaal apart te bestellen", 10.85, "schatting", vet=True, geld=True)
+    sheet_rij("Sockets: dual-wipe + Preci-Dip turned-pin", 5.00,
+              "TME / RS Components", geld=True)
+    sheet_rij("PTC Littelfuse 1812L200/16 + TVS SMBJ10A-TR (zonder P-MOSFET)", 1.00,
+              "Mouser.be / DigiKey (EU)", geld=True)
+    sheet_rij("LDO AP2112K-3.3TRG1", 0.27, "TME (EU)", geld=True)
+    sheet_rij("Schroefklem 4-pins 3,5 mm DEGSON DG250-3.5-04P", 0.61,
+              "HESTORE / TME (EU)", geld=True)
+    sheet_rij("M3-schroeven, moeren, afstandsbusjes, spacers", 8.00,
+              "TinyTronics (NL, EU)", geld=True)
+    sheet_rij("Subtotaal apart te bestellen", 14.88, "EU-winkels", vet=True, geld=True)
     sheet_rij("TXB0108 level shifter", 8.70, "Kiwi Electronics", geld=True)
-    sheet_rij("LED + serieweerstand (per bord gebruikt)", 0.22, "Kiwi Electronics", geld=True)
+    sheet_rij("Power-LED + serieweerstand (10-packs thuis in bezit)", 0.00,
+              "Heeft de gebruiker", geld=True)
     sheet_rij("Ontkoppelcondensatoren (per bord gebruikt)", 0.50, "Kiwi Electronics", geld=True)
     sheet_rij("Bulk-elco 100 uF", 0.59, "Kiwi Electronics", geld=True)
-    sheet_rij("Subtotaal al in hoofd-bestellijst", 10.01, "Kiwi Electronics", vet=True, geld=True)
-    sheet_rij("Totaal onderdelen op de print (met TXB0108)", 20.86,
-              "met TXB0104-IC direct: ca. 13,96", vet=True, geld=True)
+    sheet_rij("Subtotaal al in hoofd-bestellijst", 9.79, "Kiwi Electronics", vet=True, geld=True)
+    sheet_rij("Totaal onderdelen op de print (met TXB0108)", 24.67,
+              "met TXB0104-IC direct: ca. 17,77", vet=True, geld=True)
     rr += 1
 
     sheet_kop("Totalen (3 borden, incl. btw)")
     sheet_rij("AISLER print, 3 stuks, 75 cm2 Budget", 32.76, geld=True)
-    sheet_rij("Onderdelen op de print", 20.86, geld=True)
-    sheet_rij("Totaal", 53.62, vet=True, geld=True)
-    sheet_rij("Waarvan al in de hoofd-bestellijst", 10.01, geld=True)
-    sheet_rij("Werkelijk nieuw te bestellen", 43.61, vet=True, geld=True)
+    sheet_rij("Onderdelen op de print", 24.67, geld=True)
+    sheet_rij("Totaal", 57.43, vet=True, geld=True)
+    sheet_rij("Waarvan al in de hoofd-bestellijst", 9.79, geld=True)
+    sheet_rij("Werkelijk nieuw te bestellen", 47.64, vet=True, geld=True)
     rr += 1
 
     sheet_kop("Bestelvolgorde")
@@ -337,13 +384,62 @@ def bouw():
         "1. PCB ontwerpen in KiCad; layout afronden, DRC, Gerbers/ODB++ exporteren",
         "2. Bordafmeting definitief nameten en AISLER-calculator controleren",
         "3. Print bestellen bij AISLER (3 of 6 stuks, Budget-service)",
-        "4. Tegelijk de 'schatting'-onderdelen bestellen (sockets, voeding, LDO, klem, montage)",
-        "5. Kiwi/antratek-bestelling: level shifter, LED, condensatoren, bulk-elco",
+        "4. Tegelijk de printonderdelen bij EU-winkels bestellen (TME, Mouser, HESTORE, TinyTronics)",
+        "5. Kiwi/antratek-bestelling: level shifter, condensatoren, bulk-elco "
+        "(LED + 330 Ohm heeft de gebruiker thuis)",
         "6. Rendering vergelijken met het echte bord, daarna solderen",
     ]:
         sheet_rij(stap)
 
     ws3.freeze_panes = "A2"
+
+    # Vierde blad: bestelbaarheid (gecontroleerd 2026-10-06)
+    ws4 = wb.create_sheet("Bestelbaarheid")
+    ws4.merge_cells("A1:D1")
+    ws4["A1"] = "Bestelbaarheid - gecontroleerd op 2026-10-06"
+    ws4["A1"].font = Font(bold=True, size=13, color="FFFFFF")
+    ws4["A1"].fill = PatternFill("solid", fgColor=KLEUR_KOP)
+    ws4["A1"].alignment = Alignment(vertical="center")
+    ws4.row_dimensions[1].height = 24
+    for kol, br in zip("ABCD", (26, 42, 20, 40)):
+        ws4.column_dimensions[kol].width = br
+    ws4.append(["Winkel", "Artikel", "Voorraad", "Opmerking"])
+    for cel in ws4[2]:
+        cel.font = Font(bold=True, color="FFFFFF")
+        cel.fill = PatternFill("solid", fgColor=KLEUR_KOP)
+    BESTELBAAR = [
+        ("Kiwi Electronics", "Adafruit BNO085 9-DoF IMU", "11 st.", "prijs bevestigd"),
+        ("Kiwi Electronics", "Adafruit BMP581 barometer", "4 st.", "KNAPPE voorraad"),
+        ("Kiwi Electronics", "TXB0108 level converter", "17 st.", ""),
+        ("Kiwi Electronics", "3 mm LED rood (10-pack)", "193 st.",
+         "HEEFT DE GEBRUIKER THUIS - niet bestellen"),
+        ("Kiwi Electronics", "Weerstand 330 Ohm (10 st.)", "115 st.",
+         "HEEFT DE GEBRUIKER THUIS - niet bestellen"),
+        ("Kiwi Electronics", "Keramische condensator kit", "2 st.", "KNAPPE voorraad"),
+        ("Kiwi Electronics", "100 uF / 16 V elco", "72 st.", ""),
+        ("antratek.be", "XIAO ESP32S3 + Wio-SX1262 kit", "op voorraad", "2x nodig"),
+        ("antratek.be", "SMA -> U.FL pigtail 150 mm", "op voorraad", ""),
+        ("TME (EU)", "AP2112K-3.3TRG1 (LDO)", "8 198", "prijs uit snippet (TME 403)"),
+        ("TME (EU)", "SMBJ10A-TR (TVS)", "1 820", "prijs uit snippet"),
+        ("TME (EU)", "AO3401A (P-MOSFET)", "22 840", "NIET GEBRUIKT - P-MOSFET vervalt (2026-10-06)"),
+        ("Mouser/DigiKey", "DMG2301L-7 (P-MOSFET)", "losse aantallen", "NIET GEBRUIKT - P-MOSFET vervalt (2026-10-06)"),
+        ("Mouser/DigiKey", "1812L200/16DR (PTC 2 A 16 V)", "14 555 / 9 900", ""),
+        ("TME (EU)", "Preci-Dip socket 2,54 mm", "MOQ 380 (business)", "niet in kleine aantallen"),
+        ("HESTORE (EU)", "DEGSON DG250-3.5-04P (push-in)", "> 10", "EUR 0,52 excl."),
+        ("HESTORE (EU)", "DEGSON 15EDGK-3.5/4P (schroef)", "> 15", "schroefvariant"),
+        ("TinyTronics (NL)", "M3 Afstandsbusje Kit", "50+", "EUR 8,00 incl."),
+        ("Bits & Parts (NL)", "M3 spacer-set 180-delig", "op voorraad", "EUR 6,95 incl."),
+        ("Eckstein (DE)", "Waveshare LC29H(DA) HAT 25279 (WS25279)", "leverbaar", "GEKOZEN - EUR 71,39 incl."),
+        ("Kamami (PL)", "Waveshare LC29H(DA) HAT 25279", "24 u", "~EUR 63 = goedkoopste EU"),
+        ("Botland (EU)", "Waveshare LC29H(DA) HAT 25279", "op voorraad", "EUR 70,50"),
+        ("HESTORE (EU)", "Waveshare LC29H(DA) HAT 25279", "> 2", "~EUR 110 incl. = duur"),
+    ]
+    for rij in BESTELBAAR:
+        ws4.append(list(rij))
+        for cel in ws4[ws4.max_row]:
+            cel.border = RAND
+            cel.alignment = Alignment(vertical="top", wrap_text=True)
+    ws4.freeze_panes = "A3"
 
     doel = os.path.join(os.path.dirname(os.path.abspath(__file__)), "Bestellijst-GSTEM.xlsx")
     wb.save(doel)
