@@ -27,6 +27,16 @@ tags: [gstem, data, afgevoerd]
 - **Reden afvoer:** Gebruikersvraag: versie B (één kolom met uitklapbare hulp) is rustiger en duidelijker en werd de officiële versie.
 - **Later opnieuw bekijken?** nee — de één-kolomsopzet is definitief.
 
+## 2026-10-06 — BME280 en BMP581 als barometer
+- **Wat:** De Adafruit BME280 (druk + vocht, meer ruis) en de Adafruit BMP581 (betere absolute nauwkeurigheid, maar ±6 Pa relatieve nauwkeurigheid en 0,08 Pa ruis).
+- **Reden afvoer:** De gebruiker vroeg **het meest accurate**. De BMP390 heeft de beste relatieve nauwkeurigheid (±3 Pa) en de laagste ruis (0,02 Pa); luchtvochtigheid is niet nodig.
+- **Later opnieuw bekijken?** nee — de BMP390 is gekozen ([[componenten]], [[beslissingen]]).
+
+## 2026-10-06 — Eigen RTK-basisstation voor de correcties
+- **Wat:** Een eigen LC29H(BS)- of ZED-F9P-basisstation dat zelf RTCM-correcties uitzendt.
+- **Reden afvoer:** De gebruiker koos een **NTRIP-dienst** via de laptop; dat vermijdt extra basishardware en een tweede opstelling.
+- **Later opnieuw bekijken?** nee voorlopig — alleen als er geen bruikbare NTRIP-dekking is.
+
 ## 2026-10-06 — PWM, I2C, CAN of analoge spanning als koppeling met de voertuigcontroller
 - **Wat:** De uitbreidingsconnector als PWM-, I2C-, CAN- of analoog signaal naar de bestaande voertuigcontroller.
 - **Reden afvoer:** De afgewerkte specificaties kiezen **UART via TX/RX**: de Arduino van het vliegtuigje neemt CSV-waarden aan op zijn TX/RX-punten.

@@ -206,3 +206,81 @@ Chronologisch, nieuwste onderaan. Eén subsectie per beslissing.
 - **Reden:** Gebruikersaanwijzing `2026-10-06`.
 - **Gevolg:** Vastgelegd als AI-taak in [[open-vragen]] en [[actieplan]]. De uitkomst bepaalt of alle modules op de XIAO passen of dat een I2C-multiplexer/expander nodig is.
 - **Link:** [[open-vragen]], [[actieplan]], [[componenten]]
+
+## 2026-10-06 — Barometer: Adafruit BMP390 (meest accurate)
+- **Beslissing:** De barometer wordt de **Adafruit BMP390-breakout** (druk + temperatuur, I2C/SPI).
+- **Reden:** Gebruikersvraag: *het meest accurate dat je vind*. Uit de datasheets heeft de BMP390 de beste relatieve nauwkeurigheid (±3 Pa ≈ 0,25 m) en de laagste ruis (0,02 Pa) van de makkelijk verkrijgbare breakouts — beter dan de BMP581 (±6 Pa, 0,08 Pa) en de BME280. Luchtvochtigheid is niet nodig.
+- **Gevolg:** Vastgelegd in [[componenten]]. De BME280 en BMP581 vallen af als actieve keuze ([[afgevoerd]]).
+- **Link:** [[componenten]], [[open-vragen]], [[afgevoerd]]
+
+## 2026-10-06 — RTK-GNSS: Quectel LC29H(DA) met NTRIP-correctie
+- **Beslissing:** De RTK-GNSS-module wordt de **Quectel LC29H(DA)** (dual-band L1+L5, multi-constellatie, RTK **rover**, ingebouwde LNA + SAW). De correcties komen van een **NTRIP-dienst** via de laptop; er komt **geen eigen basisstation**.
+- **Reden:** Gebruikerskeuze. De LC29H(DA) is een betaalbaar alternatief voor de dure ZED-F9P en haalt centimeter-niveau; de (DA)-variant is precies de rover. NTRIP vermijdt extra basishardware.
+- **Gevolg:** Vastgelegd in [[componenten]]. De (BS)-variant (basisstation) is niet nodig. De **NTRIP-provider** en de exacte configuratie blijven open. De **GNSS-antenne** moet dual-band L1+L5 actief zijn (advies: die van de Waveshare LC29H-HAT).
+- **Link:** [[componenten]], [[open-vragen]], [[links]]
+
+## 2026-10-06 — Sockettype: dual-wipe voor de ESP32, precisie voor de rest
+- **Beslissing:** De vaak gewisselde **XIAO ESP32S3** komt in een **dual-wipe** socket; alle vast gemonteerde modules (IMU, barometer, GNSS, voeding) komen in **precisie-/gefreesde** sockets.
+- **Reden:** Gebruikerskeuze; sluit aan op [[pcb-methodes-kosten]] (trillingen in een bewegend voertuig vragen vaste precisie-contacten; de ESP wordt tijdens ontwikkeling vaker gewisseld).
+- **Gevolg:** Op de print komen **twee sockettypes**; de landpatronen blijven 2,54 mm. Het exacte merk/model blijft open.
+- **Link:** [[componenten]], [[pcb-methodes-kosten]], [[open-vragen]]
+
+## 2026-10-06 — Voeding en schakelaar: barrel-connector, geen aan/uit-schakelaar
+- **Beslissing:** Er komt **geen aan/uit-schakelaar**: het toestel **springt aan zodra het aan de voeding hangt**. De voeding is de **7,4 V-accu** met een **barrel-connector** en de **buck-converter 5 V** die de gebruiker al heeft. De **bescherming (zekering/ompoolbeveiliging/TVS)** en de **LDO 3,3 V** zijn nog niet gekozen.
+- **Reden:** Gebruikerskeuze. De XIAO levert zelf 3,3 V op zijn 3V3-pin, dus een losse LDO is mogelijk overbodig.
+- **Gevolg:** Geen schakelaar-footprint op de print; wel een barrel-connector. Bescherming en LDO blijven als open punten in [[open-vragen]] en [[componenten]].
+- **Link:** [[componenten]], [[open-vragen]]
+
+## 2026-10-06 — LoRa-ontvanger wordt een tweede XIAO-kit
+- **Beslissing:** De draadloze **ontvanger** aan de laptopzijde is een **tweede XIAO ESP32S3 + Wio-SX1262 kit**, aangesloten met een **USB A-kabel**.
+- **Reden:** Gebruikerskeuze; identieke hardware als het toestel, dus dezelfde firmware-basis.
+- **Gevolg:** Vastgelegd in [[componenten]]. De USB-stick-vorm uit de specificaties wordt met deze kit ingevuld (kit in een behuizing/aan een kabel).
+- **Link:** [[componenten]], [[specificaties]]
+
+## 2026-10-06 — Mock-up: Arduino Uno, eigen servo's en eigen 3D-print
+- **Beslissing:** De mock-up gebruikt een **Arduino Uno**, **meer dan drie servo's uit de eigen voorraad** (type vrij) met een **aparte buck-converter als servo-voeding** (heeft de gebruiker al). De romp/stuurstangen/roerbladen worden **zelf 3D-geprint**.
+- **Reden:** Gebruikerskeuze; de gebruiker heeft de servo's, de buck en de printer al.
+- **Gevolg:** Enkel de **servo's** moeten nog op de bestellijst om niets te vergeten. De UART tussen toestel en Uno vraagt **niveau-afstemming** (3,3 V <-> 5 V).
+- **Link:** [[componenten]], [[besturing-en-commandos]], [[open-vragen]]
+
+## 2026-10-06 — Zoekvolgorde open componenten vastgelegd (1 per 1)
+- **Beslissing:** De open componenten worden **een per een** afgehandeld in een vaste werkorder: eerst bordkritisch, dan voeding/RF, verbindingen, ontvanger, mock-up, gereedschap. De lijst staat in [[componenten]] onder *Te zoeken: werkorder*.
+- **Reden:** Gebruikersvraag: systematisch nagaan wat nog gezocht moet worden.
+- **Gevolg:** In deze ronde zijn de punten 1-4, 7, 10, 12, 15, 20-29 afgehandeld; de rest blijft open.
+- **Link:** [[componenten]], [[open-vragen]]
+
+## 2026-10-06 — UART-koppeling: schroefconnectoren, gemeenschappelijke ground en level shifter
+- **Beslissing:** Tussen het meettoestel en de Arduino Uno komt een **UART met schroefklem-connectoren**, voorzien van een **gemeenschappelijke ground (GND)** en een **level shifter (3,3 V <-> 5 V)**. De **USB-C datakabel** en de **Dupont-/siliconendraad** heeft de gebruiker al in huis; die komen **niet** op de bestellijst.
+- **Reden:** Gebruikersaanwijzing `2026-10-06`: de schroefconnector is bevestigd, de ground en level shifter horen erbij, en de kabel + jumperdraad zijn al aanwezig.
+- **Gevolg:** Het type level shifter blijft te zoeken (AI-taak). Grounddraad en level shifter moeten in de bestellijst/op de print worden voorzien. Vastgelegd in [[componenten]] en [[open-vragen]].
+- **Link:** [[componenten]], [[open-vragen]], [[besturing-en-commandos]], [[specificaties]]
+
+## 2026-10-06 — Uitbreidingsconnector en level shifter gekozen
+- **Beslissing:** De uitbreidingsconnector wordt een **4-pins schroefklem op 3,5 mm-raster** (KF128/KF301) met pinout GND / +5 V / TX / RX. De level shifter wordt de **TXB0104** (4-kanaals bidirectioneel, VCCA 3,3 V, VCCB 5 V), **op de draagprint** geplaatst. **I2C-pull-ups komen niet op de print**: de BNO055- en BMP390-breakouts hebben ze al (enkel 2 reserve-footprints).
+- **Reden:** Gebruikersvraag: *kies zelf iets passends*. De schroefklem is robuust en past bij de eerder gekozen schroefconnectoren. TXB0104 is de juiste soort (push-pull, voor UART/SPI); de I2C-bus blijft volledig 3,3 V en heeft dus geen shifter nodig.
+- **Gevolg:** De print krijgt een schroefklem-footprint en een TXB0104. De 5 V-referentie voor de shifter komt van de 5 V-rail (buck). Vastgelegd in [[componenten]].
+- **Link:** [[componenten]], [[pcb-ontwerp]], [[besturing-en-commandos]]
+
+## 2026-10-06 — Bescherming van de voeding: PTC, P-MOSFET en TVS
+- **Beslissing:** De 7,4 V-ingang krijgt een **2 A PTC-zekering**, een **P-MOSFET ompoolbeveiliging** (DMG2301L) en een **TVS-diode SMBJ10A**, plus een **bulk-elco 100 uF/16 V**.
+- **Reden:** Gebruikersvraag: *hetgeen dat nodig is volgens jou*. De P-MOSFET beschermt tegen omgekeerde polariteit met weinig spanningsverlies; de PTC begrenst de stroom; de TVS vangt spanningspieken op. Samen de standaard minimale bescherming voor een accugevoed bord.
+- **Gevolg:** Vastgelegd in [[componenten]] en de essentials-tabel. Deze onderdelen komen op de draagprint.
+- **Link:** [[componenten]], [[pcb-ontwerp]], [[specificaties]]
+
+## 2026-10-06 — Extra 3,3 V-LDO op de print (AP2112K-3.3)
+- **Beslissing:** Er komt een **eigen 3,3 V-rail** met een **AP2112K-3.3** (of AMS1117-3.3) op de draagprint voor de sensoren, ook al levert de XIAO zelf 3,3 V.
+- **Reden:** Gebruikerskeuze: de LDO is goed en wordt nuttig geacht. Een eigen rail houdt de sensoren gescheiden van de XIAO-rail.
+- **Gevolg:** Let op de **LoRa-ontvanger** (tweede XIAO-kit): die hangt via **USB** aan de laptop en heeft zijn **eigen 3,3 V-regelaar** — daar is geen losse LDO nodig. Vastgelegd in [[componenten]].
+- **Link:** [[componenten]], [[specificaties]]
+
+## 2026-10-06 — Externe antennes: SMA-pigtail voor LoRa en actieve GNSS-antenne
+- **Beslissing:** De LoRa-antenne wordt **buiten het vliegtuigje** geconnecteerd via een **IPEX/U.FL -> SMA female bulkhead pigtail**. Voor de GNSS komt een **actieve dual-band L1/L5-antenne met SMA, LNA en ground plane** (compacte uitvoering, voorbeeld: de dual-band GNSS-antenne van Waveshare), passend bij de LC29H(DA).
+- **Reden:** Gebruikersvraag `2026-10-06`: beslist dat de antenne buiten het vliegtuigje moet; voor de GNSS-antenne mocht de AI iets passends kiezen.
+- **Gevolg:** Beide antennes komen op de bestellijst. De LoRa-kitantenne blijft behouden. Vastgelegd in [[componenten]].
+- **Link:** [[componenten]], [[links]], [[pcb-ontwerp]]
+
+## 2026-10-06 — NTRIP gratis (gebruiker zoekt); socket-merken later
+- **Beslissing:** De NTRIP-correctiedienst wordt een **gratis** provider; de **gebruiker zoekt die zelf**. De exacte **merken** voor precisie- en dual-wipe-sockets worden later bepaald en hoeven **niet per se op de bestellijst**.
+- **Reden:** Gebruikersaanwijzing `2026-10-06`.
+- **Gevolg:** NTRIP-provider blijft als gebruikersactie open; de socket-keuze is een detail voor het schema, geen blokkade. Vastgelegd in [[componenten]] en [[open-vragen]].
+- **Link:** [[componenten]], [[open-vragen]], [[links]]

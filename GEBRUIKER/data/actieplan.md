@@ -15,13 +15,15 @@ bijgewerkt: 2026-10-06
 ## Voorbereiding
 
 - [x] 09/10/2026 — Exacte 9-DoF IMU met sensorfusie kiezen — **gedaan `2026-10-06`:** Adafruit BNO055 ([[componenten]])
-- [ ] 09/10/2026 — Barometer en RTK-GNSS-module kiezen
-- [ ] 09/10/2026 — LoRa-frequentie/band en configuratie vastleggen (868 MHz voor België); bron RTK-correctie kiezen
-- [ ] 12/10/2026 — Exacte breakout-modellen en pinouts bepalen
+- [x] 09/10/2026 — Barometer en RTK-GNSS-module kiezen — **gedaan `2026-10-06`:** BMP390 en Quectel LC29H(DA) ([[componenten]])
+- [x] 09/10/2026 — Bron RTK-correctie kiezen — **gedaan `2026-10-06`:** NTRIP-dienst; provider nog open
+- [ ] 09/10/2026 — LoRa-frequentie/band en configuratie vastleggen (868 MHz voor België staat vast; rest van de configuratie nog open)
+- [ ] 12/10/2026 — Exacte breakout-modellen en pinouts bepalen (barometer + GNSS gekozen `2026-10-06`; pinouts nog te noteren)
 - [x] 12/10/2026 — Voedingsketen vastleggen — **gedaan `2026-10-06`:** 7,4 V-accu -> zekering/ompoolbeveiliging -> buck 5 V -> LDO 3,3 V ([[componenten]])
 - [ ] 12/10/2026 — **AI-taak:** pinout-tabel XIAO opstellen en pin-budget controleren (IMU + barometer + GNSS + UART)
 - [ ] 12/10/2026 — Level shifter en I2C-pull-ups uitzoeken (3,3 V vs 5 V)
-- [ ] 13/10/2026 — Socket-header of alternatief kiezen (precisie-sockets, direct solderen, castellated)
+- [x] 13/10/2026 — Socket-header of alternatief kiezen — **gedaan `2026-10-06`:** dual-wipe voor de XIAO, precisie/gefreesd voor de rest ([[pcb-methodes-kosten]])
+- [x] 20/10/2026 — Uitbreidingsconnector, level shifter en bescherming van de voeding kiezen — **gedaan `2026-10-06`:** schroefklem 3,5 mm, TXB0104, PTC + P-MOSFET + TVS SMBJ10A, LDO AP2112K-3.3 ([[componenten]])
 
 ## Hardware
 

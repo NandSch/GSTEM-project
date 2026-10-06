@@ -1,240 +1,297 @@
 ---
 tags: [gstem, chatlog]
-sessie: "01a11038-43c9-7350-ad92-6d8720ca78ed"
-gestart: 2026-10-06T07:58:05.499Z
+sessie: "01a11055-3adb-75ac-bebb-aceae8363733"
+gestart: 2026-10-06T08:29:46.001Z
 ---
 
 # Live chat — huidige sessie
 
-> [!abstract] Sessie `01a11038-43c9-7350-ad92-6d8720ca78ed` · gestart 2026-10-06_0958
+> [!abstract] Sessie `01a11055-3adb-75ac-bebb-aceae8363733` · gestart 2026-10-06_1029
 > Dit bestand wordt automatisch live bijgewerkt door de G-Stem logger.
 > Oudere sessies: [[archief/README|archief]]. Onderwerpen: [[onderwerpen]]. Data: [[index]].
 
-## Gebruiker · 09:58
+## Gebruiker · 10:30
 
 > [!quote] Verbatim
-> Hoe ga ik de pcb ontwerpen? Met welke app en hoe moet ik alle afmetingen van de gaten voor de componenten vinden et cetera?
+> Ga 1 per 1 af welke componenten ik nog moeten zoeken.
 
-## AI · 09:58
+## AI · 10:31
 
-Ik lees eerst de skill en de bestaande archiefdata.
-
----
-
-## AI · 09:59
-
-Ik heb genoeg context. Hieronder het antwoord, daarna leg ik het vast in het archief.
-
-## Kort antwoord
-
-**App:** gebruik **KiCad 8/9** (gratis, open source, Windows). Wil je zo weinig mogelijk gedoe en bestel je toch bij JLCPCB, dan is **EasyEDA** een prima alternatief omdat onderdelen en bestelling aan elkaar hangen. Vermijd Altium/Fusion 360 Electronics voor dit project (duur, overkill).
-
-**Afmetingen van gaten:** je meet of zoekt ze **per module** op, je verzint ze nooit zelf. Drie bronnen, in deze volgorde:
-
-1. **Datasheet / mechanische tekening van de breakout** (Adafruit, SparkFun, Waveshare, DFRobot zetten daar "board dimensions", pin pitch en mounting-hole diameter in).
-2. **Standaardmaten** die altijd gelden: 2,54 mm pitch voor pinheaders, gat 1,0 mm, pad 1,7–1,8 mm; M3-bevestigingsgat = 3,2 mm vrij gat; M2,5 = 2,7 mm.
-3. **Zelf nameten met een digitale schuifmaat** (€15–25) op de module die je echt in huis hebt — dan klopt het altijd.
-
-En de gouden truc: **print je layout 1:1 op papier en leg de echte modules erop**. Klopt het, dan is je footprint goed.
+Ik heb de bestaande stukken (`componenten.md`, `open-vragen.md`, `actieplan.md`, `pcb-methodes-kosten.md`, `pcb-ontwerp.md`) naast elkaar gelegd. Hieronder staat de volledige zoeklijst in een werkbare volgorde, en daarna begin ik met nummer 1.
 
 ---
 
-## Uitgebreider: de werkwijze
+## AI · 10:31
 
-### 1. KiCad opzetten
-- Symbolen (schema) → Footprints (landpatronen) → PCB-layout → DRC → Gerbers → bestellen.
-- Voor dit bord heb je nauwelijks een echt schema nodig: elke module wordt een **connector** (rij pinnen), dus je gebruikt vooral `Connector_PinSocket_2.54mm`-footprints en wat losse onderdelen (buck, LDO, LED, weerstanden, zekering).
+> [!info] Opgeslagen: zoekvolgorde → [[componenten]] (`Te zoeken: werkorder 1 per 1`)
 
-### 2. Footprints voor de modules
-- ESP32-S3-devkit, LoRa-breakout, IMU, barometer, GNSS: allemaal **2,54 mm-raster**.
-- In KiCad kies je bv. `PinSocket_1x08_P2.54mm_Vertical` of `1x22`. Je hoeft alleen te weten **hoeveel pinnen per rij** en **hoe ver de twee rijen uit elkaar staan** (meestal 2,54 mm of 15,24/22,86 mm bij grotere devkits — dat staat in de datasheet of meet je).
-- Voeg per module een **silkscreen-omtrek** toe, zodat je op de print ziet waar de module zit en hoe ze georiënteerd moet worden.
+## Wat je nog moet zoeken (volledige lijst)
 
-### 3. Gaten: welke maten
-| Doel | Gat | Notitie |
+**A. Bordkritisch — eerst, want dit bepaalt de PCB-footprints**
+1. Barometer — BMP581 of BME280
+2. RTK-GNSS-module — u-blox ZED-F9P / ArduSimple / SparkFun RTK
+3. Bron RTK-correctie — eigen basisstation of NTRIP-dienst
+4. Sockettype — precisie/gefreesd, dual-wipe of direct solderen
+5. Uitbreidingsconnector — exacte stekker voor UART (TX/RX)
+6. I2C-pull-ups en level shifter (3,3 V vs 5 V)
+7. Wat komt op de print (LED + sockets) vs losse modules (buck, LDO, zekering, TVS)
+
+**B. Voeding en RF**
+8. 7,4 V-accu + beschermcircuit + connector
+9. Zekering, ompoolbeveiliging, TVS
+10. Buck 5 V
+11. LDO 3,3 V
+12. Aan/uit-schakelaar
+13. GNSS-antenne (actief + LNA + ground plane)
+14. LoRa IPEX → SMA-pigtail + SMA-bulkhead
+15. Controleren of LoRa-antenne bij de kit zit
+
+**C. Verbindingen en montage**
+16. USB-C datakabel
+17. UART-draden + ground + level shifter
+18. Dupont-/siliconendraad
+19. M3-schroeven, moeren, standoffs, spacers
+
+**D. Laptop-/ontvangerzijde**
+20. LoRa-ontvanger (tweede XIAO-kit of USB-dongle)
+21. USB-kabel ontvanger
+
+**E. Mock-up (vliegtuigje)**
+22. Arduino (Uno/Nano)
+23. Drie servo's + type
+24. Servo-voeding/BEC
+25. Stuurstangen, scharnieren, roerbladen, rompmateriaal
+
+**F. Gereedschap en verbruik**
+26. Digitale schuifmaat · 27. soldeerbout/tin/flux · 28. multimeter · 29. USB-serieel adapter
+
+---
+
+## Nummer 1 — Barometer
+
+| Optie | Meet | Voordeel | Nadeel |
+| --- | --- | --- | --- |
+| **Adafruit BMP581** | druk + temperatuur | veel lagere ruis, fijnere hoogteresolutie; al prijs gecheckt ($9,95); klein | geen luchtvochtigheid |
+| Adafruit BME280 | druk + temperatuur + vochtigheid | zeer goed ondersteund | ouder, meer ruis, vocht heb je niet nodig |
+
+> [!tip] Advies
+> **BMP581.** Voor een positie-/hoogtetoestel telt resolutie en stabiliteit, niet luchtvochtigheid. De BMP581 is nauwkeuriger en zuiniger; de BME280 voegt enkel vochtigheid toe die je niet gebruikt.
+
+Beslissing? Zeg **"BMP581"** (of een alternatief), dan noteer ik dat in [[componenten]] en [[beslissingen]] en gaan we verder met **nummer 2 — RTK-GNSS-module**.
+
+---
+
+## Gebruiker · 10:43
+
+> [!quote] Verbatim
+> A
+> 1 Het meest accurate dat je vind
+> 2 LC29H(DA)?
+> 3 Ntrip dienst
+> 4 Dual wipe voor ESP en precisie voor de rest.
+> 5 Nog niks, hou in opslag dat dit nog niet is gedaan of gevonden
+> 6 Ken ik niks van hou in opslag
+> 7 Led plus sockets, Voor de rest weet ik niet. Zoek zelf wat essentieel is. Buck converter doe ik.
+> B
+> 8 7,4V batterij, Buck converter, Beschermcircuit nog niks, barrelconnector
+> 9 Ken ik niks van, hou in opslag
+> 10 heb ik al
+> 11 Ken ik niks van hou in opslag
+> 12 Apparaat springt aan wanneer verbonden aan voeding
+> 13 Zoek het best passende, De ESP32-S3 die ik had gevonden zat een antenne passend bij
+> 14 Ken ik niks van hou in opslag
+> 15 Zit erbij
+> C
+> 16 geen datakabel nodig?
+> 17 UART draden met zo'n connectoren waar je een draad in vast schroeft. Ground weet ik niet. Ik weet niet wat een level shifter is.
+> 18 ik weet niet wat dit is, slaag op in opslag
+> 19 sowiso nodig zoek die wanneer we de bestellijst maken
+> D
+> 20 tweede XIAO-kit
+> 21 Usb A kabel
+> E
+> 22 arduino uno
+> 23 meer dan drie servos, type doet er niet aan toe, ik heb zelf servos thuis liggen en zal die gebruiken, zet deze wel nog op de bestellijst wanneer we die maken.
+> 24 Servovoeding = aparte buck converter, die heb ik zelf ook.
+> 25 Maak ik zelf wel met 3D printen
+> F
+> 26 ik heb alles.
+
+## AI · 10:43
+
+Ik verwerk je antwoorden en doe meteen het zoekwerk dat je vraagt (1, 2, 13 en 7).
+
+---
+
+## AI · 10:44
+
+Zoekwerk klaar. Ik verwerk nu alles in het archief.
+
+---
+
+## AI · 10:45
+
+> [!info] Opgeslagen
+> - [[componenten]] — bijgewerkt: gekozen/nog te kiezen/nog te noteren + werkorder + "essentieel op de print"
+> - [[beslissingen]] — 7 nieuwe beslissingen (`2026-10-06`)
+> - [[open-vragen]] — barometer, RTK en correctiebron afgesloten; nieuwe open punten toegevoegd
+> - [[afgevoerd]] — BME280/BMP581 en eigen basisstation
+> - [[specificaties]], [[actieplan]], [[links]] — bijgewerkt
+
+## Wat deze ronde beslist is
+
+| # | Functie | Keuze |
 | --- | --- | --- |
-| Pinheader 2,54 mm | 1,0 mm | pad 1,7–1,8 mm |
-| Pinheader 2,0 mm (JST-GH) | 0,8 mm | |
-| M3-bevestiging (vrij) | 3,2 mm | schroef door bord |
-| M3 + inslagmoer (heat-set) | 4,0–4,5 mm | voor 3D-print/behuizing |
-| M2,5 | 2,7 mm | |
-| M2 | 2,2 mm | |
+| 1 | Barometer | **Adafruit BMP390** — meest accurate van de makkelijk verkrijgbare breakouts (±3 Pa ≈ 0,25 m, ruis 0,02 Pa). De BMP581 en BME280 vallen af. |
+| 2 | RTK-GNSS | **Quectel LC29H(DA)** — dual-band L1+L5, RTK rover, centimeter-niveau. |
+| 3 | Correcties | **NTRIP-dienst** via de laptop (geen eigen basisstation). |
+| 4 | Sockets | **Dual-wipe** voor de XIAO, **precisie/gefreesd** voor de rest. |
+| 7 | Op de print | LED + sockets + per module ontkoppeling (100 nF + 10 uF), bulk-elco 100 uF op 5 V, barrel + schroefklemmen, 4x M3-gaten. |
+| 8 | Voeding | 7,4 V-accu + **barrel-connector** + buck 5 V (heb je). |
+| 12 | Aan/uit | **Geen schakelaar** — toestel start bij voeding. |
+| 15 | LoRa-antenne | **Zit bij de kit**. |
+| 20 | Ontvanger | **Tweede XIAO-kit** + USB A-kabel. |
+| 22-25 | Mock-up | **Arduino Uno**, eigen servo's (> 3), eigen servo-buck, eigen 3D-print. |
+| 26-29 | Gereedschap | Alles aanwezig. |
 
-Gebruik in KiCad de `MountingHole`-footprints; die hebben de juiste maat al.
+## Uitleg bij je vragen
 
-### 4. Bestellen
-- JLCPCB of PCBWay: 2-laags, 5 stuks, ± €2–5 + verzending. Minimale order is 5, dus geen probleem.
-- Exporteer **Gerbers + drill files** (`File → Fabrication Outputs`), zip en upload. Laat de fabriek de default-regels (min. spoor 0,2 mm, min. gat 0,3 mm) controleren met hun eigen DRC.
+> [!question] 16 — Geen datakabel nodig?
+> Voor het **flashen/programmeren** van de XIAO heb je toch een **USB-C datakabel** nodig (geen laadkabel). Die blijft dus op de lijst, maar wordt niet permanent aangesloten.
 
-### 5. Waar het bij dit bord op aankomt
-- **Ground plane** op de onderlaag, aparte rails VBAT/5V/3V3.
-- **Antenne-keep-out** voor LoRa en GNSS (geen koper onder de antenne).
-- Buck-spoel en ESP weg van IMU/barometer.
-- I2C kort houden.
-- Denk aan de **socket-keuze** (precisie vs. dual-wipe) — die bepaalt de landpatronen.
+> [!question] 17 — Ground en level shifter
+> - **Ground:** toestel en Arduino moeten een **gemeenschappelijke GND** delen, anders heeft het UART-signaal geen referentie. Er komt dus een grounddraad naast TX/RX.
+> - **Level shifter:** een klein bordje dat **3,3 V <-> 5 V** omzet. De XIAO is 3,3 V, de Arduino Uno 5 V; zonder omzetting kan je de XIAO-ingang beschadigen of onbetrouwbaar lezen. Ik zoek het juiste type uit (AI-taak).
 
-> [!info] Opgeslagen: nieuw topic `data/pcb-ontwerp.md`, aangevuld in `onderwerpen.md`, `links.md`, `specificaties.md` en `open-vragen.md`.
+> [!question] 18 — Dupont/siliconendraad
+> Soepele jumperdraadjes voor de bedrading binnenin. Nog open; nemen we mee bij de bestellijst.
 
-Nu leg ik het vast.
+## Wat nog open blijft om te zoeken of te beslissen
+
+- [ ] **5. Uitbreidingsconnector** — exacte stekker (je stelt schroefklemmen voor de draden voor).
+- [ ] **6. I2C-pull-ups en level shifter** — pull-ups zitten al op de BNO055- en BMP390-breakouts; level shifter: AI-taak.
+- [ ] **9. Zekering / ompoolbeveiliging / TVS** — je kent dit niet; ik zoek het uit.
+- [ ] **11. LDO 3,3 V** — waarschijnlijk overbodig: de XIAO levert zelf 3,3 V.
+- [ ] **13. GNSS-antenne** — advies: dual-band L1+L5 actieve antenne (zoals die van de Waveshare LC29H-HAT).
+- [ ] **14. LoRa IPEX -> SMA-pigtail** — enkel als de antenne door de behuizing moet.
+- [ ] **NTRIP-provider** — gratis of betaald.
+- [ ] **M3-schroeven/standoffs en servo's** — toevoegen bij het opmaken van de bestellijst.
+
+## AI-taken die ik op mij neem
+
+- [ ] Pinout-tabel XIAO + pin-budget (IMU + barometer + GNSS + UART).
+- [ ] Level shifter 3,3 V <-> 5 V uitzoeken voor de Arduino Uno.
+- [ ] Bescherming van de voeding (zekering/ompoolbeveiliging/TVS) voorstellen.
+- [ ] Antenne-advies L1+L5 concreet maken.
+
+Wil je dat ik meteen een van deze AI-taken uitvoer, of eerst de volgende componentenrondes (5, 6, 9, 11, 14) samen doorlopen?
 
 ---
 
-## AI · 09:59
-
-Klaar. Opgeslagen in het G-Stem-archief:
-
-- **Nieuw topic** `GEBRUIKER/data/pcb-ontwerp.md` — volledige werkwijze (app, KiCad-stappen, gatmaten-tabel, controle via 1:1-print).
-- **`onderwerpen.md`** — link `[[pcb-ontwerp]]` toegevoegd.
-- **`data/links.md`** — KiCad en JLCPCB als bronnen.
-- **`data/specificaties.md`** — entry `2026-10-06 — PCB-ontwerp: gereedschap en gatmaten`.
-- **`data/open-vragen.md`** — de vraag over ontwerpgereedschap heeft nu een advies (KiCad + JLCPCB/PCBWay), nog te bevestigen.
-
-Wil je dat ik in `documenten/` een startende KiCad-notitie of een invultabel per module (pinrijen, rijafstand, bordafmeting, gatpositie) aanmaak zodra je de exacte breakouts kiest?
-
----
-
-## Gebruiker · 10:02
+## Gebruiker · 10:50
 
 > [!quote] Verbatim
-> Ik al sowiso alle componenten zelf aankopen buiten het pcb bordje zelf. (waarop led en sockets geplaatst zijn)
+> 16. Ik heb zelf een kabel voor flashen en programeren 17. Oké goed ook met schroefconnector. Oké moet er ook bijzitten dan 18. Heb ik zelf.
 
-## AI · 10:03
+## AI · 10:50
 
-Duidelijk. Dat verandert de rol van de print: het bordje is dan in principe een **drager** — jij koopt alle modules en losse onderdelen zelf, de print is het enige stuk dat je (laat) maakt. Ik leg dat vast en scherp één punt aan.
+> [!info] Opgeslagen: [[componenten]], [[beslissingen]], [[open-vragen]] bijgewerkt
 
-Eén ding wil ik zeker juist hebben: bedoel je dat er op de print **enkel de LED en de sockets** komen (dus als kant-en-klaar-gesoldeerd bord, of door jou gesoldeerd), of komen daar ook de voedingsonderdelen op (buck, LDO, zekering, weerstanden/condensatoren)? Dat bepaalt hoeveel voetafdrukken en welke stuklijst we in de print opnemen.
+**Verwerkt:**
+- **16. USB-C datakabel** — in bezit, gaat **niet** op de bestellijst.
+- **18. Dupont-/siliconendraad** — in bezit, gaat **niet** op de bestellijst.
+- **17. UART-koppeling** — bevestigd: **schroefklemmen** + **gemeenschappelijke ground** + **level shifter (3,3 V <-> 5 V)**. Ground en level shifter horen er dus bij.
+
+**Wat hieruit nog te zoeken blijft:** het **exacte type level shifter** (AI-taak) en nog een **grounddraad** in de bestellijst — de rest van de UART-draden heb je zelf.
+
+**Open om samen af te handelen (5, 6, 9, 11, 14):**
+- [ ] 5. Uitbreidingsconnector — exacte schroefklem/stekker
+- [ ] 6. I2C-pull-ups (zitten al op BNO055 + BMP390) en de level shifter
+- [ ] 9. Zekering / ompoolbeveiliging / TVS
+- [ ] 11. LDO 3,3 V (waarschijnlijk overbodig door de XIAO)
+- [ ] 14. LoRa IPEX -> SMA-pigtail (enkel bij montage door de behuizing)
+
+Zeg maar of ik deze vijf verder uitzoek, of dat ik eerst de AI-taken (pinout, level shifter, voedingsbescherming) afwerk.
 
 ---
 
-## AI · 10:03
-
-Opgeslagen:
-
-- **`data/beslissingen.md`** — beslissing `2026-10-06`: alle componenten zelf aankopen; de print is het enige gemaakte stuk, met LED + sockets erop.
-- **`data/pcb-ontwerp.md`** — nieuwe sectie "2b. Wat koopt de gebruiker zelf aan" (BOM splitsen in "zelf kopen" vs. "op de print").
-- **`data/open-vragen.md`** — open vraag: wat komt er precies op de print (enkel LED + sockets, of ook buck/LDO/zekering/passieven)?
-
-Laat weten of de voedingsonderdelen op de print horen; dan werk ik de voetafdrukken- en stuklijst in `pcb-ontwerp.md` verder uit.
-
----
-
-## Gebruiker · 10:04
+## Gebruiker · 10:54
 
 > [!quote] Verbatim
-> /Welke componenten mis ik nog die nog niet genoteerd zijn. Ik heb al https://www.antratek.be/xiao-esp32s3-for-meshtastic-lora en https://www.antratek.be/9-dof-absolute-orientation-imu-fusion-breakout-bno055?utm_source=google&utm_medium=cpc&utm_campaign=**Pmax%20shopping%20-%20BE&utm_id=21792943403&gad_source=1&gad_campaignid=21786496926&gbraid=0AAAAADlsH-RVkRNPxCk_phI1YyHZBuSbQ&gclid=CjwKCAjwwrPVBhA1EiwAv_YO-a2l1pldsOrys8-FClir3oxheNCzRPChLfDNbAfEPx7hYAYMa2NA8hoCctoQAvD_BwE
+> 5. Kies zelf iets passend dat goed werkt. 6. Kies jij, deze moet op het pcb bordje komen neem ik aan 9. Hetgene dat nodig is volgens jou 11. Is goed. Is ook nodig voor aan de Lora ontvanger USB! 14. Wat is dit?
 
-## AI · 10:04
+## AI · 10:54
 
-Ik kijk eerst wat die twee modules precies bevatten, dan vergelijk ik met de componentenlijst in het project.
-
----
-
-## AI · 10:04
-
-Antratek blokkeert geautomatiseerde toegang. Ik zoek de specificaties elders op.
+Ik zoek de juiste onderdelen uit en leg uit wat de pigtail is.
 
 ---
 
-## AI · 10:04
+## AI · 10:55
 
-Even opnieuw, zoekproviders gaven een rate limit.
+> [!info] Opgeslagen: [[componenten]], [[beslissingen]], [[open-vragen]], [[specificaties]], [[links]], [[actieplan]]
 
----
+## Jouw punten verwerkt
 
-## AI · 10:05
+**5. Uitbreidingsconnector — gekozen**
+- **4-pins schroefklem, 3,5 mm raster** (KF128/KF301), pinout **GND / +5 V / TX / RX**. Robuust en past bij de schroefconnectoren die je al wilde.
 
-Ik heb beide modules opgezocht. Belangrijk: de XIAO-kit is **ESP32-S3 + LoRa (SX1262) in één**, dus die twee posten zijn nu samen gekozen. Hieronder eerst je antwoord, daarna leg ik alles vast.
+**6. Level shifter en pull-ups — gekozen**
+- **Level shifter: TXB0104** (4-kanaals bidirectioneel). Ja, die komt **op de print**: hij zet de 3,3 V van de XIAO om naar 5 V voor de Arduino Uno (en terug).
+- **I2C-pull-ups: niet op de print.** De BNO055- en BMP390-breakouts hebben ze al; extra pull-ups zouden de I2C-bus te zwaar belasten. Ik voorzie wel 2 reserve-footprints voor later.
 
-## Wat je al hebt (nu officieel gekozen)
+**9. Voedingsbescherming — gekozen (wat nodig is)**
+- **2 A PTC-zekering** + **P-MOSFET ompoolbeveiliging (DMG2301L)** + **TVS-diode SMBJ10A** + **bulk-elco 100 uF/16 V**. Samen de standaard minimale bescherming voor een 7,4 V-accu.
 
-| Functie | Onderdeel | Bron |
-| --- | --- | --- |
-| Rekenkern + LoRa | **XIAO ESP32S3 + Wio-SX1262 kit** (`SX1262`, SPI via B2B, IPEX-antenne, USB-C, LiPo-lader) | antratek |
-| 9-DoF IMU + sensorfusie | **Adafruit BNO055-breakout** (I2C 0x28/0x29, 3,3 V regelaar + level shifting, 20×27×4 mm, gaten 20×12 mm) | antratek |
+**11. LDO 3,3 V — behouden**
+- **AP2112K-3.3** geeft een eigen schone 3,3 V-rail voor de sensoren.
+- Let op voor de **LoRa-ontvanger**: de tweede XIAO-kit hangt via **USB** aan de laptop en heeft **zelf al een 3,3 V-regelaar**. Daar is dus **geen losse LDO** nodig — die 3,3 V zit al in de XIAO.
 
-Let op: dit verandert je bord. De XIAO en SX1262 zitten via een **board-to-board-connector** aan elkaar, dus op de draagprint is dat één module. Bovendien heeft de XIAO een **ingebouwde LiPo-lader** — daardoor kan de hele 7,4 V → buck → LDO-voeding vervallen en volstaat een 3,7 V LiPo. Dat is een grote open vraag.
+**14. Wat is een IPEX -> SMA-pigtail?**
+> [!question] Uitleg
+> Op de XIAO zit een piepklein **IPEX/U.FL**-antennecontact. Een **pigtail** is een kort kabeltje van dat kleine contact naar een groter **SMA**-contact dat je door de behuizing monteert, zodat je de antenne **buiten** kunt schroeven.
+> - De **kitantenne zit erbij** en past **rechtstreeks** op de IPEX.
+> - **Je hebt de pigtail dus niet nodig** als de antenne **in de behuizing** blijft (PLA/PETG laat het LoRa-signaal goed door).
+> - Enkel nodig als je de antenne **extern** wilt monteren. Ik heb dit als open punt laten staan, maar het is standaard **niet nodig**.
 
-## Componenten die nog ontbreken of niet genoteerd zijn
+## Nog open (klein)
 
-**Sensoren — nog te kiezen**
-- Barometer (BMP581/BME280 kandidaat, nog niet gekozen)
-- RTK-GNSS-module (de Seeed L76K is GNSS maar **geen RTK**; voor 0,5 m heb je een RTK-module nodig, bv. u-blox ZED-F9P)
-- RTK-correctiebron: eigen basisstation of NTRIP-dienst
+- [ ] **13. GNSS-antenne** — advies: actieve dual-band L1+L5 (zoals bij de Waveshare LC29H-HAT). Bevestig of we die meebestellen.
+- [ ] **NTRIP-provider** — gratis of betaald.
+- [ ] **Socket exact model** — precisie- en dual-wipe-merk kiezen.
+- [ ] **LoRa IPEX-pigtail** — enkel als je de antenne buiten wilt.
+- [ ] **M3-schroeven/standoffs + servo's** — bij het opmaken van de bestellijst.
+- [ ] **AI-taak:** pinout-tabel XIAO + pin-budget controleren.
 
-**Antennes / RF**
-- **GNSS-antenne** (actieve antenne met LNA + ground plane) — nog niet genoteerd
-- LoRa IPEX → SMA-pigtail + SMA-bulkhead als je antenne door de behuizing wil
-- (LoRa-antenne zit vermoedelijk bij de kit — controleer dat)
-
-**Voeding — grotendeels nog niet genoteerd**
-- **Aan/uit-schakelaar of knop** — ontbreekt volledig in de lijst
-- Batterij: 3,7 V LiPo met beschermcircuit (XIAO-laadroute) **of** 7,4 V + buck/LDO — nog te beslissen
-- Buck 5 V, LDO 3,3 V, zekering, ompoolbeveiliging, TVS (afhankelijk van die keuze)
-- JST-batterijconnector + kabel
-- (Power-LED + weerstand, decoupling: al genoteerd)
-
-**Verbindingen**
-- **USB-C datakabel** (programmeren) — nog niet genoteerd
-- UART-draden meettoestel ↔ Arduino + gemeenschappelijke ground + level shifter
-- Uitbreidingsconnector: exacte stekker nog niet gekozen
-- Dupont/siliconendraad voor interne bekabeling
-
-**Montage / behuizing**
-- M3-schroeven, moeren, **afstandsbusjes (standoffs)**, nylon spacers — nog niet genoteerd
-- (3D-behuizing + rubberen dempingsbussen: al genoteerd)
-
-**Laptop-/ontvangerzijde**
-- LoRa-ontvanger aan de laptop: tweede XIAO-kit of USB-LoRa-dongle — nog geen keuze
-- De **USB-stick-ontvanger** uit de specs: hardware nog niet gekozen
-
-**Mock-up (vliegtuigje)**
-- Arduino-bord (welk model?) — nog niet gekozen
-- 3× servo's + **servo-voeding/BEC** — nog niet genoteerd
-- Stuurstangen/scharnieren/roerbladen, rompmateriaal
-
-**Gereedschap/verbruik (vaak vergeten)**
-- Digitale **schuifmaat** (nodig voor de footprint-maten), soldeerbout/tin/flux, multimeter, USB-serieel adapter
-
-> [!warning] Belangrijkste gevolg
-> Door de XIAO-kit is ESP32 **en** LoRa in één, en de pinlijst is beperkt tot ± 14 I/O. Check of er genoeg pinnen overblijven voor IMU + barometer + GNSS + UART naar de Arduino. En beslis de voedingsroute (3,7 V vs 7,4 V) — dat schrapt of voegt een hoop onderdelen toe.
-
-Ik leg dit nu vast als centrale componentenlijst.
+Wil je dat ik nu de **pinout-tabel** en het **pin-budget** van de XIAO uitwerk?
 
 ---
 
-## AI · 10:06
-
-Opgeslagen:
-
-- **`data/componenten.md`** — nieuwe centrale **BOM/werklijst**: gekozen (XIAO-kit, BNO055), nog te kiezen (barometer, RTK-GNSS, voeding, ontvanger, servo's) en "nog te noteren" (antennes, aan/uit-schakelaar, standoffs, USB-C-kabel, servo-voeding, gereedschap).
-- **`data/beslissingen.md`** — beslissing `2026-10-06`: XIAO ESP32S3 + Wio-SX1262 kit (ESP32 + LoRa in één) en Adafruit BNO055 als IMU.
-- **`data/specificaties.md`** — specificatie met de gevolgen voor de print.
-- **`data/open-vragen.md`** — IMU-vraag afgevinkt; LoRa-band → 868 MHz voor België; voedingsroute (3,7 V LiPo vs 7,4 V) toegevoegd als groot open punt; pin-budget XIAO genoteerd.
-- **`data/links.md`** — antratek-URL's, Seeed-wiki en Adafruit-datasheet.
-- **`onderwerpen.md`** — link `[[componenten]]`.
-
-Twee dingen om nu te beslissen, want ze bepalen hoeveel er nog op de print komt:
-1. **Voeding:** 3,7 V LiPo (XIAO laadt zelf, keten vervalt) of toch 7,4 V + buck/LDO?
-2. **Pin-budget:** tel na of de ± 14 I/O van de XIAO volstaan voor IMU + barometer + GNSS + UART naar de Arduino.
-
----
-
-## Gebruiker · 10:08
+## Gebruiker · 11:00
 
 > [!quote] Verbatim
-> 1. 7,4V + buck 2. Zet als taak die de ai later doet
+> Zeker een SMA pigtail nodig zodat ik de antenna buiten het vliegtuigje kan connecteren. 13 Zoals jij passend ziet. Gratis NTRIP, zoek ik wel. Welk merk precisie en dualwipe zien we nog wel. Moet niet percé op de bestellijst. Wacht met AI taak.
 
-## AI · 10:09
+## AI · 11:00
 
-Klaar. Opgeslagen:
+> [!info] Opgeslagen: [[componenten]], [[beslissingen]], [[open-vragen]], [[specificaties]], [[links]]
 
-- **`data/beslissingen.md`** — twee entries:
-  - Voedingsroute: **7,4 V-accu → zekering/ompoolbeveiliging → buck 5 V → LDO 3,3 V**; XIAO op 5 V-pin, ingebouwde LiPo-lader niet gebruikt.
-  - Pin-budget XIAO = **AI-taak voor later**.
-- **`data/componenten.md`** — voedingsroute als "gekozen" gezet; voeding-onderdelen (accu, zekering, ompoolbeveiliging, buck, LDO, aan/uit-schakelaar) in de lijst; nieuwe sectie **AI-taken**.
-- **`data/open-vragen.md`** — voedingsvraag afgevinkt; nieuwe sectie **AI-taken (voert de AI later uit)** met de pinout-/pin-budget-taak.
-- **`data/actieplan.md`** — IMU- en voedingstaken afgevinkt; **AI-taak pinout-tabel** toegevoegd bij Voorbereiding.
+**Verwerkt:**
+- **14. LoRa-antenne extern** — gekozen: **IPEX/U.FL -> SMA female bulkhead pigtail**, zodat je de antenne buiten het vliegtuigje kunt schroeven. De kitantenne blijft behouden.
+- **13. GNSS-antenne** — gekozen: **actieve dual-band L1/L5-antenne met SMA, LNA + ground plane** (compacte uitvoering, voorbeeld de Waveshare-antenne), passend bij de LC29H(DA).
+- **NTRIP** — wordt een **gratis** dienst; **jij zoekt de provider**. Als gebruikersactie genoteerd.
+- **Socket-merken** — later bepalen, **niet per se op de bestellijst**.
+- **AI-taak (pinout/budget)** — laat ik wachten zoals gevraagd.
 
-De AI-taak staat klaar: pinout-tabel van de XIAO opstellen en nagaan of ± 14 I/O volstaan — die pak ik op wanneer je wil.
+**Kleine aandachtspunten die hieruit volgen:**
+- De **3D-geprinte behuizing** krijgt een **SMA-bulkhead-doorvoer** voor de LoRa-antenne.
+- De GNSS-antenne heeft een **SMA-aansluiting**; de LC29H-module moet die ook bieden (HAT/module met SMA, of anders een tweede IPEX-pigtail). Dit verifiëren we bij de modulekeuze.
+
+**Nog open:**
+- [ ] Gratis NTRIP-provider (jij)
+- [ ] Socket-merken (later)
+- [ ] Pinout-tabel + pin-budget (AI-taak, wacht op jouw teken)
+- [ ] Bestellijst opmaken: GNSS-antenne, LoRa-pigtail, M3/standoffs, servo's
+
+Zeg maar wanneer ik de pinout-taak of de bestellijst mag oppakken.
 
 ---

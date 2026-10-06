@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "bad84e68daa1ea40",
+        "id": "464f287bea931e69",
         "type": "tabs",
         "children": [
           {
-            "id": "3d037e88b5b70966",
+            "id": "120497f5d8df2dff",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -188,8 +188,11 @@
       "bases:Create new base": false
     }
   },
-  "active": "3d037e88b5b70966",
+  "active": "120497f5d8df2dff",
   "lastOpenFiles": [
+    "data/componenten.md",
+    "chat.md",
+    "index.md",
     "data/code-pagina.md",
     "archief/2026-10-04_1215_for-the-mockup-website-adjust-the-code-page-api-/onderwerpen.md",
     "archief/2026-10-04_1215_for-the-mockup-website-adjust-the-code-page-api-/meta.md",
@@ -215,14 +218,11 @@
     "Projectdocumentatie/05-inventaris-en-archief.md",
     "Projectdocumentatie/04-blokschema-aerolink.md",
     "Projectdocumentatie/03-gstemapppreviewweb.md",
-    "chat.md",
     "Formules Afgeleide & co.pdf",
     "Projectdocumentatie",
     "archief/2026-10-01_2027_ik-wil-een-worddocument-maken-waarin-ik-een-soor/onderwerpen.md",
     "archief/2026-10-01_2027_ik-wil-een-worddocument-maken-waarin-ik-een-soor/meta.md",
-    "archief/2026-10-01_2027_ik-wil-een-worddocument-maken-waarin-ik-een-soor/chat.md",
     "archief/2026-10-01_2027_ik-wil-een-worddocument-maken-waarin-ik-een-soor",
-    "data/handleiding.md",
     "archief/2026-09-29_2140_alle-bestanden-in-documents-gstem-project-zijn-o",
     "archief/2026-09-29_2136_leg-kort-uit-wat-we-al-hebben-en-wat-je-begrip-i",
     "archief/2026-09-29_2132_slaag-deze-data-van-mijn-project-op-dit-was-om-m"

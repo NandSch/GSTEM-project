@@ -9,7 +9,7 @@ tags: [gstem, data, open-vragen]
 - [ ] **LoRa-pakketformaat en gedrag bij pakketverlies?**
 - [ ] **Kaartbron, licentie en offline gebruik voor de 3D-weergave?** — `2026-10-06`: de kaart is een **3D-kaart met Google-satellietfotografie**; licentie en offline gebruik blijven open.
 - [ ] **Welke exacte 9-DoF IMU met sensorfusie?** — uit voorbereiding meetmodule.
-- [ ] **Welke barometer en welke RTK-GNSS-module?** — uit voorbereiding meetmodule. Barometer nog open (BMP581/BME280); RTK-GNSS nog open (de Seeed L76K is geen RTK). Zie [[componenten]].
+- [x] **Welke barometer en welke RTK-GNSS-module?** — `2026-10-06`: barometer **Adafruit BMP390** (meest accurate, ±3 Pa, laagste ruis); RTK-GNSS **Quectel LC29H(DA)** (dual-band L1+L5, rover). Zie [[componenten]] en [[beslissingen]].
 - [ ] **Exacte LoRa-frequentie/band en configuratie?** — de gekozen Wio-SX1262 bestaat in 868/915 MHz; voor België is **868 MHz** nodig. Rest van de configuratie nog open. (`2026-10-06`)
 - [ ] **Formaat en protocol van datapakketten tussen meetmodule en laptop (uplink en downlink)?**
 - [ ] **LoRa downlink: met of zonder ACK, en hoe omgaan met pakketverlies bij besturingscommando's?**
@@ -35,16 +35,24 @@ tags: [gstem, data, open-vragen]
 - [ ] **Handleiding en screenshots bijwerken na herindeling code-pagina** — de handleiding beschrijft nog "variabelen aanklikken als voorbeeld"; in de demo zijn de variabelen nu een niet-klikbaar overzicht, schrijft de gebruiker zelf de CSV-regel en kreeg de API een eigen sectie (`#page-api`). (`2026-10-04`)
 - [ ] **API-downlink definitief: vrije CSV-regel of vaste commando's?** — in de demo stuurt het externe programma nu een vrije CSV-regel terug (beslissing `2026-10-04`); de techniek zelf (WebSocket/TCP/HTTP) blijft open. (`2026-10-04`)
 - [x] **Welke versie van de Code-pagina wordt de definitieve: A of B?** — `2026-10-04`: **versie B** (één kolom met uitklapbare hulp) is gepromoveerd tot `index.html`; de A/B-testbestanden zijn verwijderd.
-- [ ] **Waar komen de RTK-correctiegegevens vandaan?** — eigen basisstation of een correctiedienst via de laptop. (`2026-10-05`)
-- [ ] **Op welk spanningsniveau werkt de uitbreidingsconnector?** — de meetmodule is 3,3 V-logica; de voertuigcontroller kan 5 V verwachten. Niveau-afstemming nodig vóór het aansluiten. (`2026-10-05`)
+- [x] **Waar komen de RTK-correctiegegevens vandaan?** — `2026-10-06`: een **NTRIP-dienst** via de laptop (geen eigen basisstation). Enkel de **provider** (gratis/betaald) blijft nog te kiezen. (`2026-10-05`)
+- [ ] **Welke NTRIP-provider en abonnement?** — `2026-10-06`: wordt een **gratis** dienst; de **gebruiker zoekt die zelf**. Vraagt internet op de laptop tijdens het meten. (`2026-10-06`)
+- [x] **Welke level shifter voor de UART 3,3 V <-> 5 V?** — `2026-10-06`: **TXB0104** (4-kanaals bidirectioneel) op de draagprint; VCCA 3,3 V, VCCB 5 V. (`2026-10-06`)
+- [x] **Zekering, ompoolbeveiliging en TVS: welke onderdelen?** — `2026-10-06`: **2 A PTC-zekering + P-MOSFET ompoolbeveiliging (DMG2301L) + TVS SMBJ10A**. (`2026-10-06`)
+- [x] **Is een losse LDO 3,3 V nodig?** — `2026-10-06`: ja, **AP2112K-3.3** voor een eigen 3,3 V-rail. Let op: de LoRa-ontvanger (tweede XIAO) krijgt 3,3 V via USB uit de XIAO zelf. (`2026-10-06`)
+- [x] **Exacte uitbreidingsconnector voor de UART?** — `2026-10-06`: **4-pins schroefklem 3,5 mm (KF128/KF301)**, pinout GND/+5 V/TX/RX. (`2026-10-06`)
+- [x] **LoRa IPEX -> SMA-pigtail en SMA-bulkhead?** — `2026-10-06`: **nodig**, de antenne wordt buiten het vliegtuigje geconnecteerd; gekozen: IPEX/U.FL -> SMA female bulkhead pigtail. (`2026-10-06`)
+- [x] **Welke GNSS-antenne?** — `2026-10-06`: actieve **dual-band L1/L5-antenne met SMA, LNA + ground plane** (compact; voorbeeld Waveshare), passend bij de LC29H(DA). (`2026-10-06`)
+- [x] **Wat komt er naast LED + sockets nog op de print?** — `2026-10-06`: ontkoppelcondensatoren (100 nF + 10 uF per module), bulk-elco 100 uF, schroefklem, level shifter TXB0104, LDO AP2112K-3.3, voedingsbescherming, 4x M3-gaten. Zie [[componenten]]. (`2026-10-06`)
+- [x] **Op welk spanningsniveau werkt de uitbreidingsconnector?** — `2026-10-06`: de connector voert 5 V-niveau via de **TXB0104**-level shifter; de XIAO-zijde blijft 3,3 V. (`2026-10-05`)
 
-- [ ] **Welke exacte breakout-modellen en bijbehorende pinouts?** — `2026-10-06`: **XIAO ESP32S3 + Wio-SX1262 kit** (rekenkern + LoRa) en **Adafruit BNO055** (IMU) zijn gekozen. Barometer en RTK-GNSS nog open; pin-budget van de XIAO (± 14 I/O) te controleren. Zie [[componenten]].
+- [ ] **Welke exacte breakout-modellen en bijbehorende pinouts?** — `2026-10-06`: **XIAO ESP32S3 + Wio-SX1262 kit** (rekenkern + LoRa), **Adafruit BNO055** (IMU), **Adafruit BMP390** (barometer) en **Quectel LC29H(DA)** (RTK-GNSS) zijn gekozen. Enkel de **pinouts** en het **pin-budget** van de XIAO (± 14 I/O) moeten nog genoteerd/gecontroleerd worden. Zie [[componenten]].
 - [x] **Wordt de 7,4 V-accu of de barrel-connector de hoofdvoeding?** — `2026-10-06`: **7,4 V-accu + zekering/ompoolbeveiliging -> buck 5 V -> LDO 3,3 V**. De XIAO wordt op 5 V gevoed; de ingebouwde LiPo-lader wordt niet gebruikt. Zie [[componenten]] en [[beslissingen]].
 - [ ] **Welk PCB-ontwerpgereedschap (KiCad?) en welke fabrikant?** — advies `2026-10-06`: **KiCad** als app, **JLCPCB/PCBWay** als fabrikant. Werkwijze in [[pcb-ontwerp]]. Keuze nog te bevestigen. (`2026-10-06`)
-- [ ] **Dubbele I2C-pull-ups en level shifter: welke breakouts hebben al pull-ups, en is 5 V-aansturing nodig?** (`2026-10-06`)
+- [x] **Dubbele I2C-pull-ups en level shifter: welke breakouts hebben al pull-ups, en is 5 V-aansturing nodig?** — `2026-10-06`: de BNO055- en BMP390-breakouts hebben al pull-ups, dus **geen extra op de print**; de **TXB0104** verzorgt de 3,3 V <-> 5 V voor de UART. (`2026-10-06`)
 
-- [ ] **Socket-headers of een alternatief (precisie-sockets, direct solderen, castellated, board-to-board)?** — socket-headers worden amateuristisch gevonden; keuze bepaalt de landpatronen op de draagprint. (`2026-10-06`)
-- [ ] **Wat komt er precies op de print zelf?** — vast staat LED + sockets (alle componenten worden zelf aangekocht, `2026-10-06`). Nog te bevestigen of de voedingsonderdelen (buck, LDO, zekering, weerstanden, condensatoren) ook op de print komen of als losse modules. Bepaalt de voetafdrukken en de stuklijst. (`2026-10-06`)
+- [x] **Socket-headers of een alternatief (precisie-sockets, direct solderen, castellated, board-to-board)?** — `2026-10-06`: **dual-wipe** voor de XIAO, **precisie/gefreesd** voor de overige modules. (`2026-10-06`)
+- [x] **Wat komt er precies op de print zelf?** — `2026-10-06`: **LED + sockets** plus ontkoppeling, bulk-elco, schroefklem, level shifter (TXB0104), LDO (AP2112K-3.3) en voedingsbescherming (PTC/P-MOSFET/TVS). De **buck, accu, barrel-connector en sensormodules** blijven losse modules. Zie [[componenten]]. (`2026-10-06`)
 
 ## AI-taken (voert de AI later uit)
 
