@@ -20,8 +20,6 @@ Register van besproken onderwerpen met links naar de bijbehorende data.
 - [[pcb-schets|PCB-schets draagprint (bovenaanzicht + verbindingsschema)]]
 - [[pcb-methodes-kosten|PCB-methodes: kosten en moeilijkheid]]
 - [[pcb-ontwerp|PCB ontwerpen: gereedschap, footprints en gatmaten]]
-- [[pcb-fabrikanten|PCB-fabrikanten: binnen en buiten Europa (prijs en gemak)]]
-- [[bestelschema-pcb|Bestelschema PCB bij AISLER (productie + onderdelen)]]
 - [[componenten|Componentenlijst (BOM) meettoestel]]
 - [[bestellijst|Bestellijst meettoestel (aan te kopen)]]
 - [[meetmodule-voorbereiding|Positie- en beweging meettoestel met LoRa — voorbereiding]]

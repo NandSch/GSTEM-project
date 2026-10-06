@@ -3,7 +3,8 @@
 
 Uitvoeren:  python documenten/build-bestellijst.py
 Bron/afspraken: GEBRUIKER/data/bestellijst.md en GEBRUIKER/data/componenten.md
-Alles is gezocht op antratek.be; niet gevonden = geen link (niet elders gezocht).
+Strategie: zo veel mogelijk bij Kiwi Electronics (BE/NL) om verzendkosten te beperken;
+wat daar goedkoper is of als reserve dient, bij antratek.be.
 """
 
 import os
@@ -16,24 +17,31 @@ RIJEN = [
     ("Rekenkern en communicatie", "Rekenkern + LoRa (toestel + ontvanger)",
      "XIAO ESP32S3 & Wio-SX1262 Kit for Meshtastic & LoRa", 2, 15.13, "antratek",
      "antratek.be", "https://www.antratek.be/xiao-esp32s3-for-meshtastic-lora",
-     "1x toestel, 1x LoRa-ontvanger laptop; antenne inbegrepen"),
+     "1x toestel, 1x LoRa-ontvanger laptop; antenne inbegrepen. Kiwi verkoopt XIAO (EUR 8,46) "
+     "+ Wio-SX1262 (EUR 5,43) apart, maar de Wio-module is daar NIET op voorraad"),
 
-    ("Sensoren", "9-DoF IMU", "9-DOF Absolute Orientation IMU Fusion Breakout - BNO055",
-     1, 36.24, "antratek", "antratek.be",
-     "https://www.antratek.be/9-dof-absolute-orientation-imu-fusion-breakout-bno055", ""),
-    ("Sensoren", "Barometer", "Atmospheric Sensor Breakout - BME280 (Qwiic)", 1, 19.97,
-     "antratek", "antratek.be", "https://www.antratek.be/atmospheric-sensor-breakout-bme280",
-     "Goedkoopst/leverbaar alternatief voor BMP390; minder nauwkeurig (EUR 1 hPa i.p.v. 0,03 hPa)"),
+    ("Sensoren", "9-DoF IMU",
+     "Adafruit 9-DOF Orientation IMU Fusion Breakout - BNO085 (BNO080) - STEMMA QT/Qwiic",
+     1, 32.05, "kiwi", "Kiwi Electronics",
+     "https://www.kiwi-electronics.com/nl/adafruit-9-dof-orientation-imu-fusion-breakout-bno085-bno080-stemma-qt-qwiic-11273",
+     "Goedkoper en nieuwer dan de BNO055 (anratek EUR 36,24)"),
+    ("Sensoren", "Barometer",
+     "Adafruit BMP581 I2C/SPI Druk- en Temperatuursensor - STEMMA QT", 1, 10.88,
+     "kiwi", "Kiwi Electronics",
+     "https://www.kiwi-electronics.com/nl/adafruit-bmp581-i2c-spi-druk-en-temperatuursensor-stemma-qt-20534",
+     "Nauwkeuriger dan BME280; BMP390L is bij Kiwi uit voorraad en niet op antratek"),
     ("Sensoren", "RTK-GNSS-module", "Quectel LC29H(DA)", 1, None, "geen link", "-",
-     "", "Niet op antratek.be. Alternatief: LG290P RTK (EUR 217,74) of ZED-F9P (EUR 302,44)"),
+     "", "Niet bij Kiwi (alleen niet-RTK L76K) of antratek. Alternatief: LG290P RTK (EUR 217,74) "
+     "of ZED-F9P (EUR 302,44)"),
 
     ("Antennes en RF", "GNSS-antenne (actief, SMA)",
-     "GPS/GNSS Magnetic Mount Antenna SMA - 3m, SparkFun GPS-14986", 1, 19.30,
-     "antratek", "antratek.be", "https://www.antratek.be/gps-gnss-magnetic-mount-antenna-sma-3m",
-     "Goedkoopste passende antenne (L1, multi-constellatie). Upgrade voor dual-band RTK: L1/L5-antenne EUR 120,94"),
+     "GPS Antenne - Externe Actieve Antenne - 3-5V 28dB 5 Meter SMA", 1, 16.93,
+     "kiwi", "Kiwi Electronics",
+     "https://www.kiwi-electronics.com/nl/gps-antenne-externe-actieve-antenne-3-5v-28db-5-meter-sma-620",
+     "Goedkoopste passende actieve SMA-antenne (L1). Upgrade voor dual-band RTK: L1/L5-antenne EUR 120,94"),
     ("Antennes en RF", "LoRa IPEX/U.FL naar SMA pigtail", "Interface Cable SMA to U.FL (150 mm)",
      1, 3.57, "antratek", "antratek.be", "https://www.antratek.be/u-fl-sma-150mm-cable",
-     "Bulkhead-bevestiging apart controleren"),
+     "Goedkoper op antratek (EUR 3,57) dan Kiwi (EUR 4,22); bulkhead-bevestiging apart controleren"),
     ("Antennes en RF", "LoRa-antenne", "Inbegrepen bij de XIAO-kit", 1, None, "al in bezit", "-",
      "", ""),
 
@@ -43,31 +51,49 @@ RIJEN = [
      1, None, "al in bezit", "-", "", "Adapter met schroefklem; geen PCB-montage"),
     ("Voeding", "Buck-converter 5 V", "Heeft de gebruiker", 1, None, "al in bezit", "-",
      "", "Referentie antratek: Buck Regulator Breakout 5V (EUR 12,04)"),
-    ("Voeding", "Bescherming voeding", "2 A PTC + P-MOSFET DMG2301L + TVS SMBJ10A", 1, None,
-     "geen link", "-", "", "Niet op antratek.be"),
-    ("Voeding", "LDO 3,3 V", "AP2112K-3.3 (of AMS1117-3.3)", 1, None, "geen link", "-",
-     "", "Niet op antratek.be"),
+    ("Voeding", "Bescherming voeding", "2 A PTC + P-MOSFET DMG2301L + TVS SMBJ10A", 1, 0.95,
+     "schatting", "componentenwinkel", "",
+     "Niet bij Kiwi of antratek; prijs is een schatting (Mouser/LCSC)"),
+    ("Voeding", "LDO 3,3 V", "AP2112K-3.3 (of AMS1117-3.3)", 1, 0.35, "schatting",
+     "componentenwinkel", "",
+     "Niet bij Kiwi of antratek; prijs is een schatting"),
     ("Voeding", "Aan/uit-schakelaar", "Geen; toestel start bij voeding", None, None,
      "niet nodig", "-", "", ""),
 
+    ("Draagprint (PCB bij AISLER)", "Draagprint (printplaat)",
+     "2-laags 1,6 mm HASL, set van 3 stuks - AISLER", 3, 10.92, "aisler", "AISLER",
+     "https://aisler.net",
+     "Schatting 75 cm2 (100x75 mm), incl. btw; Budget-service. Formule: EUR 12,00 + "
+     "EUR 0,067/cm2 x oppervlak x aantal. AISLER levert in sets van 3; gratis verzending. "
+     "Definitieve maat volgt uit de KiCad-layout"),
+
     ("Print en verbindingen", "Level shifter 3,3 V <-> 5 V",
-     "Logic Level Converter Bi-Directional (alternatief voor TXB0104)", 1, 4.78, "antratek",
-     "antratek.be", "https://www.antratek.be/logic-level-converter-bi-directional-bob-12009",
-     "Gekozen TXB0104 niet op antratek; dit is een bruikbaar alternatief"),
-    ("Print en verbindingen", "Schroefklem 4-pins 3,5 mm", "KF128/KF301", 1, None, "geen link",
-     "-", "", "Niet op antratek.be; antratek heeft wel terminal-block pluggen"),
-    ("Print en verbindingen", "Sockets", "Dual-wipe (ESP32) + precisie voor de rest", 1, None,
-     "geen link", "-", "", "Niet op antratek.be"),
-    ("Print en verbindingen", "Power-LED + serieweerstand", "Status voeding", 1, None, "geen link",
-     "-", "", "Niet op antratek.be"),
-    ("Print en verbindingen", "Ontkoppelcondensatoren", "100 nF + 10 uF per modulevoedingspin",
-     1, None, "geen link", "-", "", "Niet op antratek.be"),
-    ("Print en verbindingen", "Bulk-elco", "100 uF / 16 V op de 5 V-ingang", 1, None, "geen link",
-     "-", "", "Niet op antratek.be"),
+     "8-kanaals bidirectionele Logic Level Converter - TXB0108", 1, 8.70, "kiwi",
+     "Kiwi Electronics",
+     "https://www.kiwi-electronics.com/nl/8-channel-bi-directional-logic-level-converter-txb0108-836",
+     "Past bij de gekozen TXB-serie; antratek-alternatief BSS138-converter EUR 4,78"),
+    ("Print en verbindingen", "Schroefklem 4-pins 3,5 mm", "KF128/KF301", 1, 0.55, "schatting",
+     "componentenwinkel", "", "Niet bij Kiwi (alleen 3-weg) of antratek; prijs schatting"),
+    ("Print en verbindingen", "Sockets", "Dual-wipe (ESP32) + precisie voor de rest", 1, 5.00,
+     "schatting", "componentenwinkel", "",
+     "Niet bij Kiwi of antratek; prijs schatting (zie pcb-methodes-kosten)"),
+    ("Print en verbindingen", "Power-LED + serieweerstand",
+     "3 mm LED rood (10-pack) + weerstand 330 Ohm (10-pack)", 1, 2.16, "kiwi",
+     "Kiwi Electronics",
+     "https://www.kiwi-electronics.com/nl/3mm-led-diffuus-rood-10-pack-3085",
+     "10-packs: 1 LED + 1 weerstand nodig; weerstand EUR 0,96; rest overschot"),
+    ("Print en verbindingen", "Ontkoppelcondensatoren",
+     "Keramische condensator kit (15 soorten, 450 st.) - dekt 100 nF + 10 uF", 1, 10.27,
+     "kiwi", "Kiwi Electronics",
+     "https://www.kiwi-electronics.com/nl/keramische-condensator-kit-in-doos-15-soorten-450-stuks-10492",
+     "Kit i.p.v. losse condensatoren"),
+    ("Print en verbindingen", "Bulk-elco", "100 uF / 16 V op de 5 V-ingang", 1, 0.59, "kiwi",
+     "Kiwi Electronics", "https://www.kiwi-electronics.com/nl/100uf-16v-condensator-440", ""),
     ("Print en verbindingen", "I2C-pull-ups op de print",
      "Niet nodig; breakouts hebben ze al", 2, None, "niet nodig", "-", "", "2 reserve-footprints"),
-    ("Print en verbindingen", "Montage", "M3-schroeven, moeren, standoffs, nylon spacers", 1, None,
-     "geen link", "-", "", "Niet op antratek.be"),
+    ("Print en verbindingen", "Montage", "M3-schroeven, moeren, standoffs, nylon spacers", 1, 4.00,
+     "schatting", "componentenwinkel", "",
+     "Niet bij Kiwi of antratek; prijs schatting"),
 
     ("Kabels en verbruik (in bezit)", "USB-C datakabel", "Eigen kabel", 1, None, "al in bezit",
      "-", "", ""),
@@ -79,8 +105,8 @@ RIJEN = [
      "Schuifmaat, soldeerbout, tin, flux, multimeter, USB-serieel adapter", 1, None,
      "al in bezit", "-", "", ""),
 
-    ("Mock-up (vliegtuigje)", "Arduino", "Arduino Uno (heeft de gebruiker thuis)", 1, None, "al in bezit", "-",
-     "", "Referentie antratek: Arduino Uno Rev3 (EUR 41,75)"),
+    ("Mock-up (vliegtuigje)", "Arduino", "Arduino Uno (heeft de gebruiker thuis)", 1, None,
+     "al in bezit", "-", "", "Referentie antratek: Arduino Uno Rev3 (EUR 41,75)"),
     ("Mock-up (vliegtuigje)", "Servo's", "Bestaande voorraad (> 3)", 3, None, "al in bezit", "-",
      "", ""),
     ("Mock-up (vliegtuigje)", "Servo-voeding", "Aparte buck-converter", 1, None, "al in bezit",
@@ -91,10 +117,13 @@ RIJEN = [
 
 KOPPEN = ["Categorie", "Functie", "Onderdeel", "Aantal", "Prijs/st (EUR)", "Totaal (EUR)",
           "Status", "Leverancier", "Link", "Opmerking"]
-BREEDTES = [24, 30, 46, 8, 14, 14, 12, 14, 52, 52]
+BREEDTES = [24, 30, 46, 8, 14, 14, 12, 16, 52, 52]
 
 KLEUR_STATUS = {
+    "kiwi": "DDEBF7",
     "antratek": "C6EFCE",
+    "aisler": "E1D5E7",
+    "schatting": "FCE4D6",
     "al in bezit": "D9D9D9",
     "geen link": "FFEB9C",
     "niet nodig": "F2F2F2",
@@ -113,7 +142,8 @@ def bouw():
 
     # Titel
     ws.merge_cells("A1:J1")
-    ws["A1"] = "Bestellijst G-Stem meettoestel - prijzen incl. btw, gezocht op antratek.be (2026-10-06)"
+    ws["A1"] = ("Bestellijst G-Stem meettoestel - prijzen incl. btw "
+                "(Kiwi Electronics + antratek + AISLER, 2026-10-06)")
     ws["A1"].font = Font(bold=True, size=13, color="FFFFFF")
     ws["A1"].fill = PatternFill("solid", fgColor=KLEUR_KOP)
     ws["A1"].alignment = Alignment(vertical="center", horizontal="left")
@@ -163,27 +193,48 @@ def bouw():
                 cel.font = Font(color="0563C1", underline="single")
         r += 1
 
-    # Totaalregel (enkel antratek-regels)
-    ws.merge_cells(start_row=r, start_column=1, end_row=r, end_column=5)
-    cel = ws.cell(row=r, column=1, value="Totaal te bestellen bij antratek (excl. geen-link-onderdelen)")
-    cel.font = Font(bold=True)
-    cel.alignment = Alignment(horizontal="right", vertical="center")
-    tot_cel = ws.cell(row=r, column=6)
-    tot_cel.value = "=SUMIF(G3:G%d,\"antratek\",F3:F%d)" % (r - 1, r - 1)
-    tot_cel.number_format = '#,##0.00 "EUR"'
-    tot_cel.font = Font(bold=True)
-    for c in range(1, 11):
-        ws.cell(row=r, column=c).border = Border(top=Side(style="medium", color=KLEUR_KOP),
-                                                 bottom=dun, left=dun, right=dun)
-    ws.cell(row=r, column=6).alignment = Alignment(horizontal="right")
-    r += 2
+    laatste_data = r - 1
+
+    # Totaalregels per winkel
+    def totaalrij(label, formule, vet=True):
+        nonlocal r
+        ws.merge_cells(start_row=r, start_column=1, end_row=r, end_column=5)
+        cel = ws.cell(row=r, column=1, value=label)
+        cel.font = Font(bold=vet)
+        cel.alignment = Alignment(horizontal="right", vertical="center")
+        tot = ws.cell(row=r, column=6, value=formule)
+        tot.number_format = '#,##0.00 "EUR"'
+        tot.font = Font(bold=vet)
+        tot.alignment = Alignment(horizontal="right")
+        for c in range(1, 11):
+            ws.cell(row=r, column=c).border = Border(
+                top=Side(style="medium", color=KLEUR_KOP), bottom=dun, left=dun, right=dun)
+        r += 1
+
+    r += 1  # lege regel
+    totaalrij("Totaal te bestellen bij Kiwi Electronics",
+              '=SUMIF(G3:G%d,"kiwi",F3:F%d)' % (laatste_data, laatste_data))
+    totaalrij("Totaal te bestellen bij antratek",
+              '=SUMIF(G3:G%d,"antratek",F3:F%d)' % (laatste_data, laatste_data))
+    totaalrij("Subtotaal onderdelen (Kiwi + antratek)",
+              "=F%d+F%d" % (r - 2, r - 1))
+    totaalrij("Totaal draagprint bij AISLER (3 stuks)",
+              '=SUMIF(G3:G%d,"aisler",F3:F%d)' % (laatste_data, laatste_data))
+    totaalrij("Totaal PCB-onderdelen (schatting, apart bestellen)",
+              '=SUMIF(G3:G%d,"schatting",F3:F%d)' % (laatste_data, laatste_data))
+    totaalrij("Totaal alles (incl. print + PCB-onderdelen)",
+              "=F%d+F%d+F%d" % (r - 3, r - 2, r - 1))
+    r += 1
 
     ws.cell(row=r, column=1,
-            value="Let op: prijzen onder voorbehoud (anratek 2026-10-06). Niet-gevonden onderdelen "
-                  "staan op 'geen link' en zijn niet in het totaal opgenomen.").font = Font(italic=True, size=9)
+            value="Let op: prijzen onder voorbehoud (Kiwi Electronics + antratek + AISLER, 2026-10-06). "
+                  "De PCB-onderdelen op status 'schatting' zijn benaderd (o.a. sockets, discrete voeding, "
+                  "LDO, schroefklem, M3-montage). Het 'geen link'-onderdeel (RTK-module LC29H) is niet in "
+                  "de totalen opgenomen. Details: GEBRUIKER/data/bestelschema-pcb.md."
+            ).font = Font(italic=True, size=9)
 
     ws.freeze_panes = "A3"
-    ws.auto_filter.ref = "A2:J%d" % (r - 3)
+    ws.auto_filter.ref = "A2:J%d" % laatste_data
 
     # Tweede blad: volledige uitleg tags
     ws2 = wb.create_sheet("Legende")
@@ -192,14 +243,107 @@ def bouw():
         cel.font = Font(bold=True, color="FFFFFF")
         cel.fill = PatternFill("solid", fgColor=KLEUR_KOP)
     for tag, bet in [
-        ("antratek", "Aankooplink gevonden op antratek.be"),
+        ("kiwi", "Aankooplink gevonden op Kiwi Electronics (kiwi-electronics.com)"),
+        ("antratek", "Aankooplink gevonden op antratek.be (goedkoper of als reserve)"),
+        ("aisler", "Gefabriceerd bij AISLER (EU); print zelf, geen componenten"),
+        ("schatting", "Prijs is een schatting; apart te bestellen bij een componentenwinkel"),
         ("al in bezit", "Heeft de gebruiker al; niet aankopen"),
-        ("geen link", "Niet gevonden op antratek.be; niet elders gezocht"),
+        ("geen link", "Niet gevonden bij Kiwi of antratek; nog geen prijs"),
         ("niet nodig", "Bewust niet voorzien"),
     ]:
         ws2.append([tag, bet])
+        ws2.cell(row=ws2.max_row, column=1).fill = PatternFill(
+            "solid", fgColor=KLEUR_STATUS.get(tag, "FFFFFF"))
     ws2.column_dimensions["A"].width = 14
-    ws2.column_dimensions["B"].width = 60
+    ws2.column_dimensions["B"].width = 70
+
+    # Derde blad: bestelschema draagprint bij AISLER
+    ws3 = wb.create_sheet("Bestelschema PCB")
+    ws3.merge_cells("A1:D1")
+    ws3["A1"] = "Bestelschema draagprint bij AISLER - schatting (2026-10-06)"
+    ws3["A1"].font = Font(bold=True, size=13, color="FFFFFF")
+    ws3["A1"].fill = PatternFill("solid", fgColor=KLEUR_KOP)
+    ws3["A1"].alignment = Alignment(vertical="center")
+    ws3.row_dimensions[1].height = 24
+    ws3.column_dimensions["A"].width = 44
+    ws3.column_dimensions["B"].width = 16
+    ws3.column_dimensions["C"].width = 18
+    ws3.column_dimensions["D"].width = 46
+
+    rr = 2
+
+    def sheet_kop(tekst):
+        nonlocal rr
+        ws3.merge_cells(start_row=rr, start_column=1, end_row=rr, end_column=4)
+        cel = ws3.cell(row=rr, column=1, value=tekst)
+        cel.font = Font(bold=True, color="1F3864")
+        cel.fill = PatternFill("solid", fgColor=KLEUR_CATEGORIE)
+        cel.alignment = Alignment(vertical="center")
+        rr += 1
+
+    def sheet_rij(a, b=None, c=None, d=None, vet=False, geld=False):
+        nonlocal rr
+        for i, w in enumerate((a, b, c, d), start=1):
+            cel = ws3.cell(row=rr, column=i, value=w)
+            cel.border = RAND
+            cel.alignment = Alignment(vertical="top", wrap_text=True)
+            if vet:
+                cel.font = Font(bold=True)
+            if geld and i == 2 and w is not None:
+                cel.number_format = '#,##0.00 "EUR"'
+                cel.alignment = Alignment(horizontal="right", vertical="top")
+        rr += 1
+
+    sheet_kop("AISLER-productie - 2-laags 1,6 mm HASL Budget")
+    sheet_rij("Formule: EUR 12,00 job fee + EUR 0,067/cm2 x oppervlak x aantal "
+              "(sets van 3, gratis verzending, productie vanaf 2 werkdagen)")
+    sheet_rij("Oppervlak", "3 stuks incl. btw", "6 stuks incl. btw", vet=True)
+    sheet_rij("60 cm2 (bv. 100x60)", 29.11, 43.71, geld=True)
+    sheet_rij("75 cm2 (100x75, aanname)", 32.76, 50.99, geld=True)
+    sheet_rij("90 cm2 (120x75)", 36.41, 58.30, geld=True)
+    sheet_rij("100 cm2 (100x100)", 38.84, 63.16, geld=True)
+    rr += 1
+
+    sheet_kop("Onderdelen op de print")
+    sheet_rij("Onderdeel", "Prijs (EUR)", "Leverancier", vet=True)
+    sheet_rij("Sockets (dual-wipe + precisie)", 5.00, "componentenwinkel (schatting)", geld=True)
+    sheet_rij("Voedingsbescherming (2 A PTC + DMG2301L + SMBJ10A)", 0.95,
+              "componentenwinkel (schatting)", geld=True)
+    sheet_rij("LDO AP2112K-3.3", 0.35, "componentenwinkel (schatting)", geld=True)
+    sheet_rij("Schroefklem 4-pins 3,5 mm (KF128/KF301)", 0.55,
+              "componentenwinkel (schatting)", geld=True)
+    sheet_rij("M3-schroeven, moeren, standoffs, spacers", 4.00,
+              "componentenwinkel (schatting)", geld=True)
+    sheet_rij("Subtotaal apart te bestellen", 10.85, "schatting", vet=True, geld=True)
+    sheet_rij("TXB0108 level shifter", 8.70, "Kiwi Electronics", geld=True)
+    sheet_rij("LED + serieweerstand (per bord gebruikt)", 0.22, "Kiwi Electronics", geld=True)
+    sheet_rij("Ontkoppelcondensatoren (per bord gebruikt)", 0.50, "Kiwi Electronics", geld=True)
+    sheet_rij("Bulk-elco 100 uF", 0.59, "Kiwi Electronics", geld=True)
+    sheet_rij("Subtotaal al in hoofd-bestellijst", 10.01, "Kiwi Electronics", vet=True, geld=True)
+    sheet_rij("Totaal onderdelen op de print (met TXB0108)", 20.86,
+              "met TXB0104-IC direct: ca. 13,96", vet=True, geld=True)
+    rr += 1
+
+    sheet_kop("Totalen (3 borden, incl. btw)")
+    sheet_rij("AISLER print, 3 stuks, 75 cm2 Budget", 32.76, geld=True)
+    sheet_rij("Onderdelen op de print", 20.86, geld=True)
+    sheet_rij("Totaal", 53.62, vet=True, geld=True)
+    sheet_rij("Waarvan al in de hoofd-bestellijst", 10.01, geld=True)
+    sheet_rij("Werkelijk nieuw te bestellen", 43.61, vet=True, geld=True)
+    rr += 1
+
+    sheet_kop("Bestelvolgorde")
+    for stap in [
+        "1. PCB ontwerpen in KiCad; layout afronden, DRC, Gerbers/ODB++ exporteren",
+        "2. Bordafmeting definitief nameten en AISLER-calculator controleren",
+        "3. Print bestellen bij AISLER (3 of 6 stuks, Budget-service)",
+        "4. Tegelijk de 'schatting'-onderdelen bestellen (sockets, voeding, LDO, klem, montage)",
+        "5. Kiwi/antratek-bestelling: level shifter, LED, condensatoren, bulk-elco",
+        "6. Rendering vergelijken met het echte bord, daarna solderen",
+    ]:
+        sheet_rij(stap)
+
+    ws3.freeze_panes = "A2"
 
     doel = os.path.join(os.path.dirname(os.path.abspath(__file__)), "Bestellijst-GSTEM.xlsx")
     wb.save(doel)

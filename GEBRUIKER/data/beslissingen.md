@@ -285,6 +285,18 @@ Chronologisch, nieuwste onderaan. Eén subsectie per beslissing.
 - **Gevolg:** `GEBRUIKER/data/bestellijst.md` en `documenten/Bestellijst-GSTEM.xlsx` (via `documenten/build-bestellijst.py`). Niet op antratek: BMP390, LC29H(DA), 2S LiPo, voedingsbescherming, AP2112K, 4-pins schroefklem, sockets, passieven en M3-montage.
 - **Link:** [[bestellijst]], [[componenten]], [[links]]
 
+## 2026-10-06 — Zo veel mogelijk bij Kiwi Electronics
+- **Beslissing:** Onderdelen zo veel mogelijk bij **Kiwi Electronics** kopen om verzendkosten te beperken; wat daar **goedkoper** is of als **reserve** dient blijft bij **antratek.be**.
+- **Ingevuld:** **BNO085** (€ 32,05, goedkoper + nieuwer dan BNO055), **BMP581** (€ 10,88, nauwkeuriger dan BME280), actieve **GNSS SMA-antenne** (€ 16,93), **TXB0108** level converter (€ 8,70), LED/weerstand (€ 2,16), condensatorkit (€ 10,27), bulk-elco (€ 0,59) → Kiwi € 81,58. Bij antratek blijven de **XIAO-kit** (€ 30,26, Wio-SX1262 bij Kiwi uit voorraad) en de **U.FL→SMA pigtail** (€ 3,57) → antratek € 33,83.
+- **Gevolg:** Totaal te bestellen **€ 115,41**. Nodig blijft nog een **tweede winkel** voor RTK-module, discrete voeding, connectoren, sockets en M3-montage (niet bij Kiwi of antratek).
+- **Link:** [[bestellijst]], [[links]], [[componenten]]
+
+## 2026-10-06 — Voedingsbescherming en LDO op de draagprint
+- **Beslissing:** De **2 A PTC-zekering, P-MOSFET DMG2301L (ompoolbeveiliging), TVS SMBJ10A en LDO AP2112K-3.3** komen **op de draagprint**, samen met de bulk-elco en power-LED, in de **voedingssectie linksboven bij de ingang**. Enkel de buck-converter, accu, barrel-connector en sensormodules blijven losse modules.
+- **Reden:** Gebruikersvraag `2026-10-06`; bescherming hoort zo dicht mogelijk bij de ingangsconnector (kortste pad, beste klemming) en de LDO zo dicht mogelijk bij de sensoren (schone 3,3 V).
+- **Gevolg:** De printstuklijst bevat deze onderdelen; in KiCad footprint + behuizing kiezen (SMD of through-hole). Zie [[componenten]] en [[pcb-schets]].
+- **Link:** [[componenten]], [[pcb-schets]], [[pcb-ontwerp]]
+
 ## 2026-10-06 — Accu, barrel-adapter en USB-A-kabel al in bezit
 - **Beslissing:** De gebruiker heeft al: een **2S LiPo-accu met connector en kabel**, de **DC Barrel Jack Adapter - Female** en een **USB-A naar USB-C kabel** voor de XIAO. Deze staan op `al in bezit` en vallen uit het te-bestellen-totaal.
 - **Reden:** Gebruikersaanwijzing `2026-10-06`.
@@ -308,3 +320,15 @@ Chronologisch, nieuwste onderaan. Eén subsectie per beslissing.
 - **Reden:** Gebruikersaanwijzing `2026-10-06`.
 - **Gevolg:** NTRIP-provider blijft als gebruikersactie open; de socket-keuze is een detail voor het schema, geen blokkade. Vastgelegd in [[componenten]] en [[open-vragen]].
 - **Link:** [[componenten]], [[open-vragen]], [[links]]
+
+## 2026-10-06 — PCB-fabrikant: AISLER
+- **Beslissing:** De draagprint wordt gefabriceerd bij **AISLER** (Duitsland/Nederland, binnen de EU). De andere onderzochte fabrikanten (JLCPCB, PCBWay, Seeed Fusion, OSH Park, Eurocircuits, Multi-CB, BETA LAYOUT/LeitOn) zijn **gekend en bewaard**, maar niet gekozen.
+- **Reden:** Gebruikersaanwijzing `2026-10-06`. AISLER is het **makkelijkst binnen Europa** (KiCad/ODB++ direct, vaste prijs per oppervlak, geen extra kosten voor gaten/via's, gratis verzending, productie vanaf 2 werkdagen) en vermijdt invoer/btw-gedoe.
+- **Gevolg:** 2-laags 1,6 mm HASL Budget: € 12,00 job fee + € 0,067/cm² × oppervlak × aantal (sets van 3). Bij een aangenomen bord van 100 × 75 mm: **± € 32,76 incl. btw voor 3 stuks**. Productie- en onderdelenkost samengebracht in [[bestelschema-pcb]]; vergelijking in [[pcb-fabrikanten]].
+- **Link:** [[pcb-fabrikanten]], [[bestelschema-pcb]], [[bestellijst]], [[beslissingen]]
+
+## 2026-10-06 — Eindbeeld van de eind-PCB als PNG genereren
+- **Beslissing:** Er wordt een **PNG-eindbeeld** gemaakt van de eind-PCB met de **definitief gekozen** breakouts (XIAO ESP32S3 + Wio-SX1262, BNO085, BMP581, LC29H(DA)), de losse printcomponenten en de **Arduino Uno** met al zijn verbindingen. Bestand: `documenten/PCB-eindbeeld.png`, gebouwd met `documenten/build-pcb-eindbeeld.py` (PIL, geen extra software nodig).
+- **Reden:** Gebruikersvraag `2026-10-06`: een beeld van de **eindtoestand** met alle breakouts, exacte componenten, de Arduino en de verbindingen. De bestaande schets gebruikte nog de oudere BNO055/BMP390-varianten.
+- **Gevolg:** Het eindbeeld toont de voedingsbussen (5 V / 3,3 V / GND), I2C, GNSS-UART, de Arduino-UART via de **TXB0104**, de LoRa-RF en de 4-aderige kabel naar de Arduino. De **pinout blijft een voorstel** (open AI-taak); schematisch en niet op schaal. Vastgelegd in [[pcb-schets]] en [[links]].
+- **Link:** [[pcb-schets]], [[links]], [[componenten]]

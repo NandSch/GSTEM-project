@@ -48,7 +48,9 @@ tags: [gstem, data, open-vragen]
 
 - [ ] **Welke exacte breakout-modellen en bijbehorende pinouts?** — `2026-10-06`: **XIAO ESP32S3 + Wio-SX1262 kit** (rekenkern + LoRa), **Adafruit BNO055** (IMU), **Adafruit BMP390** (barometer) en **Quectel LC29H(DA)** (RTK-GNSS) zijn gekozen. Enkel de **pinouts** en het **pin-budget** van de XIAO (± 14 I/O) moeten nog genoteerd/gecontroleerd worden. Zie [[componenten]].
 - [x] **Wordt de 7,4 V-accu of de barrel-connector de hoofdvoeding?** — `2026-10-06`: **7,4 V-accu + zekering/ompoolbeveiliging -> buck 5 V -> LDO 3,3 V**. De XIAO wordt op 5 V gevoed; de ingebouwde LiPo-lader wordt niet gebruikt. Zie [[componenten]] en [[beslissingen]].
-- [ ] **Welk PCB-ontwerpgereedschap (KiCad?) en welke fabrikant?** — advies `2026-10-06`: **KiCad** als app, **JLCPCB/PCBWay** als fabrikant. Werkwijze in [[pcb-ontwerp]]. Keuze nog te bevestigen. (`2026-10-06`)
+- [x] **Welk PCB-ontwerpgereedschap en welke fabrikant?** — `2026-10-06`: gereedschap **KiCad**; fabrikant **AISLER** (EU). Zie [[pcb-fabrikanten]] en [[bestelschema-pcb]]. De overige fabrikanten (JLCPCB, PCBWay, OSH Park, Eurocircuits, Multi-CB) zijn bewaard maar niet gekozen. (`2026-10-06`)
+- [ ] **Level shifter op de print: TXB0108-breakout of TXB0104-IC?** — de [[bestellijst]] neemt de breakout (€ 8,70); de IC rechtstreeks is ± € 1,80, een verschil van ± € 6,90. (`2026-10-06`)
+- [ ] **Exacte bordafmeting en laagopbouw van de draagprint?** — aanname in [[bestelschema-pcb]]: **100 x 75 mm, 2 lagen**. Definitief maken zodra de KiCad-layout klaar is. (`2026-10-06`)
 - [x] **Dubbele I2C-pull-ups en level shifter: welke breakouts hebben al pull-ups, en is 5 V-aansturing nodig?** — `2026-10-06`: de BNO055- en BMP390-breakouts hebben al pull-ups, dus **geen extra op de print**; de **TXB0104** verzorgt de 3,3 V <-> 5 V voor de UART. (`2026-10-06`)
 
 - [x] **Socket-headers of een alternatief (precisie-sockets, direct solderen, castellated, board-to-board)?** — `2026-10-06`: **dual-wipe** voor de XIAO, **precisie/gefreesd** voor de overige modules. (`2026-10-06`)

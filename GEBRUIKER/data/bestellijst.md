@@ -8,19 +8,21 @@ status: werklijst
 # Bestellijst meettoestel (aan te kopen)
 
 > [!info] Werkwijze
-> Alle onderdelen uit [[componenten]]. Eerst gezocht op **www.antratek.be**; wat daar niet staat,
-> is **niet elders** gezocht (afspraak gebruiker `2026-10-06`). Prijzen zijn **incl. btw** en
-> onder voorbehoud (anratek `2026-10-06`). De Excel-versie staat in
-> `documenten/Bestellijst-GSTEM.xlsx`.
+> Alle onderdelen uit [[componenten]]. Strategie: **zo veel mogelijk bij Kiwi Electronics**
+> (verzendkosten beperken). Wat daar **goedkoper** is of als **reserve** dient, bij **antratek.be**.
+> Prijzen zijn **incl. btw** en onder voorbehoud (`2026-10-06`). De Excel-versie staat in
+> `documenten/Bestellijst-GSTEM.xlsx` (bron: `documenten/build-bestellijst.py`).
 
 ## Legende (tags)
 
 | Tag | Betekenis |
 | --- | --- |
-| `antratek` | Aankooplink gevonden op antratek.be |
+| `kiwi` | Aankooplink gevonden op Kiwi Electronics |
+| `antratek` | Aankooplink gevonden op antratek.be (goedkoper of reserve) |
 | `al-in-bezit` | Heeft de gebruiker al; niet aankopen |
-| `geen-link` | Niet gevonden op antratek.be, dus geen aankooplink |
+| `geen-link` | Niet bij Kiwi of antratek; aparte componentenwinkel nodig |
 | `niet-nodig` | Bewust niet voorzien |
+| `aisler` | Draagprint gefabriceerd bij AISLER |
 
 ## Rekenkern en communicatie
 
@@ -29,84 +31,88 @@ status: werklijst
 | `antratek` | Rekenkern + LoRa (toestel + ontvanger) | XIAO ESP32S3 & Wio-SX1262 Kit for Meshtastic & LoRa | 2 | € 15,13 | https://www.antratek.be/xiao-esp32s3-for-meshtastic-lora |
 
 > [!note] Antenne inbegrepen
-> De LoRa-antenne zit bij de kit; er is geen losse LoRa-antenne nodig (zie `al-in-bezit`).
+> De LoRa-antenne zit bij de kit. **Kiwi-alternatief:** XIAO ESP32S3 (€ 8,46) + Wio-SX1262
+> (€ 5,43) apart — maar de **Wio-SX1262-module is bij Kiwi niet op voorraad**, dus de kit blijft
+> de zekere optie.
 
 ## Sensoren
 
 | Tag | Component | Onderdeel | Aantal | Prijs/st | Link |
 | --- | --- | --- | --- | --- | --- |
-| `antratek` | 9-DoF IMU | 9-DOF Absolute Orientation IMU Fusion Breakout - BNO055 - STEMMA QT/Qwiic | 1 | € 36,24 | https://www.antratek.be/9-dof-absolute-orientation-imu-fusion-breakout-bno055 |
-| `antratek` | Barometer | Atmospheric Sensor Breakout - BME280 (Qwiic) | 1 | € 19,97 | https://www.antratek.be/atmospheric-sensor-breakout-bme280 |
-| `geen-link` | RTK-GNSS-module | Quectel LC29H(DA) | 1 | - | Niet op antratek.be |
+| `kiwi` | 9-DoF IMU | Adafruit BNO085 (BNO080) 9-DoF Orientation IMU Fusion, STEMMA QT/Qwiic | 1 | € 32,05 | https://www.kiwi-electronics.com/nl/adafruit-9-dof-orientation-imu-fusion-breakout-bno085-bno080-stemma-qt-qwiic-11273 |
+| `kiwi` | Barometer | Adafruit BMP581 I²C/SPI druk- en temperatuursensor, STEMMA QT | 1 | € 10,88 | https://www.kiwi-electronics.com/nl/adafruit-bmp581-i2c-spi-druk-en-temperatuursensor-stemma-qt-20534 |
+| `geen-link` | RTK-GNSS-module | Quectel LC29H(DA) | 1 | - | Niet bij Kiwi of antratek |
 
-> [!warning] Barometer: voorkeur voor een beter model
-> De gekozen **Adafruit BMP390** staat **niet op antratek** (ook BMP388/BMP581 niet). De **BME280**
-> (€ 19,97) is er wel leverbaar, maar **minder nauwkeurig** (relatief ±0,12 hPa ≈ ±1 m t.o.v.
-> ±0,03 hPa ≈ ±0,25 m bij de BMP390). `2026-10-06`: de gebruiker kiest **liever een nauwkeuriger
-> model** (BMP390 of beter). Zoeken bij andere leveranciers is **uitgesteld**; de BME280 blijft
-> voorlopig als **plaatsvervanger** in het totaal staan.
+> [!success] Beter én goedkoper dan voorheen
+> De **BNO085** (€ 32,05) is goedkoper **en nieuwer** dan de BNO055 op antratek (€ 36,24).
+> De **BMP581** (€ 10,88) is een **nauwkeuriger** barometer dan de BME280 en past bij de
+> gebruikersvoorkeur om een beter model te nemen; de BMP390L is bij Kiwi **uit voorraad**.
 
-> [!warning] RTK-module niet op antratek
-> De gekozen **Quectel LC29H(DA)** heeft antratek niet. De goedkoopste RTK-alternatieven daar zijn
-> veel duurder (zie hieronder), dus die zijn **niet in het totaal** opgenomen.
-
-> [!example]- Alternatieven op antratek (niet gekozen)
-> - Quadband GNSS RTK Breakout - LG290P (Qwiic) - € 217,74 - https://www.antratek.be/quadband-gnss-rtk-breakout-lg290p-qwiic
-> - GPS-RTK-SMA Board - ZED-F9P (Qwiic) - € 302,44 - https://www.antratek.be/gps-rtk-sma-board-zed-f9p-qwiic
+> [!warning] RTK-module nergens te koop
+> De gekozen **Quectel LC29H(DA)** staat bij **Kiwi noch antratek**. Kiwi heeft enkel de
+> **niet-RTK L76K** (€ 15,11). Antratek-alternatieven zijn veel duurder: LG290P (€ 217,74),
+> ZED-F9P (€ 302,44).
 
 ## Antennes en RF
 
 | Tag | Component | Onderdeel | Aantal | Prijs/st | Link |
 | --- | --- | --- | --- | --- | --- |
-| `antratek` | GNSS-antenne (actief, SMA) | GPS/GNSS Magnetic Mount Antenna SMA - 3m, SparkFun GPS-14986 | 1 | € 19,30 | https://www.antratek.be/gps-gnss-magnetic-mount-antenna-sma-3m |
+| `kiwi` | GNSS-antenne (actief, SMA) | GPS Antenne – Externe Actieve – 3-5V 28dB 5 m SMA | 1 | € 16,93 | https://www.kiwi-electronics.com/nl/gps-antenne-externe-actieve-antenne-3-5v-28db-5-meter-sma-620 |
 | `antratek` | LoRa IPEX/U.FL -> SMA pigtail | Interface Cable SMA to U.FL (150 mm), SparkFun WRL-18568 | 1 | € 3,57 | https://www.antratek.be/u-fl-sma-150mm-cable |
 | `al-in-bezit` | LoRa-antenne | Inbegrepen bij de XIAO-kit | 1 | - | - |
 
 > [!tip] Goedkoopste passende GNSS-antenne
-> De **GPS/GNSS Magnetic Mount Antenna SMA - 3m** (€ 19,30) is de goedkoopste **actieve** antenne met
-> **SMA** op antratek; ze is multi-constellatie maar **enkelbandig (L1)**. Daarmee is RTK mogelijk,
-> maar minder robuust dan met een dual-band antenne.
+> De Kiwi-antenne (€ 16,93) is de goedkoopste **actieve SMA**-antenne; **enkelbandig (L1)**,
+> multi-constellatie. Voor volledige dual-band RTK is er de optie hieronder.
 
 > [!example]- Duurdere, nauwkeurigere optie (L1/L5)
 > **GNSS L1/L5 Multi-Band High Precision Antenna - 5m (SMA)** - € 120,94 -
 > https://www.antratek.be/gnss-l1-l5-multi-band-high-precision-antenna-5m-sma.
-> Nodig voor de volledige dual-band RTK-prestatie van de LC29H(DA); ca. € 101,64 duurder.
-> Er is ook een **Molex Flexible GNSS Antenna - U.FL** voor € 8,41
-> (https://www.antratek.be/molex-flexible-gnss-antenna-u-fl-adhesive), maar dat is een klein
-> L1-printantennetje zonder SMA-kabel — minder geschikt voor montage aan het vliegtuigje.
+
+> [!note] Pigtail
+> Goedkoper op antratek (€ 3,57) dan Kiwi (€ 4,22) → op antratek laten staan.
 
 ## Voeding
 
 | Tag | Component | Onderdeel | Aantal | Prijs/st | Link |
 | --- | --- | --- | --- | --- | --- |
-| `al-in-bezit` | Accu (7,4 V) | 2S LiPo met connector en kabel (heeft de gebruiker) | 1 | - | - |
-| `al-in-bezit` | Voedingsaansluiting | DC Barrel Jack Adapter - Female (heeft de gebruiker) | 1 | - | - |
+| `al-in-bezit` | Accu (7,4 V) | 2S LiPo met connector en kabel | 1 | - | - |
+| `al-in-bezit` | Voedingsaansluiting | DC Barrel Jack Adapter - Female | 1 | - | - |
 | `al-in-bezit` | Buck-converter 5 V | Heeft de gebruiker | 1 | - | - |
-| `geen-link` | Bescherming voeding | 2 A PTC + P-MOSFET DMG2301L + TVS SMBJ10A | 1 set | - | Niet op antratek.be |
-| `geen-link` | LDO 3,3 V | AP2112K-3.3 (of AMS1117-3.3) | 1 | - | Niet op antratek.be |
+| `geen-link` | Bescherming voeding | 2 A PTC + P-MOSFET DMG2301L + TVS SMBJ10A (op de print) | 1 set | - | Niet bij Kiwi of antratek |
+| `geen-link` | LDO 3,3 V | AP2112K-3.3 (of AMS1117-3.3) (op de print) | 1 | - | Niet bij Kiwi of antratek |
 | `niet-nodig` | Aan/uit-schakelaar | Geen; toestel start bij voeding | - | - | - |
 
 > [!note] Barrel-adapter
 > De gevonden `DC Barrel Jack Adapter - Female` is een **adapter met schroefklem**, niet rechtstreeks
 > PCB-montage. Voor de draagprint is een PCB-barreljack (of een draad naar de klem) nodig.
 
+> [!info] Printkost
+> De productie van de draagprint bij **AISLER** (± € 32,76 incl. btw voor 3 stuks) en de
+> onderdelen op de print staan apart in [[bestelschema-pcb]].
+
 ## Print en verbindingen
+
+> [!success] Print bij AISLER (`2026-10-06`)
+> De draagprint wordt gemaakt bij **AISLER** (2-laags, 1,6 mm HASL Budget). Schatting **± € 32,76
+> incl. btw voor 3 stuks** (aanname 100 x 75 mm). Alle productie- en onderdelenkosten staan in
+> [[bestelschema-pcb]].
 
 | Tag | Component | Onderdeel | Aantal | Prijs/st | Link |
 | --- | --- | --- | --- | --- | --- |
-| `antratek` | Level shifter 3,3 V <-> 5 V | Logic Level Converter Bi-Directional, SparkFun BOB-12009 (alternatief voor TXB0104) | 1 | € 4,78 | https://www.antratek.be/logic-level-converter-bi-directional-bob-12009 |
-| `geen-link` | Schroefklem 4-pins 3,5 mm | KF128/KF301 | 1 | - | Niet op antratek.be |
-| `geen-link` | Sockets | Dual-wipe (ESP32) + precisie voor de rest | set | - | Niet op antratek.be |
-| `geen-link` | Power-LED + serieweerstand | Status voeding | 1 | - | Niet op antratek.be |
-| `geen-link` | Ontkoppelcondensatoren | 100 nF + 10 uF per modulevoedingspin | set | - | Niet op antratek.be |
-| `geen-link` | Bulk-elco | 100 uF / 16 V op de 5 V-ingang | 1 | - | Niet op antratek.be |
+| `aisler` | Draagprint (PCB) | 2-laags 1,6 mm HASL, set van 3 | 3 | ± € 10,92 | https://aisler.net |
+| `kiwi` | Level shifter 3,3 V <-> 5 V | 8-kanaals bidirectionele Logic Level Converter - TXB0108 | 1 | € 8,70 | https://www.kiwi-electronics.com/nl/8-channel-bi-directional-logic-level-converter-txb0108-836 |
+| `geen-link` | Schroefklem 4-pins 3,5 mm | KF128/KF301 | 1 | - | Niet bij Kiwi (alleen 3-weg) of antratek |
+| `geen-link` | Sockets | Dual-wipe (ESP32) + precisie voor de rest | set | - | Niet bij Kiwi of antratek |
+| `kiwi` | Power-LED + serieweerstand | 3 mm LED rood (10-pack) + weerstand 330 Ω (10-pack) | 1 | € 2,16 | https://www.kiwi-electronics.com/nl/3mm-led-diffuus-rood-10-pack-3085 |
+| `kiwi` | Ontkoppelcondensatoren | Keramische condensator kit (15 soorten, 450 st.) | 1 | € 10,27 | https://www.kiwi-electronics.com/nl/keramische-condensator-kit-in-doos-15-soorten-450-stuks-10492 |
+| `kiwi` | Bulk-elco | 100 µF / 16 V op de 5 V-ingang | 1 | € 0,59 | https://www.kiwi-electronics.com/nl/100uf-16v-condensator-440 |
 | `niet-nodig` | I2C-pull-ups op de print | Breakouts hebben ze al; 2 reserve-footprints | 2 | - | - |
-| `geen-link` | Montage | M3-schroeven, moeren, standoffs, nylon spacers | set | - | Niet op antratek.be |
+| `geen-link` | Montage | M3-schroeven, moeren, standoffs, nylon spacers | set | - | Niet bij Kiwi of antratek |
 
-> [!warning] Gekozen level shifter wijkt af
-> De gekozen **TXB0104** staat niet op antratek. Het gevonden **Logic Level Converter
-> Bi-Directional** (BSS138, 4 kanaals) is een bruikbaar alternatief voor de UART naar de Arduino.
-> Nog te bevestigen.
+> [!warning] Gekozen level shifter
+> De **TXB0108** (€ 8,70) past bij de gekozen **TXB-serie** en is leverbaar bij Kiwi.
+> Het antratek-alternatief (BSS138-converter, € 4,78) is goedkoper maar een ander type.
 
 ## Kabels en verbruik (in bezit)
 
@@ -114,40 +120,38 @@ status: werklijst
 | --- | --- | --- | --- | --- | --- |
 | `al-in-bezit` | USB-C datakabel | Eigen kabel (flashen/programmeren) | 1 | - | - |
 | `al-in-bezit` | Dupont-/siliconendraad | Heeft de gebruiker | - | - | - |
-| `al-in-bezit` | USB A-kabel LoRa-ontvanger | USB-A -> USB-C voor de XIAO (heeft de gebruiker) | 1 | - | - |
+| `al-in-bezit` | USB A-kabel LoRa-ontvanger | USB-A -> USB-C voor de XIAO | 1 | - | - |
 | `al-in-bezit` | Gereedschap | Schuifmaat, soldeerbout, tin, flux, multimeter, USB-serieel adapter | - | - | - |
 
 ## Mock-up (vliegtuigje)
 
 | Tag | Component | Onderdeel | Aantal | Prijs/st | Link |
 | --- | --- | --- | --- | --- | --- |
-| `al-in-bezit` | Arduino | Heeft de gebruiker thuis (Arduino Uno) | 1 | - | - |
+| `al-in-bezit` | Arduino | Arduino Uno | 1 | - | - |
 | `al-in-bezit` | Servo's | Bestaande voorraad (> 3) | 3+ | - | - |
 | `al-in-bezit` | Servo-voeding | Aparte buck-converter | 1 | - | - |
 | `al-in-bezit` | Romp en roeren | Eigen 3D-print | 1 | - | - |
 
 ## Totalen
 
-| Scenario | Te bestellen bij antratek | Bedrag (incl. btw) |
+| Winkel | Onderdelen | Bedrag (incl. btw) |
 | --- | --- | --- |
-| **Goedkoopste complete set (standaard)** | 2x XIAO-kit, BNO055, BME280, magneetantenne, U.FL-SMA, level converter | **€ 114,12** |
-| Met L1/L5-antenne i.p.v. magneetantenne | Idem, maar dual-band L1/L5-antenne (€ 120,94) | **€ 215,76** |
-| Zonder barometer (BMP390 niet leverbaar bij antratek) | Idem als standaard, maar zonder BME280 | **€ 94,15** |
+| **Kiwi Electronics** | BNO085, BMP581, GNSS-antenne, TXB0108, LED + weerstand, condensatorkit, bulk-elco | **€ 81,58** |
+| **antratek.be** | 2× XIAO-kit, U.FL→SMA pigtail | **€ 33,83** |
+| **Totaal te bestellen** | Kiwi + antratek | **€ 115,41** |
 
 > [!info] Buiten deze bedragen
-> De `geen-link`-onderdelen (LC29H, bescherming, LDO, schroefklem, sockets, montage) komen niet bij
-> antratek en zijn dus niet in het totaal opgenomen. Voor de RTK-module is het goedkoopste
-> antratek-alternatief (LG290P) € 217,74 en zou het totaal dan naar ca. € 331,86 stijgen; daarom
-> staat de LC29H als `geen-link` (elders te regelen).
+> De `geen-link`-onderdelen (LC29H, bescherming, LDO, schroefklem, sockets, montage) komen bij
+> geen van beide winkels en zijn dus niet in het totaal opgenomen. De RTK-module is hier het
+> grootste knelpunt.
 
 ## Open acties
 
-- [ ] `geen-link`-onderdelen elders of via een andere weg regelen (LC29H(DA), 2S LiPo, PTC + DMG2301L + SMBJ10A, AP2112K, schroefklem, sockets, M3-montage).
-- [ ] Barometer: BME280 (goedkoop, leverbaar) of toch de nauwkeurigere BMP390 elders nemen?
-- [ ] GNSS-antenne: magneetantenne (€ 19,30, L1) of dual-band L1/L5 (€ 120,94) voor volledige RTK?
-- [ ] Level shifter: TXB0104 of het gevonden BSS138-alternatief kiezen.
+- [ ] **Tweede winkel** zoeken die de `geen-link`-onderdelen levert: RTK-module (LC29H of alternatief), discrete voeding (PTC + DMG2301L + SMBJ10A + AP2112K), 4-pins 3,5 mm schroefklem, sockets en M3-montage.
+- [ ] LoRa: wachten op voorraad Wio-SX1262 bij Kiwi, of de antratek-kit nemen?
+- [ ] GNSS-antenne: Kiwi actieve L1 (€ 16,93) of dual-band L1/L5 (€ 120,94) voor volledige RTK?
 - [ ] Barrel-connector: PCB-montage of adapter met schroefklem bevestigen.
-- [ ] Voorraad/prijzen en beschikbaarheid bij antratek controleren voor het bestellen.
+- [ ] Voorraad/prijzen bij Kiwi en antratek controleren vóór het bestellen.
 
 ## Gerelateerd
 

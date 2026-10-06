@@ -9,6 +9,12 @@
 
 ![Bovenaanzicht draagprint](PCB-schets-draagprint.png)
 
+> [!info] Eindbeeld met de Arduino (`2026-10-06`)
+> Gedetailleerder beeld van de **eindtoestand**: de draagprint met de definitief gekozen
+> breakouts, de losse componenten, de **Arduino Uno** en alle verbindingen.
+>
+> ![Eindbeeld eind-PCB met Arduino](PCB-eindbeeld.png)
+
 > [!tip] Bestanden
 > `documenten/PCB-schets-draagprint.svg` (vector, scherp te vergroten), `documenten/PCB-schets-draagprint.png` (afbeelding) en dit markdown-bestand.
 
@@ -26,7 +32,7 @@
 ```mermaid
 flowchart TB
     subgraph DRAG["Draagprint (carrier)"]
-        PWR["Voeding<br/>accu / barrel -> buck 5 V -> LDO 3,3 V<br/>power-LED"]
+        PWR["Voeding (op de print)<br/>accu / barrel -> bescherming (PTC + P-MOSFET + TVS)<br/>-> buck 5 V -> LDO 3,3 V<br/>power-LED"]
         ESP["ESP32-S3 breakout<br/>leest sensoren, sensorfusie, LoRa"]
         LORA["LoRa-radio<br/>868 MHz"]
         IMU["9-DoF IMU<br/>I2C"]
@@ -56,8 +62,8 @@ flowchart TB
 
 ```mermaid
 flowchart LR
-    BAT["Accu 7,4 V of barrel"] --> FUSE["Zekering + ompoolbeveiliging"]
-    FUSE --> BUCK["Buck-converter -> 5 V"]
+    BAT["Accu 7,4 V of barrel"] --> PROT["Voedingsbescherming (op de print):<br/>2 A PTC-zekering + P-MOSFET ompoolbeveiliging (DMG2301L)<br/>+ TVS SMBJ10A"]
+    PROT --> BUCK["Buck-converter -> 5 V (losse module)"]
     BUCK --> LED["power-LED + serieweerstand"]
     BUCK --> LDO["LDO -> 3,3 V"]
     BUCK --> V5["5 V-rail<br/>breakouts met eigen regelaar + uitbreidingsconnector"]
@@ -68,7 +74,7 @@ flowchart LR
 
 | Zone | Wat | Waarom daar |
 | --- | --- | --- |
-| Linksboven | Voedingssectie + power-LED | kort bij de connector, weg van de gevoelige sensoren |
+| Linksboven | Voedingssectie **op de print**: 2 A PTC-zekering, P-MOSFET ompoolbeveiliging (DMG2301L), TVS SMBJ10A, LDO AP2112K-3.3, bulk-elco + power-LED | kort bij de connector, weg van de gevoelige sensoren |
 | Midden | ESP32-S3 breakout op socket-headers | centraal knooppunt van alle sporen |
 | Rechtsboven | LoRa-radio + antenne-keep-out | antenne vrij, ver van IMU/barometer |
 | Midden-onder | IMU en barometer | bij elkaar op de I2C-bus, weg van warmte en antenne |
@@ -81,5 +87,6 @@ flowchart LR
 - Exacte afmetingen en laagopbouw van de print (voorlopig 2-laags).
 - Welke breakout-modellen en dus welke pinouts/footprints.
 - Of de uitbreidingsconnector volledig 3,3 V is, of dat er een level shifter nodig is.
+- **Behuizing van de voedingsonderdelen:** SMD (AP2112K = SOT-23-5, DMG2301L = SOT-23, SMBJ10A = DO-214AA) of through-hole-equivalenten (AMS1117-3.3, P6KE10A, radiale PTC) — kiezen i.f.v. handmatig solderen.
 
 Zie [[open-vragen]] en [[specificaties]].

@@ -43,6 +43,13 @@ status: werklijst
 > een **ingebouwde LiPo-lader** en een eigen 3,3 V-regelaar (op de 3V3-pin). Pin-budget: controleer
 > of ± 14 I/O volstaat voor IMU + barometer + GNSS + UART.
 
+> [!note] Waarvoor dient de voedingsbescherming en de LDO?
+> De energiestroom is: **7,4 V-accu (max 8,4 V) / barrel -> bescherming -> buck 5 V -> bulk-elco -> LDO 3,3 V -> sensoren**.
+> - **2 A PTC-zekering** = herstelbare zekering in serie: bij overstroom/kortsluiting wordt ze hoogohmig en begrenst de stroom; koelt af en reset zichzelf. Beschermt de LiPo en de bedrading (brandgevaar).
+> - **P-MOSFET DMG2301L** = **ompoolbeveiliging** in de +-lijn: bij juiste polariteit geleidt hij met zeer lage Rds(on) (~nauwelijks spanningsval), bij omgekeerde polariteit blokkeert hij. Beter dan een serie-diode (geen ~0,7 V verlies).
+> - **TVS SMBJ10A** = **transiënt-/spikebeveiliging** van + naar GND: klemt snelle spanningspieken (motoren/ESC, hot-plug, ESD) op ~17 V. Standoff 10 V ligt boven de max. accu (8,4 V) en beschermt de buck/LDO/IC's.
+> - **AP2112K-3.3 (LDO)** = lineaire regelaar die van de schakelende 5 V een **schone, ruisarme 3,3 V-rail** maakt voor de sensoren (IMU, barometer, GNSS). De XIAO heeft zelf ook 3,3 V, maar die rail deelt de schakelruis van de buck.
+
 > [!note] LoRa-antenne
 > De LoRa-antenne **zit bij de kit** (`2026-10-06`). Omdat de antenne **buiten het vliegtuigje**
 > geconnecteerd moet worden, komt er een **IPEX/U.FL -> SMA female bulkhead pigtail** bij (zie
