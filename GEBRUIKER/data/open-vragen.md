@@ -57,6 +57,7 @@ tags: [gstem, data, open-vragen]
 ## Nog te beslissen: bestellijst (`2026-10-06`)
 
 - [ ] **BMP390 en LC29H(DA) niet op antratek** — kiezen of elders bestellen of een antratek-alternatief nemen (LG290P of ZED-F9P).
+- [ ] **Barometer: beter model dan de BME280** — `2026-10-06`: gebruiker kiest liever een **nauwkeuriger model** (BMP390 of beter) i.p.v. de BME280. antratek heeft geen BMP390/BMP388/BMP581; **zoeken op andere leveranciers is door de gebruiker uitgesteld** (nog niet doen). BME280 staat voorlopig als plaatsvervanger in [[bestellijst]].
 - [ ] **Level shifter** — gekozen TXB0104 staat niet op antratek; het gevonden bidirectionele Logic Level Converter (BSS138) als alternatief aanvaarden?
 - [ ] **GNSS-antenne** — dure L1/L5-antenne (EUR 120,94) of goedkopere magneetantenne (EUR 19,30)?
 - [ ] **Barrel-connector** — PCB-montage of de adapter met schroefklem gebruiken?

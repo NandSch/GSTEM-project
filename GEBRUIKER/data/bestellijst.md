@@ -39,11 +39,12 @@ status: werklijst
 | `antratek` | Barometer | Atmospheric Sensor Breakout - BME280 (Qwiic) | 1 | € 19,97 | https://www.antratek.be/atmospheric-sensor-breakout-bme280 |
 | `geen-link` | RTK-GNSS-module | Quectel LC29H(DA) | 1 | - | Niet op antratek.be |
 
-> [!warning] Barometer: goedkopere keuze
-> De gekozen **Adafruit BMP390** staat **niet op antratek**. De **BME280** (€ 19,97) is op antratek
-> wel leverbaar en goedkoper, maar **minder nauwkeurig** (druk ±1 hPa i.p.v. ±0,03 hPa). Voor een
-> precisiehoogtemeter is de BMP390 beter; die moet dan elders besteld worden. Standaard genomen:
-> **BME280** (goedkoopst en direct leverbaar).
+> [!warning] Barometer: voorkeur voor een beter model
+> De gekozen **Adafruit BMP390** staat **niet op antratek** (ook BMP388/BMP581 niet). De **BME280**
+> (€ 19,97) is er wel leverbaar, maar **minder nauwkeurig** (relatief ±0,12 hPa ≈ ±1 m t.o.v.
+> ±0,03 hPa ≈ ±0,25 m bij de BMP390). `2026-10-06`: de gebruiker kiest **liever een nauwkeuriger
+> model** (BMP390 of beter). Zoeken bij andere leveranciers is **uitgesteld**; de BME280 blijft
+> voorlopig als **plaatsvervanger** in het totaal staan.
 
 > [!warning] RTK-module niet op antratek
 > De gekozen **Quectel LC29H(DA)** heeft antratek niet. De goedkoopste RTK-alternatieven daar zijn

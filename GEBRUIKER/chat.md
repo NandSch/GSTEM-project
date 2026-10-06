@@ -164,3 +164,99 @@ Bijgewerkt: `GEBRUIKER/data/bestellijst.md`, `documenten/Bestellijst-GSTEM.xlsx`
 > [!info] Opgeslagen: 2S LiPo, barrel-adapter en USB-A/USB-C kabel → `al in bezit` in `data/bestellijst.md`, `data/componenten.md` en `data/beslissingen.md`; Excel vernieuwd.
 
 ---
+
+## Gebruiker · 11:46
+
+> [!quote] Verbatim
+> How accurate is the barometer in height in meters?
+
+## AI · 11:46
+
+Goede vraag — bij een barometer hangt de hoogtenauwkeurigheid rechtstreeks aan de druknauwkeurigheid. Even de omrekening: dicht bij de grond is **1 hPa ≈ 8,3 m** hoogte (de schaalhoogte is ~8434 m; exact: Δh ≈ 8,43 m per hPa op zeeniveau).
+
+## Specificatienauwkeurigheid (datasheet)
+
+| Sensor | Relatieve druk | Absolute druk | Relatieve hoogte | Absolute hoogte |
+| --- | --- | --- | --- | --- |
+| **BMP390** | ±0,03 hPa | ±0,5 hPa | **±0,25 m** | ±4 m |
+| **BME280** | ±0,12 hPa | ±1 hPa | **±1 m** | ±8 m |
+
+- **BMP390**: ±0,03 hPa → **±0,25 m** bij hoogteverschillen (bv. stijgen/dalen in de vlucht).
+- **BME280**: ±0,12 hPa → **±1 m** bij hoogteverschillen.
+
+## Maar in de praktijk...
+
+De echte fout wordt zelden bepaald door de sensor, maar door de **referentie**:
+
+1. **Absolute hoogte** (zonder ijkpunt): beperkt door het weer. De luchtdruk op zeeniveau schommelt makkelijk ±5–10 hPa → **tientallen meters fout**. Een barometer alleen geeft dus geen betrouwbare absolute hoogte.
+2. **Relatieve hoogte** (t.o.v. een gemeten startdruk): dan haal je de sensorfout — **±0,25 m** (BMP390) of **±1 m** (BME280), over een vlucht van enkele minuten.
+3. **Drift**: over 10–30 min kan de luchtdruk door weer veranderen; een verschil van 1 hPa = 8,3 m schijnbare hoogte.
+
+## Voor G-Stem
+
+Omdat je ook GNSS/RTK hebt, is de logische rolverdeling:
+- **GNSS/RTK** = trage maar absolute referentie (horizontaal cm, verticaal dm–m).
+- **Barometer** = snelle, fijne **relatieve** hoogteveranderingen (stijgen/dalen) waar GNSS te traag/noisy is.
+
+Daarom is de **BMP390** de betere keuze voor een precisiehoogtemeter (factor 4 fijner dan de BME280), terwijl de **BME280** prima is als je enkel ruwe relatieve hoogte wil en kosten wilt drukken.
+
+**Let op:** in de bestellijst stond "±1 hPa" — dat is de *absolute* fout van de BME280; de *relatieve* (belangrijkste voor hoogteverschillen) is ±0,12 hPa ≈ ±1 m. Wil je dat ik die opmerking verfijn en de hoogtecijfers in `data/specificaties.md` opneem?
+
+---
+
+## Gebruiker · 11:48
+
+> [!quote] Verbatim
+> Dan ga ik voor de barometer toch liever voor een beter model.
+
+## AI · 11:48
+
+Ik zoek eerst op antratek of er een nauwkeuriger barometer is; anders kijk ik elders.
+
+---
+
+## AI · 11:49
+
+Geen nauwkeurige barometer op antratek. Dan zoek ik elders (Europa/België) naar de BMP390 of beter.
+
+---
+
+## AI · 11:49
+
+Web_search blijft op 429. Ik ga rechtstreeks bij Europese leveranciers kijken.
+
+---
+
+## Gebruiker · 11:50
+
+> [!quote] Verbatim
+> Don't search on other sites yet.
+
+## AI · 11:50
+
+Begrepen, ik stop met zoeken op andere sites. Ik heb het tijdelijk opgeslagen HTML-materiaal van externe shops meteen opgeruimd.
+
+---
+
+## AI · 11:50
+
+Genoteerd, ik zoek voorlopig niets meer op andere sites.
+
+Ik leg je voorkeur wel even vast in het archief (zonder al een leverancier te kiezen):
+
+---
+
+## AI · 11:50
+
+Oké, gestopt met zoeken op andere sites.
+
+Vastgelegd (zonder leverancier te kiezen):
+- **Voorkeur barometer:** nauwkeuriger model (BMP390 of beter) i.p.v. de BME280.
+- **Status:** antratek heeft BMP390/BMP388/BMP581 niet; zoeken bij andere leveranciers is **uitgesteld**.
+- De BME280 blijft voorlopig als **plaatsvervanger** in de bestellijst/totalen staan (€ 114,12).
+
+Bijgewerkt: `GEBRUIKER/data/bestellijst.md` en `data/open-vragen.md`. Tijdelijke zoekbestanden van externe shops zijn verwijderd.
+
+Zeg maar wanneer ik verder mag zoeken (en mag ik dan een voorkeur voor regio/leverancier, bv. België/Nederland)?
+
+---
