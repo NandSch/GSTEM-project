@@ -4,8 +4,8 @@
 Uitvoeren:  python documenten/scripts/build-bestellijst.py
 Bron/afspraken: GEBRUIKER/data/bestellijst.md en GEBRUIKER/data/componenten.md
 Strategie: zo veel mogelijk bij Kiwi Electronics (NL) om verzendkosten te beperken; wat daar
-goedkoper is of als reserve dient, bij antratek.be. De rest komt bij EU-winkels (TME, Eckstein,
-HESTORE, TinyTronics, Mouser.be/DigiKey met EU-magazijn); China enkel als terugval.
+goedkoper is of als reserve dient, bij antratek.be. Overige elektronica komt bij passende EU-winkels.
+Voor de RTK-GNSS is China/AliExpress sinds 2026-10-07 de voorkeur; de exacte listing is nog niet bevestigd.
 """
 
 import os
@@ -31,20 +31,21 @@ RIJEN = [
      "kiwi", "Kiwi Electronics",
      "https://www.kiwi-electronics.com/nl/adafruit-bmp581-i2c-spi-druk-en-temperatuursensor-stemma-qt-20534",
      "Nauwkeuriger dan BME280; BMP390L is bij Kiwi uit voorraad en niet op antratek"),
-    ("Sensoren", "RTK-GNSS-module (breakout)",
-     "Waveshare LC29H(DA) GPS/RTK HAT (SKU 25279), incl. actieve dual-band L1/L5-antenne "
-     "+ IPEX-naar-SMA-kabel + 40-pins header", 1, 71.39, "eckstein", "Eckstein (Duitsland, EU)",
-     "https://eckstein-shop.de/lc29h-dual-band-gps-module-raspberry-pi_1",
-     "GEKOZEN door gebruiker (2026-10-06): Eckstein, art. WS25279 / EAN 4060137304156, EUR 71,39 incl. "
-     "Kant-en-klare breakout/HAT (geen losse SMD-module), 65x30,5 mm. Alternatieven: Kamami (PL) ca. "
-     "EUR 63; Botland (PL/DE) EUR 70,50; HESTORE (HU) EUR 91,21 excl. (ca. EUR 110 incl.). "
-     "Niet-EU: 7Semi LC29HDA RTK Board (Qwiic/USB-C, ca. USD 42, India)"),
+    ("Sensoren", "RTK-GNSS-module (breakout, LC29HDA rover)",
+     "Quectel LC29HDA dual-band L1+L5 RTK-GNSS-developmentboard (geassembleerd) - kies de LC29HDA-variant",
+     1, 36.99, "aliexpress", "AliExpress (China)",
+     "https://nl.aliexpress.com/item/1005009915138674.html",
+     "Kies bij het bestellen de LC29HDA (rover)-variant, geen LC29HBS (basisstation) en geen losse "
+     "SMD-module. Richtprijs volgens de listing. Alternatieven met eenduidige variantkeuze op AliExpress: "
+     "item 1005010758488281 en item 1005010162466640. Terugvaloptie EU: Waveshare LC29H(DA) HAT "
+     "(Eckstein EUR 71,39 / Kamami ca. EUR 63)."),
 
-    ("Antennes en RF", "GNSS-antenne (actief, L1/L5, SMA)",
-     "Inbegrepen bij de Waveshare LC29H(DA) HAT (dual-band actieve antenne)", 1, None,
-     "al in bezit", "-", "",
-     "Aparte antenne vervalt: de HAT levert een betere dual-band L1/L5-antenne mee "
-     "(bespaart EUR 16,93 t.o.v. de losse Kiwi L1-antenne)"),
+    ("Antennes en RF", "GNSS-antenne (actief, L1/L5)",
+     "Waveshare GPS External Antenna (D), SKU 25346 - actief L1+L5, LNA 28+-2 dB, SMA-J; alleen los kopen als de LC29HDA-kit geen passende antenne bevat",
+     1, 15.70, "waveshare", "Waveshare (China)",
+     "https://www.waveshare.com/gps-external-antenna-d.htm",
+     "RF-banden en actieve antenne passen bij LC29HDA. AliExpress-boardconnector en bundelinhoud zijn niet bevestigd: "
+     "controleer SMA-J/boardzijde, eventuele adapter en of het board één of twee antennes vereist. 3 m kabel; prijs niet in totaal opgenomen."),
     ("Antennes en RF", "LoRa IPEX/U.FL naar SMA pigtail", "Interface Cable SMA to U.FL (150 mm)",
      1, 3.57, "antratek", "antratek.be", "https://www.antratek.be/u-fl-sma-150mm-cable",
      "Goedkoper op antratek (EUR 3,57) dan Kiwi (EUR 4,22); bulkhead-bevestiging apart controleren"),
@@ -54,7 +55,12 @@ RIJEN = [
     ("Voeding", "Accu 7,4 V", "2S LiPo met connector en kabel (heeft de gebruiker)", 1, None,
      "al in bezit", "-", "", ""),
     ("Voeding", "Voedingsaansluiting", "DC Barrel Jack Adapter - Female (heeft de gebruiker)",
-     1, None, "al in bezit", "-", "", "Adapter met schroefklem; geen PCB-montage"),
+     1, None, "al in bezit", "-", "", "Adapter met schroefklem; voor de kabelzijde"),
+    ("Voeding", "Voedingsaansluiting (op de print)",
+     "2,1 mm DC-barreljack, breadboard-/PCB-compatibel", 1, 1.20, "kiwi",
+     "Kiwi Electronics",
+     "https://www.kiwi-electronics.com/nl/2-1mm-dc-barrel-jack-breadboard-compatible-415",
+     "Naast de bestaande adapter; voor nette montage op de draagprint"),
     ("Voeding", "Buck-converter 5 V", "Heeft de gebruiker", 1, None, "al in bezit", "-",
      "", "Referentie antratek: Buck Regulator Breakout 5V (EUR 12,04)"),
     ("Voeding", "Bescherming voeding",
@@ -84,17 +90,18 @@ RIJEN = [
      "8-kanaals bidirectionele Logic Level Converter - TXB0108", 1, 8.70, "kiwi",
      "Kiwi Electronics",
      "https://www.kiwi-electronics.com/nl/8-channel-bi-directional-logic-level-converter-txb0108-836",
-     "Past bij de gekozen TXB-serie; antratek-alternatief BSS138-converter EUR 4,78"),
+     "DEFINITIEF (2026-10-07): TXB0108-breakout. De TXB0104-IC (TSSOP-14, ca. EUR 1,80) is enkel "
+     "een alternatief; antratek BSS138-converter EUR 4,78 is een ander type"),
     ("Print en verbindingen", "Schroefklem 4-pins 3,5 mm",
      "DEGSON DG250-3.5-04P-11-00A(H) (push-in) of KF128 (schroef)", 1, 0.61, "hestore",
      "HESTORE (HU, EU) / TME",
      "https://www.hestore.eu/en/prod_10044104.html",
      "Kiwi heeft alleen 3-weg; de schroefvariant KF128 is in de EU minder courant"),
     ("Print en verbindingen", "Sockets",
-     "Dual-wipe (XIAO) + precisie/turned-pin (Preci-Dip) voor de rest", 1, 5.00,
-     "tme", "TME / RS Components",
-     "https://int.rsdelivers.com/product/preci-dip/110-87-304-41-001101/preci-dip-110-254-mm-pitch-vertical-4-way-through/7020644P",
-     "Preci-Dip turned-pin sockets via TME of RS; dual-wipe headers via Mouser/TME"),
+     "Dual-wipe female headers (XIAO + sensoren) + turned-pin precisie-sockets (vaste modules)", 1, 5.00,
+     "tme", "Mouser / DigiKey / TME",
+     "https://www.mouser.com/c/connectors/headers-wire-housings/",
+     "Standaard 2,54 mm turned-pin/dual-wipe; Preci-Dip bij TME is business/MOQ 380 en valt af"),
     ("Print en verbindingen", "Power-LED + serieweerstand",
      "3 mm LED rood (10-pack) + weerstand 330 Ohm (10-pack) - heeft de gebruiker thuis",
      1, None, "al in bezit", "-", "",
@@ -151,6 +158,9 @@ KLEUR_STATUS = {
     "schatting": "FCE4D6",
     "al in bezit": "D9D9D9",
     "geen link": "FFEB9C",
+    "onderzoek": "FFF2CC",
+    "aliexpress": "FCE4D6",
+    "waveshare": "E5D5F0",
     "niet nodig": "F2F2F2",
 }
 KLEUR_KOP = "1F3864"
@@ -168,8 +178,8 @@ def bouw():
     # Titel
     ws.merge_cells("A1:J1")
     ws["A1"] = ("Bestellijst G-Stem meettoestel - prijzen incl. btw "
-                "(Kiwi + antratek + Eckstein + TME + Mouser + HESTORE + TinyTronics + AISLER, "
-                "2026-10-06)")
+                "(Kiwi + antratek + TME + Mouser + HESTORE + TinyTronics + AliExpress + AISLER, "
+                "definitief 2026-10-07)")
     ws["A1"].font = Font(bold=True, size=13, color="FFFFFF")
     ws["A1"].fill = PatternFill("solid", fgColor=KLEUR_KOP)
     ws["A1"].alignment = Alignment(vertical="center", horizontal="left")
@@ -224,6 +234,7 @@ def bouw():
     # Totaalregels per winkel
     def totaalrij(label, formule, vet=True):
         nonlocal r
+        deze = r
         ws.merge_cells(start_row=r, start_column=1, end_row=r, end_column=5)
         cel = ws.cell(row=r, column=1, value=label)
         cel.font = Font(bold=vet)
@@ -236,14 +247,15 @@ def bouw():
             ws.cell(row=r, column=c).border = Border(
                 top=Side(style="medium", color=KLEUR_KOP), bottom=dun, left=dun, right=dun)
         r += 1
+        return deze
 
     r += 1  # lege regel
     totaalrij("Totaal te bestellen bij Kiwi Electronics",
               '=SUMIF(G3:G%d,"kiwi",F3:F%d)' % (laatste_data, laatste_data))
     totaalrij("Totaal te bestellen bij antratek",
               '=SUMIF(G3:G%d,"antratek",F3:F%d)' % (laatste_data, laatste_data))
-    totaalrij("Totaal te bestellen bij Eckstein (DE, EU)",
-              '=SUMIF(G3:G%d,"eckstein",F3:F%d)' % (laatste_data, laatste_data))
+    totaalrij("Totaal te bestellen bij AliExpress (China)",
+              '=SUMIF(G3:G%d,"aliexpress",F3:F%d)' % (laatste_data, laatste_data))
     totaalrij("Totaal te bestellen bij TME (EU)",
               '=SUMIF(G3:G%d,"tme",F3:F%d)' % (laatste_data, laatste_data))
     totaalrij("Totaal te bestellen bij Mouser/DigiKey (EU)",
@@ -252,24 +264,29 @@ def bouw():
               '=SUMIF(G3:G%d,"hestore",F3:F%d)' % (laatste_data, laatste_data))
     totaalrij("Totaal te bestellen bij TinyTronics (NL)",
               '=SUMIF(G3:G%d,"tinytronics",F3:F%d)' % (laatste_data, laatste_data))
-    totaalrij("TOTAAL onderdelen - alle winkels (excl. AISLER-print)",
-              "=F%d+F%d+F%d+F%d+F%d+F%d+F%d" % (r - 7, r - 6, r - 5, r - 4, r - 3, r - 2, r - 1))
-    totaalrij("Totaal draagprint bij AISLER (3 stuks)",
+    rij_waveshare = totaalrij("Waveshare: losse GNSS-antenne (voorwaardelijk)",
+              '=SUMIF(G3:G%d,"waveshare",F3:F%d)' % (laatste_data, laatste_data))
+    totaalrij("Eckstein-terugvaloptie (niet gekozen; geen actieve regel)",
+              '=SUMIF(G3:G%d,"eckstein",F3:F%d)' % (laatste_data, laatste_data))
+    rij_totaal_onderdelen = totaalrij(
+        "TOTAAL alle onderdelen excl. AISLER-print (incl. losse antenne)",
+        "=SUM(F3:F%d)-SUMIF(G3:G%d,\"aisler\",F3:F%d)" % (laatste_data, laatste_data, laatste_data))
+    totaalrij("TOTAAL onderdelen excl. losse GNSS-antenne (excl. AISLER)",
+              "=F%d-F%d" % (rij_totaal_onderdelen, rij_waveshare))
+    rij_aisler = totaalrij("Totaal draagprint bij AISLER (3 stuks)",
               '=SUMIF(G3:G%d,"aisler",F3:F%d)' % (laatste_data, laatste_data))
-    totaalrij("Totaal alles (onderdelen + AISLER-print)",
-              "=F%d+F%d" % (r - 2, r - 1))
+    totaalrij("TOTAAL alles (incl. losse antenne + AISLER-print)",
+              "=F%d+F%d" % (rij_totaal_onderdelen, rij_aisler))
     r += 1
 
     ws.cell(row=r, column=1,
-            value="Let op: prijzen onder voorbehoud (2026-10-06). Alle voorheen 'geen link'- en "
-                  "'schatting'-onderdelen zijn nu gevonden bij EU-winkels: TME (LDO, TVS, sockets), "
-                  "Mouser/DigiKey (PTC), HESTORE (schroefklem), TinyTronics (M3-montage) en "
-                  "Eckstein (LC29H(DA)-breakout, gekozen 2026-10-06). De aparte GNSS-antenne vervalt "
-                  "(meegeleverd met de HAT). "
-                  "Bestelbaarheid gecontroleerd op 2026-10-06: alles is bestelbaar; lage voorraad bij "
-                  "Kiwi (BMP581 4 st., condensatorkit 2 st.). De LED + 330 Ohm-weerstand (10-packs) "
-                  "heeft de gebruiker thuis en is dus niet meer te bestellen. Details: "
-                  "GEBRUIKER/data/bestelbaarheid.md en GEBRUIKER/data/bestelschema-pcb.md."
+            value="Let op: prijzen zijn onder voorbehoud en incl. btw. Bij de AliExpress-GPS moet je de "
+                  "LC29HDA (rover)-variant kiezen, geen LC29HBS (basisstation) en geen losse SMD-module. "
+                  "De losse Waveshare-antenne (SKU 25346) is voorwaardelijk: eerst checken of de boardkit "
+                  "een passende L1/L5-antenne meelevert. Terugvaloptie GPS in de EU: Waveshare LC29H(DA) HAT "
+                  "(Eckstein ca. EUR 71,39 / Kamami ca. EUR 63). De LED + 330 Ohm-weerstand (10-packs) heeft "
+                  "de gebruiker thuis en is dus niet meer te bestellen. Zie GEBRUIKER/data/bestelbaarheid.md "
+                  "en GEBRUIKER/data/bestelschema-pcb.md."
             ).font = Font(italic=True, size=9)
 
     ws.freeze_panes = "A3"
@@ -284,7 +301,9 @@ def bouw():
     for tag, bet in [
         ("kiwi", "Aankooplink gevonden op Kiwi Electronics (kiwi-electronics.com)"),
         ("antratek", "Aankooplink gevonden op antratek.be (goedkoper of als reserve)"),
-        ("eckstein", "Eckstein (Duitsland, EU): Waveshare LC29H(DA)-breakout (gekozen)"),
+        ("aliexpress", "AliExpress (China): gekozen bron voor de LC29HDA-RTK-rover-module"),
+        ("waveshare", "Waveshare (fabrikant, China): losse actieve L1/L5-GNSS-antenne (voorwaardelijk)"),
+        ("eckstein", "Eckstein (Duitsland, EU): Waveshare LC29H(DA)-HAT terugvaloptie; niet de huidige voorkeur"),
         ("tme", "TME (Polen, EU): LDO, TVS, schroefklem, precisie-sockets"),
         ("mouser", "Mouser.be / DigiKey met EU-magazijn: PTC, exacte onderdelen"),
         ("niet nodig", "Bewust niet voorzien (bv. P-MOSFET-ompoolbeveiliging, beslissing 2026-10-06)"),
@@ -294,6 +313,7 @@ def bouw():
         ("schatting", "Prijs is een schatting; apart te bestellen bij een componentenwinkel"),
         ("al in bezit", "Heeft de gebruiker al; niet aankopen"),
         ("geen link", "Niet gevonden bij Kiwi of antratek; nog geen prijs"),
+        ("onderzoek", "Zoekrichting bekend, maar productlisting/prijs nog niet gevalideerd"),
         ("niet nodig", "Bewust niet voorzien"),
     ]:
         ws2.append([tag, bet])
@@ -429,7 +449,8 @@ def bouw():
         ("HESTORE (EU)", "DEGSON 15EDGK-3.5/4P (schroef)", "> 15", "schroefvariant"),
         ("TinyTronics (NL)", "M3 Afstandsbusje Kit", "50+", "EUR 8,00 incl."),
         ("Bits & Parts (NL)", "M3 spacer-set 180-delig", "op voorraad", "EUR 6,95 incl."),
-        ("Eckstein (DE)", "Waveshare LC29H(DA) HAT 25279 (WS25279)", "leverbaar", "GEKOZEN - EUR 71,39 incl."),
+        ("Eckstein (DE)", "Waveshare LC29H(DA) HAT 25279 (WS25279)", "leverbaar", "Terugvaloptie - EUR 71,39 incl.; niet huidige voorkeur"),
+        ("AliExpress (China)", "LC29HDA RTK-GNSS-developmentboard (item 1005009915138674)", "richtprijs EUR 36,99", "kies de LC29HDA (rover)-variant, geen LC29HBS en geen losse SMD-module"),
         ("Kamami (PL)", "Waveshare LC29H(DA) HAT 25279", "24 u", "~EUR 63 = goedkoopste EU"),
         ("Botland (EU)", "Waveshare LC29H(DA) HAT 25279", "op voorraad", "EUR 70,50"),
         ("HESTORE (EU)", "Waveshare LC29H(DA) HAT 25279", "> 2", "~EUR 110 incl. = duur"),

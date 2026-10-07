@@ -155,6 +155,12 @@ Technische en functionele afspraken. Eén subsectie per specificatie.
 - **Bron:** gebruikersaanwijzing `2026-10-06`; zie [[componenten]] en [[beslissingen]].
 - **Gevolg:** Beide antennes staan op de bestellijst. De behuizing krijgt een **SMA-bulkhead**-doorvoer voor de LoRa-antenne. De NTRIP-provider wordt een **gratis** dienst die de gebruiker zelf zoekt.
 
+## 2026-10-07 — Concrete kandidaat GNSS-antenne
+- **Specificatie:** Als losse antenne voor de LC29HDA is de **Waveshare GPS External Antenna (D), SKU 25346** een passende kandidaat: actieve **L1+L5**, LNA **28±2 dB**, **SMA-J**, 3 m kabel.
+- **Status:** RF-specificaties passen; nog geen aankoopbesluit. De antenne is alleen nodig als de AliExpress-boardkit geen passende actieve L1/L5-antenne meelevert.
+- **Bron:** [Waveshare-productpagina](https://www.waveshare.com/gps-external-antenna-d.htm); LC29HDA-boardkandidaat AliExpress-item 1005009915138674 (listing door gebruiker aangeleverd, nog te verifiëren).
+- **Gevolg:** Controleer eerst de connector op het AliExpress-board en of een adapter nodig is; controleer tevens of het board één of twee antennes vereist. Zie [[bestellijst]], [[gps-rtk-prijzen]] en [[open-vragen]].
+
 ## 2026-10-06 — Specificatie van de Blender-mock-up
 - **Specificatie:** Model in **millimeters**, opgebouwd in collecties (`00_Studio` t/m `05_Mockup`). Draagprint 100 x 75 x 1,6 mm, afgeronde hoeken r 3 mm, 4x M3-gat (3,2 mm) op 4 mm van de rand. Modules op sockets; kabels als curve-geometrie. Studio-opstelling met donkere achtergrond en vier area-lights; gerenderd in **Cycles** (64 samples, denoising). Drie camera's: **orthografisch bovenaanzicht** (enkel de print), **3/4-perspectief** van de volledige opstelling, en een **detail** van de voeding plus de XIAO-socket.
 - **Status:** model gebouwd; de **layout is een voorstel** zolang de KiCad-layout niet bestaat.

@@ -51,7 +51,12 @@ tags: [gstem, data, links]
 | LDO AP2112K-3.3 | https://www.diodes.com/part/view/AP2112K | Gekozen 3,3 V-LDO (600 mA, lage dropout) voor een eigen senserrail (`2026-10-06`). |
 | Voedingsbescherming | https://www.littelfuse.com/products/tvs-diodes | 2 A PTC-zekering + TVS SMBJ10A (`2026-10-06`). De **P-MOSFET-ompoolbeveiliging vervalt** — zie [[afgevoerd]]. |
 | Schroefklem 3,5 mm (KF128/KF301) | https://www.cuidevices.com/product/interconnect/terminal-blocks | 4-pins uitbreidingsconnector voor de UART (`2026-10-06`). |
-| GNSS-antenne (dual-band L1/L5) | https://www.waveshare.com/wiki/LC29H(XX)_GPS/RTK_HAT | Gekozen actieve GNSS-antenne met SMA, LNA + ground plane; bron verwijst naar de Waveshare-antenne bij de LC29H-HAT (`2026-10-06`). |
+| Waveshare GNSS-antenne (dual-band L1/L5) | https://www.waveshare.com/wiki/LC29H(XX)_GPS/RTK_HAT | Antenne die bij de Waveshare-HAT-terugvaloptie zit; niet bevestigd als bundelinhoud bij de toekomstige AliExpress-boardkeuze (`2026-10-07`). |
+| AliExpress-kandidaat RTK-GNSS-board | https://nl.aliexpress.com/item/1005009915138674.html | Gekozen referentie (`2026-10-07`, richtprijs ± € 22,19). Titel noemt "LC29H": kies de LC29HDA-variant, geen LC29HBS. |
+| AliExpress LC29HDA-devboard (alternatief) | https://www.aliexpress.com/item/1005010758488281.html | Eenduidige variantkeuze (LC29HDA/BA/EA/BS), USB Type-C (`2026-10-07`). |
+| AliExpress LC29HDA-boardkit (alternatief) | https://www.aliexpress.com/item/1005010162466640.html | LC29HDA L1+L5 boardkit met antenne-opties (`2026-10-07`). |
+| Kiwi: 2,1 mm PCB-barreljack | https://www.kiwi-electronics.com/nl/2-1mm-dc-barrel-jack-breadboard-compatible-415 | Toegevoegd aan de bestellijst voor montage op de draagprint (€ 1,20 incl.). |
+| Waveshare GPS External Antenna (D), SKU 25346 | https://www.waveshare.com/gps-external-antenna-d.htm | Actieve dual-band L1+L5, LNA 28±2 dB, SMA-J, 3 m; technisch passende referentieantenne. Boardconnector en AliExpress-bundel nog controleren (`2026-10-07`). |
 | IPEX/U.FL -> SMA pigtail | https://www.antratek.be (zoek: U.FL naar SMA bulkhead) | Kort antennekabeltje om de LoRa-antenne buiten het vliegtuigje te monteren (`2026-10-06`). |
 | Bestellijst (markdown) | [[bestellijst]] | Alle onderdelen met status/tag, link, kost en aantal; bron voor de Excel (`2026-10-06`). |
 | Bestellijst (Excel) | `documenten/beheer/Bestellijst-GSTEM.xlsx` | Gegenereerd met `documenten/scripts/build-bestellijst.py`. Drie bladen: **Bestellijst**, **Legende** en **Bestelschema PCB** (AISLER-productie + onderdelen op de print, `2026-10-06`). |
@@ -92,13 +97,13 @@ Doel: **zo veel mogelijk onderdelen bij één winkel** (Kiwi Electronics, NL) be
 
 ## Andere winkels — de `geen-link`-onderdelen (`2026-10-06`)
 
-Zoektocht naar de onderdelen die **niet** bij Kiwi of antratek te vinden waren. Voorkeur: **EU**
-(geen invoerrechten/btw-gedoe). China (AliExpress/LCSC) enkel als terugval.
+Zoektocht naar onderdelen die **niet** bij Kiwi of antratek te vinden waren. De algemene voorkeur was EU;
+voor de LC29HDA is dat op `2026-10-07` gewijzigd naar **China, liefst AliExpress**. De exacte aanbieding is nog open.
 
 | Winkel | Land | Rol in dit project | URL |
 | --- | --- | --- | --- |
 | **TME** (Transfer Multisort Elektronik) | Polen (EU) | Discrete elektronica: LDO, MOSFET, TVS, PTC, schroefklemmen, precisie-sockets | https://www.tme.eu |
-| **Eckstein** | Duitsland (EU) | **Gekozen winkel voor de Waveshare LC29H(DA)-HAT** (art. WS25279, `2026-10-06`) | https://eckstein-shop.de |
+| **Eckstein** | Duitsland (EU) | Waveshare LC29H(DA)-HAT (€ 71,39) — **terugvaloptie** sinds de voorkeur voor China/AliExpress (`2026-10-07`) | https://eckstein-shop.de |
 | **Botland** | Polen (EU) | Alternatief voor de Waveshare LC29H(DA)-breakout/HAT, M3-montage, connectoren | https://botland.store |
 | **Kamami** | Polen (EU) | Alternatief voor de Waveshare LC29H(DA)-HAT | https://kamami.pl |
 | **HESTORE** | Hongarije (EU) | Schroefklem DEGSON, LC29H-HAT (duurder) | https://www.hestore.eu |
@@ -111,7 +116,8 @@ Zoektocht naar de onderdelen die **niet** bij Kiwi of antratek te vinden waren. 
 
 | Onderdeel | Bestelcode | Winkel | Link |
 | --- | --- | --- | --- |
-| RTK-GNSS **breakout** (LC29H(DA)) | Waveshare **LC29H(DA) GPS/RTK HAT**, art. **WS25279**, EAN 4060137304156 | **Eckstein (DE, EU) — gekozen** `2026-10-06` | https://eckstein-shop.de/lc29h-dual-band-gps-module-raspberry-pi_1 |
+| RTK-GNSS **breakout** (LC29HDA rover) | AliExpress-item **1005009915138674**, vervangende listing door gebruiker aangeleverd; variant, breakout en prijs nog te controleren (`2026-10-07`) | **Kandidaat, niet goedgekeurd voor bestelling** | https://nl.aliexpress.com/item/1005009915138674.html |
+| RTK-GNSS **terugval-breakout** | Waveshare **LC29H(DA) GPS/RTK HAT**, art. **WS25279**, EAN 4060137304156 | Eckstein (DE, EU) — terugvaloptie, € 71,39 (`2026-10-07`) | https://eckstein-shop.de/lc29h-dual-band-gps-module-raspberry-pi_1 |
 | idem (alternatief) | Waveshare 25279 LC29H(DA) HAT | Botland (PL/DE, EU) | https://botland.store/raspberry-pi-hat-connection/23875-dual-band-gpsrtk-l1l5-module-with-lc29hda-gnss-chip-overlay-for-raspberry-pi-waveshare-25279.html |
 | idem (alternatief) | Waveshare 25279 LC29H(DA) HAT | Kamami (PL, EU) | https://kamami.pl/en/gps-modules/1187927-lc29h-series-dual-band-gps-module-for-raspberry-pi-dual-band-l1-l5-positioning-technology-optional-5906623465965.html |
 | RTK-breakout (alternatief) | MIKROE **GNSS RTK 3 Click** (LC29HDA, mikroBUS) | TME / mikroe.com | https://www.tme.eu/en/details/mikroe-5914/add-on-boards/mikroe/gnss-rtk-3-click-lc29hda/ |
@@ -125,9 +131,10 @@ Zoektocht naar de onderdelen die **niet** bij Kiwi of antratek te vinden waren. 
 | M3-montageset (alternatief) | 180-delige spacer/standoff-set | Bits & Parts (NL) | https://www.bitsandparts.nl/Afstandsbus-Spacer-Standoff-M3-set-180-delig-zwart-p1885552 |
 
 > [!note] Breakout vs losse module
-> De **losse Quectel LC29H-DA SMD-module** (Maritex PL, Soyter PL, ± € 18–21) is **niet** gekozen:
-> de gebruiker wil een **breakout board**. De **7Semi LC29HDA RTK Board** (Qwiic/USB-C, ~$ 42) is een
-> mooie breakout, maar wordt uit **India** verzonden (niet EU).
+> De aankoop moet een **geassembleerde breakout/development board** zijn, niet de losse Quectel
+> LC29H-DA SMD-module (Maritex/Soyter) of een bare module. Voorkeur is China/AliExpress, maar exacte
+> listing nog open. Let op: LC29HDA is de **rover**; LC29HBS is de **basisstationvariant**. De 7Semi
+> LC29HDA-board blijft alternatief (Qwiic/USB-C, India), niet de huidige winkelvoorkeur.
 
 ## Datasheets en mechanische maten (Blender-mock-up, `2026-10-06`)
 
@@ -139,7 +146,9 @@ Voor de 3D-mock-up zijn de echte bordmaten opgezocht (samengevat in [[gstem-hard
 | Wio-SX1262 (datasheet) | https://files.seeedstudio.com/products/SenseCAP/Wio_SX1262/Wio-SX1262_Module_Datasheet.pdf |
 | Adafruit BNO085 | https://www.adafruit.com/product/4754 |
 | Adafruit BMP581 (6407) | https://www.adafruit.com/product/6407 |
-| Waveshare LC29H(XX) HAT | https://www.waveshare.com/wiki/LC29H(XX)_GPS/RTK_HAT |
+| Waveshare LC29H(XX) HAT / DA-vs-BS-variantuitleg | https://www.waveshare.com/wiki/LC29H(XX)_GPS/RTK_HAT |
+| AliExpress-kandidaat (item 1005009915138674; details nog controleren) | https://nl.aliexpress.com/item/1005009915138674.html |
+| AliExpress zoekpagina | https://www.aliexpress.com/wholesale?SearchText=Quectel+LC29HDA+RTK+rover+board |
 | Arduino Uno R3 (datasheet) | https://docs.arduino.cc/resources/datasheets/A000066-datasheet.pdf |
 | SG90/MG90S servo | https://components101.com/sites/default/files/component_datasheet/MG90S-Datasheet.pdf |
 | Waveshare L1/L5 GNSS-antenne | https://www.waveshare.com/gps-external-antenna-d.htm |

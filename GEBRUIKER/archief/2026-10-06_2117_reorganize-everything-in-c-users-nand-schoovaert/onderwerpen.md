@@ -25,7 +25,7 @@ Register van besproken onderwerpen met links naar de bijbehorende data.
 - [[componenten|Componentenlijst (BOM) meettoestel]]
 - [[bestellijst|Bestellijst meettoestel (aan te kopen)]]
 - [[bestelbaarheid|Bestelbaarheid: verificatie van alle bestellijst-artikelen]]
-- [[gps-rtk-prijzen|GPS/RTK: LC29HDA rover, AliExpress-aanbieding en prijsvergelijking]]
+- [[gps-rtk-prijzen|GPS/RTK-module: waar te kopen en prijsverschillen]]
 - [[meetmodule-voorbereiding|Positie- en beweging meettoestel met LoRa — voorbereiding]]
 - [[besturing-en-commandos|Besturing en commando's terug naar het toestel — voorbereiding]]
 - [[app-architectuur-besturing|App-architectuur: meetdata, extern programma en besturing]]
@@ -38,6 +38,5 @@ Register van besproken onderwerpen met links naar de bijbehorende data.
 - [[actieplan|Actieplan: nog te ondernemen stappen]]
 - [[blender-mockup|Blender-mock-up: draagprint, modules en opstelling in 3D]]
 - [[gstem-hardware-afmetingen|Mechanische afmetingen van de onderdelen (datasheets)]]
-- [[presentatie-gemini|Presentatie via Gemini (Google Slides): kant-en-klare prompt]]
 
 <!-- Nieuwe onderwerpen komen hier automatisch bij via /onderwerp of via de AI. -->

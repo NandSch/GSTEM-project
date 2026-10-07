@@ -17,9 +17,9 @@ status: werklijst
 | Functie | Onderdeel | Details | Bron |
 | --- | --- | --- | --- |
 | Rekenkern + LoRa | **XIAO ESP32S3 + Wio-SX1262 kit** | ESP32-S3 + SX1262 (sub-GHz, 868/915 MHz) via B2B; SPI; IPEX-antenne; USB-C; LiPo-lader; ± 14 I/O | antratek |
-| 9-DoF IMU | **Adafruit BNO055-breakout** | I2C 0x28/0x29, 3,3 V-regelaar + level shifting, 20x27x4 mm, gaten 20x12 mm | antratek |
-| Barometer | **Adafruit BMP390** | Meest accurate relatieve nauwkeurigheid (±3 Pa ≈ 0,25 m) en laagste ruis (0,02 Pa) van de makkelijk verkrijgbare breakouts; druk + temperatuur | Adafruit #4816 |
-| RTK-GNSS | **Quectel LC29H(DA)** | Dual-band L1+L5, multi-constellatie, RTK **rover** (centimeter-niveau), ingebouwde LNA + SAW; breakout/HAT met actieve GNSS-antenne | Waveshare |
+| 9-DoF IMU | **Adafruit BNO085-breakout** | I2C 0x28/0x29, 3,3 V-regelaar + level shifting, STEMMA QT/Qwiic, 25,6 x 22,7 mm | Kiwi Electronics |
+| Barometer | **Adafruit BMP581** | Druk + temperatuur, I2C/SPI, STEMMA QT; nauwkeurig en bij Kiwi leverbaar (BMP390 is daar uit voorraad) | Kiwi Electronics |
+| RTK-GNSS | **Quectel LC29HDA** | Dual-band L1+L5, multi-constellatie, RTK **rover** (centimeter-niveau), ingebouwde LNA + SAW; vervangende gebruikerslisting AliExpress-item 1005009915138674; variant, board/pinout en bundelinhoud nog te verifiëren | Quectel / [[gps-rtk-prijzen]] |
 | RTK-correctie | **NTRIP-dienst** (via laptop) | Correcties (RTCM) naar de rover sturen; provider nog te kiezen | - |
 | Sockettype | **Dual-wipe voor XIAO**, **precisie/gefreesd voor de rest** | Dual-wipe waar vaak gewisseld wordt (ESP32-S3); precisie voor vast gemonteerde modules (trillingen) | [[pcb-methodes-kosten]] |
 | Voeding | **7,4 V-accu -> buck 5 V** (buck heeft de gebruiker), **barrel-connector** | XIAO op 5 V-pin; interne LiPo-lader niet gebruikt | - |
@@ -31,11 +31,11 @@ status: werklijst
 | Behuizing/romp mock-up | **Eigen 3D-print** | Door de gebruiker zelf gemaakt | - |
 | Gereedschap/verbruik | **Alles aanwezig** | Schuifmaat, soldeerbout, multimeter, enz. | - |
 | Uitbreidingsconnector | **4-pins schroefklem, 3,5 mm (KF128/KF301)** | Pinout GND / +5 V / TX / RX; robuuste aansluiting voor de UART naar de Arduino | - |
-| Level shifter | **TXB0104** (4-kanaals bidirectioneel) op de print | Voor de UART naar de Arduino Uno (5 V); VCCA 3,3 V, VCCB 5 V. I2C blijft 3,3 V, dus geen shifter nodig op de I2C-bus | TI |
+| Level shifter | **TXB0108-breakout** (8-kanaals) op de print | Voor de UART naar de Arduino Uno (5 V); VCCA 3,3 V, VCCB 5 V. I2C blijft 3,3 V, dus geen shifter nodig op de I2C-bus. De TXB0104-IC (TSSOP-14) blijft een alternatief | TI / Kiwi |
 | I2C-pull-ups op de print | **Geen extra** | BNO055- en BMP390-breakouts hebben al pull-ups; 2 reserve-footprints voor later | Adafruit |
 | Bescherming voeding | **2 A PTC-zekering + TVS SMBJ10A** (de P-MOSFET vervalt, `2026-10-06`) | 7,4 V-accu, max 8,4 V; TVS-standoff 10 V; bulk-elco 100 uF/16 V | - |
 | LDO 3,3 V | **AP2112K-3.3** (of AMS1117-3.3) | Eigen schone 3,3 V-rail voor de sensoren, op verzoek van de gebruiker; de XIAO levert ook 3,3 V | - |
-| GNSS-antenne | **Actieve dual-band L1/L5 GNSS-antenne met SMA, LNA + ground plane** | Past bij de LC29H(DA); compacte uitvoering (laag gewicht voor het vliegtuigje). Voorbeeld: de dual-band GNSS-antenne van Waveshare | Waveshare |
+| GNSS-antenne | **Actieve dual-band L1/L5 GNSS-antenne met passende connector, LNA + ground plane** | Nodig als de gekozen LC29HDA-breakout deze niet meelevert; bundelinhoud en RF-connector controleren bij de listing | Nog te verifiëren |
 | LoRa-antenne buiten | **IPEX/U.FL -> SMA female bulkhead pigtail** | Om de LoRa-antenne door/buiten de behuizing te monteren; de kitantenne blijft behouden | - |
 
 > [!warning] Gevolg van de XIAO-kit
@@ -168,7 +168,7 @@ De gebruiker koos **LED + sockets** en vraagt wat verder essentieel is. Voorstel
 
 ## Gerelateerd
 
-- [[bestellijst]] - aan te kopen onderdelen met link, kost en aantal (Excel: `documenten/beheer/Bestellijst-GSTEM.xlsx`). Let op: de bestellijst gebruikt **goedkopere, op antratek leverbare** varianten (BME280 i.p.v. BMP390; magneetantenne i.p.v. L1/L5) om het totaal te beperken.
+- [[bestellijst]] - aan te kopen onderdelen met link, kost en aantal (Excel: `documenten/beheer/Bestellijst-GSTEM.xlsx`). De actieve bestellijst gebruikt de **BNO085 + BMP581** (Kiwi), de **TXB0108-breakout** en een **LC29HDA-breakout**; de oudere BNO055/BMP390 horen hier niet meer bij.
 - [[specificaties]] - draagprint-aanpak en gebruikersspecificaties
 - [[pcb-ontwerp]] - footprints en gatmaten
 - [[pcb-schets]] - bovenaanzicht en verbindingsschema

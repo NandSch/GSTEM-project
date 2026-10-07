@@ -380,3 +380,33 @@ Chronologisch, nieuwste onderaan. Eén subsectie per beslissing.
 - **Reden:** Gebruikerskeuze `2026-10-06` ("verwijderd laten"): de 3D-mock-up wordt niet verder gebruikt.
 - **Gevolg:** Alles blijft herstelbaar uit git (commit `28e4fae`). [[blender-mockup]] is op status **verwijderd** gezet; de mock-up-gerelateerde open vragen (HAT-montage, onderdelenposities) blijven gelden voor de nog te maken KiCad-layout. Zie [[afgevoerd]].
 - **Link:** [[blender-mockup]], [[afgevoerd]], [[open-vragen]]
+
+## 2026-10-07 — LC29HDA via China, AliExpress liefst
+- **Beslissing:** De aankoopvoorkeur voor de RTK-GNSS verschuift van Eckstein (EU) naar **China, bij voorkeur AliExpress**. De technische keuze blijft **Quectel LC29HDA als RTK-rover**, op een geassembleerde breakout/development board. Er is nog **geen specifieke aanbieding goedgekeurd**.
+- **Reden:** Gebruikerskeuze `2026-10-07`: "Let's do china, aliexpress preferably". Controle van de officiële Waveshare-variantbeschrijving bevestigt dat **DA** de rover-/terminalvariant is; **BS** is de basisstationvariant. "DA" is deel van de modulevariant, geen D/A-converterbord.
+- **Gevolg:** De oude Waveshare LC29H(DA) HAT bij Eckstein (€ 71,39) wordt terugvaloptie. AliExpress-resultaten zijn tegenstrijdig (sommige advertenties zeggen "base station" terwijl LC29HDA genoemd wordt); koop pas na verificatie van modulevariant, breakout/pinout, antenne, prijs en checkout-totaal. De GNSS-antenne is niet langer als inbegrepen beschouwd totdat bundelinhoud bevestigd is. Bestellijst en Excel-status zijn bijgewerkt; zie [[gps-rtk-prijzen]], [[bestellijst]], [[open-vragen]] en [[links]].
+- **Link:** [[gps-rtk-prijzen]], [[bestellijst]], [[open-vragen]], [[links]]
+
+## 2026-10-07 — AliExpress-kandidaat voor LC29HDA gevonden
+- **Beslissing:** Kandidaatlisting **AliExpress item 1005010036256167** wordt verder gecontroleerd. De geïndexeerde titel noemt **Quectel LC29HDA**, dual-frequency, **Mobile Station** en **Board Kit**, dus hij lijkt het best bij de gekozen rover-breakout te passen. Het is nog **geen goedgekeurde bestelling**.
+- **Reden:** De gebruiker vroeg om een AliExpress-link. Andere gevonden advertenties waren expliciet als base-station gelabeld of lieten meerdere LC29H-varianten door elkaar lopen. De AliExpress-productpagina van deze kandidaat blokkeerde inhoudscontrole.
+- **Gevolg:** Verkoper/listing moet nog bevestigen: exacte LC29HDA-variant (niet LC29HBS), geassembleerd board versus bare SMD, UART/pinout en voedings-/logicaniveaus, afmetingen, en wat "dual antenna" inhoudt (poorten en meegeleverde antennes). Prijs en checkout-totaal ook nog te controleren. Bijgewerkt in [[gps-rtk-prijzen]], [[bestellijst]], [[open-vragen]] en [[links]].
+- **Link:** https://www.aliexpress.com/item/1005010036256167.html
+
+## 2026-10-07 — AliExpress-listing vervangen
+- **Beslissing:** De niet-werkende kandidaatlink **1005010036256167** wordt vervangen door de door de gebruiker aangeleverde AliExpress-listing **1005009915138674**.
+- **Reden:** De gebruiker meldde dat de vorige listinglink niet werkte en leverde een vervangende productlink.
+- **Gevolg:** Bestellijst, Excel, componentenoverzicht, linkregister en open vragen verwijzen nu naar item 1005009915138674. De listinginhoud is nog niet technisch gecontroleerd; de LC29HDA-rovervariant, geassembleerde breakout, pinout, antennes en actuele prijs blijven te verifiëren. De bestaande antennekandidaat blijft ongewijzigd.
+- **Link:** https://nl.aliexpress.com/item/1005009915138674.html
+
+## 2026-10-07 — Bestellijst definitief gemaakt
+- **Beslissing:** De bestellijst is definitief afgewerkt: elk onderdeel heeft een **gekozen model, winkel, aantal en prijs**. Toegevoegd: **2,1 mm PCB-barreljack** (Kiwi, € 1,20) voor montage op de draagprint; **level shifter definitief = TXB0108-breakout** (Kiwi, € 8,70); **sockets** als set standaard 2,54 mm dual-wipe/turned-pin (Mouser/DigiKey/TME, ± € 5,00); **GNSS-antenne** als voorwaardelijke losse post (Waveshare SKU 25346, ± € 15,70).
+- **Reden:** Gebruikersvraag `2026-10-07`: "Update de bestellijst zodat ik alles finale heb en niks mis."
+- **Gevolg:** Totalen: **€ 134,59** onderdelen excl. losse GNSS-antenne en AISLER; **€ 150,29** incl. losse antenne; **€ 183,05** alles incl. AISLER-print (3 st.). De LC29HDA-listing blijft de gekozen GPS-aankoop met richtprijs ± € 22,19; bij het bestellen de **LC29HDA-variant** kiezen. Excel herbouwd via `documenten/scripts/build-bestellijst.py`.
+- **Link:** [[bestellijst]], [[bestelbaarheid]], [[gps-rtk-prijzen]], [[links]]
+
+## 2026-10-07 — GPS/RTK: gekozen listing + veilige alternatieven
+- **Beslissing:** De RTK-GNSS wordt bij **AliExpress (China)** gekocht als **LC29HDA-developmentboard** (richtprijs ± € 22,19). De door de gebruiker aangeleverde listing **1005009915138674** blijft de referentie, maar omdat de titel "LC29H" vermeldt, worden twee eenduidige alternatieven met variantkeuzemenu toegevoegd: **1005010758488281** (USB-C-devboard) en **1005010162466640** (LC29HDA-boardkit). Terugvaloptie blijft de **Waveshare LC29H(DA) HAT** (Eckstein € 71,39 / Kamami ± € 63).
+- **Reden:** Onderzoek `2026-10-07` via DuckDuckGo/AliExpress: de gebruikerslink noemt geen DA-variant, terwijl andere listings LC29HDA expliciet in de titel of het variantkeuzemenu hebben. De AliExpress-productpagina blokkeert directe inhoudscontrole.
+- **Gevolg:** Bij het bestellen de **LC29HDA (rover)** selecteren, geen LC29HBS en geen losse SMD-module. Vastgelegd in [[bestellijst]], [[gps-rtk-prijzen]] en [[links]].
+- **Link:** [[gps-rtk-prijzen]], [[bestellijst]], [[links]]
