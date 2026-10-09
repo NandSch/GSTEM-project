@@ -10,6 +10,7 @@ integratie* (de werktitel *AeroLink* vervalt).
 | `docs/` | De documentatieset van het project (01 overzicht, 02 en 03 archiefbeschrijvingen, 04 blokschema, 05 inventaris). |
 | `GEBRUIKER/data/` | Kennisbestanden: beslissingen, specificaties, open vragen, links, afgevoerd. Gebruiken gewone markdown-links. |
 | `documenten/` | De afgewerkte stukken: `specificaties/` (gebruikersspecificaties + ontwerptekst, markdown en Word), `pcb/` (schets, eindbeeld, draw.io-schema), `beheer/` (bestellijst + planning als Excel) en `scripts/` (bouwscripts). Zie [`documenten/README.md`](documenten/README.md). |
+| `AGENTS.md` | Werkinstructies voor AI-assistenten die in deze map werken: alles correct documenteren en elke beslissing vastleggen. |
 | `README.md` | Dit overzicht. |
 
 ## Opgeruimd op 2026-10-05

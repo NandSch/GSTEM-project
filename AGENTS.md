@@ -1,5 +1,26 @@
 # Werkinstructies voor AI-assistenten in deze map
 
+Deze afspraken gelden voor elke AI-assistent (Codex of anders) die in deze map werkt.
+Het doel: het project blijft ook zonder de oude pi-hulpmiddelen volledig en correct
+gedocumenteerd.
+
+## Alles correct documenteren
+
+- Elke wijziging met betekenis voor het project (code, ontwerp, documenten, bestellijst,
+  planning, werkwijze) wordt bij het maken ervan vastgelegd in de juiste kennisbestanden
+  in `GEBRUIKER/data/` en, als het de afgewerkte stukken raakt, ook in `documenten/`
+  of `docs/`.
+- Werk de bestanden die een wijziging raakt **meteen bij**, niet "later wel". Een
+  beslissing die alleen in een chatlog bestaat, is verloren.
+- Nieuwe kennis gaat in het bestaande kennisbestand dat er het dichtst bij staat
+  (componenten, bestellijst, open-vragen, ...); maak alleen een nieuw bestand als er
+  echt geen past. Vergeet niet de betrokken bestanden naar elkaar te laten verwijzen.
+- Laat geen losse einden achter: dode links, verouderde tabellen of statussen die niet
+  meer kloppen worden bij dezelfde wijziging gecorrigeerd.
+- Word-versies (`.docx`) en Excel-bestanden (`xlsx`) in `documenten/` worden gebouwd uit
+  de markdown-bronnen met de scripts in `documenten/scripts/`; pas de bron aan en bouw
+  opnieuw, pas niet alleen het binaire bestand aan.
+
 ## Beslissingen documenteren
 
 **Elke projectbeslissing** (ontwerp, componenten, aankopen, architectuur, documentatie of
