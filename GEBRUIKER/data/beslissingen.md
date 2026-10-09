@@ -410,3 +410,9 @@ Chronologisch, nieuwste onderaan. Eén subsectie per beslissing.
 - **Reden:** Onderzoek `2026-10-07` via DuckDuckGo/AliExpress: de gebruikerslink noemt geen DA-variant, terwijl andere listings LC29HDA expliciet in de titel of het variantkeuzemenu hebben. De AliExpress-productpagina blokkeert directe inhoudscontrole.
 - **Gevolg:** Bij het bestellen de **LC29HDA (rover)** selecteren, geen LC29HBS en geen losse SMD-module. Vastgelegd in [[bestellijst]], [[gps-rtk-prijzen]] en [[links]].
 - **Link:** [[gps-rtk-prijzen]], [[bestellijst]], [[links]]
+
+## 2026-10-09 — Eigen bedrading en 3D-geprinte montage in plaats van draagprint
+- **Beslissing:** De gebruiker verbindt de breakoutmodules zelf met draden en soldeert de verbindingen. De onderdelen worden daarna gemonteerd aan een zelf 3D-geprinte behuizing. De aparte draagprint/carrier-PCB en alle socket-headers vervallen.
+- **Reden:** De gebruiker wil de modules niet langer via een eigen PCB met elkaar verbinden, maar zelf bedraden en solderen en de onderdelen rechtstreeks in/aan een geprinte behuizing monteren.
+- **Gevolg:** De AISLER-draagprint en sockets worden uit de actieve bestellijst en Excel-totalen gehaald. De breakoutmodules zelf blijven behouden. Behuizingsbevestiging, connectoren, bedrading en de fysieke montage van losse voedingsonderdelen moeten nog worden bepaald; er wordt hiervoor nog niets online opgezocht of nieuw op de bestellijst gezet.
+- **Link:** [[bedrading-en-behuizing]], [[specificaties]], [[bestellijst]], [[open-vragen]]

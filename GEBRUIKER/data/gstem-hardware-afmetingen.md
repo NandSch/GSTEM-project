@@ -1,16 +1,14 @@
 ---
 tags: [gstem, data, hardware, afmetingen, datasheet]
 aangemaakt: 2026-10-06
-bijgewerkt: 2026-10-06
-status: verzameld uit datasheets
+bijgewerkt: 2026-10-09
+status: verzameld uit datasheets voor behuizingsmontage
 ---
 
 # Mechanische afmetingen van de onderdelen
 
 > [!info] Waarvoor
-> De **echte** bord- en behuizingsmaten van alle onderdelen, opgezocht uit datasheets en
-> productpagina's. Gebruikt voor de Blender-mock-up ([[blender-mockup]]) en nodig voor de
-> KiCad-footprints en de behuizing ([[pcb-ontwerp]]).
+> De **echte** bord- en behuizingsmaten van de modules, opgezocht uit datasheets en productpagina's. De maten helpen bij het ontwerpen van de 3D-geprinte behuizing en de montage. De eigen carrier-PCB en KiCad-footprints zijn vervallen; zie [[bedrading-en-behuizing]].
 
 ## Breakout-modules
 

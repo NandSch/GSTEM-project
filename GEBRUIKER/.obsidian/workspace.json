@@ -4,17 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "464f287bea931e69",
+        "id": "67a1e566656db323",
         "type": "tabs",
         "children": [
           {
-            "id": "120497f5d8df2dff",
+            "id": "9f0aa195728a7d9a",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
+              "type": "markdown",
+              "state": {
+                "file": "chat.md",
+                "mode": "preview",
+                "source": false
+              },
               "icon": "lucide-file",
-              "title": "New tab"
+              "title": "chat"
             }
           }
         ]
@@ -184,8 +188,9 @@
       "bases:Create new base": false
     }
   },
-  "active": "120497f5d8df2dff",
+  "active": "9f0aa195728a7d9a",
   "lastOpenFiles": [
+    "index.md",
     "chat.md",
     "archief/2026-10-06_1814_je-verifieert-of-7-specifieke-artikelen-bij-de-n-2/onderwerpen.md",
     "archief/2026-10-06_1814_je-verifieert-of-7-specifieke-artikelen-bij-de-n-2/meta.md",
@@ -214,7 +219,6 @@
     "archief/2026-10-06_1029_ga-1-per-1-af-welke-componenten-ik-nog-moeten-zo/chat.md",
     "archief/2026-10-06_1029_ga-1-per-1-af-welke-componenten-ik-nog-moeten-zo",
     "data/componenten.md",
-    "index.md",
     "data/code-pagina.md",
     "archief/2026-10-04_1215_for-the-mockup-website-adjust-the-code-page-api-/onderwerpen.md",
     "archief/2026-10-04_1215_for-the-mockup-website-adjust-the-code-page-api-/meta.md",

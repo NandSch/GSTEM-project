@@ -1,10 +1,13 @@
 ---
 tags: [gstem, data, pcb, bestelschema, kosten, aankoop, aisler]
 aangemaakt: 2026-10-06
-status: werklijst
+status: vervallen; historische kostenraming
 ---
 
-# Bestelschema PCB bij AISLER
+# Historisch bestelschema PCB bij AISLER
+
+> [!warning] Niet meer bestellen — ontwerp vervallen op 2026-10-09
+> De gebruiker heeft de eigen draagprint en sockets geschrapt. De AISLER-kostenraming en print-specifieke aankoopregels hieronder zijn historisch en horen niet meer bij de actieve bestellijst. Er is nog geen nieuwe montagehardware toegevoegd of online opgezocht. Zie [[bedrading-en-behuizing]] en [[bestellijst]].
 
 > [!success] Beslissing
 > De draagprint wordt gefabriceerd bij **AISLER** (beslissing `2026-10-06`, zie [[beslissingen]]).

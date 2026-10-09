@@ -1,10 +1,13 @@
 ---
 tags: [gstem, data, pcb, hardware, schets]
 aangemaakt: 2026-10-06
-status: schets
+status: historisch; oude PCB-schets, niet meer het actuele ontwerp
 ---
 
-# PCB-schets draagprint
+# Historische PCB-schets draagprint
+
+> [!warning] Niet meer het actuele ontwerp — 2026-10-09
+> Deze schets en de afbeeldingen tonen het vervallen ontwerp met een eigen draagprint en sockets. De gebruiker bedradt en soldeert de modules nu zelf en monteert ze aan een 3D-geprinte behuizing. De afbeeldingen worden als historische referentie bewaard en zijn geen montage-instructie. Zie [[bedrading-en-behuizing]].
 
 > [!info] Doel
 > Visuele schets van hoe de zelfgemaakte draagprint eruitziet en hoe alles aangesloten is.

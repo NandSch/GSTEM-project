@@ -1,10 +1,13 @@
 ---
 tags: [gstem, data, pcb, hardware, ontwerp]
 aangemaakt: 2026-10-06
-status: werkwijze
+status: historisch; draagprintontwerp vervallen
 ---
 
-# PCB ontwerpen: gereedschap, footprints en gatmaten
+# Oud plan: PCB ontwerpen
+
+> [!warning] Vervangen op 2026-10-09
+> De gebruiker heeft gekozen voor zelf bedraden en solderen en de onderdelen aan een 3D-geprinte behuizing monteren. De eigen draagprint, PCB-footprints en sockets zijn niet meer nodig. Deze pagina bewaart de oude ontwerpwerkwijze als naslag; voer de PCB-stappen hieronder niet uit. Actuele aanpak: [[bedrading-en-behuizing]].
 
 > [!info] Doel
 > Praktische werkwijze om de draagprint te ontwerpen: welke app, hoe je de footprints van de

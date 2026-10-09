@@ -51,3 +51,9 @@ tags: [gstem, data, afgevoerd]
 - **Wat:** De semi-accurate Blender-mock-up van draagprint en opstelling (model, scripts, drie studio-renders en de review-set in `documenten/blender/`).
 - **Reden afvoer:** Gebruikerskeuze `2026-10-06`: de mock-up wordt niet verder gebruikt en de map is verwijderd. De layout was een voorstel; de echte onderdelenposities komen pas met de KiCad-layout.
 - **Later opnieuw bekijken?** nee — alles blijft herstelbaar uit git (commit `28e4fae`) als er toch een 3D-beeld nodig is. Het geannoteerde controleblad blijft staan in `documenten/pcb/review-mockup-controleblad.png`.
+
+## 2026-10-09 — Eigen draagprint en socket-headers
+- **Wat:** Een aparte carrier-PCB (eerder gepland bij AISLER) met socket-headers om de breakoutmodules te verbinden en te dragen.
+- **Reden afvoer:** De gebruiker kiest ervoor de onderdelen zelf met draden te verbinden en te solderen, en ze daarna aan een 3D-geprinte behuizing te monteren. De losse breakoutmodules blijven wel behouden.
+- **Gevolg:** AISLER-print, socket-headers en printspecifieke montagehardware worden niet besteld. Nieuwe bevestigings- of connectorhardware wordt pas na het montageontwerp bepaald; er is niets nieuws online opgezocht.
+- **Later opnieuw bekijken?** nee voor het huidige ontwerp.

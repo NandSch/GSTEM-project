@@ -1,4 +1,7 @@
-# PCB-schets — draagprint van het meettoestel
+# Historische PCB-schets — draagprint van het meettoestel
+
+> [!warning] Vervangen ontwerp — 2026-10-09
+> Deze schema's en afbeeldingen tonen de vervallen carrier-PCB met sockets. De gebruiker bedradt en soldeert de onderdelen nu zelf en monteert ze aan een 3D-geprinte behuizing. Gebruik de hieronder gelinkte PCB-beelden niet als actuele montage-instructie. Zie `GEBRUIKER/data/bedrading-en-behuizing.md` voor de huidige aanpak.
 
 > [!info] Wat dit is
 > Een **visuele schets** van hoe de zelfgemaakte draagprint eruitziet en hoe alles

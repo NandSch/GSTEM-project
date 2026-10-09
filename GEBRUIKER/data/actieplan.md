@@ -1,7 +1,7 @@
 ---
 tags: [gstem, data, planning, actieplan]
 aangemaakt: 2026-10-06
-bijgewerkt: 2026-10-06
+bijgewerkt: 2026-10-09
 ---
 
 # Actieplan G-STEM-P
@@ -14,24 +14,24 @@ bijgewerkt: 2026-10-06
 
 ## Voorbereiding
 
-- [x] 09/10/2026 — Exacte 9-DoF IMU met sensorfusie kiezen — **gedaan `2026-10-06`:** Adafruit BNO055 ([[componenten]])
-- [x] 09/10/2026 — Barometer en RTK-GNSS-module kiezen — **gedaan `2026-10-06`:** BMP390 en Quectel LC29H(DA) ([[componenten]])
+- [x] 09/10/2026 — Exacte 9-DoF IMU met sensorfusie kiezen — **gedaan `2026-10-07`:** Adafruit BNO085 ([[componenten]])
+- [x] 09/10/2026 — Barometer en RTK-GNSS-module kiezen — **gedaan `2026-10-07`:** BMP581 en Quectel LC29HDA-breakout ([[componenten]])
 - [x] 09/10/2026 — Bron RTK-correctie kiezen — **gedaan `2026-10-06`:** NTRIP-dienst; provider nog open
 - [ ] 09/10/2026 — LoRa-frequentie/band en configuratie vastleggen (868 MHz voor België staat vast; rest van de configuratie nog open)
 - [ ] 12/10/2026 — Exacte breakout-modellen en pinouts bepalen (barometer + GNSS gekozen `2026-10-06`; pinouts nog te noteren)
 - [x] 12/10/2026 — Voedingsketen vastleggen — **gedaan `2026-10-06`:** 7,4 V-accu -> zekering/ompoolbeveiliging -> buck 5 V -> LDO 3,3 V ([[componenten]])
 - [ ] 12/10/2026 — **AI-taak:** pinout-tabel XIAO opstellen en pin-budget controleren (IMU + barometer + GNSS + UART)
-- [ ] 12/10/2026 — Level shifter en I2C-pull-ups uitzoeken (3,3 V vs 5 V)
-- [x] 13/10/2026 — Socket-header of alternatief kiezen — **gedaan `2026-10-06`:** dual-wipe voor de XIAO, precisie/gefreesd voor de rest ([[pcb-methodes-kosten]])
-- [x] 20/10/2026 — Uitbreidingsconnector, level shifter en bescherming van de voeding kiezen — **gedaan `2026-10-06`:** schroefklem 3,5 mm, TXB0104, PTC + TVS SMBJ10A, LDO AP2112K-3.3 ([[componenten]]) — de **P-MOSFET vervalt** (`2026-10-06`, zie [[afgevoerd]])
+- [x] 12/10/2026 — Level shifter kiezen — **gedaan:** TXB0108-breakout; handbedrading blijft uit te werken. Geen extra I2C-pull-ups voorzien.
+- [x] 13/10/2026 — Moduleverbinding kiezen — **besluit `2026-10-09`:** zelf bedraden en solderen; sockets en draagprint vervallen ([[bedrading-en-behuizing]])
+- [ ] 20/10/2026 — Bedrade UART, voedingsbescherming en LDO integreren — componentfuncties voorlopig gekozen; connector en mechanische ondersteuning zonder PCB nog bepalen. De **P-MOSFET vervalt** (`2026-10-06`, zie [[afgevoerd]]).
 
 ## Hardware
 
-- [ ] 16/10/2026 — PCB-ontwerpgereedschap (KiCad?) en fabrikant kiezen
-- [ ] 20/10/2026 — Bestelformulier afronden en componenten + PCB bestellen
-- [ ] 30/10/2026 — Draagprint ontwerpen: schema, layout, afmetingen, laagcount, connectoren
-- [ ] 13/11/2026 — Behuizing 3D-ontwerpen (PETG/PLA met rubberdemping)
-- [ ] 27/11/2026 — PCB assembleren, modules plaatsen, voeding en power-LED doormeten
+- [x] 16/10/2026 — PCB-ontwerpgereedschap en fabrikant kiezen — **vervallen:** er komt geen eigen draagprint.
+- [ ] 20/10/2026 — Bestelformulier afronden voor de nog actieve componenten; geen PCB, sockets of onbevestigde behuizingshardware bestellen.
+- [ ] 30/10/2026 — Handbedrade verbindingen uitwerken: pinout, draadroute, solderen en ondersteuning van de verbindingen.
+- [ ] 13/11/2026 — 3D-behuizing ontwerpen voor directe montage van modules en bedrade elektronica; materiaal/demping en bevestiging bepalen.
+- [ ] 27/11/2026 — Modules bedraden en solderen; voeding, UART, isolatie en montage in behuizing controleren.
 
 ## Firmware
 

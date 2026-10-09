@@ -29,19 +29,18 @@ De gegevensstroom loopt dus in twee richtingen: van de sensoren naar de laptop (
 
 ### De Meetmodule
 
-De kern van het project is een zelfontworpen printplaat (PCB). Op deze PCB worden verschillende breakout modules geplaatst die indien nodig vervangen kunnen worden. De sporen op de printplaat zorgen voor de verbindingen voor voeding en datacommunicatie tussen de componenten. De PCB is voorzien van bevestigingspunten in de hoeken om de module veilig te monteren aan de dempingsbehuizing.
+De breakoutmodules worden niet langer op een eigen draagprint (carrier-PCB) met sockets geplaatst. De gebruiker verbindt de modules zelf met draden en soldeert de elektrische verbindingen. Daarna worden de onderdelen aan een zelf 3D-geprinte behuizing gemonteerd. De afzonderlijke breakoutmodules blijven behouden; alleen de extra draagprint en de sockets vervallen.
 
-De breakout modules worden op **socket-headers** geplaatst in plaats van rechtstreeks vastgesoldeerd. Zo kan een defecte of verbeterde module vervangen worden zonder de hele print opnieuw te maken. De sporen op de print doen twee dingen:
+De elektrische verbindingen blijven dezelfde functies vervullen, maar lopen via handbedrade verbindingen in plaats van koperbanen op een carrier-PCB:
 
-- **Voeding:** vaste rails voor de accuspanning, 5 V en 3,3 V, telkens met een eigen ground.
-- **Datacommunicatie:** I2C voor de IMU en de barometer, UART voor de RTK-GNSS-module en voor de verbinding met het besturingssysteem van het toestel, en de nodige pinnen voor de LoRa-radio.
+- **Voeding:** accu, 5 V en 3,3 V met een gemeenschappelijke ground waar nodig.
+- **Datacommunicatie:** I2C voor IMU en barometer, UART voor de RTK-GNSS-module en de verbinding met de voertuigcontroller, plus de nodige verbindingen tussen ESP32-S3 en LoRa-radio.
+- **Voedings- en signaalcomponenten:** power-LED met serieweerstand, ontkoppeling, voedingsbescherming, LDO en level shifter blijven voorlopig onderdeel van het elektrische ontwerp. Hun concrete bedrading en mechanische ondersteuning zonder draagprint moeten nog worden uitgewerkt.
 
-De print krijgt een **power-LED** met serieweerstand op de geregelde voedingsrail, zodat zichtbaar is dat de module onder spanning staat. Verder krijgt de print **decoupling** (100 nF per module, bulk per rail), de nodige **I2C-pull-ups** en de **beveiliging van de voeding** (zekering, beveiliging tegen omgekeerde polariteit).
-
-De print krijgt **vier bevestigingsgaten in de hoeken** (bijvoorbeeld M3) met afstandsbussen, zodat de print vrij van de behuizing blijft. De LoRa-radio zendt met een antenne dicht bij de gevoelige sensoren; daarom krijgt de print een ground plane en worden de antenne en de sensoren zo ver mogelijk uit elkaar geplaatst om storing op de IMU en de barometer te beperken.
+De behuizing draagt de onderdelen rechtstreeks; er is geen interne draagprint met bevestigingsgaten of afstandsbussen. Antennes blijven vrij van afscherming en worden uit de buurt van gevoelige sensoren geplaatst om storing te beperken. De barometer heeft een opening naar de buitenlucht nodig. De bedrading moet zo worden gelegd dat antennes, warmtebronnen en bewegende delen de sensoren niet hinderen.
 
 > [!question] Nog te bepalen
-> De afmetingen en de laagopbouw van de print. Voorlopig gaan we uit van een twee-laags print; of dat voldoende is, hangt af van het aantal netten en de storingsgevoeligheid.
+> De bevestigingsmethode voor de modules en losse componenten, de ondersteuning/isolatie van de soldeerverbindingen, connectoren aan de behuizing, de precieze bedradingsroute en de beschikbare filamentsoort. De oude PCB-afmetingen, laagopbouw, footprints en AISLER-productie zijn niet meer van toepassing. Zie [[bedrading-en-behuizing]].
 
 ### Elektronische Componenten
 
@@ -67,7 +66,7 @@ De heatsink houdt de ESP koel, maar mag de barometer niet opwarmen: warme lucht 
 
 ### Voeding en Interface
 
-De module wordt gevoed via een externe batterij, bijvoorbeeld een 7.4V accu, of via een barrel-connector op de PCB. Een spanningsregelaar zorgt ervoor dat de spanning geschikt wordt gemaakt voor de elektronica. De PCB beschikt over extra pinnen en grounds zodat het besturingssysteem van externe toestellen, zoals een mockup-vliegtuigje die kan verbonden worden met de module.
+De module wordt gevoed via de externe 7,4 V-accu. De gebruiker bedradt de voedingsroute en soldeert de verbindingen; de fysieke voedingsinvoer door de behuizing en de aansluiting op de bestaande barrel-adapter moeten nog worden afgestemd. De benodigde voedingsregeling en de UART-verbinding naar externe toestellen blijven onderdeel van het elektrische ontwerp, maar zijn niet langer op een draagprint gemonteerd.
 
 De accu (bijvoorbeeld een 2S LiPo van 7,4 V) of de barrel-connector komt binnen op de ruwe voedingsrail. Van daaruit gaat de spanning door een **buck-converter** naar 5 V en daarna naar 3,3 V voor de logica. Heeft een breakout-module al een eigen regelaar, dan krijgt hij 5 V aangevoerd; is dat niet zo, dan krijgt hij 3,3 V.
 
@@ -89,9 +88,9 @@ Die UART is de verbinding waarover de meetmodule stuurwaarden doorgeeft aan de c
 
 De behuizing is zelf ontworpen en 3D-geprint. De behuizing biedt fysieke bescherming voor de delicate elektronica tijdens tests en gebruik. Het houd ook zo veel mogelijk trillingen tegen om de sensoren min mogelijk in de war te brengen.
 
-De behuizing wordt in **PETG of PLA** geprint en bestaat uit een onderplaat met de montagegaten voor de print en een deksel dat erop klikt of met schroeven vastzit. De print zit op **rubberen dempingsbussen** of op een laagje schuim, zodat trillingen van het toestel niet rechtstreeks op de IMU en de barometer terechtkomen. Dat is belangrijk: een IMU die meetrillt met de behuizing levert een onrustig signaal.
+De behuizing wordt zelf 3D-geprint en vormt de mechanische drager voor de breakoutmodules en de bedrade elektronica; er komt geen interne draagprint. De indeling, het materiaal, de sluiting en de bevestigingswijze van de afzonderlijke onderdelen moeten nog worden ontworpen. Ook moet bekeken worden hoe trillingen worden beperkt zonder de IMU of barometer onbedoeld te laten meetrillen.
 
-De antennes krijgen vrij zicht en mogen niet door de behuizing afgeschermd worden. Voor de GNSS-antenne komt er een vlakke plek met een ground plane onder de antenne, met de opening naar boven. De behuizing krijgt ook een opening voor de luchtdruk van de barometer en voor de connectors (voeding en uitbreidingsconnector).
+De antennes krijgen vrij zicht en mogen niet door de behuizing afgeschermd worden. Voor de GNSS-antenne komt er een passende plek met een ground plane onder de antenne, met de opening naar boven. De behuizing krijgt ook een opening voor de luchtdruk van de barometer en passende doorvoeren voor voeding, antennes en eventuele uitbreidingsverbindingen. Welke connectors nodig zijn, staat nog open.
 
 > [!question] Nog te bepalen
 > Het definitieve ontwerp, de afmetingen en het printmateriaal, en de manier waarop de demping wordt uitgevoerd. Ook de bevestiging van de behuizing aan het toestel zelf moet nog vastgelegd worden.
@@ -194,14 +193,14 @@ Het systeem wordt in stappen getest:
 
 | Onderwerp | Wat nog vastgelegd moet worden |
 | --- | --- |
-| Print | afmetingen, laagopbouw, layout |
+| Bedrading en montage | bedradingsroute, ondersteuning van soldeerverbindingen en montage van modules aan de behuizing |
 | LoRa | module, frequentie en band, instellingen, antenne |
 | IMU | welke 9-DoF IMU, met of zonder ingebouwde fusie |
 | Barometer | welk type |
 | RTK-GNSS | welke module en waar de correctiegegevens vandaan komen |
 | Voeding | accuspecificatie, regelaars, beveiliging, accuduur |
 | Uitbreidingsconnector | aantal pinnen, functie per pin, spanningsniveau |
-| Behuizing | ontwerp, materiaal, demping, bevestiging aan het toestel |
+| Behuizing | ontwerp, materiaal, demping, bevestiging van onderdelen in de behuizing en bevestiging aan het toestel |
 | Pakketformaat | binair of JSON, exacte velden, uitleesfrequenties |
 | Sensorfusie | variant en bibliotheek van het Kalman-filter |
 | API | techniek tussen de applicatie en een eigen programma |

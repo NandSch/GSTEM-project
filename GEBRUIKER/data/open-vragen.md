@@ -20,7 +20,7 @@ tags: [gstem, data, open-vragen]
 - [ ] **Batterijspecificatie definitief vastleggen** — voorbereiding noemt 7.4 V 2 A als voorbeeld.
 - [ ] **Spanningsregelaar: welke specs en component?**
 - [ ] **Heatsink-ontwerp of -keuze voor de ESP32-S3?**
-- [ ] **PCB-afmetingen, laagcount en connectorkeuze?**
+- [x] **PCB-afmetingen en laagcount?** — niet meer van toepassing: eigen draagprint/carrier-PCB vervallen `2026-10-09`. Zie [[bedrading-en-behuizing]].
 - [ ] **Mock-up details: materiaal, servo-type, microcontroller?** — optionele uitbreiding.
 - [ ] **Veiligheidsstop-gedrag: welke acties bij verlies van verbinding, en na hoeveel seconden?**
 - [ ] **Safe-state definitie: neutrale servo's, throttle nul, of ander gedrag per toesteltype?**
@@ -37,24 +37,24 @@ tags: [gstem, data, open-vragen]
 - [x] **Welke versie van de Code-pagina wordt de definitieve: A of B?** — `2026-10-04`: **versie B** (één kolom met uitklapbare hulp) is gepromoveerd tot `index.html`; de A/B-testbestanden zijn verwijderd.
 - [x] **Waar komen de RTK-correctiegegevens vandaan?** — `2026-10-06`: een **NTRIP-dienst** via de laptop (geen eigen basisstation). Enkel de **provider** (gratis/betaald) blijft nog te kiezen. (`2026-10-05`)
 - [ ] **Welke NTRIP-provider en abonnement?** — `2026-10-06`: wordt een **gratis** dienst; de **gebruiker zoekt die zelf**. Vraagt internet op de laptop tijdens het meten. (`2026-10-06`)
-- [x] **Welke level shifter voor de UART 3,3 V <-> 5 V?** — `2026-10-06`: **TXB0104** (4-kanaals bidirectioneel) op de draagprint; VCCA 3,3 V, VCCB 5 V. (`2026-10-06`)
+- [x] **Welke level shifter voor de UART 3,3 V <-> 5 V?** — de gekozen module is de **TXB0108-breakout**; de extra carrier-PCB is vervallen. De converterfunctie blijft voorlopig behouden, maar handbedrading en montage moeten worden uitgewerkt (`2026-10-09`).
 - [x] **Zekering, ompoolbeveiliging en TVS: welke onderdelen?** — `2026-10-06`: **2 A PTC-zekering + TVS SMBJ10A**; de **P-MOSFET-ompoolbeveiliging vervalt** (`2026-10-06`).
 - [x] **Is een losse LDO 3,3 V nodig?** — `2026-10-06`: ja, **AP2112K-3.3** voor een eigen 3,3 V-rail. Let op: de LoRa-ontvanger (tweede XIAO) krijgt 3,3 V via USB uit de XIAO zelf. (`2026-10-06`)
 - [x] **Exacte uitbreidingsconnector voor de UART?** — `2026-10-06`: **4-pins schroefklem 3,5 mm (KF128/KF301)**, pinout GND/+5 V/TX/RX. (`2026-10-06`)
 - [x] **LoRa IPEX -> SMA-pigtail en SMA-bulkhead?** — `2026-10-06`: **nodig**, de antenne wordt buiten het vliegtuigje geconnecteerd; gekozen: IPEX/U.FL -> SMA female bulkhead pigtail. (`2026-10-06`)
 - [x] **Welke GNSS-antenne?** — `2026-10-06`: actieve **dual-band L1/L5-antenne met SMA, LNA + ground plane** (compact; voorbeeld Waveshare), passend bij de LC29H(DA). (`2026-10-06`)
-- [x] **Wat komt er naast LED + sockets nog op de print?** — `2026-10-06`: ontkoppelcondensatoren (100 nF + 10 uF per module), bulk-elco 100 uF, schroefklem, level shifter TXB0104, LDO AP2112K-3.3, voedingsbescherming, 4x M3-gaten. Zie [[componenten]]. (`2026-10-06`)
+- [x] **Welke functies waren voorzien op de draagprint?** — historische lijst: LED, ontkoppeling, bulk-elco, externe connector, level shifter, LDO en voedingsbescherming. Carrier-PCB vervallen `2026-10-09`; elektrische functies voorlopig behouden, uitvoering en montage open. Zie [[bedrading-en-behuizing]].
 - [x] **Op welk spanningsniveau werkt de uitbreidingsconnector?** — `2026-10-06`: de connector voert 5 V-niveau via de **TXB0104**-level shifter; de XIAO-zijde blijft 3,3 V. (`2026-10-05`)
 
 - [ ] **Welke exacte breakout-modellen en bijbehorende pinouts?** — `2026-10-06`: **XIAO ESP32S3 + Wio-SX1262 kit** (rekenkern + LoRa), **Adafruit BNO085** (IMU), **Adafruit BMP581** (barometer) en **Quectel LC29HDA** (RTK-GNSS) zijn gekozen. Enkel de **pinouts** en het **pin-budget** van de XIAO (± 14 I/O) moeten nog genoteerd/gecontroleerd worden. Zie [[componenten]].
 - [x] **Wordt de 7,4 V-accu of de barrel-connector de hoofdvoeding?** — `2026-10-06`: **7,4 V-accu + zekering/ompoolbeveiliging -> buck 5 V -> LDO 3,3 V**. De XIAO wordt op 5 V gevoed; de ingebouwde LiPo-lader wordt niet gebruikt. Zie [[componenten]] en [[beslissingen]].
-- [x] **Welk PCB-ontwerpgereedschap en welke fabrikant?** — `2026-10-06`: gereedschap **KiCad**; fabrikant **AISLER** (EU). Zie [[pcb-fabrikanten]] en [[bestelschema-pcb]]. De overige fabrikanten (JLCPCB, PCBWay, OSH Park, Eurocircuits, Multi-CB) zijn bewaard maar niet gekozen. (`2026-10-06`)
-- [x] **Level shifter op de print: TXB0108-breakout of TXB0104-IC?** — **Beslissing `2026-10-07`: de TXB0108-breakout** (€ 8,70, Kiwi) wordt besteld; de TXB0104-IC (± € 1,80) blijft enkel een alternatief. (`2026-10-06`)
-- [ ] **Exacte bordafmeting en laagopbouw van de draagprint?** — aanname in [[bestelschema-pcb]]: **100 x 75 mm, 2 lagen**. Definitief maken zodra de KiCad-layout klaar is. (`2026-10-06`)
-- [x] **Dubbele I2C-pull-ups en level shifter: welke breakouts hebben al pull-ups, en is 5 V-aansturing nodig?** — `2026-10-06`: de BNO055- en BMP390-breakouts hebben al pull-ups, dus **geen extra op de print**; de **TXB0104** verzorgt de 3,3 V <-> 5 V voor de UART. (`2026-10-06`)
+- [x] **PCB-ontwerpgereedschap en fabrikant?** — niet meer van toepassing sinds `2026-10-09`: er komt geen eigen draagprint; de eerdere KiCad/AISLER-keuze is vervallen. Zie [[bedrading-en-behuizing]].
+- [x] **Level-shifter-variant?** — `2026-10-07`: **TXB0108-breakout** gekozen. De breakout wordt handbedraad; PCB-montage is vervallen. Zie [[bestellijst]].
+- [x] **Exacte bordafmeting en laagopbouw?** — vervallen, want er komt geen eigen draagprint (`2026-10-09`).
+- [x] **I2C-pull-ups en spanningsniveaus?** — geen extra pull-ups voorzien op basis van de breakoutmodules; de UART-level-shifter blijft de gekozen TXB0108-breakout. De fysieke bedrading wordt nog uitgewerkt.
 
-- [x] **Socket-headers of een alternatief (precisie-sockets, direct solderen, castellated, board-to-board)?** — `2026-10-06`: **dual-wipe** voor de XIAO, **precisie/gefreesd** voor de overige modules. (`2026-10-06`)
-- [x] **Wat komt er precies op de print zelf?** — `2026-10-06`: **LED + sockets** plus ontkoppeling, bulk-elco, schroefklem, level shifter (TXB0104), LDO (AP2112K-3.3) en voedingsbescherming (PTC + TVS; geen P-MOSFET). De **buck, accu, barrel-connector en sensormodules** blijven losse modules. Zie [[componenten]]. (`2026-10-06`)
+- [x] **Socket-headers of een alternatief?** — `2026-10-09`: sockets en eigen draagprint vervallen; breakoutmodules worden met handbedrade en gesoldeerde verbindingen aangesloten en aan een 3D-geprinte behuizing gemonteerd. Zie [[bedrading-en-behuizing]].
+- [x] **Wat komt er precies op de draagprint?** — niet meer van toepassing: de eigen draagprint is vervallen `2026-10-09`. De elektrische functies (LED, ontkoppeling, bulk-elco, voedingsbescherming, LDO, level shifter en externe verbindingen) blijven voorlopig behouden; de bedrade uitvoering en fysieke montage moeten nog worden uitgewerkt. Zie [[bedrading-en-behuizing]].
 
 ## Nog te beslissen: bestellijst (`2026-10-06`)
 
@@ -62,28 +62,35 @@ tags: [gstem, data, open-vragen]
 - [x] **Barometer: beter model dan de BME280** — `2026-10-06`: gebruiker kiest liever een **nauwkeuriger model**; **Kiwi heeft de BMP581 (€ 10,88) op voorraad**. Definitief (`2026-10-07`).
 - [ ] **Level shifter** — gekozen TXB0108-breakout bij Kiwi (€ 8,70); de open keuze blijft breakout vs. **TXB0104-IC** rechtstreeks (± € 1,80).
 - [ ] **GNSS-antennebundel en aansluiting** — controleer of de gekozen LC29HDA-kit een actieve L1/L5-antenne meelevert en of die past. Losse kandidaat (voorwaardelijk, ± € 15,70): Waveshare GPS External Antenna (D), SKU 25346 (L1+L5, LNA 28±2 dB, SMA-J); boardconnector (SMA/IPEX) en eventuele adapter nog verifiëren. (`2026-10-07`)
-- [x] **Barrel-connector** — **Beslissing `2026-10-07`:** een **2,1 mm PCB-barreljack** (Kiwi, € 1,20) op de draagprint, naast de bestaande adapter met schroefklem (kabelzijde).
-- [x] **Overige `geen-link`-onderdelen** — `2026-10-06`: gevonden bij EU-winkels: **TME** (LDO AP2112K-3.3TRG1, TVS SMBJ10A, schroefklem, sockets), **Mouser.be/DigiKey** (PTC 1812L200/16), **HESTORE** (schroefklem DEGSON DG250-3.5-04P), **TinyTronics (NL)** (M3-montage).
+- [x] **PCB-barreljack** — vervallen als PCB-onderdeel `2026-10-09`; de bestaande barrel-adapter blijft in bezit. De wijze waarop de voedingsinvoer door/aan de behuizing komt, staat open.
+- [x] **Eerdere leveranciers voor overige onderdelen** — historisch gevonden: TME/Mouser/DigiKey voor elektronica; HESTORE voor schroefklem; TinyTronics voor de PCB-M3-set. De schroefklem en montagehardware zijn niet langer actieve bestellingen totdat de bedrade uitvoering is bepaald.
 - [x] **P-MOSFET ompoolbeveiliging: DMG2301L of AO3401A?** — **Beslissing `2026-10-06`: geen van beide — de P-MOSFET vervalt.** Er komt **geen ompoolbeveiliging**; voorkom omgekeerd aansluiten met een **gepolariseerde connector** (XT60/JST-XH). De PTC-zekering en de TVS blijven behouden. Zie [[beslissingen]], [[afgevoerd]] en [[componenten]].
-- [x] **Sockets: Preci-Dip of standaard?** — **Beslissing `2026-10-07`:** **standaard 2,54 mm turned-pin (machined) sockets en dual-wipe female headers** uit de hobbyhandel (Mouser/DigiKey/TME); de Preci-Dip is bij TME enkel business/MOQ 380 en valt af. Zie [[bestelbaarheid]].
+- [x] **Sockets: Preci-Dip of standaard?** — vervallen `2026-10-09`: er komen geen sockets of eigen draagprint. De eerdere socketkeuze is historisch en wordt niet besteld.
 - [ ] **GPS/RTK-winkel en concrete listing** — `2026-10-07`: AliExpress-item **1005009915138674** (richtprijs ± € 22,19) blijft de referentie; de titel noemt "LC29H", dus **kies de LC29HDA-variant**. Eenduidige alternatieven: **1005010758488281** en **1005010162466640**. Controleer variant (geen LC29HBS), geassembleerd board (geen SMD-module), pinout, antennebundel en checkout. Eckstein/Waveshare (€ 71,39) blijft terugvaloptie. Zie [[gps-rtk-prijzen]].
-- [ ] **Footprint/montage LC29HDA-breakout op de draagprint** — Eerst de concrete AliExpress-boardmaat, montagegaten en pinout controleren; daarna kiezen tussen een header op de draagprint of een los subbord aan de rand. De Waveshare-HAT-terugvaloptie is 65 × 30,5 mm met 40-pins header. Bepaalt de footprint en mogelijk AISLER-prijs. Zie [[pcb-ontwerp]], [[bestellijst]] en [[gps-rtk-prijzen]].
+- [ ] **Montage van de breakoutmodules in de behuizing** — bepaal hoe boards zonder geschikte montagegaten, waaronder mogelijk de LC29HDA-breakout, vastgezet worden. Controleer de fysieke maten en pinout zodra de gekozen listing vaststaat. Zie [[bedrading-en-behuizing]] en [[gps-rtk-prijzen]].
 
 ## AI-taken (voert de AI later uit)
 
 - [ ] **Pinout-tabel XIAO opstellen** en controleren of ± 14 I/O volstaat voor IMU + barometer + GNSS + UART; anders I2C-multiplexer/expander voorzien. (`2026-10-06`, zie [[componenten]] en [[beslissingen]])
 
-## Nog te beslissen: breakout-footprint en PCB-montage
+## Nog te beslissen: behuizingsmontage en bevestiging
 
-- [ ] **Past het gekozen LC29HDA-breakout op de draagprint van 100 × 75 mm?** — Nog niet te bepalen voordat de AliExpress-listing en exacte afmetingen bekend zijn. De Waveshare-HAT-terugvaloptie (65 × 30,5 mm) past alleen als verticale strook; eventuele kleinere breakout vraagt om een nieuwe footprint/layout. Bepaalt de bordafmeting en dus de AISLER-prijs. Zie [[bestelschema-pcb]] en [[gps-rtk-prijzen]].
+- [x] **Past het gekozen LC29HDA-breakout op de draagprint?** — niet meer van toepassing, want de carrier-PCB is vervallen. Boardafmetingen en bevestigingsmogelijkheden blijven wel nodig voor montage in de behuizing; zie [[bedrading-en-behuizing]] en [[gps-rtk-prijzen]].
 - [x] **Welke sensormodellen zijn definitief: BNO085/BMP581 of BNO055/BMP390?** — **Beslissing `2026-10-07`: BNO085 + BMP581** (zoals de bestellijst). [[componenten]] is bijgewerkt; de oudere BNO055/BMP390 vallen af.
-- [ ] **Onderdelenposities op de print vastleggen** — De Blender-mock-up is een **plausibel voorstel**; de echte posities komen pas met de KiCad-layout. Daarna de mock-up bijwerken. (`2026-10-06`)
-- [ ] **Gatposities nameten** — Arduino-gaten, servo-flens, paneelgat barrel jack en de exacte BMP581-maat zijn nog niet met de schuifmaat gecontroleerd. Zie [[gstem-hardware-afmetingen]].
+- [ ] **Indeling en bevestiging in de 3D-geprinte behuizing vastleggen** — plaats breakoutmodules, losse componenten en bedrading zonder draagprint; houd rekening met antennes, warmte en de barometeropening. Zie [[bedrading-en-behuizing]].
+- [ ] **Montagematen controleren** — Arduino-gaten, servo-flens, eventuele voedings-/antenne-doorvoeren en de afmetingen van de breakoutmodules moeten voor de behuizing worden gecontroleerd. Zie [[gstem-hardware-afmetingen]].
 - [ ] **Arduino Uno-voeding controleren** — wordt de Uno gevoed via de +5 V-pin van de uitbreidingsconnector of apart? Controleer stroomlimiet, gemeenschappelijke GND en voorkom terugvoeding via USB.
 - [ ] **RTCM-correcties naar de rover uitwerken** — valideren hoe NTRIP-correcties vanaf de laptop via USB-adapter en LoRa bij de UART-ingang van de LC29H(DA) komen, inclusief formaat en updatesnelheid.
 - [ ] **Aparte servobuck aansluiten** — voedingsbron, uitgangsspanning en stroomcapaciteit afstemmen op de gebruikte servo's.
 
+## Nog te beslissen: bedrading en behuizing (`2026-10-09`)
+
+- [ ] **Montagemethode voor modules en losse onderdelen** — bevestiging aan de 3D-geprinte behuizing; bepaal of montagemateriaal nodig is. De eerder gekozen M3-set was voor de draagprint en wordt niet besteld zolang de nieuwe montage niet duidelijk is.
+- [ ] **Voedingsonderdelen handmatig verbinden en ondersteunen** — bevestig of PTC, TVS en AP2112K in de gekozen uitvoering behouden blijven en hoe ze zonder draagprint mechanisch worden vastgezet.
+- [ ] **Externe voeding en UART-aansluiting** — de PCB-barreljack is vervallen; bepaal of de bestaande barrel-adapter en de eerder gekozen vierpolige schroefklem rechtstreeks worden bedraad of een andere behuizingsdoorvoer nodig hebben.
+- [ ] **Draad en printmateriaal** — nagaan of de aanwezige Dupont-/siliconendraad volstaat voor de bedrading en of er geschikt filament beschikbaar is; nog niets toevoegen of online opzoeken.
+
 ## Nog te beslissen: documentatie in `documenten/` (`2026-10-06`)
 
 - [ ] **De gebruikershandleiding staat niet (meer) in `documenten/`** — [[handleiding]], [[links]] en [[specificaties]] verwijzen nog naar `documenten/Handleiding-meettoestel.md/.docx`, `documenten/build-handleiding.py` en `documenten/afbeeldingen/`, maar die bestanden zijn bij commit `b16c501` (`2026-10-01`) verwijderd. Opnieuw genereren (bron + script uit git terughalen) of de verwijzingen opruimen? (`2026-10-06`)
-- [ ] **`build-ontwerp.py` bestaat niet meer** — `documenten/specificaties/Ontwerp-meetmodule.docx` is ooit met dat script gegenereerd, maar het script staat niet meer in de repo. Wordt Word voortaan handmatig bijgewerkt of halen we het bouwscript terug? (`2026-10-06`)
+- [ ] **Word-versie van het ontwerp synchroniseren** — de actuele bron `documenten/specificaties/Ontwerp-meetmodule.md` is bijgewerkt met de handbedrade aanpak. `Ontwerp-meetmodule.docx` is een oudere versie; `build-ontwerp.py` ontbreekt. Bepaal of Word handmatig wordt bijgewerkt of dat het bouwscript wordt teruggehaald. (`2026-10-09`)

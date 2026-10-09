@@ -172,3 +172,9 @@ Technische en functionele afspraken. Eén subsectie per specificatie.
 - **Status:** architectuuroverzicht; conceptueel, niet op schaal en niet bedoeld als productierijp elektrisch schema.
 - **Bron:** bestaande projectkeuzes in [[gstem-specificaties]], [[componenten]], [[bestellijst]], [[app-architectuur-besturing]] en [[besturing-en-commandos]].
 - **Gevolg:** De actuele bestellijstvarianten (BNO085, BMP581, TXB0108-module) zijn in het diagram gebruikt; afwijkende oudere notities zijn expliciet gemarkeerd. Voedingswijze van de Uno, definitieve modulevarianten, pinout, RTCM-doorvoer, LoRa-instellingen, API-transport en UART-CSV-details blijven aandachtspunten. Zie [[communicatie-overzicht]] en [[open-vragen]].
+
+## 2026-10-09 — Handbedrading en 3D-geprinte behuizing
+- **Specificatie:** De breakoutmodules worden niet meer op een eigen draagprint/carrier-PCB met socket-headers geplaatst. De gebruiker verbindt en soldeert de bedrading zelf; daarna worden de onderdelen gemonteerd aan een zelf 3D-geprinte behuizing. De eigen draagprint en alle sockets zijn vervallen. De bestaande breakoutmodules blijven behouden.
+- **Status:** ontwerpaanpak gekozen; details van elektrische en mechanische montage staan open.
+- **Bron:** gebruikersbeslissing `2026-10-09`; zie [[bedrading-en-behuizing]] en [[beslissingen]].
+- **Gevolg:** AISLER-productie, sockets en de eerdere PCB-layout zijn niet langer actief. De functies van de voedingsbescherming, LDO, ontkoppeling, level shifter, status-LED en externe verbindingen blijven voorlopig onderdeel van de elektrische opzet; hun plaatsing en bedrading moeten opnieuw worden uitgewerkt. De behuizing moet de elektronica rechtstreeks ondersteunen en ruimte bieden voor antennes en de barometeropening. Bevestigingsmethode, connectoren, bedrading en materiaalvoorraad zijn nog open.

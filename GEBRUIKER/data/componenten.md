@@ -2,15 +2,13 @@
 tags: [gstem, data, componenten, bom, hardware]
 aangemaakt: 2026-10-06
 bijgewerkt: 2026-10-06
-status: werklijst
+status: componenten-BOM; fysieke bedrading en montage nog uit te werken
 ---
 
 # Componentenlijst (BOM) meettoestel
 
-> [!info] Doel
-> Centrale lijst van alle onderdelen voor het meettoestel, met status: **gekozen**, **nog te kiezen**
-> of **nog te noteren**. De gebruiker koopt alle componenten zelf aan; enkel de print wordt gemaakt
-> (zie [[beslissingen]] `2026-10-06`). Hoort bij [[specificaties]], [[pcb-ontwerp]] en [[open-vragen]].
+> [!warning] Ontwerpwijziging — 2026-10-09
+> De gebruiker bedradt en soldeert de breakoutmodules zelf en monteert de onderdelen aan een 3D-geprinte behuizing. De extra draagprint en alle sockets zijn vervallen; de breakoutmodules zelf blijven behouden. Oude regels hieronder die spreken over montage op de print zijn historisch en worden herzien zodra de bedrading en behuizing zijn uitgewerkt. Zie [[bedrading-en-behuizing]].
 
 ## Gekozen
 
@@ -21,7 +19,7 @@ status: werklijst
 | Barometer | **Adafruit BMP581** | Druk + temperatuur, I2C/SPI, STEMMA QT; nauwkeurig en bij Kiwi leverbaar (BMP390 is daar uit voorraad) | Kiwi Electronics |
 | RTK-GNSS | **Quectel LC29HDA** | Dual-band L1+L5, multi-constellatie, RTK **rover** (centimeter-niveau), ingebouwde LNA + SAW; vervangende gebruikerslisting AliExpress-item 1005009915138674; variant, board/pinout en bundelinhoud nog te verifiëren | Quectel / [[gps-rtk-prijzen]] |
 | RTK-correctie | **NTRIP-dienst** (via laptop) | Correcties (RTCM) naar de rover sturen; provider nog te kiezen | - |
-| Sockettype | **Dual-wipe voor XIAO**, **precisie/gefreesd voor de rest** | Dual-wipe waar vaak gewisseld wordt (ESP32-S3); precisie voor vast gemonteerde modules (trillingen) | [[pcb-methodes-kosten]] |
+| Moduleverbinding | **Handbedraden en solderen** | Geen sockets of eigen carrier-PCB; de concrete bedradingsroute en trekontlasting zijn nog open | [[bedrading-en-behuizing]] |
 | Voeding | **7,4 V-accu -> buck 5 V** (buck heeft de gebruiker), **barrel-connector** | XIAO op 5 V-pin; interne LiPo-lader niet gebruikt | - |
 | Aan/uit | **Geen schakelaar** | Het toestel springt aan zodra het aan de voeding hangt | - |
 | LoRa-ontvanger laptop | **Tweede XIAO ESP32S3 + Wio-SX1262 kit** | Zelfde hardware als het toestel | - |
@@ -31,17 +29,15 @@ status: werklijst
 | Behuizing/romp mock-up | **Eigen 3D-print** | Door de gebruiker zelf gemaakt | - |
 | Gereedschap/verbruik | **Alles aanwezig** | Schuifmaat, soldeerbout, multimeter, enz. | - |
 | Uitbreidingsconnector | **4-pins schroefklem, 3,5 mm (KF128/KF301)** | Pinout GND / +5 V / TX / RX; robuuste aansluiting voor de UART naar de Arduino | - |
-| Level shifter | **TXB0108-breakout** (8-kanaals) op de print | Voor de UART naar de Arduino Uno (5 V); VCCA 3,3 V, VCCB 5 V. I2C blijft 3,3 V, dus geen shifter nodig op de I2C-bus. De TXB0104-IC (TSSOP-14) blijft een alternatief | TI / Kiwi |
-| I2C-pull-ups op de print | **Geen extra** | BNO055- en BMP390-breakouts hebben al pull-ups; 2 reserve-footprints voor later | Adafruit |
-| Bescherming voeding | **2 A PTC-zekering + TVS SMBJ10A** (de P-MOSFET vervalt, `2026-10-06`) | 7,4 V-accu, max 8,4 V; TVS-standoff 10 V; bulk-elco 100 uF/16 V | - |
-| LDO 3,3 V | **AP2112K-3.3** (of AMS1117-3.3) | Eigen schone 3,3 V-rail voor de sensoren, op verzoek van de gebruiker; de XIAO levert ook 3,3 V | - |
+| Level shifter | **TXB0108-breakout** (8-kanaals) | Voor UART naar de Arduino Uno (5 V); VCCA 3,3 V, VCCB 5 V. Breakout wordt handbedraad; mechanische montage nog uit te werken. | TI / Kiwi |
+| I2C-pull-ups | **Geen extra** | Breakouts hebben pull-ups; de reserve-footprints van het oude PCB-ontwerp zijn niet meer nodig | Adafruit |
+| Bescherming voeding | **2 A PTC-zekering + TVS SMBJ10A** (de P-MOSFET vervalt, `2026-10-06`) | 7,4 V-accu, max 8,4 V; TVS-standoff 10 V; bulk-elco 100 uF/16 V; fysieke montage/bedrading nog uit te werken | - |
+| LDO 3,3 V | **AP2112K-3.3** (of AMS1117-3.3) | Eigen schone 3,3 V-rail voor sensoren; component en functie voorlopig behouden, handbedrading/montage nog uit te werken | - |
 | GNSS-antenne | **Actieve dual-band L1/L5 GNSS-antenne met passende connector, LNA + ground plane** | Nodig als de gekozen LC29HDA-breakout deze niet meelevert; bundelinhoud en RF-connector controleren bij de listing | Nog te verifiëren |
 | LoRa-antenne buiten | **IPEX/U.FL -> SMA female bulkhead pigtail** | Om de LoRa-antenne door/buiten de behuizing te monteren; de kitantenne blijft behouden | - |
 
 > [!warning] Gevolg van de XIAO-kit
-> ESP32 en LoRa zijn **één module**; op de draagprint is dat een enkele footprint. De XIAO heeft
-> een **ingebouwde LiPo-lader** en een eigen 3,3 V-regelaar (op de 3V3-pin). Pin-budget: controleer
-> of ± 14 I/O volstaat voor IMU + barometer + GNSS + UART.
+> ESP32 en LoRa zijn **één kit/module** en worden volgens de nieuwe opbouw met draden aangesloten; er komt geen carrier-footprint of socket. De XIAO heeft een ingebouwde LiPo-lader en eigen 3,3 V-regelaar (op de 3V3-pin). Pin-budget: controleer of ± 14 I/O volstaat voor IMU + barometer + GNSS + UART.
 
 > [!note] Waarvoor dient de voedingsbescherming en de LDO?
 > De energiestroom is: **7,4 V-accu (max 8,4 V) / barrel -> bescherming -> buck 5 V -> bulk-elco -> LDO 3,3 V -> sensoren**.
@@ -67,7 +63,7 @@ status: werklijst
 | Functie | Opties / kandidaten | Opmerking |
 | --- | --- | --- |
 | NTRIP-provider | **gratis dienst** | De gebruiker zoekt zelf een gratis provider. |
-| Socket exact model | precisie/gefreesd merk + dual-wipe merk | Nog te bepalen; hoeft **niet per se op de bestellijst**. |
+| Bedrading en montage | Draadverbindingen solderen; bevestiging aan geprinte behuizing | De aanpak is gekozen; details nog te bepalen in [[bedrading-en-behuizing]]. |
 
 ## Nog te noteren (ontbrak in de lijst)
 
@@ -79,7 +75,7 @@ status: werklijst
 
 **Verbindingen**
 - USB-C datakabel: **in bezit** (eigen kabel voor flashen/programmeren `2026-10-06`) — niet op de bestellijst.
-- UART-draden meettoestel <-> Arduino met **schroefklem-connectoren**; **gemeenschappelijke ground** en **level shifter** horen erbij.
+- UART-draden meettoestel <-> Arduino met gemeenschappelijke ground en de gekozen level shifter; bevestig nog of de oude schroefklem nodig blijft bij de handbedrade uitvoering.
 - Dupont-/siliconendraad: **in bezit** (gebruiker heeft dit zelf `2026-10-06`) — niet op de bestellijst.
 - USB A-kabel voor de LoRa-ontvanger: **heeft de gebruiker** (USB-A naar USB-C, `2026-10-06`) — niet op de bestellijst.
 
@@ -88,8 +84,9 @@ status: werklijst
 - LoRa IPEX -> SMA-pigtail: gekozen (zie "Gekozen") — nodig om de antenne buiten het vliegtuigje te connecteren.
 
 **Montage / behuizing**
-- M3-schroeven, moeren, afstandsbusjes (standoffs), nylon spacers — nodig, toevoegen bij de bestellijst.
-- 3D-printmateriaal voor de romp (door de gebruiker).
+- Modules en losse componenten worden aan een zelf 3D-geprinte behuizing gemonteerd; bevestigingsmethode nog te bepalen.
+- De eerder genoemde M3-set was bedoeld voor de vervallen draagprint en staat niet als actieve aankoop.
+- Beschikbaarheid van geschikt 3D-printmateriaal nog bevestigen; nog niet toevoegen aan de bestellijst.
 
 **Mock-up (vliegtuigje)**
 - Servo's (bestaande voorraad) — op de bestellijst zetten.
@@ -98,19 +95,22 @@ status: werklijst
 **Laptop-/ontvangerzijde**
 - USB A-kabel; tweede XIAO-kit.
 
-## Essentieel op de print (advies)
+## Historische lijst: onderdelen op de vervallen draagprint
 
-De gebruiker koos **LED + sockets** en vraagt wat verder essentieel is. Voorstel (te bevestigen bij het schema):
+> [!warning] Niet meer gebruiken als montageplan
+> De draagprint en sockets zijn vervallen. Elektrische functies van onderdelen kunnen behouden blijven, maar de bedradingsmethode en mechanische ondersteuning in de behuizing moeten opnieuw worden uitgewerkt. Zie [[bedrading-en-behuizing]].
+
+De onderstaande lijst is de oude carrier-PCB-opzet en dient alleen als naslag voor elektrische functies:
 
 | Onderdeel | Waarom | Aantal |
 | --- | --- | --- |
 | Power-LED + serieweerstand | Status van de voeding | 1 |
-| Sockets (2,54 mm) voor alle modules | Modules blijven vervangbaar | - |
+| Socket-headers (2,54 mm) | Vervallen; modules worden zelf bedraad en gesoldeerd | niet nodig |
 | 100 nF + 10 uF per voedingspin van de modules | Ontkoppeling tegen ruis/brownouts | per socket |
 | Bulk-elco 100 uF op de 5 V-ingang | Vangt stroompieken op (LoRa-zenden) | 1 |
 | I2C-pull-ups 4,7 kOhm | **Enkel indien** de breakouts ze niet al hebben; BNO055 en BMP390-breakout hebben ze mee | 2 (reserve) |
 | Barrel-connector + schroefklemmen | Voeding en UART naar buiten | 1 + 1 |
-| Bevestigingsgaten M3 | Montage in de behuizing | 4 |
+| Bevestigingsgaten M3 in carrier-PCB | De carrier-PCB is vervallen; montage in de behuizing nog te bepalen | niet nodig |
 | Zekering + TVS | Bescherming van de voeding | 2 A PTC + SMBJ10A (P-MOSFET vervalt `2026-10-06`) |
 | Level shifter | 3,3 V <-> 5 V naar de Arduino | TXB0104 (4-kanaals) |
 | Schroefklem 3,5 mm (4-pins) | UART-uitbreiding naar de Arduino | 1 |
@@ -125,14 +125,14 @@ De gebruiker koos **LED + sockets** en vraagt wat verder essentieel is. Voorstel
 > Voorgestelde volgorde om de open componenten een per een af te handelen. **A eerst**, want die
 > bepaalt de footprints en de stuklijst van de draagprint. Vink af zodra gekozen en genoteerd.
 
-**A. Bordkritisch (bepaalt de PCB)**
+**A. Oude PCB-kritische keuzes (vervallen als PCB-taken)**
 - [x] 1. Barometer -> **Adafruit BMP390** (`2026-10-06`)
 - [x] 2. RTK-GNSS-module -> **Quectel LC29H(DA)** (`2026-10-06`)
 - [x] 3. Bron RTK-correctie -> **NTRIP-dienst** (`2026-10-06`)
-- [x] 4. Sockettype -> **dual-wipe ESP, precisie voor de rest** (`2026-10-06`)
+- [x] 4. Sockettype -> **vervallen**; modules worden handbedraad en gesoldeerd (`2026-10-09`)
 - [x] 5. Uitbreidingsconnector -> **4-pins schroefklem 3,5 mm** (`2026-10-06`)
 - [x] 6. I2C-pull-ups en level shifter -> **geen extra pull-ups** (breakouts hebben ze); **level shifter TXB0104** (`2026-10-06`)
-- [x] 7. Wat komt op de print vs losse modules -> advies hierboven; nog te bevestigen (`2026-10-06`)
+- [x] 7. Wat komt op de print vs losse modules -> carrier-PCB vervallen; elektrische functies voorlopig behouden, montage nog uit te werken (`2026-10-09`)
 
 **B. Voeding en RF**
 - [x] 8. 7,4 V-accu + beschermcircuit + connector -> accu + barrel + bescherming gekozen (`2026-10-06`)
@@ -146,9 +146,9 @@ De gebruiker koos **LED + sockets** en vraagt wat verder essentieel is. Voorstel
 
 **C. Verbindingen en montage**
 - [x] 16. USB-C datakabel -> **in bezit** (eigen kabel) (`2026-10-06`)
-- [ ] 17. UART-draden met schroefklemmen + gemeenschappelijke ground + level shifter (bevestigd `2026-10-06`; type level shifter nog te zoeken)
+- [ ] 17. UART-bedrading naar de Arduino + gemeenschappelijke ground + level shifter; bevestig of de oude schroefklem nodig blijft (`2026-10-09`)
 - [x] 18. Dupont-/siliconendraad -> **in bezit** (`2026-10-06`)
-- [ ] 19. M3-schroeven, moeren, standoffs, spacers (bij de bestellijst)
+- [ ] 19. Bevestigingsmethode en hardware voor de 3D-geprinte behuizing bepalen; oude PCB-M3-set niet bestellen
 
 **D. Laptop-/ontvangerzijde**
 - [x] 20. LoRa-ontvanger -> **tweede XIAO-kit** (`2026-10-06`)
@@ -169,8 +169,9 @@ De gebruiker koos **LED + sockets** en vraagt wat verder essentieel is. Voorstel
 ## Gerelateerd
 
 - [[bestellijst]] - aan te kopen onderdelen met link, kost en aantal (Excel: `documenten/beheer/Bestellijst-GSTEM.xlsx`). De actieve bestellijst gebruikt de **BNO085 + BMP581** (Kiwi), de **TXB0108-breakout** en een **LC29HDA-breakout**; de oudere BNO055/BMP390 horen hier niet meer bij.
-- [[specificaties]] - draagprint-aanpak en gebruikersspecificaties
-- [[pcb-ontwerp]] - footprints en gatmaten
+- [[specificaties]] - actuele technische afspraken; draagprint-aanpak historisch vervallen
+- [[bedrading-en-behuizing]] - actuele handbedrading en montage
+- [[pcb-ontwerp]] - historische PCB-werkwijze, vervallen voor het actuele ontwerp
 - [[pcb-schets]] - bovenaanzicht en verbindingsschema
 - [[open-vragen]] - nog te beslissen punten
 - [[beslissingen]] - de keuzes van `2026-10-06`
@@ -180,6 +181,6 @@ De gebruiker koos **LED + sockets** en vraagt wat verder essentieel is. Voorstel
 - [ ] **Pinout-tabel XIAO opstellen** en controleren of ± 14 I/O volstaat voor IMU + barometer + GNSS + UART; anders I2C-multiplexer/expander voorzien. (`2026-10-06`)
 - [x] Meest accurate barometer zoeken -> **BMP390** (`2026-10-06`)
 - [x] RTK-GNSS-module en GNSS-antenne zoeken -> **LC29H(DA)** + dual-band actieve antenne (`2026-10-06`)
-- [x] Bepalen wat essentieel is op de print naast LED + sockets -> advies hierboven (`2026-10-06`)
+- [x] Oude carrier-PCB-onderdeleninventaris opstellen (`2026-10-06`); draagprint en sockets vervallen `2026-10-09`, montage opnieuw bepalen
 - [x] Level shifter 3,3 V <-> 5 V uitzoeken -> **TXB0104** (`2026-10-06`)
 - [x] Bescherming van de voeding uitzoeken -> **PTC + TVS SMBJ10A**; geen P-MOSFET (`2026-10-06`)

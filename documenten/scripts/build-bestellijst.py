@@ -6,9 +6,14 @@ Bron/afspraken: GEBRUIKER/data/bestellijst.md en GEBRUIKER/data/componenten.md
 Strategie: zo veel mogelijk bij Kiwi Electronics (NL) om verzendkosten te beperken; wat daar
 goedkoper is of als reserve dient, bij antratek.be. Overige elektronica komt bij passende EU-winkels.
 Voor de RTK-GNSS is China/AliExpress sinds 2026-10-07 de voorkeur; de exacte listing is nog niet bevestigd.
+De draagprint en sockets zijn vervallen (2026-10-09); montage- en connectorbehoeften staan op te bepalen.
 """
 
 import os
+import sys
+from pathlib import Path
+sys.path.insert(0, str(Path.home() / ".pi/agent/npm/node_modules/@sttronn/pi-sheets/skills/xlsx/scripts"))
+import xlsx_kit
 from openpyxl import Workbook
 from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
 from openpyxl.utils import get_column_letter
@@ -56,11 +61,9 @@ RIJEN = [
      "al in bezit", "-", "", ""),
     ("Voeding", "Voedingsaansluiting", "DC Barrel Jack Adapter - Female (heeft de gebruiker)",
      1, None, "al in bezit", "-", "", "Adapter met schroefklem; voor de kabelzijde"),
-    ("Voeding", "Voedingsaansluiting (op de print)",
-     "2,1 mm DC-barreljack, breadboard-/PCB-compatibel", 1, 1.20, "kiwi",
-     "Kiwi Electronics",
-     "https://www.kiwi-electronics.com/nl/2-1mm-dc-barrel-jack-breadboard-compatible-415",
-     "Naast de bestaande adapter; voor nette montage op de draagprint"),
+    ("Vervallen ontwerp", "PCB-voedingsaansluiting",
+     "2,1 mm breadboard-/PCB-barreljack - alleen bedoeld voor de vervallen draagprint", None, None,
+     "niet nodig", "-", "", "Niet bestellen. De bestaande barrel-adapter blijft; voedingsinvoer via de behuizing nog te bepalen."),
     ("Voeding", "Buck-converter 5 V", "Heeft de gebruiker", 1, None, "al in bezit", "-",
      "", "Referentie antratek: Buck Regulator Breakout 5V (EUR 12,04)"),
     ("Voeding", "Bescherming voeding",
@@ -79,48 +82,39 @@ RIJEN = [
     ("Voeding", "Aan/uit-schakelaar", "Geen; toestel start bij voeding", None, None,
      "niet nodig", "-", "", ""),
 
-    ("Draagprint (PCB bij AISLER)", "Draagprint (printplaat)",
-     "2-laags 1,6 mm HASL, set van 3 stuks - AISLER", 3, 10.92, "aisler", "AISLER",
-     "https://aisler.net",
-     "Schatting 75 cm2 (100x75 mm), incl. btw; Budget-service. Formule: EUR 12,00 + "
-     "EUR 0,067/cm2 x oppervlak x aantal. AISLER levert in sets van 3; gratis verzending. "
-     "Definitieve maat volgt uit de KiCad-layout"),
+    ("Vervallen ontwerp", "Draagprint (carrier-PCB)",
+     "Eigen PCB bij AISLER", None, None, "niet nodig", "-", "",
+     "Vervallen op 2026-10-09: de gebruiker bedradt en soldeert de onderdelen zelf en monteert ze aan een 3D-geprinte behuizing."),
 
-    ("Print en verbindingen", "Level shifter 3,3 V <-> 5 V",
+    ("Bedrading en losse elektronica", "Level shifter 3,3 V <-> 5 V",
      "8-kanaals bidirectionele Logic Level Converter - TXB0108", 1, 8.70, "kiwi",
      "Kiwi Electronics",
      "https://www.kiwi-electronics.com/nl/8-channel-bi-directional-logic-level-converter-txb0108-836",
      "DEFINITIEF (2026-10-07): TXB0108-breakout. De TXB0104-IC (TSSOP-14, ca. EUR 1,80) is enkel "
      "een alternatief; antratek BSS138-converter EUR 4,78 is een ander type"),
-    ("Print en verbindingen", "Schroefklem 4-pins 3,5 mm",
-     "DEGSON DG250-3.5-04P-11-00A(H) (push-in) of KF128 (schroef)", 1, 0.61, "hestore",
-     "HESTORE (HU, EU) / TME",
-     "https://www.hestore.eu/en/prod_10044104.html",
-     "Kiwi heeft alleen 3-weg; de schroefvariant KF128 is in de EU minder courant"),
-    ("Print en verbindingen", "Sockets",
-     "Dual-wipe female headers (XIAO + sensoren) + turned-pin precisie-sockets (vaste modules)", 1, 5.00,
-     "tme", "Mouser / DigiKey / TME",
-     "https://www.mouser.com/c/connectors/headers-wire-housings/",
-     "Standaard 2,54 mm turned-pin/dual-wipe; Preci-Dip bij TME is business/MOQ 380 en valt af"),
-    ("Print en verbindingen", "Power-LED + serieweerstand",
+    ("Bedrading en losse elektronica", "UART-/uitbreidingsconnector",
+     "Eerder gekozen DEGSON 4-pins 3,5 mm; mogelijk overbodig bij rechtstreeks bedraden", None, None,
+     "te bepalen", "-", "", "Nog geen keuze of aankoop; eerst bevestigen hoe de kabel naar buiten wordt aangesloten."),
+    ("Vervallen ontwerp", "Socket-headers",
+     "Dual-wipe en turned-pin sockets", None, None, "niet nodig", "-", "",
+     "Vervallen op 2026-10-09: breakoutmodules worden handbedraad en gesoldeerd; niet bestellen."),
+    ("Bedrading en losse elektronica", "Power-LED + serieweerstand",
      "3 mm LED rood (10-pack) + weerstand 330 Ohm (10-pack) - heeft de gebruiker thuis",
      1, None, "al in bezit", "-", "",
      "HEEFT DE GEBRUIKER THUIS (2026-10-06): 10-pack rode 3 mm LED + 10-pack 330 Ohm; niet "
      "aankopen. Referentie Kiwi: LED EUR 1,20 + weerstand EUR 0,96 = EUR 2,16"),
-    ("Print en verbindingen", "Ontkoppelcondensatoren",
+    ("Bedrading en losse elektronica", "Ontkoppelcondensatoren",
      "Keramische condensator kit (15 soorten, 450 st.) - dekt 100 nF + 10 uF", 1, 10.27,
      "kiwi", "Kiwi Electronics",
      "https://www.kiwi-electronics.com/nl/keramische-condensator-kit-in-doos-15-soorten-450-stuks-10492",
      "Kit i.p.v. losse condensatoren"),
-    ("Print en verbindingen", "Bulk-elco", "100 uF / 16 V op de 5 V-ingang", 1, 0.59, "kiwi",
+    ("Bedrading en losse elektronica", "Bulk-elco", "100 uF / 16 V op de 5 V-ingang", 1, 0.59, "kiwi",
      "Kiwi Electronics", "https://www.kiwi-electronics.com/nl/100uf-16v-condensator-440", ""),
-    ("Print en verbindingen", "I2C-pull-ups op de print",
-     "Niet nodig; breakouts hebben ze al", 2, None, "niet nodig", "-", "", "2 reserve-footprints"),
-    ("Print en verbindingen", "Montage",
-     "M3-schroeven, moeren, afstandsbusjes, nylon spacers", 1, 8.00,
-     "tinytronics", "TinyTronics (NL, EU)",
-     "https://www.tinytronics.nl/nl/gereedschap-en-montage/installatie-en-montagemateriaal/afstandsbusjes/m3-afstandsbusje-kit",
-     "Alternatief: Bits & Parts (NL) 180-delige M3-set EUR 6,95"),
+    ("Bedrading en losse elektronica", "I2C-pull-ups",
+     "Niet nodig; breakouts hebben ze al", None, None, "niet nodig", "-", "", "Geen extra pull-ups voorzien."),
+    ("Bedrading en losse elektronica", "Behuizingsmontage",
+     "Bevestigingsmateriaal nog te bepalen; eerdere M3-set was voor de draagprint", None, None,
+     "te bepalen", "-", "", "Niet bestellen of online opzoeken voordat de gebruiker de montagewijze heeft bevestigd."),
 
     ("Kabels en verbruik (in bezit)", "USB-C datakabel", "Eigen kabel", 1, None, "al in bezit",
      "-", "", ""),
@@ -162,6 +156,7 @@ KLEUR_STATUS = {
     "aliexpress": "FCE4D6",
     "waveshare": "E5D5F0",
     "niet nodig": "F2F2F2",
+    "te bepalen": "FFF2CC",
 }
 KLEUR_KOP = "1F3864"
 KLEUR_CATEGORIE = "D6DCE4"
@@ -178,8 +173,7 @@ def bouw():
     # Titel
     ws.merge_cells("A1:J1")
     ws["A1"] = ("Bestellijst G-Stem meettoestel - prijzen incl. btw "
-                "(Kiwi + antratek + TME + Mouser + HESTORE + TinyTronics + AliExpress + AISLER, "
-                "definitief 2026-10-07)")
+                "(Kiwi + antratek + TME + Mouser + AliExpress; bijgewerkt 2026-10-09)")
     ws["A1"].font = Font(bold=True, size=13, color="FFFFFF")
     ws["A1"].fill = PatternFill("solid", fgColor=KLEUR_KOP)
     ws["A1"].alignment = Alignment(vertical="center", horizontal="left")
@@ -260,23 +254,15 @@ def bouw():
               '=SUMIF(G3:G%d,"tme",F3:F%d)' % (laatste_data, laatste_data))
     totaalrij("Totaal te bestellen bij Mouser/DigiKey (EU)",
               '=SUMIF(G3:G%d,"mouser",F3:F%d)' % (laatste_data, laatste_data))
-    totaalrij("Totaal te bestellen bij HESTORE (EU)",
-              '=SUMIF(G3:G%d,"hestore",F3:F%d)' % (laatste_data, laatste_data))
-    totaalrij("Totaal te bestellen bij TinyTronics (NL)",
-              '=SUMIF(G3:G%d,"tinytronics",F3:F%d)' % (laatste_data, laatste_data))
     rij_waveshare = totaalrij("Waveshare: losse GNSS-antenne (voorwaardelijk)",
               '=SUMIF(G3:G%d,"waveshare",F3:F%d)' % (laatste_data, laatste_data))
     totaalrij("Eckstein-terugvaloptie (niet gekozen; geen actieve regel)",
               '=SUMIF(G3:G%d,"eckstein",F3:F%d)' % (laatste_data, laatste_data))
     rij_totaal_onderdelen = totaalrij(
-        "TOTAAL alle onderdelen excl. AISLER-print (incl. losse antenne)",
-        "=SUM(F3:F%d)-SUMIF(G3:G%d,\"aisler\",F3:F%d)" % (laatste_data, laatste_data, laatste_data))
-    totaalrij("TOTAAL onderdelen excl. losse GNSS-antenne (excl. AISLER)",
+        "TOTAAL actieve onderdelen (incl. voorwaardelijke GNSS-antenne)",
+        "=SUM(F3:F%d)" % laatste_data)
+    totaalrij("TOTAAL actieve onderdelen excl. losse GNSS-antenne",
               "=F%d-F%d" % (rij_totaal_onderdelen, rij_waveshare))
-    rij_aisler = totaalrij("Totaal draagprint bij AISLER (3 stuks)",
-              '=SUMIF(G3:G%d,"aisler",F3:F%d)' % (laatste_data, laatste_data))
-    totaalrij("TOTAAL alles (incl. losse antenne + AISLER-print)",
-              "=F%d+F%d" % (rij_totaal_onderdelen, rij_aisler))
     r += 1
 
     ws.cell(row=r, column=1,
@@ -285,8 +271,8 @@ def bouw():
                   "De losse Waveshare-antenne (SKU 25346) is voorwaardelijk: eerst checken of de boardkit "
                   "een passende L1/L5-antenne meelevert. Terugvaloptie GPS in de EU: Waveshare LC29H(DA) HAT "
                   "(Eckstein ca. EUR 71,39 / Kamami ca. EUR 63). De LED + 330 Ohm-weerstand (10-packs) heeft "
-                  "de gebruiker thuis en is dus niet meer te bestellen. Zie GEBRUIKER/data/bestelbaarheid.md "
-                  "en GEBRUIKER/data/bestelschema-pcb.md."
+                  "de gebruiker thuis en is dus niet meer te bestellen. Carrier-PCB en sockets zijn vervallen; "
+                  "montage- en connectorbehoefte is nog te bepalen. Zie GEBRUIKER/data/bedrading-en-behuizing.md."
             ).font = Font(italic=True, size=9)
 
     ws.freeze_panes = "A3"
@@ -304,12 +290,13 @@ def bouw():
         ("aliexpress", "AliExpress (China): gekozen bron voor de LC29HDA-RTK-rover-module"),
         ("waveshare", "Waveshare (fabrikant, China): losse actieve L1/L5-GNSS-antenne (voorwaardelijk)"),
         ("eckstein", "Eckstein (Duitsland, EU): Waveshare LC29H(DA)-HAT terugvaloptie; niet de huidige voorkeur"),
-        ("tme", "TME (Polen, EU): LDO, TVS, schroefklem, precisie-sockets"),
+        ("tme", "TME (Polen, EU): eerder gekozen LDO/TVS; montage van de componenten nog open"),
         ("mouser", "Mouser.be / DigiKey met EU-magazijn: PTC, exacte onderdelen"),
-        ("niet nodig", "Bewust niet voorzien (bv. P-MOSFET-ompoolbeveiliging, beslissing 2026-10-06)"),
-        ("hestore", "HESTORE (Hongarije, EU): schroefklem DEGSON"),
-        ("tinytronics", "TinyTronics (Nederland, EU): M3-montagesets"),
-        ("aisler", "Gefabriceerd bij AISLER (EU); print zelf, geen componenten"),
+        ("niet nodig", "Niet bestellen of bewust niet voorzien; o.a. carrier-PCB en sockets vervallen (2026-10-09)"),
+        ("te bepalen", "Montage- of connectorbehoefte nog open; niet opgenomen in actieve totalen"),
+        ("hestore", "HESTORE (Hongarije, EU): historische schroefklemoptie; niet meer actief besteld"),
+        ("tinytronics", "TinyTronics (Nederland, EU): historische M3-set voor oude printmontage"),
+        ("aisler", "Historische fabrikant van de vervallen carrier-PCB; niet bestellen"),
         ("schatting", "Prijs is een schatting; apart te bestellen bij een componentenwinkel"),
         ("al in bezit", "Heeft de gebruiker al; niet aankopen"),
         ("geen link", "Niet gevonden bij Kiwi of antratek; nog geen prijs"),
@@ -322,10 +309,10 @@ def bouw():
     ws2.column_dimensions["A"].width = 14
     ws2.column_dimensions["B"].width = 70
 
-    # Derde blad: bestelschema draagprint bij AISLER
-    ws3 = wb.create_sheet("Bestelschema PCB")
+    # Derde blad: actuele bedrading en montagekeuzes
+    ws3 = wb.create_sheet("Bedrading en montage")
     ws3.merge_cells("A1:D1")
-    ws3["A1"] = "Bestelschema draagprint bij AISLER - schatting (2026-10-06)"
+    ws3["A1"] = "Bedrading en montage - open keuzes (2026-10-09)"
     ws3["A1"].font = Font(bold=True, size=13, color="FFFFFF")
     ws3["A1"].fill = PatternFill("solid", fgColor=KLEUR_KOP)
     ws3["A1"].alignment = Alignment(vertical="center")
@@ -359,55 +346,29 @@ def bouw():
                 cel.alignment = Alignment(horizontal="right", vertical="top")
         rr += 1
 
-    sheet_kop("AISLER-productie - 2-laags 1,6 mm HASL Budget")
-    sheet_rij("Formule: EUR 12,00 job fee + EUR 0,067/cm2 x oppervlak x aantal "
-              "(sets van 3, gratis verzending, productie vanaf 2 werkdagen)")
-    sheet_rij("Oppervlak", "3 stuks incl. btw", "6 stuks incl. btw", vet=True)
-    sheet_rij("60 cm2 (bv. 100x60)", 29.11, 43.71, geld=True)
-    sheet_rij("75 cm2 (100x75, aanname)", 32.76, 50.99, geld=True)
-    sheet_rij("90 cm2 (120x75)", 36.41, 58.30, geld=True)
-    sheet_rij("100 cm2 (100x100)", 38.84, 63.16, geld=True)
+    sheet_kop("Huidige aanpak: handbedrading en behuizing")
+    sheet_rij("Geen eigen carrier-PCB en geen socket-headers. De gebruiker bedradt en soldeert zelf; de onderdelen worden aan een 3D-geprinte behuizing gemonteerd.")
+    sheet_rij("Breakoutmodules", "Blijven behouden", "Zelf bedraden; exacte verbindingen nog uit te werken")
+    sheet_rij("Montagehardware", "Nog te bepalen", "Niet toevoegen of online opzoeken voordat montagewijze bevestigd is")
+    sheet_rij("UART-/uitbreidingsconnector", "Nog te bepalen", "Eerder gekozen schroefklem kan vervallen bij rechtstreeks bedraden")
+    sheet_rij("Voedingsinvoer", "Nog te bepalen", "Bestaande barrel-adapter aanwezig; paneel-/behuizingsmontage open")
+    sheet_rij("PTC, TVS, LDO en ontkoppeling", "Functies voorlopig behouden", "Handbedrading en mechanische ondersteuning nog uit te werken")
     rr += 1
 
-    sheet_kop("Onderdelen op de print (gevonden bij EU-winkels, 2026-10-06)")
-    sheet_rij("Onderdeel", "Prijs (EUR)", "Leverancier", vet=True)
-    sheet_rij("Sockets: dual-wipe + Preci-Dip turned-pin", 5.00,
-              "TME / RS Components", geld=True)
-    sheet_rij("PTC Littelfuse 1812L200/16 + TVS SMBJ10A-TR (zonder P-MOSFET)", 1.00,
-              "Mouser.be / DigiKey (EU)", geld=True)
-    sheet_rij("LDO AP2112K-3.3TRG1", 0.27, "TME (EU)", geld=True)
-    sheet_rij("Schroefklem 4-pins 3,5 mm DEGSON DG250-3.5-04P", 0.61,
-              "HESTORE / TME (EU)", geld=True)
-    sheet_rij("M3-schroeven, moeren, afstandsbusjes, spacers", 8.00,
-              "TinyTronics (NL, EU)", geld=True)
-    sheet_rij("Subtotaal apart te bestellen", 14.88, "EU-winkels", vet=True, geld=True)
-    sheet_rij("TXB0108 level shifter", 8.70, "Kiwi Electronics", geld=True)
-    sheet_rij("Power-LED + serieweerstand (10-packs thuis in bezit)", 0.00,
-              "Heeft de gebruiker", geld=True)
-    sheet_rij("Ontkoppelcondensatoren (per bord gebruikt)", 0.50, "Kiwi Electronics", geld=True)
-    sheet_rij("Bulk-elco 100 uF", 0.59, "Kiwi Electronics", geld=True)
-    sheet_rij("Subtotaal al in hoofd-bestellijst", 9.79, "Kiwi Electronics", vet=True, geld=True)
-    sheet_rij("Totaal onderdelen op de print (met TXB0108)", 24.67,
-              "met TXB0104-IC direct: ca. 17,77", vet=True, geld=True)
+    sheet_kop("Vervallen bestellingen")
+    sheet_rij("Carrier-PCB bij AISLER", "Niet nodig", "Geen print produceren of bestellen")
+    sheet_rij("Socket-headers", "Niet nodig", "Breakoutmodules worden met draden aangesloten en gesoldeerd")
+    sheet_rij("PCB-barreljack", "Niet nodig", "Specifiek gekozen voor montage op de vervallen PCB")
+    sheet_rij("Oude M3-set", "Niet actief", "Was bedoeld voor printmontage; behuizingsbevestiging nog te bepalen")
     rr += 1
 
-    sheet_kop("Totalen (3 borden, incl. btw)")
-    sheet_rij("AISLER print, 3 stuks, 75 cm2 Budget", 32.76, geld=True)
-    sheet_rij("Onderdelen op de print", 24.67, geld=True)
-    sheet_rij("Totaal", 57.43, vet=True, geld=True)
-    sheet_rij("Waarvan al in de hoofd-bestellijst", 9.79, geld=True)
-    sheet_rij("Werkelijk nieuw te bestellen", 47.64, vet=True, geld=True)
-    rr += 1
-
-    sheet_kop("Bestelvolgorde")
+    sheet_kop("Vervolgstappen (geen nieuwe aankopen vastgelegd)")
     for stap in [
-        "1. PCB ontwerpen in KiCad; layout afronden, DRC, Gerbers/ODB++ exporteren",
-        "2. Bordafmeting definitief nameten en AISLER-calculator controleren",
-        "3. Print bestellen bij AISLER (3 of 6 stuks, Budget-service)",
-        "4. Tegelijk de printonderdelen bij EU-winkels bestellen (TME, Mouser, HESTORE, TinyTronics)",
-        "5. Kiwi/antratek-bestelling: level shifter, condensatoren, bulk-elco "
-        "(LED + 330 Ohm heeft de gebruiker thuis)",
-        "6. Rendering vergelijken met het echte bord, daarna solderen",
+        "1. Bevestig hoe de breakoutmodules en losse componenten aan de behuizing worden gemonteerd",
+        "2. Werk bedradingsroute, isolatie/ondersteuning en trekontlasting uit",
+        "3. Bevestig of de UART-klem en voedingsaansluiting nodig blijven",
+        "4. Controleer of aanwezige draad en printmateriaal volstaan; koop niets nieuws zonder bevestiging",
+        "5. Herbereken de bestellijst nadat de montagekeuzes vastliggen",
     ]:
         sheet_rij(stap)
 
@@ -416,7 +377,7 @@ def bouw():
     # Vierde blad: bestelbaarheid (gecontroleerd 2026-10-06)
     ws4 = wb.create_sheet("Bestelbaarheid")
     ws4.merge_cells("A1:D1")
-    ws4["A1"] = "Bestelbaarheid - gecontroleerd op 2026-10-06"
+    ws4["A1"] = "Bestelbaarheid - historische controle op 2026-10-06 (geen actuele besteladviezen)"
     ws4["A1"].font = Font(bold=True, size=13, color="FFFFFF")
     ws4["A1"].fill = PatternFill("solid", fgColor=KLEUR_KOP)
     ws4["A1"].alignment = Alignment(vertical="center")
@@ -444,11 +405,11 @@ def bouw():
         ("TME (EU)", "AO3401A (P-MOSFET)", "22 840", "NIET GEBRUIKT - P-MOSFET vervalt (2026-10-06)"),
         ("Mouser/DigiKey", "DMG2301L-7 (P-MOSFET)", "losse aantallen", "NIET GEBRUIKT - P-MOSFET vervalt (2026-10-06)"),
         ("Mouser/DigiKey", "1812L200/16DR (PTC 2 A 16 V)", "14 555 / 9 900", ""),
-        ("TME (EU)", "Preci-Dip socket 2,54 mm", "MOQ 380 (business)", "niet in kleine aantallen"),
+        ("TME (EU)", "Preci-Dip socket 2,54 mm", "MOQ 380 (business)", "historische regel; sockets vervallen op 2026-10-09"),
         ("HESTORE (EU)", "DEGSON DG250-3.5-04P (push-in)", "> 10", "EUR 0,52 excl."),
         ("HESTORE (EU)", "DEGSON 15EDGK-3.5/4P (schroef)", "> 15", "schroefvariant"),
-        ("TinyTronics (NL)", "M3 Afstandsbusje Kit", "50+", "EUR 8,00 incl."),
-        ("Bits & Parts (NL)", "M3 spacer-set 180-delig", "op voorraad", "EUR 6,95 incl."),
+        ("TinyTronics (NL)", "M3 Afstandsbusje Kit", "50+", "historische prijs; bedoeld voor de vervallen PCB-montage"),
+        ("Bits & Parts (NL)", "M3 spacer-set 180-delig", "op voorraad", "historische prijs; montage voor behuizing nog te bepalen"),
         ("Eckstein (DE)", "Waveshare LC29H(DA) HAT 25279 (WS25279)", "leverbaar", "Terugvaloptie - EUR 71,39 incl.; niet huidige voorkeur"),
         ("AliExpress (China)", "LC29HDA RTK-GNSS-developmentboard (item 1005009915138674)", "richtprijs EUR 36,99", "kies de LC29HDA (rover)-variant, geen LC29HBS en geen losse SMD-module"),
         ("Kamami (PL)", "Waveshare LC29H(DA) HAT 25279", "24 u", "~EUR 63 = goedkoopste EU"),
@@ -464,7 +425,7 @@ def bouw():
 
     doel = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
                         "beheer", "Bestellijst-GSTEM.xlsx")
-    wb.save(doel)
+    xlsx_kit.save(wb, doel)
     print("Opgeslagen:", doel)
 
 

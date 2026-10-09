@@ -1,8 +1,8 @@
 ---
 tags: [gstem, data, bestellijst, bom, aankoop]
 aangemaakt: 2026-10-06
-bijgewerkt: 2026-10-07
-status: definitief; enkel de LC29HDA-variant aanduiden bij het bestellen
+bijgewerkt: 2026-10-09
+status: actieve bestellijst; bedrading en behuizingsmontage nog uit te werken
 ---
 
 # Bestellijst meettoestel (aan te kopen)
@@ -14,10 +14,8 @@ status: definitief; enkel de LC29HDA-variant aanduiden bij het bestellen
 > vermeld en onder voorbehoud. De Excel-versie staat in `documenten/beheer/Bestellijst-GSTEM.xlsx`
 > (bron: `documenten/scripts/build-bestellijst.py`).
 
-> [!success] Alles is nu definitief
-> Alle functies hebben een **gekozen onderdeel, winkel, aantal en prijs**. Er blijft nog één
-> controle bij het bestellen: de AliExpress-GPS moet de **LC29HDA-variant** (RTK-**rover**) zijn,
-> niet de LC29HBS (basisstation) en niet de losse SMD-module. Zie de callout bij de sensoren.
+> [!warning] Montage en bedrading nog niet definitief
+> De AISLER-draagprint, sockets, PCB-barreljack en M3-set voor de oude print zijn geen actieve bestellingen meer. De montage van componenten, voedingsinvoer, UART-connectoren en voedingsonderdelen moet nog worden uitgewerkt. Er worden hiervoor geen nieuwe onderdelen online opgezocht of aan de lijst toegevoegd totdat de uitvoering is bevestigd. Zie [[bedrading-en-behuizing]].
 
 ## Legende (tags)
 
@@ -36,24 +34,16 @@ status: definitief; enkel de LC29HDA-variant aanduiden bij het bestellen
 | `geen-link` | Nog niet bij een geschikte winkel gevonden |
 | `onderzoek` | Zoekresultaat gevonden, maar exacte listing/prijs nog niet geverifieerd |
 | `niet-nodig` | Bewust niet voorzien |
-| `aisler` | Draagprint gefabriceerd bij AISLER |
+| `aisler` | Historische vermelding van de vervallen draagprint; niet bestellen |
+| `te-bepalen` | Uitvoering of noodzaak nog open; niet als actieve bestelling meetellen |
 
-> [!info] Bestelbaarheid geverifieerd (`2026-10-06`)
-> De onderdelen bij de EU-winkels zijn nagelopen en bestelbaar. Aandachtspunten:
-> - **Kiwi:** lage voorraad bij de **keramische condensatorkit (2 st.)** en de **BMP581 (4 st.)**.
-> - **Sockets:** standaard 2,54 mm turned-pin of dual-wipe sockets nemen; de Preci-Dip bij TME is
->   business/MOQ 380 en dus onpraktisch.
-> - **P-MOSFET vervalt** (beslissing `2026-10-06`): er komt **geen** ompoolbeveiliging. Zie [[afgevoerd]].
-> - **KF128-3.5 schroefklem bestaat niet bij TME**; neem de push-in **DEGSON DG250-3.5-04P** of de
->   schroefvariant **DEGSON 15EDGK-3.5/4P** (€ 1,10 bij HESTORE).
+> [!info] Bestaande bestelbaarheid (controle `2026-10-06`)
+> De historische voorraad- en winkelinformatie blijft ter referentie in [[bestelbaarheid]]. Socket- en PCB-aankoopadviezen zijn vervallen. De 4-pins schroefklem is nog niet definitief nodig nu de verbindingen handbedraad worden; zie [[bedrading-en-behuizing]]. De P-MOSFET-ompoolbeveiliging blijft vervallen (beslissing `2026-10-06`); zie [[afgevoerd]].
 >
-> Volledige verificatietabel: [[bestelbaarheid]]. GPS/RTK-prijsvergelijking: [[gps-rtk-prijzen]].
+> GPS/RTK-prijsvergelijking: [[gps-rtk-prijzen]].
 
 > [!tip] Winkels
-> **TME (Polen)** dekt de **discrete elektronica** (LDO, TVS, schroefklemmen, sockets).
-> De **LC29HDA-RTK-rover** komt bij **AliExpress (China)**. **Eckstein (Duitsland)** met de
-> Waveshare-HAT (€ 71,39) blijft de **terugvaloptie**. **TinyTronics (NL)** en **Bits & Parts (NL)**
-> dekken de **M3-montage**. Voor exacte/EOL-onderdelen: **Mouser.be** of **DigiKey** (EU-magazijn, btw).
+> **TME (Polen)** dekt de eerder gekozen discrete elektronica (LDO/TVS); **Mouser.be/DigiKey** de PTC. De **LC29HDA-RTK-rover** blijft de kandidaat bij **AliExpress (China)**. Eerdere socket- en M3-winkellinks zijn alleen historische referenties; nieuwe behuizingshardware wordt pas bepaald na het montageontwerp.
 
 ## Rekenkern en communicatie
 
@@ -99,7 +89,7 @@ status: definitief; enkel de LC29HDA-variant aanduiden bij het bestellen
 > - Ingebouwde LNA + SAW-filter; onboard ML1220-batterijhouder; 4 status-LED's.
 > - Meegeleverd: **dual-band actieve GNSS-antenne**, IPEX-1→SMA-kabel (17 cm), schroefset, 2×20-pins female header.
 > - Let op: door de vorm (65 mm) en de 40-pins header is het bord groter dan een losse module —
->   houd hier rekening mee bij de **draagprint-footprint** ([[pcb-ontwerp]], [[bestelschema-pcb]]).
+>   controleer de afmetingen en bevestigingsmogelijkheden voor de **3D-geprinte behuizing**; een draagprint-footprint is niet meer nodig. Zie [[bedrading-en-behuizing]] en [[gps-rtk-prijzen]].
 
 ## Antennes en RF
 
@@ -125,11 +115,11 @@ status: definitief; enkel de LC29HDA-variant aanduiden bij het bestellen
 | --- | --- | --- | --- | --- | --- |
 | `al-in-bezit` | Accu (7,4 V) | 2S LiPo met connector en kabel | 1 | - | - |
 | `al-in-bezit` | Voedingsaansluiting (kabelzijde) | DC Barrel Jack Adapter - Female (schroefklem) | 1 | - | - |
-| `kiwi` | Voedingsaansluiting (op de print) | 2,1 mm DC-barreljack, breadboard-/PCB-compatibel | 1 | € 1,20 | https://www.kiwi-electronics.com/nl/2-1mm-dc-barrel-jack-breadboard-compatible-415 |
+| `niet-nodig` | PCB-voedingsaansluiting | 2,1 mm breadboard-/PCB-barreljack — alleen gekozen voor montage op de vervallen draagprint | - | - | - |
 | `al-in-bezit` | Buck-converter 5 V | Heeft de gebruiker | 1 | - | - |
-| `mouser` | Bescherming voeding | 2 A PTC Littelfuse 1812L200/16 + TVS SMBJ10A-TR (op de print) | 1 set | ± € 1,00 | https://www.mouser.com/ProductDetail/Littelfuse/1812L200-16DR |
+| `mouser` | Bescherming voeding | 2 A PTC Littelfuse 1812L200/16 + TVS SMBJ10A-TR — fysieke montage/bedrading nog te bepalen | 1 set | ± € 1,00 | https://www.mouser.com/ProductDetail/Littelfuse/1812L200-16DR |
 | `niet-nodig` | Ompoolbeveiliging (P-MOSFET) | P-MOSFET DMG2301L / AO3401A (SOT-23) | - | - | **vervalt** (`2026-10-06`) |
-| `tme` | LDO 3,3 V | AP2112K-3.3TRG1 (SOT-23-5) (op de print) | 1 | € 0,27 | https://www.tme.eu/en/details/ap2112k-3.3trg1/ldo-fixed-voltage-regulators/diodes-incorporated/ |
+| `tme` | LDO 3,3 V | AP2112K-3.3TRG1 (SOT-23-5) — fysieke montage/bedrading nog te bepalen | 1 | € 0,27 | https://www.tme.eu/en/details/ap2112k-3.3trg1/ldo-fixed-voltage-regulators/diodes-incorporated/ |
 | `niet-nodig` | Aan/uit-schakelaar | Geen; toestel start bij voeding | - | - | - |
 
 > [!success] Discrete voeding gevonden bij TME (EU) — `2026-10-06`
@@ -143,50 +133,35 @@ status: definitief; enkel de LC29HDA-variant aanduiden bij het bestellen
 > **DMG2301L-7** en **AO3401A** komen dus **niet** op de lijst; zie [[afgevoerd]]. Voorkom omgekeerd
 > aansluiten met een **gepolariseerde connector** (XT60/JST-XH).
 
-> [!note] Barrel-connector
-> De gebruiker heeft een **female barrel-adapter met schroefklem** (voor de kabelzijde). Voor een
-> nette montage op de draagprint komt daar de **PCB-breadboard-barreljack** (€ 1,20, Kiwi) bij.
+> [!note] Voedingsinvoer en behuizing
+> De gebruiker heeft een **female barrel-adapter met schroefklem**. Of deze rechtstreeks wordt bedraad of via een doorvoer in de nieuwe behuizing wordt gemonteerd, staat nog open. De PCB-breadboard-barreljack van Kiwi is alleen voor de vervallen draagprint gekozen en is daarom uit de actieve bestellijst gehaald.
 
-> [!info] Printkost
-> De productie van de draagprint bij **AISLER** (± € 32,76 incl. btw voor 3 stuks) en de
-> onderdelen op de print staan apart in [[bestelschema-pcb]].
+## Bedrading en losse elektronica
 
-## Print en verbindingen
-
-> [!success] Print bij AISLER (`2026-10-06`)
-> De draagprint wordt gemaakt bij **AISLER** (2-laags, 1,6 mm HASL Budget). Schatting **± € 32,76
-> incl. btw voor 3 stuks** (aanname 100 x 75 mm). Alle productie- en onderdelenkosten staan in
-> [[bestelschema-pcb]].
+> [!info] Geen carrier-PCB of sockets
+> De gebruiker verbindt en soldeert de componenten zelf en monteert ze aan de 3D-geprinte behuizing. De elektrische functies blijven voorlopig op de BOM; de mechanische ondersteuning en exacte verbindingsmethode zijn nog niet vastgesteld. Zie [[bedrading-en-behuizing]].
 
 | Tag | Component | Onderdeel | Aantal | Prijs/st | Link |
 | --- | --- | --- | --- | --- | --- |
-| `aisler` | Draagprint (PCB) | 2-laags 1,6 mm HASL, set van 3 | 3 | ± € 10,92 | https://aisler.net |
-| `kiwi` | Level shifter 3,3 V <-> 5 V | 8-kanaals bidirectionele Logic Level Converter - TXB0108 (breakout) | 1 | € 8,70 | https://www.kiwi-electronics.com/nl/8-channel-bi-directional-logic-level-converter-txb0108-836 |
-| `hestore` | Schroefklem 4-pins 3,5 mm | DEGSON **DG250-3.5-04P-11-00A(H)** (push-in) of KF128 (schroef) | 1 | € 0,61 | https://www.hestore.eu/en/prod_10044104.html |
-| `tme` | Sockets | Dual-wipe female headers (XIAO + sensoren) + turned-pin precisie-sockets (vaste modules) | set | ± € 5,00 | https://www.mouser.com/c/connectors/headers-wire-housings/ |
+| `niet-nodig` | Draagprint (PCB) | AISLER-carrierprint; ontwerp vervallen op 2026-10-09 | - | - | - |
+| `kiwi` | Level shifter 3,3 V <-> 5 V | 8-kanaals bidirectionele Logic Level Converter - TXB0108-breakout | 1 | € 8,70 | https://www.kiwi-electronics.com/nl/8-channel-bi-directional-logic-level-converter-txb0108-836 |
+| `te-bepalen` | UART-/uitbreidingsconnector | Eerder gekozen DEGSON 4-pins 3,5 mm; rechtstreeks bedraden kan de connector overbodig maken | - | - | - |
+| `niet-nodig` | Socket-headers | Dual-wipe en turned-pin sockets; vervallen met de draagprint | - | - | - |
 | `al-in-bezit` | Power-LED + serieweerstand | 3 mm LED rood (10-pack) + weerstand 330 Ω (10-pack) — **heeft de gebruiker thuis** | 1 | - | - |
 | `kiwi` | Ontkoppelcondensatoren | Keramische condensator kit (15 soorten, 450 st.) | 1 | € 10,27 | https://www.kiwi-electronics.com/nl/keramische-condensator-kit-in-doos-15-soorten-450-stuks-10492 |
 | `kiwi` | Bulk-elco | 100 µF / 16 V op de 5 V-ingang | 1 | € 0,59 | https://www.kiwi-electronics.com/nl/100uf-16v-condensator-440 |
-| `niet-nodig` | I2C-pull-ups op de print | Breakouts hebben ze al; 2 reserve-footprints | 2 | - | - |
-| `tinytronics` | Montage | M3-schroeven, moeren, afstandsbusjes, nylon spacers | set | € 8,00 | https://www.tinytronics.nl/nl/gereedschap-en-montage/installatie-en-montagemateriaal/afstandsbusjes/m3-afstandsbusje-kit |
+| `niet-nodig` | I2C-pull-ups | Breakouts hebben ze al; eerdere reserve-footprints zijn niet nodig | - | - | - |
+| `te-bepalen` | Behuizingsmontage | M3-set was bedoeld voor draagprintmontage; nieuwe bevestiging nog te ontwerpen | - | - | - |
 
 > [!success] Level shifter gekozen (`2026-10-07`)
-> Definitief de **TXB0108-breakout** (€ 8,70, Kiwi): 8 kanalen, direct bruikbaar op de print zonder
-> TSSOP-soldeerwerk. Het alternatief — de **TXB0104-IC** (4 kanalen, TSSOP-14, ± € 1,80) — blijft
-> enkel een optimalisatie en wordt **niet** besteld.
+> De **TXB0108-breakout** (€ 8,70, Kiwi) blijft gekozen. De breakout wordt met draadverbindingen aangesloten; de concrete montage in de behuizing wordt nog uitgewerkt. De TXB0104-IC blijft geen gekozen aankoop.
 
 > [!warning] Gekozen level shifter
 > De **TXB0108** past bij de gekozen **TXB-serie** en is leverbaar bij Kiwi.
 > Het antratek-alternatief (BSS138-converter, € 4,78) is goedkoper maar een ander type.
 
-> [!success] Schroefklem, sockets en M3-montage gevonden — `2026-10-06`
-> - **4-pins 3,5 mm schroefklem:** DEGSON **DG250-3.5-04P-11-00A(H)** bij HESTORE (€ 0,61) en TME;
->   de schroefvariant **KF128** is in de EU minder courant (vaak AliExpress/China), de push-in
->   DG250 is het EU-alternatief. Kiwi heeft enkel 3-weg.
-> - **Sockets:** standaard **2,54 mm turned-pin (machined) sockets** en **dual-wipe female headers**
->   uit de hobbyhandel (Mouser/DigiKey/TME); de Preci-Dip is bij TME enkel business/MOQ 380.
-> - **M3-montage:** **TinyTronics (NL)** *M3 Afstandsbusje Kit* € 8,00, of **Bits & Parts (NL)**
->   180-delige spacer-set € 6,95 — https://www.bitsandparts.nl/Afstandsbus-Spacer-Standoff-M3-set-180-delig-zwart-p1885552.
+> [!warning] Historische montagekeuzes (`2026-10-06`)
+> De eerder onderzochte 4-pins DEGSON-klem, sockets en M3-afstandbusjes waren bedoeld voor de draagprintopbouw. Ze zijn niet langer actieve bestelposten. Of een externe connector of bevestigingsmateriaal nodig is voor de 3D-geprinte behuizing, blijft open; zie [[bedrading-en-behuizing]].
 
 > [!success] Power-LED en weerstand al in bezit (`2026-10-06`)
 > De gebruiker heeft de **3 mm rode LED (10-pack)** en de **330 Ω-weerstand (10-pack)** al thuis.
@@ -215,41 +190,34 @@ status: definitief; enkel de LC29HDA-variant aanduiden bij het bestellen
 
 | Winkel | Onderdelen | Bedrag (incl. btw) |
 | --- | --- | --- |
-| **Kiwi Electronics** | BNO085, BMP581, TXB0108, condensatorkit, bulk-elco, PCB-barreljack | **€ 63,69** |
+| **Kiwi Electronics** | BNO085, BMP581, TXB0108, condensatorkit, bulk-elco | **€ 62,49** |
 | **antratek.be** | 2× XIAO-kit, U.FL→SMA pigtail | **€ 33,83** |
-| **TME (EU)** | LDO AP2112K-3.3, sockets | **€ 5,27** |
-| **Mouser/DigiKey (EU)** | PTC 1812L200/16 (+ TVS SMBJ10A) — **zonder P-MOSFET** | **€ 1,00** |
-| **HESTORE (EU)** | Schroefklem DEGSON DG250-3.5-04P | **€ 0,61** |
-| **TinyTronics (NL)** | M3-montageset | **€ 8,00** |
+| **TME (EU)** | LDO AP2112K-3.3 | **€ 0,27** |
+| **Mouser/DigiKey (EU)** | PTC 1812L200/16 + TVS SMBJ10A (raming) — zonder P-MOSFET | **€ 1,00** |
 | **AliExpress (China)** | LC29HDA-rover-developmentboard | **€ 36,99** |
-| **Waveshare** | Losse GNSS-antenne SKU 25346 (voorwaardelijk) | **€ 15,70** |
-| **Totaal onderdelen excl. losse GNSS-antenne en AISLER** | | **€ 149,39** |
-| **Totaal onderdelen incl. losse GNSS-antenne (excl. AISLER)** | | **€ 165,09** |
-| **Totaal incl. AISLER-print (3 st.) excl. losse antenne** | verzend- en invoerkosten niet inbegrepen | **€ 182,15** |
-| **Totaal alles (incl. losse antenne + AISLER-print)** | bovengrens; antenne mogelijk niet nodig | **€ 197,85** |
+| **Totaal actieve onderdelen excl. losse GNSS-antenne** | excl. nog te bepalen connectoren en behuizingsmontage | **€ 134,58** |
+| **Totaal incl. voorwaardelijke losse GNSS-antenne** | antenne mogelijk al bij de kit | **€ 150,28** |
+| **Niet meegerekend** | AISLER-print, sockets, PCB-barreljack, schroefklem en M3-set oude ontwerp | **€ 0,00** |
 
-> [!info] Buiten deze bedragen
-> Het **AISLER-printje** en de printspecifieke onderdelen staan in [[bestelschema-pcb]] (samen
-> ± € 57,43 incl., waarvan ± € 9,79 al in deze lijst verrekend). Bij AliExpress komen mogelijk
-> verzending/btw (IOSS) bovenop; bij een EU-kit betaal je die via de winkelprijs.
+> [!info] Aannames bij de totalen
+> De totalen gebruiken de laatst vastgelegde richtprijzen en sluiten de vervallen PCB/sockets en de nog onbesliste aansluit- en montagehardware uit. De Waveshare-antenne is voorwaardelijk. Bij AliExpress kunnen verzending en btw/checkoutkosten de richtprijs wijzigen.
 
 ## Open acties
 
 - [x] **Andere winkel(s) voor de `geen-link`-onderdelen** — gevonden bij **TME, HESTORE,
       TinyTronics en Mouser/DigiKey (EU)** (`2026-10-06`).
-- [x] **Prijzen en winkels definitief** (`2026-10-07`): Kiwi, antratek, TME, Mouser/DigiKey,
-      HESTORE, TinyTronics, AliExpress en AISLER.
+- [x] **Bestaande prijzen en leveranciers vastgelegd** (`2026-10-07`); AISLER is door de ontwerpwijziging vervallen en montage-/connectorposten zijn tijdelijk uit de actieve totalen gehaald.
 - [x] **Level shifter** — **TXB0108-breakout** (Kiwi, € 8,70); TXB0104-IC enkel als alternatief (`2026-10-07`).
-- [x] **Voedingsaansluiting op de print** — PCB-breadboard-barreljack (Kiwi, € 1,20) toegevoegd naast de bestaande adapter (`2026-10-07`).
+- [x] **PCB-barreljack verwijderd** — niet meer nodig als printonderdeel; voedingsinvoer door/aan de behuizing blijft open (`2026-10-09`).
 - [x] **Power-LED + 330 Ω (10-packs):** heeft de gebruiker **thuis** (`2026-10-06`).
 - [x] **Ompoolbeveiliging (P-MOSFET):** **vervalt** (`2026-10-06`). Zie [[afgevoerd]].
 - [ ] **LC29HDA-variant kiezen bij het bestellen** — op de AliExpress-pagina de **LC29HDA** (rover)
       selecteren, geassembleerd board (geen LC29HBS, geen losse SMD). Terugvaloptie: Waveshare-HAT (Eckstein € 71,39).
 - [ ] **GNSS-antennebundel controleren** — eerst kijken of de boardkit een passende L1/L5-antenne meelevert;
       anders de Waveshare SKU 25346 (± € 15,70) bestellen en de connector (SMA vs. IPEX) checken.
-- [ ] **Socket-aantal definitief maken** zodra de KiCad-footprints vastliggen (aantal pinnen per module).
-- [ ] **Footprint en montage van de LC29HDA-breakout** opnemen in [[pcb-ontwerp]] zodra bordmaat en pinout gekend zijn.
-- [ ] **Barrel-connector op de print** afstemmen (positive tip, 2,1 mm) met de bestaande kabel-adapter.
+- [ ] **Bedrading en mechanische montage uitwerken** — zie [[bedrading-en-behuizing]]; nog geen nieuwe hardware online zoeken of toevoegen.
+- [ ] **LC29HDA-breakout in de behuizing monteren** — controleer boardafmetingen en bevestigingsmogelijkheden zodra de listing en variant bevestigd zijn.
+- [ ] **Externe UART-verbinding bepalen** — bevestig of de eerder gekozen schroefklem nodig blijft of rechtstreeks bedraad wordt.
 
 ## Gerelateerd
 

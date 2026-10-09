@@ -1,30 +1,31 @@
 ---
 tags: [gstem, documenten, index]
 aangemaakt: 2026-10-06
-bijgewerkt: 2026-10-06
+bijgewerkt: 2026-10-09
 ---
 
 # documenten/ — index
 
-De **afgewerkte stukken** van het G-Stem-project: specificaties, PCB-materiaal, beheersbladen
-en de scripts die de Excel- en beeldbestanden opnieuw opbouwen. De lopende notities en
-beslissingen staan in de hub [[index|GEBRUIKER]]; deze map bevat enkel de deliverables.
+De **afgewerkte stukken** van het G-Stem-project: technische specificaties, historische PCB-referenties, beheersbladen en scripts. De lopende notities en beslissingen staan in de hub [[index|GEBRUIKER]]; deze map bevat de projectdeliverables.
 
 > [!info] Structuur sinds `2026-10-06`
-> Herschikt in vier submappen. Zie [[beslissingen]] voor de motivering. De archief-chatlogs
-> bewaren de oude paden; de actieve documentatie is bijgewerkt.
+> Herschikt in vier submappen. Zie [[beslissingen]] voor de motivering. De archief-chatlogs bewaren de oude paden; de actieve documentatie is bijgewerkt.
+>
+> [!warning] Ontwerpwijziging `2026-10-09`
+> De eigen draagprint en sockets zijn vervallen. De inhoud onder `pcb/` toont het oude ontwerp en is alleen nog historische referentie. De actuele aanpak is handbedrading en montage aan een 3D-geprinte behuizing; zie [[bedrading-en-behuizing]].
 
 ## Wat staat waar
 
 | Map | Bestanden | Waarvoor |
 | --- | --- | --- |
 | `specificaties/` | `GStem-Specificaties.md` | De door de gebruiker afgewerkte gebruikersspecificaties (`2026-10-06`). Zie [[gstem-specificaties]]. |
-| | `Ontwerp-meetmodule.md` + `.docx` | De volledige technische ontwerptekst (markdown-bron + Word-versie). Zie [[meetmodule-voorbereiding]]. |
-| `pcb/` | `PCB-schets.md` + `PCB-schets-draagprint.svg` + `.png` | Bovenaanzicht, verbindingsschema's (Mermaid) en voedingsboom van de draagprint. Zie [[pcb-schets]]. |
-| | `PCB-eindbeeld.png` | Schets van de eind-PCB met de gekozen breakouts, de losse componenten en de Arduino Uno. |
-| | `Communicatie-overzicht-GSTEM.drawio` | Bewerkbaar draw.io-schema (twee tabbladen: systeemcommunicatie en draagprint-UART-detail). Zie [[communicatie-overzicht]]. |
+| | `Ontwerp-meetmodule.md` | Actuele technische ontwerptekst (bronbestand; handbedrading en behuizing). Zie [[meetmodule-voorbereiding]]. |
+| | `Ontwerp-meetmodule.docx` | Oudere Word-versie; loopt achter op de Markdown-bron. Het bouwscript ontbreekt nog; zie [[open-vragen]]. |
+| `pcb/` | `PCB-schets.md` + `PCB-schets-draagprint.svg` + `.png` | Historisch bovenaanzicht, verbindingsschema's en voedingsboom van de vervallen draagprint. Niet gebruiken als actuele montage-instructie. Zie [[pcb-schets]]. |
+| | `PCB-eindbeeld.png` | Historisch eindbeeld met carrier-PCB en sockets; niet meer actueel. |
+| | `Communicatie-overzicht-GSTEM.drawio` | Systeemcommunicatie blijft als context bruikbaar; tabblad met draagprint-UART-detail is historisch. Zie [[communicatie-overzicht]]. |
 | | `review-mockup-controleblad.png` | Geannoteerd controleblad van de (verwijderde) Blender-mock-up; bewaard als naslag. Zie [[blender-mockup]]. |
-| `beheer/` | `Bestellijst-GSTEM.xlsx` | Bestellijst met legende en bestelschema PCB. Zie [[bestellijst]] en [[bestelschema-pcb]]. |
+| `beheer/` | `Bestellijst-GSTEM.xlsx` | Actieve bestellijst, legende en open montage-/bedradingskeuzes. PCB- en socketskosten verwijderd. Zie [[bestellijst]]. |
 | | `Planning-GSTEM.xlsx` | Twee bladen: **Planning** (schoolplanning) en **Actieplan**. Zie [[planning]] en [[actieplan]]. |
 | `scripts/` | `build-bestellijst.py` | Bouwt `beheer/Bestellijst-GSTEM.xlsx`. |
 | | `build-communicatie-overzicht.py` | Bouwt `pcb/Communicatie-overzicht-GSTEM.drawio`. |
@@ -41,7 +42,7 @@ python documenten/scripts/build-communicatie-overzicht.py
 python documenten/scripts/build-pcb-eindbeeld.py
 ```
 
-Vereist: `openpyxl` (bestellijst) en `Pillow` (eindbeeld, controleblad).
+Vereist: `openpyxl` en `xlsx_kit` voor de bestellijst; `Pillow` voor het eindbeeld en controleblad.
 
 ## Verwijderd
 

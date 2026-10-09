@@ -1,27 +1,22 @@
 ---
 tags: [gstem, data, bestelbaarheid, verificatie, aankoop]
 aangemaakt: 2026-10-06
-bijgewerkt: 2026-10-06
-status: geverifieerd
+bijgewerkt: 2026-10-09
+status: historische bestelbaarheidscontrole; geen actuele orderinstructie
 ---
 
-# Bestelbaarheid — verificatie van de bestellijst
+# Bestelbaarheid — historische verificatie van de bestellijst
+
+> [!warning] Historische controle — 2026-10-06
+> Deze voorraad- en prijsgegevens zijn een momentopname, geen actuele beschikbaarheidsbevestiging. Een deel van de vroegere PCB-/socketartikelen is door de ontwerpwijziging vervallen. Raadpleeg [[bestellijst]] voor de actieve aankopen; zie [[bedrading-en-behuizing]] voor montagekeuzes. Voor deze ontwerpwijziging is niets online opgezocht.
 
 > [!info] Wat is dit?
-> Van elk artikel op [[bestellijst]] is op **2026-10-06** nagegaan of het **daadwerkelijk
-> bestelbaar** is: bestaat de pagina, klopt de prijs, en is er voorraad. Bron per regel: of de
-> **productpagina gefetcht** is (sterk) of enkel een **zoekresultaat/snippet** (minder zeker).
-> TME, Mouser en DigiKey blokkeren directe fetches met HTTP 403 → daar komt alles uit snippets.
+> Van artikelen op de toenmalige [[bestellijst]] is op **2026-10-06** nagegaan of de productpagina bestond, de prijs klopte en er voorraad was. Bron per regel: productpagina of zoekresultaat/snippet. TME, Mouser en DigiKey blokkeerden directe fetches met HTTP 403.
 
-## Samenvatting
+## Historische samenvatting
 
-> [!success] Alles wat op de bestellijst staat, is bestelbaar
-> Alle artikelen waar een winkel voor gekozen is, zijn **nu leverbaar**. Wel drie aandachtspunten:
-> 1. **Kiwi: lage voorraad** bij de **keramische condensatorkit (2 st.)** en de **BMP581 (4 st.)** —
->    bestelbaar, maar niet in grote aantallen.
-> 2. **Precisie-sockets (Preci-Dip)**: bij TME alleen **business/MOQ 380**, niet in kleine aantallen
->    bevestigd. Alternatief: standaard 2,54 mm turned-pin sockets of dual-wipe headers.
-> 3. **TME niet fetchbaar** (403) → TME-prijzen/voorraad komen uit snippets, niet van de pagina zelf.
+> [!note] Niet gebruiken als actuele voorraadstatus
+> De volgende gegevens zijn alleen context: onder meer de keramische condensatorkit en BMP581 hadden lage voorraad; socketregels zijn niet meer actief omdat de draagprint en sockets zijn vervallen.
 
 ## Kiwi Electronics (NL) — alles op voorraad
 
