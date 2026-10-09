@@ -8,7 +8,7 @@ status: componenten-BOM; fysieke bedrading en montage nog uit te werken
 # Componentenlijst (BOM) meettoestel
 
 > [!warning] Ontwerpwijziging — 2026-10-09
-> De gebruiker bedradt en soldeert de breakoutmodules zelf en monteert de onderdelen aan een 3D-geprinte behuizing. De extra draagprint en alle sockets zijn vervallen; de breakoutmodules zelf blijven behouden. Oude regels hieronder die spreken over montage op de print zijn historisch en worden herzien zodra de bedrading en behuizing zijn uitgewerkt. Zie [[bedrading-en-behuizing]].
+> De gebruiker bedradt en soldeert de breakoutmodules zelf en monteert de onderdelen aan een 3D-geprinte behuizing. De extra draagprint en alle sockets zijn vervallen; de breakoutmodules zelf blijven behouden. Oude regels hieronder die spreken over montage op de print zijn historisch en worden herzien zodra de bedrading en behuizing zijn uitgewerkt. Zie [bedrading-en-behuizing](bedrading-en-behuizing.md).
 
 ## Gekozen
 
@@ -17,9 +17,9 @@ status: componenten-BOM; fysieke bedrading en montage nog uit te werken
 | Rekenkern + LoRa | **XIAO ESP32S3 + Wio-SX1262 kit** | ESP32-S3 + SX1262 (sub-GHz, 868/915 MHz) via B2B; SPI; IPEX-antenne; USB-C; LiPo-lader; ± 14 I/O | antratek |
 | 9-DoF IMU | **Adafruit BNO085-breakout** | I2C 0x28/0x29, 3,3 V-regelaar + level shifting, STEMMA QT/Qwiic, 25,6 x 22,7 mm | Kiwi Electronics |
 | Barometer | **Adafruit BMP581** | Druk + temperatuur, I2C/SPI, STEMMA QT; nauwkeurig en bij Kiwi leverbaar (BMP390 is daar uit voorraad) | Kiwi Electronics |
-| RTK-GNSS | **Quectel LC29HDA** | Dual-band L1+L5, multi-constellatie, RTK **rover** (centimeter-niveau), ingebouwde LNA + SAW; vervangende gebruikerslisting AliExpress-item 1005009915138674; variant, board/pinout en bundelinhoud nog te verifiëren | Quectel / [[gps-rtk-prijzen]] |
+| RTK-GNSS | **Quectel LC29HDA** | Dual-band L1+L5, multi-constellatie, RTK **rover** (centimeter-niveau), ingebouwde LNA + SAW; vervangende gebruikerslisting AliExpress-item 1005009915138674; variant, board/pinout en bundelinhoud nog te verifiëren | Quectel / [gps-rtk-prijzen](gps-rtk-prijzen.md) |
 | RTK-correctie | **NTRIP-dienst** (via laptop) | Correcties (RTCM) naar de rover sturen; provider nog te kiezen | - |
-| Moduleverbinding | **Handbedraden en solderen** | Geen sockets of eigen carrier-PCB; de concrete bedradingsroute en trekontlasting zijn nog open | [[bedrading-en-behuizing]] |
+| Moduleverbinding | **Handbedraden en solderen** | Geen sockets of eigen carrier-PCB; de concrete bedradingsroute en trekontlasting zijn nog open | [bedrading-en-behuizing](bedrading-en-behuizing.md) |
 | Voeding | **7,4 V-accu -> buck 5 V** (buck heeft de gebruiker), **barrel-connector** | XIAO op 5 V-pin; interne LiPo-lader niet gebruikt | - |
 | Aan/uit | **Geen schakelaar** | Het toestel springt aan zodra het aan de voeding hangt | - |
 | LoRa-ontvanger laptop | **Tweede XIAO ESP32S3 + Wio-SX1262 kit** | Zelfde hardware als het toestel | - |
@@ -44,7 +44,7 @@ status: componenten-BOM; fysieke bedrading en montage nog uit te werken
 > - **2 A PTC-zekering** = herstelbare zekering in serie: bij overstroom/kortsluiting wordt ze hoogohmig en begrenst de stroom; koelt af en reset zichzelf. Beschermt de LiPo en de bedrading (brandgevaar).
 > - ~~**P-MOSFET DMG2301L** = ompoolbeveiliging~~ — **vervalt** (`2026-10-06`). De gebruiker kiest
 >   **geen** ompoolbeveiliging; bescherm tegen omgekeerd aansluiten met een **gepolariseerde
->   connector** (XT60/JST-XH). Zie [[afgevoerd]] en [[beslissingen]].
+>   connector** (XT60/JST-XH). Zie [afgevoerd](afgevoerd.md) en [beslissingen](beslissingen.md).
 >
 > [!warning] Waarom de P-MOSFET vervalt (`2026-10-06`)
 > De kandidaten **DMG2301L** (Vgs(max) ±8 V, te krap bij een 2S-accu van max 8,4 V zonder gate-clamp)
@@ -63,7 +63,7 @@ status: componenten-BOM; fysieke bedrading en montage nog uit te werken
 | Functie | Opties / kandidaten | Opmerking |
 | --- | --- | --- |
 | NTRIP-provider | **gratis dienst** | De gebruiker zoekt zelf een gratis provider. |
-| Bedrading en montage | Draadverbindingen solderen; bevestiging aan geprinte behuizing | De aanpak is gekozen; details nog te bepalen in [[bedrading-en-behuizing]]. |
+| Bedrading en montage | Draadverbindingen solderen; bevestiging aan geprinte behuizing | De aanpak is gekozen; details nog te bepalen in [bedrading-en-behuizing](bedrading-en-behuizing.md). |
 
 ## Nog te noteren (ontbrak in de lijst)
 
@@ -98,7 +98,7 @@ status: componenten-BOM; fysieke bedrading en montage nog uit te werken
 ## Historische lijst: onderdelen op de vervallen draagprint
 
 > [!warning] Niet meer gebruiken als montageplan
-> De draagprint en sockets zijn vervallen. Elektrische functies van onderdelen kunnen behouden blijven, maar de bedradingsmethode en mechanische ondersteuning in de behuizing moeten opnieuw worden uitgewerkt. Zie [[bedrading-en-behuizing]].
+> De draagprint en sockets zijn vervallen. Elektrische functies van onderdelen kunnen behouden blijven, maar de bedradingsmethode en mechanische ondersteuning in de behuizing moeten opnieuw worden uitgewerkt. Zie [bedrading-en-behuizing](bedrading-en-behuizing.md).
 
 De onderstaande lijst is de oude carrier-PCB-opzet en dient alleen als naslag voor elektrische functies:
 
@@ -168,13 +168,13 @@ De onderstaande lijst is de oude carrier-PCB-opzet en dient alleen als naslag vo
 
 ## Gerelateerd
 
-- [[bestellijst]] - aan te kopen onderdelen met link, kost en aantal (Excel: `documenten/beheer/Bestellijst-GSTEM.xlsx`). De actieve bestellijst gebruikt de **BNO085 + BMP581** (Kiwi), de **TXB0108-breakout** en een **LC29HDA-breakout**; de oudere BNO055/BMP390 horen hier niet meer bij.
-- [[specificaties]] - actuele technische afspraken; draagprint-aanpak historisch vervallen
-- [[bedrading-en-behuizing]] - actuele handbedrading en montage
-- [[pcb-ontwerp]] - historische PCB-werkwijze, vervallen voor het actuele ontwerp
-- [[pcb-schets]] - bovenaanzicht en verbindingsschema
-- [[open-vragen]] - nog te beslissen punten
-- [[beslissingen]] - de keuzes van `2026-10-06`
+- [bestellijst](bestellijst.md) - aan te kopen onderdelen met link, kost en aantal (Excel: `documenten/beheer/Bestellijst-GSTEM.xlsx`). De actieve bestellijst gebruikt de **BNO085 + BMP581** (Kiwi), de **TXB0108-breakout** en een **LC29HDA-breakout**; de oudere BNO055/BMP390 horen hier niet meer bij.
+- [specificaties](specificaties.md) - actuele technische afspraken; draagprint-aanpak historisch vervallen
+- [bedrading-en-behuizing](bedrading-en-behuizing.md) - actuele handbedrading en montage
+- [pcb-ontwerp](pcb-ontwerp.md) - historische PCB-werkwijze, vervallen voor het actuele ontwerp
+- [pcb-schets](pcb-schets.md) - bovenaanzicht en verbindingsschema
+- [open-vragen](open-vragen.md) - nog te beslissen punten
+- [beslissingen](beslissingen.md) - de keuzes van `2026-10-06`
 
 ## AI-taken
 

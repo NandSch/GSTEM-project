@@ -36,4 +36,4 @@ De breakoutmodules worden niet meer via een eigen draagprint en sockets met elka
 | Bestaande sensoren, rekenkern, LoRa en GNSS-breakouts | Blijven in de componentenlijst |
 | Bescherming, LDO, ontkoppeling, level shifter en LED | Functie blijft voorlopig behouden; fysieke bedrading/montage moet worden uitgewerkt |
 
-Zie [[bestellijst]], [[componenten]], [[specificaties]], [[open-vragen]] en [[beslissingen]]. De vroegere PCB-schets en AISLER-raming zijn alleen nog historische referenties: [[pcb-schets]], [[bestelschema-pcb]] en [[pcb-ontwerp]].
+Zie [bestellijst](bestellijst.md), [componenten](componenten.md), [specificaties](specificaties.md), [open-vragen](open-vragen.md) en [beslissingen](beslissingen.md). De vroegere PCB-schets en AISLER-raming zijn alleen nog historische referenties: [pcb-schets](pcb-schets.md), [bestelschema-pcb](bestelschema-pcb.md) en [pcb-ontwerp](pcb-ontwerp.md).

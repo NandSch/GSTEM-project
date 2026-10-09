@@ -80,7 +80,7 @@ Laptopapp (code of extern programma)
 
 > [!question] Open keuze: welke lokale techniek voor de API? WebSocket is snel en bidirectioneel; TCP-socket is eenvoudig; HTTP is makkelijker te debuggen.
 
-> [!info] Update `2026-10-04`: De API kreeg in de webdemo een eigen sectie (`#page-api`) en de downlink is een vrije CSV-regel in plaats van vaste commando's. Zie [[beslissingen]] en [[specificaties]].
+> [!info] Update `2026-10-04`: De API kreeg in de webdemo een eigen sectie (`#page-api`) en de downlink is een vrije CSV-regel in plaats van vaste commando's. Zie [beslissingen](beslissingen.md) en [specificaties](specificaties.md).
 
 ### B. Tussen meetmodule (ESP32-S3) en Arduino (voertuigcontroller)
 
@@ -112,7 +112,7 @@ Laptopapp (code of extern programma)
 
 > [!info] **Geen checksum.** De terminator `\n` is voldoende op een korte seriele kabel binnen hetzelfde voertuig.
 
-> [!info] Update `2026-10-06`: de afgewerkte specificaties bevestigen de **UART TX/RX**-koppeling en noemen **drie** besturingsvlakken (rolroeren, hoogteroer, richtingsroer). Zie [[gstem-specificaties]] en [[beslissingen]].
+> [!info] Update `2026-10-06`: de afgewerkte specificaties bevestigen de **UART TX/RX**-koppeling en noemen **drie** besturingsvlakken (rolroeren, hoogteroer, richtingsroer). Zie [gstem-specificaties](gstem-specificaties.md) en [beslissingen](beslissingen.md).
 
 > [!warning] Voertuigbesturing is een **secundaire demonstratie**. Het hoofddoel is de meetmodule zelf en de USB-ontvanger.
 
@@ -165,11 +165,11 @@ Ongeacht de bron van de commando's (interne code of extern programma), de module
 | `01-projectoverzicht.md` | Specificeert "berekende stuurcommando's" en "programmeermodus", maar niet de splitsing tussen interne en externe verwerking |
 | `04-blokschema-aerolink.md` | Schema toont alleen "testcorrecties" naar servo; niet de gelaagde architectuur |
 | `GSTEMAPPPREVIEWWEB` | Huidige demo simuleert alleen uplink; downlink en externe API ontbreken |
-| `GStem-Specificaties.md` (afgewerkt `2026-10-06`) | Gebruikersgerichte bevestiging: startscherm met OK, 3D-kaart Google-satelliet + tabel, Code-editor met CSV terug, API aan/uit en adres, Arduino via TX/RX, rolroeren/hoogteroer/richtingsroer; zie [[gstem-specificaties]] |
+| `GStem-Specificaties.md` (afgewerkt `2026-10-06`) | Gebruikersgerichte bevestiging: startscherm met OK, 3D-kaart Google-satelliet + tabel, Code-editor met CSV terug, API aan/uit en adres, Arduino via TX/RX, rolroeren/hoogteroer/richtingsroer; zie [gstem-specificaties](gstem-specificaties.md) |
 
 ## Gerelateerd
 
-- [[open-vragen|Open vragen]] — specifiek de items over API-techniek, Arduino-protocol en commandoformaat
-- [[specificaties|Specificaties]] — wanneer deze architectuur wordt vastgelegd
-- [[besturing-en-commandos|Besturing en commando's terug naar het toestel]] — het bredere denkdocument
-- [[meetmodule-voorbereiding|Positie- en beweging meettoestel — voorbereiding]] — hardwarecontext
+- [Open vragen](open-vragen.md) — specifiek de items over API-techniek, Arduino-protocol en commandoformaat
+- [Specificaties](specificaties.md) — wanneer deze architectuur wordt vastgelegd
+- [Besturing en commando's terug naar het toestel](besturing-en-commandos.md) — het bredere denkdocument
+- [Positie- en beweging meettoestel — voorbereiding](meetmodule-voorbereiding.md) — hardwarecontext

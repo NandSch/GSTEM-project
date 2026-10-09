@@ -8,14 +8,14 @@ status: analyse
 
 > [!info] Doel
 > Waar laten we de **draagprint** maken? Vergelijking op **prijs** en **simpel gebruik**,
-> met een keuze **binnen Europa** en **buiten Europa**. Hoort bij [[pcb-ontwerp]],
-> [[pcb-methodes-kosten]] en [[bestellijst]].
+> met een keuze **binnen Europa** en **buiten Europa**. Hoort bij [pcb-ontwerp](pcb-ontwerp.md),
+> [pcb-methodes-kosten](pcb-methodes-kosten.md) en [bestellijst](bestellijst.md).
 
 ## Uitgangspunt
 
-- **Bord:** 2-laags draagprint (carrier) met sockets/headers; 2 lagen volstaan (zie [[pcb-methodes-kosten]]).
+- **Bord:** 2-laags draagprint (carrier) met sockets/headers; 2 lagen volstaan (zie [pcb-methodes-kosten](pcb-methodes-kosten.md)).
 - **Aantal:** klein prototype, 3-5 stuks.
-- **Werkwijze:** Gerber-zip uploaden, fabriek doet eigen DRC. Zie [[pcb-ontwerp]].
+- **Werkwijze:** Gerber-zip uploaden, fabriek doet eigen DRC. Zie [pcb-ontwerp](pcb-ontwerp.md).
 
 ## Indicatieve prijzen (peildatum 2026-10-06)
 
@@ -49,7 +49,7 @@ zijn richtprijzen; altijd de online calculator gebruiken.
 
 > [!success] Gekozen: AISLER (`2026-10-06`)
 > De gebruiker koos **AISLER**. De andere fabrikanten hieronder blijven **gekend en bewaard**,
-> maar worden niet gebruikt. Productie- en onderdelenkost staan in [[bestelschema-pcb]].
+> maar worden niet gebruikt. Productie- en onderdelenkost staan in [bestelschema-pcb](bestelschema-pcb.md).
 
 - **Goedkoopst en toch simpel, leverdtijd minder belangrijk:** **JLCPCB** (buiten EU). Bord zelf bijna niets; de verzending bepaalt de prijs. Voor 2 lagen ruim voldoende. _(niet gekozen)_
 - **Binnen Europa, zonder invoergedoe en snel:** **AISLER** (makkelijkst: KiCad/ODB++ direct, vaste prijs per cm², gratis verzending). **Gekozen.**
@@ -61,7 +61,7 @@ Kort: **JLCPCB voor de prijs, AISLER voor het gemak binnen Europa.** Voor dit sc
 
 ## Gerelateerd
 
-- [[pcb-ontwerp]] - werkwijze, Gerber-export
-- [[pcb-methodes-kosten]] - socketkeuze en bordcomplexiteit
-- [[bestellijst]] - aankoop van modules en onderdelen
-- [[open-vragen]] - definitieve fabrikantkeuze
+- [pcb-ontwerp](pcb-ontwerp.md) - werkwijze, Gerber-export
+- [pcb-methodes-kosten](pcb-methodes-kosten.md) - socketkeuze en bordcomplexiteit
+- [bestellijst](bestellijst.md) - aankoop van modules en onderdelen
+- [open-vragen](open-vragen.md) - definitieve fabrikantkeuze

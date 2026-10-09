@@ -8,7 +8,7 @@ status: verzameld uit datasheets voor behuizingsmontage
 # Mechanische afmetingen van de onderdelen
 
 > [!info] Waarvoor
-> De **echte** bord- en behuizingsmaten van de modules, opgezocht uit datasheets en productpagina's. De maten helpen bij het ontwerpen van de 3D-geprinte behuizing en de montage. De eigen carrier-PCB en KiCad-footprints zijn vervallen; zie [[bedrading-en-behuizing]].
+> De **echte** bord- en behuizingsmaten van de modules, opgezocht uit datasheets en productpagina's. De maten helpen bij het ontwerpen van de 3D-geprinte behuizing en de montage. De eigen carrier-PCB en KiCad-footprints zijn vervallen; zie [bedrading-en-behuizing](bedrading-en-behuizing.md).
 
 ## Breakout-modules
 
@@ -45,7 +45,7 @@ status: verzameld uit datasheets voor behuizingsmontage
 | TVS SMBJ10A (DO-214AA) | ± 5,4 x 3,6 x 2,3 | 2 gull-wing landen |
 | LDO AP2112K-3.3 (SOT-23-5) | 2,8 x 1,6, hoogte 1,1 | pitch 0,95 |
 | TXB0104 (TSSOP-14) | 4,9-5,1 x 4,3-4,5, hoogte <= 1,2 | pitch 0,65, leadspan 6,4 |
-| TXB0108-breakout | ± 20 x 18 | Kiwi-versie (zie [[bestellijst]]) |
+| TXB0108-breakout | ± 20 x 18 | Kiwi-versie (zie [bestellijst](bestellijst.md)) |
 | DC barrel jack 5.5/2.1 (DC-005) | **14 x 9 x 11** | 3 THT-pennen; barrel Ø 5,5 / pin Ø 2,1 |
 | Schroefklem 4P 3,5 mm (DG250-3.5-04P) | lengte **15,5**, diepte **12,0**, hoogte **11,5** | pitch 3,5; **push-in spring**, niet schroef |
 | Socket 2,54 mm | dual-wipe **8,5** hoog; precisie/turned-pin **4,20** hoog | pitch 2,54, pin Ø 0,64 |

@@ -13,7 +13,7 @@ status: concept
 
 > [!info] Bron `2026-10-06`
 > De door de gebruiker **afgewerkte specificaties** (`documenten/specificaties/GStem-Specificaties.md`, zie
-> [[gstem-specificaties]]) zijn de inhoudelijke basis voor de handleiding: de meetgrootheden en
+> [gstem-specificaties](gstem-specificaties.md)) zijn de inhoudelijke basis voor de handleiding: de meetgrootheden en
 > nauwkeurigheden, het automatisch aanzetten, de app-schermen (verbinding, kaart, Code, API) en de
 > RC-vliegtuig-mock-up met Arduino via TX/RX en de drie besturingsvlakken.
 
@@ -21,7 +21,7 @@ status: concept
 
 > [!warning] Niet meer aanwezig
 > De onderstaande bestanden zijn bij commit `b16c501` (`2026-10-01`) uit `documenten/` verwijderd.
-> Opnieuw genereren betekent: bron + script uit git terughalen. Zie [[open-vragen]].
+> Opnieuw genereren betekent: bron + script uit git terughalen. Zie [open-vragen](open-vragen.md).
 
 | Rol | Pad |
 | --- | --- |
@@ -63,7 +63,7 @@ Opnieuw genereren: bron en script uit git terughalen en daarna `python documente
 
 ## Werkpunten (nog niet gebouwd)
 
-- [ ] **Route en meetgegevens opslaan als een bestand**, en dat bestand later **direct openen in de website**. Dit is bewust nog niet uitgewerkt; het staat in de handleiding als werkpunt en in [[open-vragen]].
+- [ ] **Route en meetgegevens opslaan als een bestand**, en dat bestand later **direct openen in de website**. Dit is bewust nog niet uitgewerkt; het staat in de handleiding als werkpunt en in [open-vragen](open-vragen.md).
 
 ## Nog in te voegen door de gebruiker
 
@@ -84,7 +84,7 @@ Opnieuw genereren: bron en script uit git terughalen en daarna `python documente
 
 ## Gerelateerd
 
-- [[app-architectuur-besturing|App-architectuur]] — de lagen die de handleiding vereenvoudigd beschrijft
-- [[besturing-en-commandos|Besturing en commando's]] — de technische achtergrond (niet in de handleiding)
-- [[meetmodule-voorbereiding|Meetmodule — voorbereiding]] — hardwarecontext
-- [[specificaties|Specificaties]]
+- [App-architectuur](app-architectuur-besturing.md) — de lagen die de handleiding vereenvoudigd beschrijft
+- [Besturing en commando's](besturing-en-commandos.md) — de technische achtergrond (niet in de handleiding)
+- [Meetmodule — voorbereiding](meetmodule-voorbereiding.md) — hardwarecontext
+- [Specificaties](specificaties.md)

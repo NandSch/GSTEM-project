@@ -46,7 +46,7 @@ Starten: `python -m http.server 8080` in `GSTEMAPPPREVIEWWEB`, dan `http://local
 
 Versie **B** is op `2026-10-04` de **officiële** Code-pagina geworden en staat nu in
 `GSTEMAPPPREVIEWWEB/index.html`. De bestanden `index-b.html` en `ab-vergelijken.html` zijn
-verwijderd. Zie [[beslissingen]] en [[specificaties]].
+verwijderd. Zie [beslissingen](beslissingen.md) en [specificaties](specificaties.md).
 
 ## Te beslissen
 

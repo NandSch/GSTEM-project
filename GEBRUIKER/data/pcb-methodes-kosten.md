@@ -7,12 +7,12 @@ status: historisch; draagprint- en socketaanpak vervallen
 # Historische analyse: PCB-methodes en sockets
 
 > [!warning] Niet meer de actuele aanpak — 2026-10-09
-> De gebruiker heeft gekozen voor handbedrading en solderen in plaats van een eigen carrier-PCB met sockets. Deze kosten- en methodevergelijking is alleen historische context; geen van de PCB/socketopties is een actieve keuze. Zie [[bedrading-en-behuizing]].
+> De gebruiker heeft gekozen voor handbedrading en solderen in plaats van een eigen carrier-PCB met sockets. Deze kosten- en methodevergelijking is alleen historische context; geen van de PCB/socketopties is een actieve keuze. Zie [bedrading-en-behuizing](bedrading-en-behuizing.md).
 
 > [!info] Doel
 > Vergelijking van manieren om de componenten op de draagprint te plaatsen: kosten,
 > soldeermoeilijkheid en hoe makkelijk het passende onderdeel te vinden is. Hoort bij
-> [[specificaties]] en [[pcb-schets]].
+> [specificaties](specificaties.md) en [pcb-schets](pcb-schets.md).
 
 ## Telling van connectoren/pinnen
 
@@ -114,6 +114,6 @@ Precisie-/gefreesde sockets klemmen veel harder dan gewone dual-wipe sockets: ±
 
 ## Gerelateerd
 
-- [[specificaties]] — draagprint-aanpak en heroverweging sockets
-- [[pcb-schets]] — bovenaanzicht en verbindingsschema
-- [[open-vragen]] — socket-headers vs. alternatief
+- [specificaties](specificaties.md) — draagprint-aanpak en heroverweging sockets
+- [pcb-schets](pcb-schets.md) — bovenaanzicht en verbindingsschema
+- [open-vragen](open-vragen.md) — socket-headers vs. alternatief

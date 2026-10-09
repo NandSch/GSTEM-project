@@ -9,8 +9,8 @@ status: afgewerkt
 > [!info] Bron
 > Door de gebruiker aangeleverde, **afgewerkte** specificaties.
 > Bestand: `documenten/specificaties/GStem-Specificaties.md` (aangeleverd `2026-10-06`, herkomst `~/Downloads/GStem-Specificaties.md`).
-> Dit is de formele, gebruikersgerichte specificatie van het product; [[meetmodule-voorbereiding]] en
-> [[specificaties]] bevatten de technische achtergrond en denkwijze.
+> Dit is de formele, gebruikersgerichte specificatie van het product; [meetmodule-voorbereiding](meetmodule-voorbereiding.md) en
+> [specificaties](specificaties.md) bevatten de technische achtergrond en denkwijze.
 
 ## Doel en meetprestaties
 
@@ -105,8 +105,8 @@ Alle live data worden op **twee manieren** getoond:
 
 ## Relatie tot de andere bestanden
 
-- Technische uitwerking en denkwijze: [[meetmodule-voorbereiding]], [[app-architectuur-besturing]],
-  [[besturing-en-commandos]].
-- Vastlegging per specificatie en beslissing: [[specificaties]], [[beslissingen]].
-- Gebruikersvertaling van deze tekst: [[handleiding]].
-- Openstaande punten: [[open-vragen]].
+- Technische uitwerking en denkwijze: [meetmodule-voorbereiding](meetmodule-voorbereiding.md), [app-architectuur-besturing](app-architectuur-besturing.md),
+  [besturing-en-commandos](besturing-en-commandos.md).
+- Vastlegging per specificatie en beslissing: [specificaties](specificaties.md), [beslissingen](beslissingen.md).
+- Gebruikersvertaling van deze tekst: [handleiding](handleiding.md).
+- Openstaande punten: [open-vragen](open-vragen.md).

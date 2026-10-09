@@ -8,14 +8,14 @@ status: actieve bestellijst; bedrading en behuizingsmontage nog uit te werken
 # Bestellijst meettoestel (aan te kopen)
 
 > [!info] Werkwijze
-> Alle onderdelen uit [[componenten]]. Voorkeur blijft: **zo veel mogelijk bij Kiwi Electronics**
+> Alle onderdelen uit [componenten](componenten.md). Voorkeur blijft: **zo veel mogelijk bij Kiwi Electronics**
 > en de rest bij passende EU-winkels, behalve de **RTK-GNSS-module (LC29HDA)** die sinds
 > `2026-10-07` bij **AliExpress (China)** gekocht wordt. Prijzen zijn **incl. btw** tenzij anders
 > vermeld en onder voorbehoud. De Excel-versie staat in `documenten/beheer/Bestellijst-GSTEM.xlsx`
 > (bron: `documenten/scripts/build-bestellijst.py`).
 
 > [!warning] Montage en bedrading nog niet definitief
-> De AISLER-draagprint, sockets, PCB-barreljack en M3-set voor de oude print zijn geen actieve bestellingen meer. De montage van componenten, voedingsinvoer, UART-connectoren en voedingsonderdelen moet nog worden uitgewerkt. Er worden hiervoor geen nieuwe onderdelen online opgezocht of aan de lijst toegevoegd totdat de uitvoering is bevestigd. Zie [[bedrading-en-behuizing]].
+> De AISLER-draagprint, sockets, PCB-barreljack en M3-set voor de oude print zijn geen actieve bestellingen meer. De montage van componenten, voedingsinvoer, UART-connectoren en voedingsonderdelen moet nog worden uitgewerkt. Er worden hiervoor geen nieuwe onderdelen online opgezocht of aan de lijst toegevoegd totdat de uitvoering is bevestigd. Zie [bedrading-en-behuizing](bedrading-en-behuizing.md).
 
 ## Legende (tags)
 
@@ -38,9 +38,9 @@ status: actieve bestellijst; bedrading en behuizingsmontage nog uit te werken
 | `te-bepalen` | Uitvoering of noodzaak nog open; niet als actieve bestelling meetellen |
 
 > [!info] Bestaande bestelbaarheid (controle `2026-10-06`)
-> De historische voorraad- en winkelinformatie blijft ter referentie in [[bestelbaarheid]]. Socket- en PCB-aankoopadviezen zijn vervallen. De 4-pins schroefklem is nog niet definitief nodig nu de verbindingen handbedraad worden; zie [[bedrading-en-behuizing]]. De P-MOSFET-ompoolbeveiliging blijft vervallen (beslissing `2026-10-06`); zie [[afgevoerd]].
+> De historische voorraad- en winkelinformatie blijft ter referentie in [bestelbaarheid](bestelbaarheid.md). Socket- en PCB-aankoopadviezen zijn vervallen. De 4-pins schroefklem is nog niet definitief nodig nu de verbindingen handbedraad worden; zie [bedrading-en-behuizing](bedrading-en-behuizing.md). De P-MOSFET-ompoolbeveiliging blijft vervallen (beslissing `2026-10-06`); zie [afgevoerd](afgevoerd.md).
 >
-> GPS/RTK-prijsvergelijking: [[gps-rtk-prijzen]].
+> GPS/RTK-prijsvergelijking: [gps-rtk-prijzen](gps-rtk-prijzen.md).
 
 > [!tip] Winkels
 > **TME (Polen)** dekt de eerder gekozen discrete elektronica (LDO/TVS); **Mouser.be/DigiKey** de PTC. De **LC29HDA-RTK-rover** blijft de kandidaat bij **AliExpress (China)**. Eerdere socket- en M3-winkellinks zijn alleen historische referenties; nieuwe behuizingshardware wordt pas bepaald na het montageontwerp.
@@ -75,7 +75,7 @@ status: actieve bestellijst; bedrading en behuizingsmontage nog uit te werken
 > Dezelfde module is ook eenduidig te koop bij deze alternatieven (variantkeuzemenu):
 > [item 1005010758488281](https://www.aliexpress.com/item/1005010758488281.html) en
 > [item 1005010162466640](https://www.aliexpress.com/item/1005010162466640.html).
-> Prijsvergelijking: [[gps-rtk-prijzen]].
+> Prijsvergelijking: [gps-rtk-prijzen](gps-rtk-prijzen.md).
 >
 > **Terugvaloptie (EU, volledig geverifieerd en mét antenne):** de **Waveshare LC29H(DA) GPS/RTK HAT
 > (SKU 25279)** bij Eckstein (€ 71,39) of Kamami (± € 63). Deze wordt gebruikt als de AliExpress-
@@ -89,7 +89,7 @@ status: actieve bestellijst; bedrading en behuizingsmontage nog uit te werken
 > - Ingebouwde LNA + SAW-filter; onboard ML1220-batterijhouder; 4 status-LED's.
 > - Meegeleverd: **dual-band actieve GNSS-antenne**, IPEX-1→SMA-kabel (17 cm), schroefset, 2×20-pins female header.
 > - Let op: door de vorm (65 mm) en de 40-pins header is het bord groter dan een losse module —
->   controleer de afmetingen en bevestigingsmogelijkheden voor de **3D-geprinte behuizing**; een draagprint-footprint is niet meer nodig. Zie [[bedrading-en-behuizing]] en [[gps-rtk-prijzen]].
+>   controleer de afmetingen en bevestigingsmogelijkheden voor de **3D-geprinte behuizing**; een draagprint-footprint is niet meer nodig. Zie [bedrading-en-behuizing](bedrading-en-behuizing.md) en [gps-rtk-prijzen](gps-rtk-prijzen.md).
 
 ## Antennes en RF
 
@@ -130,7 +130,7 @@ status: actieve bestellijst; bedrading en behuizingsmontage nog uit te werken
 > | 2 A PTC-zekering, 1812 | **Littelfuse 1812L200/16** | Mouser.be / DigiKey / TME | ± € 0,40 |
 >
 > **P-MOSFET vervalt** (`2026-10-06`): de gebruiker kiest **geen** ompoolbeveiliging. De kandidaten
-> **DMG2301L-7** en **AO3401A** komen dus **niet** op de lijst; zie [[afgevoerd]]. Voorkom omgekeerd
+> **DMG2301L-7** en **AO3401A** komen dus **niet** op de lijst; zie [afgevoerd](afgevoerd.md). Voorkom omgekeerd
 > aansluiten met een **gepolariseerde connector** (XT60/JST-XH).
 
 > [!note] Voedingsinvoer en behuizing
@@ -139,7 +139,7 @@ status: actieve bestellijst; bedrading en behuizingsmontage nog uit te werken
 ## Bedrading en losse elektronica
 
 > [!info] Geen carrier-PCB of sockets
-> De gebruiker verbindt en soldeert de componenten zelf en monteert ze aan de 3D-geprinte behuizing. De elektrische functies blijven voorlopig op de BOM; de mechanische ondersteuning en exacte verbindingsmethode zijn nog niet vastgesteld. Zie [[bedrading-en-behuizing]].
+> De gebruiker verbindt en soldeert de componenten zelf en monteert ze aan de 3D-geprinte behuizing. De elektrische functies blijven voorlopig op de BOM; de mechanische ondersteuning en exacte verbindingsmethode zijn nog niet vastgesteld. Zie [bedrading-en-behuizing](bedrading-en-behuizing.md).
 
 | Tag | Component | Onderdeel | Aantal | Prijs/st | Link |
 | --- | --- | --- | --- | --- | --- |
@@ -161,7 +161,7 @@ status: actieve bestellijst; bedrading en behuizingsmontage nog uit te werken
 > Het antratek-alternatief (BSS138-converter, € 4,78) is goedkoper maar een ander type.
 
 > [!warning] Historische montagekeuzes (`2026-10-06`)
-> De eerder onderzochte 4-pins DEGSON-klem, sockets en M3-afstandbusjes waren bedoeld voor de draagprintopbouw. Ze zijn niet langer actieve bestelposten. Of een externe connector of bevestigingsmateriaal nodig is voor de 3D-geprinte behuizing, blijft open; zie [[bedrading-en-behuizing]].
+> De eerder onderzochte 4-pins DEGSON-klem, sockets en M3-afstandbusjes waren bedoeld voor de draagprintopbouw. Ze zijn niet langer actieve bestelposten. Of een externe connector of bevestigingsmateriaal nodig is voor de 3D-geprinte behuizing, blijft open; zie [bedrading-en-behuizing](bedrading-en-behuizing.md).
 
 > [!success] Power-LED en weerstand al in bezit (`2026-10-06`)
 > De gebruiker heeft de **3 mm rode LED (10-pack)** en de **330 Ω-weerstand (10-pack)** al thuis.
@@ -210,18 +210,18 @@ status: actieve bestellijst; bedrading en behuizingsmontage nog uit te werken
 - [x] **Level shifter** — **TXB0108-breakout** (Kiwi, € 8,70); TXB0104-IC enkel als alternatief (`2026-10-07`).
 - [x] **PCB-barreljack verwijderd** — niet meer nodig als printonderdeel; voedingsinvoer door/aan de behuizing blijft open (`2026-10-09`).
 - [x] **Power-LED + 330 Ω (10-packs):** heeft de gebruiker **thuis** (`2026-10-06`).
-- [x] **Ompoolbeveiliging (P-MOSFET):** **vervalt** (`2026-10-06`). Zie [[afgevoerd]].
+- [x] **Ompoolbeveiliging (P-MOSFET):** **vervalt** (`2026-10-06`). Zie [afgevoerd](afgevoerd.md).
 - [ ] **LC29HDA-variant kiezen bij het bestellen** — op de AliExpress-pagina de **LC29HDA** (rover)
       selecteren, geassembleerd board (geen LC29HBS, geen losse SMD). Terugvaloptie: Waveshare-HAT (Eckstein € 71,39).
 - [ ] **GNSS-antennebundel controleren** — eerst kijken of de boardkit een passende L1/L5-antenne meelevert;
       anders de Waveshare SKU 25346 (± € 15,70) bestellen en de connector (SMA vs. IPEX) checken.
-- [ ] **Bedrading en mechanische montage uitwerken** — zie [[bedrading-en-behuizing]]; nog geen nieuwe hardware online zoeken of toevoegen.
+- [ ] **Bedrading en mechanische montage uitwerken** — zie [bedrading-en-behuizing](bedrading-en-behuizing.md); nog geen nieuwe hardware online zoeken of toevoegen.
 - [ ] **LC29HDA-breakout in de behuizing monteren** — controleer boardafmetingen en bevestigingsmogelijkheden zodra de listing en variant bevestigd zijn.
 - [ ] **Externe UART-verbinding bepalen** — bevestig of de eerder gekozen schroefklem nodig blijft of rechtstreeks bedraad wordt.
 
 ## Gerelateerd
 
-- [[componenten]] - volledige BOM en keuzes
-- [[specificaties]] - technische afspraken
-- [[pcb-ontwerp]] - footprints en gatmaten
-- [[links]] - bronnen
+- [componenten](componenten.md) - volledige BOM en keuzes
+- [specificaties](specificaties.md) - technische afspraken
+- [pcb-ontwerp](pcb-ontwerp.md) - footprints en gatmaten
+- [links](links.md) - bronnen

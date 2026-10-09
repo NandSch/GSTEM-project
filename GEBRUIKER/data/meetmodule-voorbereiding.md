@@ -78,32 +78,32 @@ status: denkwijze / voorbereiding
 - Uitgebreide testen over hoe goed alle sensoren en communicatie werken.
 
 ## 2026-10-05 — Ontwerptekst "Ontwerp voor Positie- en beweging meettoestel met LoRa integratie"
-- **Bron:** Google Doc, gedeeld met iedereen — https://docs.google.com/document/d/1wbb8LAjXiUpZQBpxv1NKQZ8YBhb32TtkiDcpUfl5o0M/edit (zie [[links]]).
+- **Bron:** Google Doc, gedeeld met iedereen — https://docs.google.com/document/d/1wbb8LAjXiUpZQBpxv1NKQZ8YBhb32TtkiDcpUfl5o0M/edit (zie [links](links.md)).
 - **Wat het is:** een doorlopende-tekst-ontwerpbeschrijving van hetzelfde systeem, in twee delen — **Hardware Specificaties** en **Software Specificaties**.
 - **Kern:** eigen PCB met vervangbare breakout-modules, bevestigingspunten in de hoeken, ESP32-S3 + LoRa + antenne + heatsink, 9-DoF IMU, barometer, RTK-GNSS met antenne; voeding via externe batterij (bijv. 7,4 V) of barrel-connector met spanningsregelaar; extra pinnen en grounds naar het besturingssysteem van een mockup-vliegtuigje; zelf ontworpen 3D-geprinte dempende behuizing; tweede ESP met LoRa als USB-adapter bij de laptop. Software: continu uitlezen van IMU, barometer en RTK-GNSS, samenvoegen tot datapakketten, sensorfusie met een Kalman-filter, verzending via LoRa, USB-doorgifte naar de laptop, errorhandling bij wegvallende GPS of sensoren, en grenzen die waarschuwen buiten een bepaald gebied.
 - **Verhouding tot dit document:** de ontwerptekst is de compacte, formele variant. Hij noemt **niet**: de schermopbouw van de laptopapp, de programmeermodus, live export en data-opslag, git-versiebeheer, de testaanpak en de optionele mock-up-uitbreiding. Die staan alleen hier.
-- **Gevolg:** geen nieuwe beslissingen of open vragen; de tekst bevestigt de bestaande denkrichting. Zie [[specificaties]] voor de vastlegging.
+- **Gevolg:** geen nieuwe beslissingen of open vragen; de tekst bevestigt de bestaande denkrichting. Zie [specificaties](specificaties.md) voor de vastlegging.
 
 ## 2026-10-05 — Ontwerptekst volledig uitgewerkt buiten het Google Doc
 - **Wat:** Het Google Doc *Ontwerp voor Positie- en beweging meettoestel met LoRa integratie* is aangevuld tot een volledige ontwerptekst. Omdat er geen schrijftoegang tot Google Docs is, staat de tekst in `documenten/specificaties/Ontwerp-meetmodule.md` (bron) en `documenten/specificaties/Ontwerp-meetmodule.docx` (Word-versie in de stijl van GStem-Specificaties). Het Doc zelf moet nog handmatig overschreven worden met deze tekst.
 - **Opbouw:** dezelfde secties als het Doc (Inleiding, Hardware Specificaties met De Meetmodule, Elektronische Componenten, Voeding en Interface, Bevestiging en Behuizing, LoRa Adapter; Software Specificaties met Data Verwerking, Communicatie en Beveiliging), aangevuld met **De laptopapplicatie**, **Besturing en veiligheid**, **Versiebeheer** en **Testen**, en met een slottabel **Overzicht van de nog te bepalen punten**.
 - **Aanvullingen:** socket-headers en voedingsrails op de PCB; ground plane en antenne-plaatsing tegen storing; tabel met componenten en status; warmte van de ESP bij de barometer vandaan; accu -> buck 5 V -> 3,3 V met ground op de uitbreidingsconnector; CSV over UART als vastgelegd protocol naar de voertuigcontroller; 3D-print in PETG/PLA met rubbergdemping; adapter als zuiver doorgeefluik met USB-naar-serieel-omzetter; uitleesfrequenties per sensor en tijdstempel per pakket; veldenlijst van het datapakket; uplink- en downlinkketen in stappen; startscherm, hoofdscherm en de drie modi Kaart, Code en API; API als JSON naar buiten en vrije CSV-regel terug; failsafe-tabel in de firmware van de meetmodule; git-versiebeheer; testplan in vijf stappen.
-- **Kernbeslissing onderweg:** de veiligheidsstop zit in de **firmware van de meetmodule**, niet alleen in de laptopapplicatie, zodat het toestel ook veilig is als de verbinding wegvalt. Zie [[beslissingen]].
-- **Nieuwe open vragen:** de bron van de RTK-correctiegegevens en het spanningsniveau van de uitbreidingsconnector — toegevoegd aan [[open-vragen]].
+- **Kernbeslissing onderweg:** de veiligheidsstop zit in de **firmware van de meetmodule**, niet alleen in de laptopapplicatie, zodat het toestel ook veilig is als de verbinding wegvalt. Zie [beslissingen](beslissingen.md).
+- **Nieuwe open vragen:** de bron van de RTK-correctiegegevens en het spanningsniveau van de uitbreidingsconnector — toegevoegd aan [open-vragen](open-vragen.md).
 - **Gevolg:** de ontbrekende onderdelen zitten nu in een eigen, versioneerbaar bestand; het Doc blijft voorlopig achter.
 
 ## 2026-10-06 — Afgewerkte gebruikersspecificaties aangeleverd
 - **Wat:** De gebruiker leverde de **afgewerkte specificaties** aan in `documenten/specificaties/GStem-Specificaties.md`. Ze beschrijven het product gebruikersgericht: vier meetgrootheden met nauwkeurigheid (richting in graden, snelheid in km/u, hoogte tot 1,5 m, locatie tot 0,5 m), bereik tot 4 km, USB-stick-ontvanger, automatische start, de app-schermen (verbinding/kaart/Code/API) en de RC-vliegtuig-mock-up met Arduino via TX/RX en drie besturingsvlakken.
 - **Verhouding tot dit document:** de gebruikersversie is de concrete, afgewerkte variant van deze voorbereiding. De technische componentkeuzes (IMU, barometer, frequentie, exacte veldvolgorde) blijven open.
-- **Gevolg:** samengevat in [[gstem-specificaties]] en vastgelegd in [[specificaties]] en [[beslissingen]].
+- **Gevolg:** samengevat in [gstem-specificaties](gstem-specificaties.md) en vastgelegd in [specificaties](specificaties.md) en [beslissingen](beslissingen.md).
 
 ## Gerelateerd
-- [[gstem-specificaties|GStem-Specificaties (afgewerkt) — de gebruikersversie van deze voorbereiding]]
-- [[open-vragen|Open vragen die uit deze voorbereiding volgen]]
-- [[specificaties|Specificaties]] — wanneer deze voorbereiding wordt omgezet in harde afspraken
+- [GStem-Specificaties (afgewerkt) — de gebruikersversie van deze voorbereiding](gstem-specificaties.md)
+- [Open vragen die uit deze voorbereiding volgen](open-vragen.md)
+- [Specificaties](specificaties.md) — wanneer deze voorbereiding wordt omgezet in harde afspraken
 
 ## 2026-10-06 — Alternatieven voor socket-headers
 - **Vraag:** socket-headers lijken de gebruiker amateuristisch; wat zijn de alternatieven?
 - **Verkend:** precisie-/gefreesde sockets (machined turned-pin), direct vastsolderen op pinheaders, castellated SMD-modules rechtstreeks op de PCB, board-to-board/mezzanine-connectoren, sub-bordjes met JST-GH/Molex-kabels, en pogo pins (enkel testfixture).
 - **Advies:** precisie-sockets als snelle professionele upgrade met behoud van modulariteit; ESP op sockets en sensoren direct solderen als beste combinatie; castellated modules voor een echt afgewerkt product; direct solderen wint bij trillingen in het vliegtuigje.
-- **Gevolg:** nog geen beslissing; vastgelegd in [[specificaties]] en [[open-vragen]].
+- **Gevolg:** nog geen beslissing; vastgelegd in [specificaties](specificaties.md) en [open-vragen](open-vragen.md).

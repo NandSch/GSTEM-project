@@ -30,7 +30,7 @@ tags: [gstem, data, afgevoerd]
 ## 2026-10-06 — BME280 en BMP581 als barometer
 - **Wat:** De Adafruit BME280 (druk + vocht, meer ruis) en de Adafruit BMP581 (betere absolute nauwkeurigheid, maar ±6 Pa relatieve nauwkeurigheid en 0,08 Pa ruis).
 - **Reden afvoer:** De gebruiker vroeg **het meest accurate**. De BMP390 heeft de beste relatieve nauwkeurigheid (±3 Pa) en de laagste ruis (0,02 Pa); luchtvochtigheid is niet nodig.
-- **Later opnieuw bekijken?** nee — de BMP390 is gekozen ([[componenten]], [[beslissingen]]).
+- **Later opnieuw bekijken?** nee — de BMP390 is gekozen ([componenten](componenten.md), [beslissingen](beslissingen.md)).
 
 ## 2026-10-06 — Eigen RTK-basisstation voor de correcties
 - **Wat:** Een eigen LC29H(BS)- of ZED-F9P-basisstation dat zelf RTCM-correcties uitzendt.

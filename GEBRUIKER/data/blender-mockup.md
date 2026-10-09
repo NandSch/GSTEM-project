@@ -10,14 +10,14 @@ status: verwijderd (2026-10-06); layout was een voorstel
 > [!info] Doel
 > Een semi-accurate 3D-mock-up van het meettoestel in **Blender**: de draagprint met alle
 > breakout-modules, de losse printonderdelen, de antennes/bekabeling, de **Arduino Uno** met
-> servo's en de **LoRa-ontvanger**. Plus drie studio-renders. Hoort bij [[pcb-schets]],
-> [[componenten]] en [[specificaties]].
+> servo's en de **LoRa-ontvanger**. Plus drie studio-renders. Hoort bij [pcb-schets](pcb-schets.md),
+> [componenten](componenten.md) en [specificaties](specificaties.md).
 
 > [!warning] Verwijderd op 2026-10-06
 > De map `documenten/blender/` (model, scripts, renders en review-set) is verwijderd; de
 > mock-up wordt niet verder gebruikt. Alles blijft herstelbaar uit git (commit `28e4fae`).
 > Het geannoteerde overzichtsblad blijft staan als `documenten/pcb/review-mockup-controleblad.png`.
-> Zie [[beslissingen]] en [[afgevoerd]].
+> Zie [beslissingen](beslissingen.md) en [afgevoerd](afgevoerd.md).
 
 > [!warning] De layout is een voorstel
 > De KiCad-layout is nog niet gemaakt. De plaatsing van de modules op de print in dit model is
@@ -75,18 +75,18 @@ Studio-opstelling: donkere achtergrond, zachte key + fill + rim + top (area-ligh
 
 ## Gebruikte afmetingen
 
-De echte datasheet-maten staan in [[gstem-hardware-afmetingen]]. Belangrijkste gevolgen:
+De echte datasheet-maten staan in [gstem-hardware-afmetingen](gstem-hardware-afmetingen.md). Belangrijkste gevolgen:
 
 - De **LC29H(DA) is een Pi-HAT van 65 x 30,5 mm** (niet een klein breakout). Op 100 x 75 mm past
-  hij alleen als **verticale strook** rechts op de print. Zie [[open-vragen]].
+  hij alleen als **verticale strook** rechts op de print. Zie [open-vragen](open-vragen.md).
 - **BNO085 = 25,6 x 22,7 mm** en **BMP581 = 25,4 x 17,8 mm** (STEMMA QT-formaat); dat is groter
-  dan de BNO055/BMP390 in [[componenten]].
+  dan de BNO055/BMP390 in [componenten](componenten.md).
 - De **XIAO** is 21 x 17,8 mm; de kit stapelt via de B2B-connector tot ± 21 mm hoog.
 
 ## Gerelateerd
 
-- [[pcb-schets]] — bovenaanzicht en verbindingsschema
-- [[pcb-ontwerp]] — footprints en gatmaten
-- [[componenten]] — BOM en keuzes
-- [[specificaties]] — draagprint-aanpak
-- [[gstem-hardware-afmetingen]] — datasheet-maten
+- [pcb-schets](pcb-schets.md) — bovenaanzicht en verbindingsschema
+- [pcb-ontwerp](pcb-ontwerp.md) — footprints en gatmaten
+- [componenten](componenten.md) — BOM en keuzes
+- [specificaties](specificaties.md) — draagprint-aanpak
+- [gstem-hardware-afmetingen](gstem-hardware-afmetingen.md) — datasheet-maten

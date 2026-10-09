@@ -118,7 +118,7 @@ Beschikbaar bij **antratek.be (BE, EU)**, allemaal op voorraad — maar veel duu
 
 ## Gerelateerd
 
-- [[bestelbaarheid]] — verificatie van alle bestellijst-artikelen
-- [[bestellijst]] — de volledige bestellijst
-- [[links]] — winkels en URL's
-- [[componenten]] — waarom juist de LC29H(DA)
+- [bestelbaarheid](bestelbaarheid.md) — verificatie van alle bestellijst-artikelen
+- [bestellijst](bestellijst.md) — de volledige bestellijst
+- [links](links.md) — winkels en URL's
+- [componenten](componenten.md) — waarom juist de LC29H(DA)

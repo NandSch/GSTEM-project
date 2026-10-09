@@ -8,7 +8,7 @@ status: concept
 
 > [!info] Doel
 > Deze handleiding beschrijft **elk onderdeel** van de Code-pagina en **wat het doet**. Ze hoort bij
-> de webdemo (`GSTEMAPPPREVIEWWEB/`) en bij de A/B-uitkomst in [[ab-test-code-pagina]]. Gemaakt op
+> de webdemo (`GSTEMAPPPREVIEWWEB/`) en bij de A/B-uitkomst in [ab-test-code-pagina](ab-test-code-pagina.md). Gemaakt op
 > verzoek van de gebruiker.
 
 ## Waar zit de pagina?
@@ -124,7 +124,7 @@ Twee blokken (`<details>`) onder het codevenster, zodat het scherm rustig blijft
 
 ## Gerelateerd
 
-- [[ab-test-code-pagina|A/B-test: Code-pagina herzien]] — hoe versie B de officiële werd
-- [[specificaties|Specificaties]]
-- [[app-architectuur-besturing|App-architectuur]] — waar de code-modus in de keten past
-- [[besturing-en-commandos|Besturing en commando's]]
+- [A/B-test: Code-pagina herzien](ab-test-code-pagina.md) — hoe versie B de officiële werd
+- [Specificaties](specificaties.md)
+- [App-architectuur](app-architectuur-besturing.md) — waar de code-modus in de keten past
+- [Besturing en commando's](besturing-en-commandos.md)

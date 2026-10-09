@@ -8,10 +8,10 @@ status: historische bestelbaarheidscontrole; geen actuele orderinstructie
 # Bestelbaarheid — historische verificatie van de bestellijst
 
 > [!warning] Historische controle — 2026-10-06
-> Deze voorraad- en prijsgegevens zijn een momentopname, geen actuele beschikbaarheidsbevestiging. Een deel van de vroegere PCB-/socketartikelen is door de ontwerpwijziging vervallen. Raadpleeg [[bestellijst]] voor de actieve aankopen; zie [[bedrading-en-behuizing]] voor montagekeuzes. Voor deze ontwerpwijziging is niets online opgezocht.
+> Deze voorraad- en prijsgegevens zijn een momentopname, geen actuele beschikbaarheidsbevestiging. Een deel van de vroegere PCB-/socketartikelen is door de ontwerpwijziging vervallen. Raadpleeg [bestellijst](bestellijst.md) voor de actieve aankopen; zie [bedrading-en-behuizing](bedrading-en-behuizing.md) voor montagekeuzes. Voor deze ontwerpwijziging is niets online opgezocht.
 
 > [!info] Wat is dit?
-> Van artikelen op de toenmalige [[bestellijst]] is op **2026-10-06** nagegaan of de productpagina bestond, de prijs klopte en er voorraad was. Bron per regel: productpagina of zoekresultaat/snippet. TME, Mouser en DigiKey blokkeerden directe fetches met HTTP 403.
+> Van artikelen op de toenmalige [bestellijst](bestellijst.md) is op **2026-10-06** nagegaan of de productpagina bestond, de prijs klopte en er voorraad was. Bron per regel: productpagina of zoekresultaat/snippet. TME, Mouser en DigiKey blokkeerden directe fetches met HTTP 403.
 
 ## Historische samenvatting
 
@@ -61,7 +61,7 @@ status: historische bestelbaarheidscontrole; geen actuele orderinstructie
 
 > [!important] Twee verbeteringen t.o.v. de bestellijst
 > - **P-MOSFET vervalt** (`2026-10-06`): noch de **DMG2301L** noch de **AO3401A** wordt gekocht — er
->   komt **geen ompoolbeveiliging**. De PTC-zekering en de TVS blijven. Zie [[afgevoerd]].
+>   komt **geen ompoolbeveiliging**. De PTC-zekering en de TVS blijven. Zie [afgevoerd](afgevoerd.md).
 > - De **KF128-3.5 schroefklem** bestaat **niet** bij TME (0 zoekresultaten). Gebruik de push-in
 >   **DEGSON DG250-3.5-04P** of de **schroef**-variant **DEGSON 15EDGK-3.5/4P**.
 
@@ -90,7 +90,7 @@ status: historische bestelbaarheidscontrole; geen actuele orderinstructie
 
 ## Gerelateerd
 
-- [[bestellijst]] — de lijst zelf
-- [[gps-rtk-prijzen]] — prijsvergelijking van de GPS/RTK-module
-- [[links]] — alle winkels en URL's
-- [[open-vragen]] — socket-keuze en lage voorraad
+- [bestellijst](bestellijst.md) — de lijst zelf
+- [gps-rtk-prijzen](gps-rtk-prijzen.md) — prijsvergelijking van de GPS/RTK-module
+- [links](links.md) — alle winkels en URL's
+- [open-vragen](open-vragen.md) — socket-keuze en lage voorraad

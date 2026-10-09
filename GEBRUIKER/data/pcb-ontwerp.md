@@ -7,12 +7,12 @@ status: historisch; draagprintontwerp vervallen
 # Oud plan: PCB ontwerpen
 
 > [!warning] Vervangen op 2026-10-09
-> De gebruiker heeft gekozen voor zelf bedraden en solderen en de onderdelen aan een 3D-geprinte behuizing monteren. De eigen draagprint, PCB-footprints en sockets zijn niet meer nodig. Deze pagina bewaart de oude ontwerpwerkwijze als naslag; voer de PCB-stappen hieronder niet uit. Actuele aanpak: [[bedrading-en-behuizing]].
+> De gebruiker heeft gekozen voor zelf bedraden en solderen en de onderdelen aan een 3D-geprinte behuizing monteren. De eigen draagprint, PCB-footprints en sockets zijn niet meer nodig. Deze pagina bewaart de oude ontwerpwerkwijze als naslag; voer de PCB-stappen hieronder niet uit. Actuele aanpak: [bedrading-en-behuizing](bedrading-en-behuizing.md).
 
 > [!info] Doel
 > Praktische werkwijze om de draagprint te ontwerpen: welke app, hoe je de footprints van de
-> breakout-modules vindt en hoe je alle gatmaten bepaalt. Hoort bij [[specificaties]]
-> (draagprint-aanpak), [[pcb-schets]] en [[pcb-methodes-kosten]].
+> breakout-modules vindt en hoe je alle gatmaten bepaalt. Hoort bij [specificaties](specificaties.md)
+> (draagprint-aanpak), [pcb-schets](pcb-schets.md) en [pcb-methodes-kosten](pcb-methodes-kosten.md).
 
 ## 1. Welke app
 
@@ -41,7 +41,7 @@ status: historisch; draagprintontwerp vervallen
 
 Alle **breakout-modules** (ESP32-S3, LoRa, IMU, barometer, RTK-GNSS) en de losse onderdelen
 worden **zelf aangekocht**. De **print** is het enige gemaakte stuk; daarop staan minstens de
-**LED en de sockets** (en eventueel de voedingsonderdelen). Zie [[beslissingen]] `2026-10-06`.
+**LED en de sockets** (en eventueel de voedingsonderdelen). Zie [beslissingen](beslissingen.md) `2026-10-06`.
 Dus: de BOM splitsen in "zelf kopen" en "op de print"; de printstuklijst beperkt zich tot wat
 rechtstreeks op het bord gesoldeerd wordt.
 
@@ -80,13 +80,13 @@ Voor elke breakout vul je in:
 - Antenne-keep-out voor LoRa en GNSS (geen koper onder de antenne).
 - Buck-spoel en ESP weg van IMU en barometer (warmte + storing).
 - I2C kort houden; pull-ups niet dubbel plaatsen als een breakout ze al heeft.
-- De **socket-keuze** (precisie/gefreesd vs. dual-wipe, zie [[pcb-methodes-kosten]]) bepaalt het
+- De **socket-keuze** (precisie/gefreesd vs. dual-wipe, zie [pcb-methodes-kosten](pcb-methodes-kosten.md)) bepaalt het
   landpatroon en de extra hoogte.
 - 4 bevestigingsgaten (M3) in de hoeken.
 
 ## Gerelateerd
 
-- [[specificaties]] - draagprint-aanpak
-- [[pcb-schets]] - bovenaanzicht en verbindingsschema
-- [[pcb-methodes-kosten]] - socketkeuze en kosten
-- [[open-vragen]] - exacte breakouts, pinouts en fabrikant
+- [specificaties](specificaties.md) - draagprint-aanpak
+- [pcb-schets](pcb-schets.md) - bovenaanzicht en verbindingsschema
+- [pcb-methodes-kosten](pcb-methodes-kosten.md) - socketkeuze en kosten
+- [open-vragen](open-vragen.md) - exacte breakouts, pinouts en fabrikant

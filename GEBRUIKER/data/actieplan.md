@@ -7,23 +7,23 @@ bijgewerkt: 2026-10-09
 # Actieplan G-STEM-P
 
 > [!info] Wat is dit?
-> De nog te ondernemen stappen voor het project, afgeleid uit [[open-vragen]],
-> [[specificaties]] en [[meetmodule-voorbereiding]]. In `documenten/beheer/Planning-GSTEM.xlsx` staat dit
+> De nog te ondernemen stappen voor het project, afgeleid uit [open-vragen](open-vragen.md),
+> [specificaties](specificaties.md) en [meetmodule-voorbereiding](meetmodule-voorbereiding.md). In `documenten/beheer/Planning-GSTEM.xlsx` staat dit
 > als **tweede blad "Actieplan"** in een afwijkende (oranje) kleur. De **streefdatums zijn een
 > voorstel** en kunnen verschoven worden.
 
 ## Voorbereiding
 
-- [x] 09/10/2026 — Exacte 9-DoF IMU met sensorfusie kiezen — **gedaan `2026-10-07`:** Adafruit BNO085 ([[componenten]])
-- [x] 09/10/2026 — Barometer en RTK-GNSS-module kiezen — **gedaan `2026-10-07`:** BMP581 en Quectel LC29HDA-breakout ([[componenten]])
+- [x] 09/10/2026 — Exacte 9-DoF IMU met sensorfusie kiezen — **gedaan `2026-10-07`:** Adafruit BNO085 ([componenten](componenten.md))
+- [x] 09/10/2026 — Barometer en RTK-GNSS-module kiezen — **gedaan `2026-10-07`:** BMP581 en Quectel LC29HDA-breakout ([componenten](componenten.md))
 - [x] 09/10/2026 — Bron RTK-correctie kiezen — **gedaan `2026-10-06`:** NTRIP-dienst; provider nog open
 - [ ] 09/10/2026 — LoRa-frequentie/band en configuratie vastleggen (868 MHz voor België staat vast; rest van de configuratie nog open)
 - [ ] 12/10/2026 — Exacte breakout-modellen en pinouts bepalen (barometer + GNSS gekozen `2026-10-06`; pinouts nog te noteren)
-- [x] 12/10/2026 — Voedingsketen vastleggen — **gedaan `2026-10-06`:** 7,4 V-accu -> zekering/ompoolbeveiliging -> buck 5 V -> LDO 3,3 V ([[componenten]])
+- [x] 12/10/2026 — Voedingsketen vastleggen — **gedaan `2026-10-06`:** 7,4 V-accu -> zekering/ompoolbeveiliging -> buck 5 V -> LDO 3,3 V ([componenten](componenten.md))
 - [ ] 12/10/2026 — **AI-taak:** pinout-tabel XIAO opstellen en pin-budget controleren (IMU + barometer + GNSS + UART)
 - [x] 12/10/2026 — Level shifter kiezen — **gedaan:** TXB0108-breakout; handbedrading blijft uit te werken. Geen extra I2C-pull-ups voorzien.
-- [x] 13/10/2026 — Moduleverbinding kiezen — **besluit `2026-10-09`:** zelf bedraden en solderen; sockets en draagprint vervallen ([[bedrading-en-behuizing]])
-- [ ] 20/10/2026 — Bedrade UART, voedingsbescherming en LDO integreren — componentfuncties voorlopig gekozen; connector en mechanische ondersteuning zonder PCB nog bepalen. De **P-MOSFET vervalt** (`2026-10-06`, zie [[afgevoerd]]).
+- [x] 13/10/2026 — Moduleverbinding kiezen — **besluit `2026-10-09`:** zelf bedraden en solderen; sockets en draagprint vervallen ([bedrading-en-behuizing](bedrading-en-behuizing.md))
+- [ ] 20/10/2026 — Bedrade UART, voedingsbescherming en LDO integreren — componentfuncties voorlopig gekozen; connector en mechanische ondersteuning zonder PCB nog bepalen. De **P-MOSFET vervalt** (`2026-10-06`, zie [afgevoerd](afgevoerd.md)).
 
 ## Hardware
 

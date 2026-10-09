@@ -19,8 +19,8 @@ status: prompt opgesteld
   plak de prompt.
 - **Gemini-app/chat:** idem; Gemini levert de slidtekst die per slide wordt overgezet.
 - Vul eerst de placeholders `[JOUW VOORNAAM ACHTERNAAM]` en `[JOUW KLAS]` in.
-- Bron van de inhoud: [[gstem-specificaties]], [[bestellijst]], [[planning]],
-  [[actieplan]], [[open-vragen]] en [[beslissingen]].
+- Bron van de inhoud: [gstem-specificaties](gstem-specificaties.md), [bestellijst](bestellijst.md), [planning](planning.md),
+  [actieplan](actieplan.md), [open-vragen](open-vragen.md) en [beslissingen](beslissingen.md).
 
 ## Vastgelegde slide-structuur
 
@@ -50,7 +50,7 @@ status: prompt opgesteld
 
 ## Gerelateerd
 
-- [[gstem-specificaties]] - productbeschrijving
-- [[bestellijst]] - onderdelen en totalen
-- [[planning]] - mijlpalen
-- [[actieplan]] - stand van zaken
+- [gstem-specificaties](gstem-specificaties.md) - productbeschrijving
+- [bestellijst](bestellijst.md) - onderdelen en totalen
+- [planning](planning.md) - mijlpalen
+- [actieplan](actieplan.md) - stand van zaken

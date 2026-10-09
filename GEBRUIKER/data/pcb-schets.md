@@ -7,11 +7,11 @@ status: historisch; oude PCB-schets, niet meer het actuele ontwerp
 # Historische PCB-schets draagprint
 
 > [!warning] Niet meer het actuele ontwerp — 2026-10-09
-> Deze schets en de afbeeldingen tonen het vervallen ontwerp met een eigen draagprint en sockets. De gebruiker bedradt en soldeert de modules nu zelf en monteert ze aan een 3D-geprinte behuizing. De afbeeldingen worden als historische referentie bewaard en zijn geen montage-instructie. Zie [[bedrading-en-behuizing]].
+> Deze schets en de afbeeldingen tonen het vervallen ontwerp met een eigen draagprint en sockets. De gebruiker bedradt en soldeert de modules nu zelf en monteert ze aan een 3D-geprinte behuizing. De afbeeldingen worden als historische referentie bewaard en zijn geen montage-instructie. Zie [bedrading-en-behuizing](bedrading-en-behuizing.md).
 
 > [!info] Doel
 > Visuele schets van hoe de zelfgemaakte draagprint eruitziet en hoe alles aangesloten is.
-> Hoort bij de draagprint-aanpak in [[specificaties]] (`2026-10-06`).
+> Hoort bij de draagprint-aanpak in [specificaties](specificaties.md) (`2026-10-06`).
 
 ## Bestanden
 
@@ -39,7 +39,7 @@ voedingsboom. Het PNG is een gerenderde versie van het SVG.
 - **Kleuren:** rood = VBAT, oranje = 5 V, geel = 3,3 V, grijs = GND, blauw = I2C,
   groen = GNSS-UART, teal = Arduino-UART via TXB0104, roze = LoRa-RF/keep-out.
 - **Let op:** schematisch en niet op schaal; de **pinout is een voorstel** (AI-taak, zie
-  [[open-vragen]]). Kruising zonder stip = geen verbinding.
+  [open-vragen](open-vragen.md)). Kruising zonder stip = geen verbinding.
 
 ## Bestanden van het eindbeeld
 
@@ -59,6 +59,6 @@ voedingsboom. Het PNG is een gerenderde versie van het SVG.
 
 ## Gerelateerd
 
-- [[specificaties]] — draagprint-aanpak en elektrische basis
-- [[meetmodule-voorbereiding]] — hardwarecontext
-- [[open-vragen]] — exacte breakouts, pinouts, voeding en gereedschap
+- [specificaties](specificaties.md) — draagprint-aanpak en elektrische basis
+- [meetmodule-voorbereiding](meetmodule-voorbereiding.md) — hardwarecontext
+- [open-vragen](open-vragen.md) — exacte breakouts, pinouts, voeding en gereedschap
