@@ -8,6 +8,13 @@ status: denkwijze / voorbereiding
 
 > [!info] Dit document beschrijft de door de gebruiker voorgestelde gelaagde architectuur voor de verwerking en terugsturing van besturingscommando's.
 
+> [!warning] Deels vervangen per `2026-10-10`
+> De herziene specificaties hebben **geen code-pagina en geen API-pagina** meer. De "Code"-modus
+> (L2) en het externe-programma-pad via de API (L1) vervallen uit de specificatie; de app richt
+> zich op kaart + live data en voertuigspecifieke besturing-apps (bijv. auto met stuur en
+> gaspedaal). De gelaagde architectuur hieronder blijft als technische achtergrond bestaan, maar
+> is niet langer de actuele productrichting.
+
 ## Architectuur in lagen
 
 ```text

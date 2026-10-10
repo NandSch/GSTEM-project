@@ -1,10 +1,16 @@
 ---
 tags: [gstem, data, webdemo, code-pagina, handleiding]
 aangemaakt: 2026-10-05
-status: concept
+status: vervangen (2026-10-10)
 ---
 
 # Handleiding — de Code-pagina van de webdemo
+
+> [!warning] Vervangen per `2026-10-10`
+> De herziene specificaties (pdf, `2026-10-10`) hebben **geen code-pagina en geen API-pagina**
+> meer: scherm 3 is nu een **Besturing**-menu met voertuigspecifieke besturings-apps (bijv. auto
+> met stuur en gaspedaal) en scherm 4 is zo'n besturingspagina. Deze handleiding beschrijft de
+> oude webdemo en blijft alleen als historische naslag bestaan.
 
 > [!info] Doel
 > Deze handleiding beschrijft **elk onderdeel** van de Code-pagina en **wat het doet**. Ze hoort bij

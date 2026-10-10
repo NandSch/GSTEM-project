@@ -11,10 +11,9 @@ tags: [gstem, data, open-vragen]
 - [ ] **Welke exacte 9-DoF IMU met sensorfusie?** — uit voorbereiding meetmodule.
 - [x] **Welke barometer en welke RTK-GNSS-module?** — `2026-10-06`: barometer **Adafruit BMP390** (meest accurate, ±3 Pa, laagste ruis); RTK-GNSS **Quectel LC29H(DA)** (dual-band L1+L5, rover). Zie [componenten](componenten.md) en [beslissingen](beslissingen.md).
 - [ ] **Exacte LoRa-frequentie/band en configuratie?** — de gekozen Wio-SX1262 bestaat in 868/915 MHz; voor België is **868 MHz** nodig. Rest van de configuratie nog open. (`2026-10-06`)
-- [ ] **Formaat en protocol van datapakketten tussen meetmodule en laptop (uplink en downlink)?**
+- [ ] **Formaat en protocol van datapakketten tussen meetmodule en laptop (uplink en downlink)?** — `2026-10-10`: de besturingsinstructies komen nu uit de besturing-apps (scherm 3/4), niet meer uit gebruikerscode of de API; het LoRa-pakketformaat blijft open.
 - [ ] **LoRa downlink: met of zonder ACK, en hoe omgaan met pakketverlies bij besturingscommando's?**
-- [ ] **Commandoformaat: binair, JSON, tekst of protobuf?**
-- [ ] **Welk programmeermodel: laptop doet alles, edge-script op module, of hybride?**
+- [ ] **Commandoformaat richting voertuig: wie bepaalt de CSV-velden?** — `2026-10-10`: de besturing-apps bepalen de stuurregels; de exacte velden per voertuigtype (bijv. stuurhoek + gastempo voor de auto) zijn nog niet vastgelegd.
 - [x] **Uitbreidingsconnector: PWM, UART, I2C, CAN of analoog?** — `2026-10-06`: **UART via TX/RX**; de Arduino van het vliegtuigje neemt CSV-waarden aan op zijn TX/RX-punten.
 - [ ] **Geofencing-grenzen: hoe ingesteld en opgeslagen?**
 - [ ] **Batterijspecificatie definitief vastleggen** — voorbereiding noemt 7.4 V 2 A als voorbeeld.
@@ -23,6 +22,7 @@ tags: [gstem, data, open-vragen]
 - [x] **PCB-afmetingen en laagcount?** — niet meer van toepassing: eigen draagprint/carrier-PCB vervallen `2026-10-09`. Zie [bedrading-en-behuizing](bedrading-en-behuizing.md).
 - [ ] **Mock-up details: materiaal, servo-type, microcontroller?** — optionele uitbreiding.
 - [ ] **Veiligheidsstop-gedrag: welke acties bij verlies van verbinding, en na hoeveel seconden?**
+- [ ] **Besturing-apps uitwerken (scherm 3/4)** — drie voertuigtypes/icoontjes; de auto is uitgewerkt (stuur slepen, gaspedaal houden). De twee andere voertuigtypes, hun bedieningselementen en de techniek (webdemo opnieuw bouwen?) staan open. (`2026-10-10`)
 - [ ] **Safe-state definitie: neutrale servo's, throttle nul, of ander gedrag per toesteltype?**
 - [ ] **Kalman-filter implementatie: welke variant en bibliotheek?**
 - [ ] **API-techniek tussen app en extern programma: WebSocket, TCP-socket, HTTP of named pipe?**

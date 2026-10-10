@@ -178,3 +178,9 @@ Technische en functionele afspraken. Eén subsectie per specificatie.
 - **Status:** ontwerpaanpak gekozen; details van elektrische en mechanische montage staan open.
 - **Bron:** gebruikersbeslissing `2026-10-09`; zie [bedrading-en-behuizing](bedrading-en-behuizing.md) en [beslissingen](beslissingen.md).
 - **Gevolg:** AISLER-productie, sockets en de eerdere PCB-layout zijn niet langer actief. De functies van de voedingsbescherming, LDO, ontkoppeling, level shifter, status-LED en externe verbindingen blijven voorlopig onderdeel van de elektrische opzet; hun plaatsing en bedrading moeten opnieuw worden uitgewerkt. De behuizing moet de elektronica rechtstreeks ondersteunen en ruimte bieden voor antennes en de barometeropening. Bevestigingsmethode, connectoren, bedrading en materiaalvoorraad zijn nog open.
+
+## 2026-10-10 — Herziene gebruikersspecificaties: besturing-apps i.p.v. code en API
+- **Specificatie:** Scherm 3 = **Besturing-menu** met drie applicatie-iconen (per voertuigtype). Scherm 4 = voertuigspecifieke besturingspagina; voorbeeld **auto**: stuur (klikken + slepen) en gaspedaal (ingedrukt houden = vooruit). De code-pagina (editor + CSV-uploadknop) en API-pagina (aan/uit, testknop, endpoint) vervallen uit de gebruikersspecificatie. Voertuig = generiek demonstratiemodel; installatie = **TX/RX + GND** met de Arduino van het voertuig. Test = handmatig bewegen/kantelen, 3D-visualisatie en live data synchroon.
+- **Status:** vastgelegd (pdf `~/Downloads/GStem-Specificaties.pdf`, `2026-10-10`).
+- **Bron:** gebruikersaanlevering `2026-10-10`; zie [gstem-specificaties](gstem-specificaties.md), [beslissingen](beslissingen.md).
+- **Gevolg:** De webdemo-delen `#page-code` en `#page-api` vervallen uit de productrichting; de besturing-apps (scherm 3/4) zijn nieuwe bouwstenen. De CSV-koppeling over UART naar de Arduino blijft, maar het formaat wordt door de besturing-app bepaald.
